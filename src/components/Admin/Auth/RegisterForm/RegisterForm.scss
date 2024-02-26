@@ -1,0 +1,12 @@
+@import "~/src/scss/index.scss";
+
+.register-form{
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    &_error{
+        color: $error;
+        text-align: center;
+    }
+
+}

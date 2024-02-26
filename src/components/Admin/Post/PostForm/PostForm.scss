@@ -1,0 +1,37 @@
+@import "~/src/scss/index.scss";
+
+.post-form{
+    .ui.button{
+        margin-top: 20px;
+    }
+    &__miniature{
+        margin: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        >div{
+            width: 200px;
+            min-height: 120px;
+            border: 2px dashed #868283;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            &:hover{
+                opacity: 0.6;
+                cursor: pointer;
+            }
+        }
+        > .ui.image{
+            width: 200px;
+            min-height: 120px;
+            margin: 0;
+            border: 2px dashed #868283;
+            padding: 5px;
+            &:hover{
+                opacity: 0.6;
+                cursor: pointer;
+            }
+        }
+    }
+}

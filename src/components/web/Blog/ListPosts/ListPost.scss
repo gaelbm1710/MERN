@@ -1,0 +1,24 @@
+.list-posts-web{
+    margin-top: 70px;
+    .list{
+        display: flex;
+        flex-wrap: wrap;
+        .item{
+            width: 33.33%;
+            padding: 20px;
+        }
+    }
+    .pagination{
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        a{
+            color:black;
+            opacity: 0.7;
+            &.active{
+                border-color:#003d63 !important;
+                opacity: 1;
+            }
+        }
+    }
+}

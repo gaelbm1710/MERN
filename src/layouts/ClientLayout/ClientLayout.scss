@@ -1,0 +1,23 @@
+@import "~/src/scss/index.scss";
+
+.client-layout{
+    background-color: #ffffff;
+    min-height: 100vh;
+    max-height: 100vh;
+    
+    &__footer{
+        margin-top: 50px;
+        padding: 20px 0 10px 0;
+        border-top: 3px solid #0070b7 ;
+        > .ui.container{
+            display: flex;
+            &:last-of-type{
+                justify-content:end;
+                margin-top: 30px;
+                color: #000000af;
+                font-size: 20px;
+                opacity: 0.5;
+            }
+        }
+    }
+}

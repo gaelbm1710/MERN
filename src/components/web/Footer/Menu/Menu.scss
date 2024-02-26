@@ -1,0 +1,23 @@
+@import "~/src/scss/index.scss";
+
+.footer-menu{
+    width: 33.33%;
+    padding-left: 20px;
+    >h4{
+        color: #000000;
+    }
+    .ui.grid{
+        height: 100%;
+        .column{
+            display: flex;
+            flex-direction: column;
+            justify-content:space-around;
+            a{
+                color:#000000;
+                &:hover{
+                    opacity: 0.6;
+                }
+            }
+        }
+    }
+}

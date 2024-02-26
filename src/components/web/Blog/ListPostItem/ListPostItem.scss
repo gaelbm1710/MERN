@@ -1,0 +1,19 @@
+.list-post-item{
+    &:hover{
+        opacity: 0.5;
+    }
+    .ui.image{
+        border-radius: 20px;
+    }
+    h2{
+        font-size: 16px;
+        color:black;
+        margin: 10px 0 0 0;
+        font-weight: normal;
+    }
+    span{
+        color:black;
+        opacity: 0.4;
+        font-size: 12px;
+    }
+}
