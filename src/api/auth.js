@@ -1,5 +1,5 @@
 import {ENV} from "../utils";
-
+//
 export class Auth{
     baseApi = ENV.BASE_API;
     async register(data){
