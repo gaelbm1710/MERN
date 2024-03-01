@@ -7,8 +7,7 @@ import {itemsData} from "./HomeMyCoursesWork.data";
 export function HomeMyCoursesWork() {
   return (
     <Container className='how-my-courses-work'>
-        <h2>¿Como funciona esto?</h2>
-        <h4>Cada enlace te va a brindar un servicio</h4>
+        <h2>¿Que es esto?</h2>
         <div className='how-my-courses-work__items'>
             {map(itemsData, (item, index) =>(
                 <div key={index}>

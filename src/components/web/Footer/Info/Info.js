@@ -9,7 +9,8 @@ export function Info() {
     <div className='footer-info'>
         <Icon.LogoWhite className='logo'/>
         <p>
-          Este es un desarrollo que sepa dios para que es, pero pues funciona JEJEJEJEJEJEJEJE
+          Kappa es un sitio web donde podrás realizar actividades de manera digital sin la necesidad de intercambiar correos o estar escaneando hojas
+          o algo así ya pensaremos que poner en este apartado
         </p>
     </div>
   )

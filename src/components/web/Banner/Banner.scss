@@ -24,15 +24,19 @@
     }
     h1{
         color: #ffffff;
-        font-size:60px;
+        font-size:80px;
         line-height: 55px;
         z-index: 1;
+        display:flex;
+        justify-content: center;
     }
     h2{
         color: #ffffff;
-        font-size:100;
+        font-size:30px;
         font-weight: 22px;
         z-index: 1;
+        display:flex;
+        justify-content: center;
     }
 }
 

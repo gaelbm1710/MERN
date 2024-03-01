@@ -13,6 +13,7 @@
         height: 100%;
         display: flex;
         align-items: center;
+        margin: 0 -60px; //Si se quiere más a la -> cambiar le calor a positivo
         .logo{
             height: 60%;
             >svg{
@@ -22,12 +23,28 @@
         .menu{
             margin-left: 20px;
             a{
-                margin: 0 5px;
+                margin: 0 10px;
                 color: #ffffff;
                 &:hover{
                     opacity: 0.6;
                 }
             }
+        }
+    }
+    &__right{
+        height: 100%;
+        display: flex;
+        align-items: center;
+        .ui.button{
+            width: 150px;
+            margin: 0 -2px; //Si se quiere más a la <- cambiar le calor a positivo
+            border-radius: 100px;
+            .user{
+                color: #ffffff;
+            }
+        }
+        &:hover{
+            opacity: 0.5;
         }
     }
 }

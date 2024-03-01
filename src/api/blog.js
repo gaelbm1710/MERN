@@ -37,7 +37,7 @@ export class Post{
             if(response.status !== 200) throw result;
             return result;
         }catch(error){
-
+            throw error;
         }
     }
     async updatePost(accessToken, idPost, data){

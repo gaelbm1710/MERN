@@ -1,6 +1,6 @@
 import React from 'react';
 import {Routes, Route} from "react-router-dom";
-import {Auth, Users, Blog, Courses, Menu, Newsletter} from "../pages/admin";
+import {Auth, Users, Blog, Courses, Menu, Newsletter, inyde, ope, come, Inyde} from "../pages/admin";
 import {AdminLayout} from "../layouts";
 import {useAuth} from "../hooks";
 
@@ -29,6 +29,10 @@ export function AdminRouter() {
         <Route path="/admin/courses" element={loadLayout(AdminLayout, Courses)}/>
         <Route path="/admin/menu" element={loadLayout(AdminLayout, Menu)}/>
         <Route path="/admin/newsletter" element={loadLayout(AdminLayout, Newsletter)}/>
+        <Route path="/admin/blog" element={loadLayout(AdminLayout,Blog)}/>
+        <Route path="/admin/inyde" element={loadLayout(AdminLayout,Inyde)}/>
+        <Route path="/admin/ope" element={loadLayout(AdminLayout, ope)}/>
+        <Route path="/admin/come" element={loadLayout(AdminLayout, come)}/>
         </>
       )}
     </Routes>

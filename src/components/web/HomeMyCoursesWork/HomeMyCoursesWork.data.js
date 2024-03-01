@@ -1,33 +1,33 @@
 export const itemsData = [
     {
       icon: "hand spock",
-      title: "Bienvendios",
-      description: "Esto es la base de una pagina web que sepa para que se requiera",
+      title: "Bienvendios a Kappa",
+      description: "Un sitio donde podrás realizar actividades para tu trabajo",
     },
     {
         icon: "smile",
-        title:"Estoy feliz",
-        description:"Estamos felices"
+        title:"De tu agrado",
+        description:"Estamos esperando que este sitio sea de mucha ayuda para ti"
     },
     {
-        icon: "hubspot",
-        title:"hubspot",
-        description:"hubspot"
+        icon: "universal access",
+        title:"Accesible para todo OmicronLab",
+        description:"Kappa será accesible para todo aquel que lo requiera y sea parte de OmicronLab"
     },
     {
-        icon: "handshake",
-        title: "Estamos de acuerdo",
-        description: "En el area de TI Estamos de acuerdo Con el uso de ChatGPT"
+        icon: "wrench",
+        title: "Creado por TI",
+        description: "Queremos darle las gracias por ser pacientes a las mejoras que tenemos planificadas"
     },
     {
-        icon: "server",
-        title:"Servidor",
-        description: "Esperemos haya un servidor por ahí para esto",
+        icon: "clock",
+        title:"Disponible 24/7",
+        description: "Kappa estará activo las 24 hrs. todos los días, se aviasará cuando se llegue a detener",
     },
     {
-        icon: "bug",
-        title: "Un Bicho",
-        description: "Hay un bicho aquí"
+        icon: "group",
+        title: "Trabajando en conjunto",
+        description: "Kappa fue creado con base a las necesidades de cada área"
     }
   ];
   

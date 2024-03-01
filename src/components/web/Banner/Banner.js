@@ -7,9 +7,8 @@ export function Banner() {
   return (
     <div className='banner'>
         <Container>
-            <h1>Hola Aún no sé para que es esto<br/> Esperemos sirva de algo
-            </h1>
-            <h2>Espero esto sirva de Algo</h2>
+            <h1>¡Bienvenido a Kappa!</h1>
+            <h2>Aquí podrás realizar varias activades para completar tu labor</h2>
         </Container>
         <div className='banner__dark'>
         </div>

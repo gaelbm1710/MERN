@@ -5,10 +5,11 @@ import {initialValues, validationSchema} from "./LoginForm.form";
 import {Auth} from "../../../../api"
 import {useAuth} from "../../../../hooks"
 
+
 const authController = new Auth();
 
 export function LoginForm() {
-    const {login} = useAuth()
+    const {login} = useAuth();
     const formik = useFormik({
         initialValues: initialValues(),
         validationSchema: validationSchema(),
@@ -20,7 +21,7 @@ export function LoginForm() {
                 authController.setRefreshToken(response.access);
                 login(response.access);
             } catch (error) {
-                console.log(error);
+                console.error(error);
             }
         }
     })
