@@ -38,7 +38,7 @@ export function ListCourses(props) {
   return (
     <div className='list-courses'>
         {map(courses, (course)=>(
-            <CourseItem key={course._id} course={course} onReload={onReload}/>
+            <CourseItem key={course._id} course={course} onReload={onReload} onClose={onClose}/>
         ))}
         <div className='list-courses__pagination'>
             <Pagination

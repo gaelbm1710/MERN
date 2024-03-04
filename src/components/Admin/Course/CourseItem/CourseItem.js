@@ -51,7 +51,7 @@ export function CourseItem(props) {
             </Button>
         </div>
     </div>
-    <BasicModal show={showModal} onClose={onOpenCloseModal} title={titleModal}>
+    <BasicModal show={showModal} close={onOpenCloseModal} title={titleModal}>
         <CourseForm onClose={onOpenCloseModal} onReload={onReload} course={course}/>
     </BasicModal>
     <Confirm 

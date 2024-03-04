@@ -7,6 +7,7 @@ import { InydeItem } from '../InydeItem/InydeItem';
 const magController = new Mag();
 
 export function ListInyde(props){
+    const {reload, onReload, onClose} = props;
     const [mags, setMags] = useState(null)
     const [page, setPage] = useState(1)
     const [pagination, setPagination] = useState()
@@ -25,7 +26,7 @@ export function ListInyde(props){
             console.error(error)
         }
       })()
-    }, [page])
+    }, [page, reload])
 
     const changePage=(_,data)=>{
         setPage(data.activePage)
@@ -36,8 +37,8 @@ export function ListInyde(props){
   return (
     <div className='list-cotizaciones'>
         {map(mags, (mag)=>(
-            <InydeItem />
-        ))};
+            <InydeItem key={mag._id} mag={mag} onReload={onReload} onClose={onClose}/>
+        ))}
         <div className='list-cotizaciones__pagination'>
             <Pagination
             totalPages={pagination.total}

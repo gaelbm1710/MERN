@@ -1,3 +1,4 @@
+import { Await } from "react-router-dom";
 import {ENV} from "../utils";
 
 export class Mag{
@@ -26,10 +27,45 @@ export class Mag{
                 },
                 body: JSON.stringify(data),
             }
-            const response = await fetch(url);
+            const response = await fetch(url, params);
             const result= await response.json()
             if(response.status !== 200) throw result;
             return result
+        } catch (error) {
+            throw error;
+        }
+    }
+    async updateMag(accessToken, idMag, data){
+        try {
+            const url = `${this.baseApi}/${ENV.API_ROUTES.MAG}/${idMag}`
+            const params={
+                method: "PATCH",
+                headers:{
+                    Authorization: `Bearer ${accessToken}`
+                },
+                body: JSON.stringify(data),
+            }
+            const response = await fetch(url, params)
+            const result = await response.json()
+            if(response.status !== 200) throw result;
+            return result;
+        } catch (error) {
+            throw error;
+        }
+    }
+    async deleteMag(accessToken, idMag){
+        try {
+            const url = `${this.baseApi}/${ENV.API_ROUTES.MAG}/${idMag}`
+            const params={
+                method: "DELETE",
+                headers:{
+                    Authorization: `Bearer ${accessToken}`
+                },
+            }
+            const response = await fetch(url, params)
+            const result = await response.json()
+            if(response.status !== 200) throw result;
+            return result;
         } catch (error) {
             throw error;
         }
