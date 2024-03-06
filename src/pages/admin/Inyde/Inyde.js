@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Tab, Button} from "semantic-ui-react";
+import {Tab} from "semantic-ui-react";
 import "./inyde.scss";
 import { BasicModal } from '../../../components/Shared';
 import {ListInyde, InydeForm} from "../../../components/Admin/Inyde"
@@ -22,8 +22,6 @@ export function Inyde() {
   return (
     <>
     <div className='cotizacionm-page'>
-      <div className='cotizacionm-page__add'>
-      </div>
       <Tab menu={{secondary: true}} panes={panes} />
     </div>
     <BasicModal showModal={showModal} close={onOpenCloseModal} title="Agregar Cotizacion">

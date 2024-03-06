@@ -1,1 +1,1 @@
-export * from "./ope";
+export * from "./Ope";

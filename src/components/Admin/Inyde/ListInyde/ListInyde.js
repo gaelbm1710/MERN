@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react';
 import {Mag} from "../../../../api";
-import { size, map, set } from 'lodash';
+import { size, map } from 'lodash';
 import { Loader, Pagination } from 'semantic-ui-react';
 import { InydeItem } from '../InydeItem/InydeItem';
 

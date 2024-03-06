@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import "./EmailItem.scss";
 import {Button, Icon, Confirm} from "semantic-ui-react";
-import {ENV} from "../../../../api";
 import {Newsletter} from "../../../../api";
 import {useAuth} from "../../../../hooks";
 

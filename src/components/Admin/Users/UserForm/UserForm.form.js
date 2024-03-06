@@ -14,8 +14,8 @@ export function initialValues(user){
 
 export function validationSchema(user){
     return Yup.object({
-        firstname: Yup.string().required(true),
-        lastname: Yup.string().required(true),
+        //firstname: Yup.string().required(true),
+        //lastname: Yup.string().required(true),
         email: Yup.string().email(true).required(true),
         role: Yup.string().required(true),
         password: user? Yup.string() : Yup.string().required(true)

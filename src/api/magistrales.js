@@ -1,4 +1,3 @@
-import { Await } from "react-router-dom";
 import {ENV} from "../utils";
 
 export class Mag{
