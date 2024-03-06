@@ -8,7 +8,7 @@ export function Banner() {
     <div className='banner'>
         <Container>
             <h1>¡Bienvenido a Kappa!</h1>
-            <h2>Aquí podrás realizar varias activades para completar tu labor</h2>
+            <h2>Aquí podrás realizar varias actividades para completar tu labor</h2>
         </Container>
         <div className='banner__dark'>
         </div>

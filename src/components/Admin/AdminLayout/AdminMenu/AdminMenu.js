@@ -57,7 +57,7 @@ export function AdminMenu() {
         )}
         {isOpe&&(
             <>
-            <Menu.Item as={Link} to="/admin/ope" active={isCurrentPath("/mag/cotizacion")}>
+            <Menu.Item as={Link} to="/admin/operaciones" active={isCurrentPath("/mag/cotizacion")}>
               <Icon name='lab'/>
               Cotizaciones Magistrales
             </Menu.Item>

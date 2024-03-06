@@ -1,12 +1,12 @@
 import React from 'react'
-import {Form, Dropdown, Input, GridRow, GridColumn, Grid, Segment} from "semantic-ui-react";
+import {GridRow, GridColumn, Grid, Segment} from "semantic-ui-react";
 import { useFormik } from 'formik';
 import {initialValues, validationSchema} from "./InydeForm.form"
 import { Mag } from '../../../../api';
 import { useAuth } from '../../../../hooks';
 
 const magController = new Mag();
-
+/*
 const clasificacion = [
   {key: "FM", Text:"FM", value:"fm"},
   {key: "DC", Text:"DC", value:"dc"}
@@ -16,11 +16,11 @@ const TipoF = [
   {key: "Cerrada", Text:"Cerrada", value:"cd"},
   {key: "Atributos", Text:"Atributos", value:"at"}
 ];
-
+*/
 
 export function InydeForm(props) {
   const {onClose, onReload, mag} = props;
-  const dxp = mag._id.substring(24,18);
+ // const dxp = mag._id.substring(24,18);
   const {accessToken} = useAuth();
   const formik = useFormik({
     initialValues: initialValues(mag),
@@ -42,7 +42,7 @@ export function InydeForm(props) {
   });
   return (
     <>
-    <Grid columns={1}>
+    <Grid columns={1} onSubmit={formik.handleSubmit}>
       <GridRow>
         <GridColumn>
         <Grid columns={2}>

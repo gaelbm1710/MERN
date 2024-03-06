@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import "./Inyde.scss";
 import { Button, Icon, Confirm } from 'semantic-ui-react';
-import {ENV} from "../../../../utils";
 import { BasicModal } from '../../../Shared';
 import { Mag } from '../../../../api';
 import { useAuth } from '../../../../hooks';
