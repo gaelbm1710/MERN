@@ -59,4 +59,4 @@ jobs:
           app-name: 'kaapa'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_AB7E0D085A4D45D98B2C74814D44A3F4 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_7B95D0E51691456E9F1BCEF88B5DB1B6 }}
