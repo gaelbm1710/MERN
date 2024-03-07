@@ -1,7 +1,7 @@
-const SERVER_IP = "https://backend-kappa.onrender.com";
+
 export const ENV = {
-    BASE_PATH: `https://backend-kappa.onrender.com`,
-    BASE_API: `https://backend-kappa.onrender.com/api/v1`,
+    BASE_PATH: `https://kaapa-backend.azurewebsites.net/`,
+    BASE_API: `https://kaapa-backend.azurewebsites.net/api/v1`,
     API_ROUTES:{
         REGISTER: "auth/register",
         LOGIN: "auth/login",

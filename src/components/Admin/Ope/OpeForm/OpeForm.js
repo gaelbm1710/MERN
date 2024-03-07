@@ -10,7 +10,7 @@ const magController = new Mag();
 
 export function OpeForm(props) {
   const {onReload, onClose, mag} = props;
-  //const dxp = mag._id.substring(24,18);
+  const dxp = mag._id.substring(24,18);
   const {accessToken} = useAuth();
   const formik = useFormik({
     initialValues: initialValues(mag),
