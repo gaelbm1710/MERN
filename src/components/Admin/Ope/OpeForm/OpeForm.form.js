@@ -39,14 +39,13 @@ export function initialValues(mag){
 export function validationSchema(){
     return Yup.object({
         folio_Op: Yup.number().required(true),
-        precioUni: Yup.number().required(true),
-        precio1: Yup.number().required(true),
-        precio2: Yup.number().required(true),
-        precio3: Yup.number().required(true),
-        precio4: Yup.number().required(true),
-        precio5: Yup.number().required(true),
-        precio6: Yup.number().required(true),
-        precio7: Yup.number().required(true),
-        precio8: Yup.number().required(true),
+        precio1: Yup.number().required(false),
+        precio2: Yup.number().required(false),
+        precio3: Yup.number().required(false),
+        precio4: Yup.number().required(false),
+        precio5: Yup.number().required(false),
+        precio6: Yup.number().required(false),
+        precio7: Yup.number().required(false),
+        precio8: Yup.number().required(false),
     });
 }
