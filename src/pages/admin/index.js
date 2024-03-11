@@ -6,4 +6,4 @@ export * from "./Menu";
 export * from "./Newsletter";
 export * from "./Inyde";
 export * from "./Ope";
-export * from "./come";
+export * from "./Come";
