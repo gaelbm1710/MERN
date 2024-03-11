@@ -31,7 +31,7 @@ export function AdminRouter() {
         <Route path="/admin/newsletter" element={loadLayout(AdminLayout, Newsletter)}/>
         <Route path="/admin/blog" element={loadLayout(AdminLayout,Blog)}/>
         <Route path="/admin/inyde" element={loadLayout(AdminLayout,Inyde)}/>
-        <Route path="/admin/operaciones" element={loadLayout(AdminLayout,Ope)}/>
+        <Route path="/admin/ope" element={loadLayout(AdminLayout,Ope)}/>
         <Route path="/admin/come" element={loadLayout(AdminLayout, come)}/>
         </>
       )}

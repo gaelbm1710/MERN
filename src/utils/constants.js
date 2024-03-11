@@ -16,6 +16,8 @@ export const ENV = {
         NEWSLETTER: "newsletter",
         BLOG: "post",
         MAG: "mag",
+        OPE: "ope",
+        COME: "come"
     },
     JWT: {
         ACCESS: "access",

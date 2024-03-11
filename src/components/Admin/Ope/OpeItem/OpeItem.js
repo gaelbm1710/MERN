@@ -21,15 +21,7 @@ export function OpeItem(props) {
     setTitleModal(`Revisar cotización: #${dxp}`)
     onOpenCloseModal();
   }
-  const onDelete = async () =>{
-    try {
-      await magController.deleteMag(accessToken, mag._id);
-      onReload();
-      onClose();
-    } catch (error) {
-      console.error(error)
-    }
-  }
+
 
   return (
     <>

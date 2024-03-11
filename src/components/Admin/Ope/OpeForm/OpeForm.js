@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, TableRow, TableBody, TableHeader, TableHeaderCell, Table, Container, TableCell, Label } from "semantic-ui-react";
+import { Form, TableRow, TableBody, TableHeader, TableHeaderCell, Table, Container, TableCell } from "semantic-ui-react";
 import { useFormik } from "formik";
 import { initialValues,validationSchema} from "./OpeForm.form";
 import {Mag} from "../../../../api";
@@ -10,11 +10,11 @@ import "./OpeForm.scss";
 const magController = new Mag();
 
 export function OpeForm(props) {
-  const { onClose, onReload, mag } = props;
+  const { onClose, onReload, mag} = props;
   const {accessToken} = useAuth();
   const formik = useFormik({
     initialValues: initialValues(mag),
-    validationSchema: validationSchema(),
+    validationSchema: validationSchema(mag),
     validateOnChange: false,
     onSubmit: async (formValue) => {
       try {
@@ -28,11 +28,11 @@ export function OpeForm(props) {
           precio6: formValue.precio6,
           precio7: formValue.precio7,
           precio8: formValue.precio8,
-        };
-        if(mag){
-          await magController.updateMag(accessToken, mag._id, data);
+        }
+        if(!mag){
+          await magController.createMagOpe(accessToken, data);
         }else{
-          await magController.createMag(accessToken, data);
+          await magController.updateMagOpe(accessToken, mag._id, data);
         };
         onClose();
         onReload();
