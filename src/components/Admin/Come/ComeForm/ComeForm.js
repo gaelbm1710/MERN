@@ -37,7 +37,9 @@ export function ComeForm(props) {
 
   return (
     <Form className='ope-form' onSubmit={formik.handleSubmit}>
-
+      <Container>
+        
+      </Container>
       <Form.Button type='submit' primary fluid loading={formik.isSubmitting}>
         {mag ? "Actualizar Menu": "Crear Menu"}
       </Form.Button>
