@@ -8,7 +8,7 @@ const magController = new Mag();
 
 export function ListInyde(props){
     const {reload, onReload, onClose} = props;
-    const [mags, setMags] = useState(null)
+    const [mags, setMags] = useState(false)
     const [page, setPage] = useState(1)
     const [pagination, setPagination] = useState()
     useEffect(() => {
