@@ -1,6 +1,6 @@
 @import "~/src/scss/index.scss";
 
-.ope-form{
+.gc-form{
     margin-bottom: 10px;
     &__info{
         margin-bottom: 10px;
@@ -13,22 +13,9 @@
             margin-bottom: 5px; 
         }
         span{
-            color: cadetblue;
+            color: #f6ce93;
         }
     }
-    > .ui.container{
-        margin-bottom: 10px;
-        width: 100%;
-        align-items: center;
-        justify-content: center;
-
-        span{
-            font-weight: bold;
-        }
-        .ui.input{
-            width: 50%;
-            margin-bottom: 5px;
-        }
         .table-precio {
             border-collapse: collapse;
             border: 1px solid black;
@@ -38,7 +25,14 @@
               padding: 1px; 
               text-align: left;
             }
-          }
-          
-    }
+        }
+        >.ui.container{
+            margin-bottom: 20px;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+        }
+        span{
+            font-weight: bold;
+        }
 }

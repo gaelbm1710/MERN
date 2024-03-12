@@ -99,7 +99,7 @@ export function OpeForm(props) {
         </Table>
       </Container>
       <Form.Button type='submit' primary fluid loading={formik.isSubmitting}>
-        {mag ? "Actualizar Menu": "Crear Menu"}
+        {mag ?"Actualizar Cotización": "Crear Cotización"}
       </Form.Button>
     </Form>
   );

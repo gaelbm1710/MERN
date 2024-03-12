@@ -7,3 +7,4 @@ export * from "./Newsletter";
 export * from "./Inyde";
 export * from "./Ope";
 export * from "./Come";
+export * from "./Asesor";
