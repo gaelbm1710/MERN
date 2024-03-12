@@ -2,10 +2,10 @@ import {ENV} from "../utils";
 
 export class Mag{
     baseApi = ENV.BASE_API;
-    async getMag(page=1,limit=10){
+    async getMag(params){
         try {
-            const pageFilter = `page=${page}`;
-            const limitFilter = `limit=${limit}`;
+            const pageFilter = `page=${params?.page||1}`;
+            const limitFilter = `limit=${params?.limit||10}`;
             const url = `${this.baseApi}/${ENV.API_ROUTES.MAG}?${pageFilter}&${limitFilter}`;
             const response = await fetch(url);
             const result= await response.json()
