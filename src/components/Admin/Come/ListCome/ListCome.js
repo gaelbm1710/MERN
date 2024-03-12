@@ -2,12 +2,12 @@ import React, {useEffect, useState} from 'react';
 import { Mag } from '../../../../api';
 import { size, map } from 'lodash';
 import { Loader, Pagination } from 'semantic-ui-react';
-import {OpeItem} from "../OpeItem/OpeItem"
-import "./ListOpe.scss";
+import {ComeItem} from "../ComeItem/ComeItem"
+import "./ListCome.scss";
 
 const magController = new Mag();
 
-export function ListOpe(props) {
+export function ListCome(props) {
   const {reload, onReload, onClose} = props;
   const [mags, setMags] = useState(false);
   const [page, setPage] = useState(1);
@@ -15,7 +15,7 @@ export function ListOpe(props) {
   useEffect(() => {
     (async () =>{
       try {
-        const response = await magController.getMagOpe({page, limit: 9});
+        const response = await magController.getMagCome({page, limit: 9});
         setMags(response.docs);
         setPagination({
           limit: response.limit,
@@ -39,7 +39,7 @@ export function ListOpe(props) {
   return (
     <div className='list-cotizaciones'>
       {map(mags, (mag)=>(
-        <OpeItem key={mag._id} mag={mag} onReload={onReload} onClose={onClose} />
+        <ComeItem key={mag._id} mag={mag} onReload={onReload} onClose={onClose} />
       ))}
       <div className='list-cotizaciones__pagination'>
       <Pagination

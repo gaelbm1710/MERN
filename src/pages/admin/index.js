@@ -5,5 +5,5 @@ export * from "./Courses";
 export * from "./Menu";
 export * from "./Newsletter";
 export * from "./Inyde";
-export * from "./operaciones";
-export * from "./come";
+export * from "./Ope";
+export * from "./Come";

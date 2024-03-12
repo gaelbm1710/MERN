@@ -1,14 +1,14 @@
 import React, {useState} from 'react'
-import "./OpeItem.scss";
+import "./ComeItem.scss";
 import { Button, Icon } from 'semantic-ui-react';
 import { BasicModal } from '../../../Shared';
 import { Mag } from '../../../../api';
 import { useAuth } from '../../../../hooks';
-import {OpeForm} from "../OpeForm"
+import {ComeForm} from "../ComeForm"
 
 const magController = new Mag();
 
-export function OpeItem(props) {
+export function ComeItem(props) {
   const {mag, onReload, onClose} = props
   const {accessToken} = useAuth();
   const [showModal, setShowModal] = useState(false);
@@ -37,7 +37,7 @@ export function OpeItem(props) {
       </div>
     </div>
     <BasicModal show={showModal} close={onOpenCloseModal} title={titleModal}>
-      <OpeForm onClose={onOpenCloseModal} onReload={onReload} mag={mag}/>
+      <ComeForm onClose={onOpenCloseModal} onReload={onReload} mag={mag}/>
     </BasicModal>
     </>
   )
