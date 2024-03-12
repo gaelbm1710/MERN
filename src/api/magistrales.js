@@ -2,12 +2,8 @@ import {ENV} from "../utils";
 
 export class Mag{
     baseApi = ENV.BASE_API;
-<<<<<<< HEAD
-    async getMag(params){
-=======
     //Investigación y Desarrollo
     async getMag(page=1,limit=10){
->>>>>>> f94437d98d933f4479cb15ee6072b71a847a8e55
         try {
             const pageFilter = `page=${params?.page||1}`;
             const limitFilter = `limit=${params?.limit||10}`;
