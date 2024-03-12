@@ -8,7 +8,7 @@ export function initialValues(mag){
         activos: mag?.activos || "",
         especialidad: mag?.especialidad || "",
         padecimiento: mag?.padecimiento || "",
-        necesita_formula: mag?.necesita_formula || false,
+        necesita_muestra: mag?.necesita_muestra || false,
         existe: mag?.existe || false,
         base_ex: mag?.base_ex || "",
         clave_ex: mag?.clave_ex || "",
