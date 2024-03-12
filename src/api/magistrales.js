@@ -221,38 +221,4 @@ export class Mag{
         }
     }
 
-    //ASesores
-    async getMagAse(params){
-        try {
-            const pageFilter = `page=${params?.page||1}`;
-            const limitFilter = `limit=${params?.limit||10}`;
-            const url = `${this.baseApi}/${ENV.API_ROUTES.COME}?${pageFilter}&${limitFilter}`;
-            const response = await fetch(url);
-            const result= await response.json()
-            if(response.status !== 200) throw result;
-            return result;
-        } catch (error) {
-            throw (error)
-        }
-    }
-    async createMagAse(accessToken, data){
-        try {
-            const url = `${this.baseApi}/${ENV.API_ROUTES.COME}`;
-            const params = {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${accessToken}`,
-                },
-                body: JSON.stringify(data),
-            }
-            const response = await fetch(url, params);
-            const result= await response.json()
-            if(response.status !== 200) throw result;
-            return result
-        } catch (error) {
-            throw error;
-        }
-    }
-
 }
