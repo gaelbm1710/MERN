@@ -7,26 +7,26 @@ import {AsesorForm, ListAsesor} from "../../../components/Admin/Asesor"
 export function Asesor() {
   const [showModal, setShowModal] = useState(false);
   const [reload, setReload] = useState(false);
-  const onOpenCloseModal =()=>setShowModal((prevState)=>!prevState)
-  const onReload =()=>setReload((prevState)=>!prevState)
+  const onOpenCloseModal =()=>setShowModal((prevState) =>!prevState)
+  const onReload = () => setReload((prevState) => !prevState);
   const panes=[
     {
       render: ()=>(
         <Tab.Pane>
-         <h1>Lista Cotizaciones</h1>
+         <ListAsesor reload={reload} onReload={onReload}/>
         </Tab.Pane>
       )
     }
   ]
   return (
     <>
-    <div className='cotizaciones-page'>
-      <Button className='cotizaciones-page__add' primary onClick={onOpenCloseModal} >Generar Cotización</Button>
-      <Tab menu={{secondary: true}} panes={panes}/>
-    </div>
-    <BasicModal showModal={showModal} close={onOpenCloseModal} title="Agreagar cotización">
-      <AsesorForm onClose={onOpenCloseModal} onReload={onReload}/>
-    </BasicModal>
+      <div className='cotizacion-page'>
+        <Button className='cotizacion-page__add' primary onClick={onOpenCloseModal}>Nueva Cotización</Button>
+        <Tab menu={{secondary: true}} panes={panes}/> {" "}
+      </div>
+      <BasicModal show={showModal} close={onOpenCloseModal} title="Crear Menu">
+        <AsesorForm onClose={onOpenCloseModal} onReload={onReload}/>
+      </BasicModal>
     </>
   )
 }

@@ -4,6 +4,7 @@ import { BasicModal } from '../../../Shared';
 import { useAuth } from '../../../../hooks';
 import { Mag } from '../../../../api';
 import { AsesorForm } from '../AsesorForm/AsesorForm';
+import "./AsesorItem.scss";
 
 const magController = new Mag();
 
@@ -14,12 +15,21 @@ export function AsesorItem(props) {
   const [titleModal, setTitleModal] = useState("");
   const dxp = mag._id.substring(24,18);
   const onOpenCloseModal = ()=>setShowModal((prevState)=>!prevState);
+  const openUpdareMag=()=>{
+    setTitleModal(`Revisar cotización: #${dxp}`);
+    onOpenCloseModal();
+  }
   return (
     <>
     <div className='cotizacion-item'>
       <div className='cotizacion-item__info'>
-        <span className='cotizacion-item__info-dxp'># {dxp}</span>
-        <span className='cotizacion-item__info-fecha'>{mag.created_at}</span>
+       <p>Cotización: <span className='cotizacion-item__info-dxp'># {dxp}</span></p> 
+       <p>Cliente: <span className='cotizacion-item__info-cliente'>{mag.cardcode}</span></p>
+      </div>
+      <div>
+        <Button icon primary onClick={openUpdareMag}>
+          <Icon name='eye'/>
+        </Button>
       </div>
     </div>
     <BasicModal showModal={showModal} close={onOpenCloseModal} title={titleModal}>
