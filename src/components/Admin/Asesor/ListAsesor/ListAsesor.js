@@ -3,6 +3,7 @@ import { Mag } from '../../../../api'
 import { size, map } from 'lodash'
 import { Loader, Pagination } from 'semantic-ui-react' 
 import { AsesorItem } from '../AsesorItem/AsesorItem'
+import { useAuth } from '../../../../hooks'
 
 const magController = new Mag();
 
@@ -10,7 +11,9 @@ export function ListAsesor(props) {
   const {reload, onReload, onClose} = props;
     const [mags, setMags] = useState(null)
     const [page, setPage] = useState(1)
-    const [pagination, setPagination] = useState()
+    const [pagination, setPagination] = useState();
+    const {user: {email}} = useAuth();
+    const CorreoAsesor = email;
     useEffect(() => {
       (async () =>{
         try {
