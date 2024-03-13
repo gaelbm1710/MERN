@@ -1,5 +1,5 @@
 import React from 'react'
-import {GridRow, GridColumn, Grid, Segment, Form, FormCheckbox, Checkbox, Input} from "semantic-ui-react";
+import {GridRow, GridColumn, Grid, Segment, Form, FormCheckbox, Checkbox, Input, FormButton, Dropdown} from "semantic-ui-react";
 import { useFormik } from 'formik';
 import {initialValues, validationSchema} from "./InydeForm.form"
 import { Mag } from '../../../../api';
@@ -8,17 +8,17 @@ import { getValue } from '@testing-library/user-event/dist/utils';
 
 const magController = new Mag();
 const handleChange=()=>{}
-/*
+
 const clasificacion = [
-  {key: "FM", Text:"FM", value:"fm"},
-  {key: "DC", Text:"DC", value:"dc"}
+  {key: "FM", Text:"FM", value:"FM"},
+  {key: "DC", Text:"DC", value:"DC"}
 ];
 
 const TipoF = [
   {key: "Cerrada", Text:"Cerrada", value:"cd"},
   {key: "Atributos", Text:"Atributos", value:"at"}
 ];
-*/
+
 
 export function InydeForm(props) {
   const {onClose, onReload, mag} = props;
@@ -52,20 +52,17 @@ export function InydeForm(props) {
         <Grid columns={2}>
       <GridRow>
         <GridColumn>
-          ID
-          <Form.Input name='folio_IyD' onChange={formik.handleChange} value={formik.values.folio_IyD} error={formik.errors.folio_IyD}/>
+          ID<Segment>{mag.folio_IyD}</Segment>
         </GridColumn>
         <GridColumn>
-          ASESOR
-          <Form.Input name='asesor' onChange={formik.handleChange} value={formik.values.asesor} error={formik.errors.asesor}/>
+          ASESOR<Segment>{mag.asesor}</Segment>
         </GridColumn>
       </GridRow>
     </Grid>
     <Grid columns={2}>
       <GridRow>
         <GridColumn>
-          MÉDICO
-          <Form.Input name='cardcode' onChange={formik.handleChange} value={formik.values.cardcode} error={formik.errors.cardcode}/>
+          MÉDICO<Segment>{mag.cardcode}</Segment>
         </GridColumn>
         <GridColumn>
           MUESTRA
@@ -96,7 +93,7 @@ export function InydeForm(props) {
             </GridColumn>
             <GridColumn>
             CLASIFICACIÓN
-            <select name='clasi' onChange={formik.handleChange} value={formik.values.clasi} error={formik.errors.clasi}></select>
+            <Dropdown placeholder="Clasificaciones" fluid selection options={TipoF} onChange={(_,data)=>formik.setFieldValue("clasificacion",data.value)} value={formik.values.clasificacion} error={formik.errors.clasificacion}/>
             </GridColumn>
             <GridColumn>
             PADECIMIENTO
@@ -107,16 +104,13 @@ export function InydeForm(props) {
         <Grid columns={3}>
           <GridRow>
             <GridColumn>
-            RECETA
-            <Form.Input name='receta' onChange={formik.handleChange} value={formik.values.receta} error={formik.errors.receta}/>
+            RECETA<Segment><FormCheckbox name="receta" onChange={formik.handleChange} value={formik.values.receta} error={formik.errors.receta}/></Segment>
             </GridColumn>
             <GridColumn>
-            EXCLUSIVO
-            <Form.Input name='excl' onChange={formik.handleChange} value={formik.values.excl} error={formik.errors.excl}/>
+            EXCLUSIVO<Segment><FormCheckbox name="excl" onChange={formik.handleChange} value={formik.values.excl} error={formik.errors.excl}/></Segment>
             </GridColumn>
             <GridColumn>
-            REFRIGERACIÓN
-            <Form.Input name='refri' onChange={formik.handleChange} value={formik.values.refri} error={formik.errors.refri}/>
+            REFRIGERACIÓN<Segment><FormCheckbox name="refri" onChange={formik.handleChange} value={formik.values.refri} error={formik.errors.refri}/></Segment>
             </GridColumn>
           </GridRow>
         </Grid>
@@ -125,16 +119,13 @@ export function InydeForm(props) {
         <Grid columns={3}>
           <GridRow>
             <GridColumn>
-            FÓRMULA EXISTENTE
-            <Form.Input name='existe' onChange={formik.handleChange} value={formik.values.existe} error={formik.errors.existe}/>
+            EXISTE<Segment><FormCheckbox name="existe" onChange={formik.handleChange} value={formik.values.existe} error={formik.errors.existe}/></Segment>
             </GridColumn>
             <GridColumn>
-            CLAVE
-            <Form.Input name='clave_ex' onChange={formik.handleChange} value={formik.values.clave_ex} error={formik.errors.clave_ex}/>
+            CLAVE<Segment>{mag.clave_ex}</Segment>
             </GridColumn>
             <GridColumn>
-            BASE
-            <Form.Input name='base_ex' onChange={formik.handleChange} value={formik.values.base_ex} error={formik.errors.base_ex}/>
+            BASE<Segment>{mag.base_ex}</Segment>
             </GridColumn>
           </GridRow>
         </Grid>
@@ -144,7 +135,7 @@ export function InydeForm(props) {
           <GridRow>
             <GridColumn>
             TIPO DE FÓRMULA
-            <Form.Input name='tipoF' onChange={formik.handleChange} value={formik.values.tipoF} error={formik.errors.tipoF}/>
+            <select name='tipoF' onChange={formik.handleChange} value={formik.values.tipoF} error={formik.errors.tipoF}></select>
             </GridColumn>
             <GridColumn>
             CADUCIDAD
@@ -179,6 +170,7 @@ export function InydeForm(props) {
       </GridRow>
       </Grid>
       </Segment>
+      <FormButton>Guardar</FormButton>
       </Form></>
   )
 }
