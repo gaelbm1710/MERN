@@ -1,6 +1,6 @@
 import React from 'react'
-import { Form, Dropdown, Container } from 'semantic-ui-react'
-import { useFormik } from 'formik'
+import { Form, Dropdown, Container, Input } from 'semantic-ui-react'
+import { FormikConsumer, useFormik } from 'formik'
 import { initialValues, validationSchema } from './AsesorForm.form'
 import { Mag } from '../../../../api'
 import { useAuth } from '../../../../hooks'
@@ -87,6 +87,8 @@ const magController = new Mag();
 export function AsesorForm(props) {
     const {onClose, onReload, mag} = props
     const {accessToken} = useAuth();
+    const {user: {email}} = useAuth();
+    const CorreoAsesor = email;
     const formik = useFormik({
         initialValues: initialValues(mag),
         validationSchema: validationSchema(),
@@ -122,7 +124,7 @@ export function AsesorForm(props) {
   return (
     <Form onSubmit={formik.handleSubmit} className='form-cotizacion'>
         <Container  className='form-cotizacion__primer'>
-            <Form.Input name="asesor" placeholder="Correo de asesor" onChange={formik.handleChange} value={formik.values.asesor} error={formik.errors.asesor}/>
+            <Form.Input name="asesor" placeholder="Correo de asesor" onChange={formik.handleChange} value={CorreoAsesor} />
             <Form.Input name="cardcode" placeholder="CardCode del Cliente" onChange={formik.handleChange} value={formik.values.cardcode} error={formik.errors.cardcode}/>
             <Dropdown placeholder="especialidad" fluid selection options={especialidades} onChange={(_,data)=>formik.setFieldValue("especialidad",data.value)}
             value={formik.values.especialidad} error={formik.errors.especialidad}
@@ -139,10 +141,15 @@ export function AsesorForm(props) {
             <Form.Input name="padecimiento" placeholder="Padecimiento o intención de uso (p. ej. Ovario poliquístico o aparato/equipo)" onChange={formik.handleChange} value={formik.values.padecimiento} error={formik.errors.padecimiento}/>
         </Container>
         <Container className='form-cotizacion__tercero'>
-        <Form.Checkbox name='existe' label="Existe" onChange={(_,data)=>formik.setFieldValue("existe",data.checked)} checked={formik.values.existe} error={formik.errors.existe}/>
         <Form.Checkbox name='necesita_muestra' label="Necesita muestra" onChange={(_,data)=>formik.setFieldValue("necesita_muestra",data.checked)} checked={formik.values.necesita_muestra} error={formik.errors.necesita_muestra}/>
+        <Form.Checkbox name='existe' label="Existe" onChange={(_,data)=>formik.setFieldValue("existe",data.checked)} checked={formik.values.existe} error={formik.errors.existe}/>
         </Container>
-        
+        <Container className='form-cotizacion__cuarto'>
+        <Dropdown placeholder="Base Existente" fluid selection options={bases} onChange={(_,data)=>formik.setFieldValue("base_ex",data.value)}
+            value={formik.values.base_ex} error={formik.errors.base_ex}
+            />
+            <Form.Input name="clave_ex" placeholder="Clave Existente" onChange={formik.handleChange} value={formik.values.clave_ex} error={formik.errors.clave_ex}/>
+        </Container>
         <Form.Button>
             {mag ? "Revisar Cotización": "Crear cotización"}
         </Form.Button>

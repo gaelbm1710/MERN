@@ -29,6 +29,5 @@ export function validationSchema(){
         base_ex:Yup.string().required(false),
         clave_ex:Yup.string().required(false),
         presentacion: Yup.string().required(true),
-
     })
 }
