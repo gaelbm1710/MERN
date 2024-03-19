@@ -1,6 +1,6 @@
 import React from 'react'
-import { Form, Dropdown, Container, Input } from 'semantic-ui-react'
-import { FormikConsumer, useFormik } from 'formik'
+import { Form, Dropdown, Container } from 'semantic-ui-react'
+import { useFormik } from 'formik'
 import { initialValues, validationSchema } from './AsesorForm.form'
 import { Mag } from '../../../../api'
 import { useAuth } from '../../../../hooks'
@@ -109,7 +109,7 @@ export function AsesorForm(props) {
                     presentacion: formValue.presentacion,
                 };
                 if(!mag){
-                    await magController.createMag(accessToken, data)
+                    await magController.createMagCome(accessToken, data)
                 }else{
                     await magController.updateMag(accessToken, mag._id ,data)
                 }
@@ -122,7 +122,7 @@ export function AsesorForm(props) {
     });
 
   return (
-    <Form onSubmit={formik.handleSubmit} className='form-cotizacion'>
+    <Form onSubmit={formik.handleSubmit}>
         <Container  className='form-cotizacion__primer'>
             <Form.Input name="asesor" placeholder="Correo de asesor" onChange={formik.handleChange} value={CorreoAsesor} />
             <Form.Input name="cardcode" placeholder="CardCode del Cliente" onChange={formik.handleChange} value={formik.values.cardcode} error={formik.errors.cardcode}/>
@@ -136,7 +136,7 @@ export function AsesorForm(props) {
             />
             <Form.TextArea name="activos" placeholder="Ingresa los activos para la fórmula, con su porcentaje" onChange={formik.handleChange} value={formik.values.activos} error={formik.errors.activos}/>
             <Dropdown placeholder="Presentaciones" fluid selection multiple options={presentaciones} onChange={(_,data)=>formik.setFieldValue("presentacion",data.value)}
-            value={formik.values.presentacion} error={formik.errors.presentacion}
+            value={formik.values.presentacion || []} error={formik.errors.presentacion}
             />
             <Form.Input name="padecimiento" placeholder="Padecimiento o intención de uso (p. ej. Ovario poliquístico o aparato/equipo)" onChange={formik.handleChange} value={formik.values.padecimiento} error={formik.errors.padecimiento}/>
         </Container>
@@ -150,7 +150,7 @@ export function AsesorForm(props) {
             />
             <Form.Input name="clave_ex" placeholder="Clave Existente" onChange={formik.handleChange} value={formik.values.clave_ex} error={formik.errors.clave_ex}/>
         </Container>
-        <Form.Button>
+        <Form.Button type='submit' primary fluid loading={formik.isSubmitting}>
             {mag ? "Revisar Cotización": "Crear cotización"}
         </Form.Button>
     </Form>
