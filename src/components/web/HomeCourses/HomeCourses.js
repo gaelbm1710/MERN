@@ -35,6 +35,23 @@ export function HomeCourses() {
                </a> 
             ))}
         </div>
+    </Container>
+  )
+  /*
+  return (
+    <Container className='home-courses'>
+        <h2>Enlaces de Ayuda</h2>
+        <div className='home-courses__all'>
+            {map(courses,(course)=>(
+               <a key={course._id} href={course.url} target='_blank'>
+                <Image src={`${ENV.BASE_PATH}/${course.miniature}`} />
+                <div>
+                    <span>{course.tittle}</span>
+                    <span>{course.description}</span>
+                </div>
+               </a> 
+            ))}
+        </div>
         <div className='home-courses__more'>
             <Button as={Link} to="/course" primary>
                 Ver más Enlaces
@@ -42,4 +59,6 @@ export function HomeCourses() {
         </div>
     </Container>
   )
+  */
+
 }
