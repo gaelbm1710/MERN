@@ -16,7 +16,7 @@ export function initialValues(mag){
     }
 }
 
-export function validationSchema(){
+export function validationSchema(mag){
     return Yup.object({
         asesor: Yup.string().email(true).required(true),
         cardcode: Yup.string().required(true),
@@ -28,6 +28,6 @@ export function validationSchema(){
         existe: Yup.bool(),
         base_ex:Yup.string().required(false),
         clave_ex:Yup.string().required(false),
-        presentacion: Yup.string().required(true),
+        presentacion: Yup.string().required(false),
     })
 }
