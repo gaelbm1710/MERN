@@ -7,7 +7,7 @@ import { useAuth } from '../../../../hooks';
 import { getValue } from '@testing-library/user-event/dist/utils';
 
 const magController = new Mag();
-const handleChange=()=>{}
+
 
 const clasificacion = [
   {key:"FM", text:"FM", value:"FM"},
@@ -30,13 +30,36 @@ export function InydeForm(props) {
     validateOnChange: false,
     onSubmit: async (formValue) => {
       try {
-        if(!mag){
-          await magController.createMag(accessToken, formValue);
-        }else{
-          await magController.updateMag(accessToken, mag._id, formValue);
+        const data={
+          folio_IyD: formValue.folio_IyD,
+          cardcode: formValue.cardcode,
+          base: formValue.base,
+          activos: formValue.activos,
+          especialidad: formValue.especialidad,
+          padecimiento: formValue.padecimiento,
+          necesita_muestra: formValue.necesita_muestra,
+          existe: formValue.existe,
+          base_ex: formValue.base_ex,
+          clave_ex: formValue.clave_ex,
+          clasi: formValue.clasi,
+          receta: formValue.receta,
+          refri: formValue.refri,
+          infoDes: formValue.infoDes,
+          tipoF: formValue.tipoF,
+          caducidad: formValue.caducidad,
+          comInt: formValue.comInt,
+          excl: formValue.excl,
+          presentacion: formValue.presentacion,
+          comClie: formValue.comClie,
+          asesor: formValue.asesor,
         }
-        onReload();
+        if(!mag){
+          await magController.createMag(accessToken, data);
+        }else{
+          await magController.updateMag(accessToken, mag._id, data);
+        }
         onClose();
+        onReload();
       } catch (error) {
         console.error(error);
       }
@@ -79,9 +102,7 @@ export function InydeForm(props) {
       <FormButton type='submit' 
       primary 
       fluid 
-      loading={formik.isSubmitting} 
-      onClick={formik.handleSubmit}
-      >
+      loading={formik.isSubmitting} onClick={formik.onSubmit}>{mag ? "Actualizar Cotizacion": "Cancelar"}
       </FormButton>
       </Form>
   )
