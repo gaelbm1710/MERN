@@ -16,8 +16,9 @@ export class Mag{
             throw error;
         }
     }
-    async createMag(accessToken, data){
+    async createMag(accessToken, MagData){
         try {
+            const data = MagData;
             const url = `${this.baseApi}/${ENV.API_ROUTES.MAG}`;
             const params = {
                 method: "POST",
@@ -46,8 +47,8 @@ export class Mag{
             const params={
                 method: "PATCH",
                 headers:{
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${accessToken}`
+                    //"Content-Type": "application/json",
+                    Authorization: `Bearer ${accessToken}`,
                 },
                 body: JSON.stringify(data),
             }
