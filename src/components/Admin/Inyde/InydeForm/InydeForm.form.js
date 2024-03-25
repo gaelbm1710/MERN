@@ -1,4 +1,5 @@
 import * as Yup from "yup";
+
 export function initialValues(mag){
     return{
         folio_IyD: mag?.folio_IyD || 0,
@@ -13,15 +14,14 @@ export function initialValues(mag){
         base_ex: mag?.base_ex || "",
         clave_ex: mag?.clave_ex || "",
         clasi: mag?.clasi || "",
-        receta: mag?.receta || false,
+        receta: !!mag?.receta, 
         refri: mag?.refri || false,
-        infoDes: mag?.infoDes || "",
+        infoDesa: mag?.infoDesa || "",
         tipoF: mag?.tipoF || "",
         caducidad: mag?.caducidad || 0,
         comInt: mag?.comInt || "",
         excl: mag?.excl || false,
         presentacion: mag?.presentacion || "",
-        sIyD: mag?.sIyD || "",
         comClie: mag?.comClie || "",
         asesor: mag?.asesor || ""
     };
@@ -30,15 +30,13 @@ export function initialValues(mag){
 export function validationSchema(){
     return Yup.object({
         folio_IyD: Yup.number().required(true),
-        infoDes: Yup.string().required(true),
-        clasi: Yup.string().required(true),
+        infoDesa: Yup.string().required(true),
+       // clasi: Yup.string().required(true),
         caducidad: Yup.number().required(true),
         tipoF: Yup.string().required(true),
-        excl: Yup.string().required(true),
-        refri: Yup.string().required(true),
-        receta: Yup.string().required(true),
-        necesita_formula: Yup.string().required(true),
-        comClie: Yup.string().required(true),
-        comInt: Yup.string().required(true),
+        //refri: Yup.boolean().required(true),
+        receta: Yup.boolean().required(true),
+        //comClie: Yup.string().required(true),
+        //comInt: Yup.string().required(true),
     });
 }

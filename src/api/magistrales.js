@@ -47,7 +47,7 @@ export class Mag{
             const params={
                 method: "PATCH",
                 headers:{
-                    //"Content-Type": "application/json",
+                    "Content-Type": "application/json",
                     Authorization: `Bearer ${accessToken}`,
                 },
                 body: JSON.stringify(data),
@@ -59,7 +59,7 @@ export class Mag{
         } catch (error) {
             throw error;
         }
-    }
+    }    
     async deleteMag(accessToken, idMag){
         try {
             const url = `${this.baseApi}/${ENV.API_ROUTES.MAG}/${idMag}`

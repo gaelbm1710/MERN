@@ -7,15 +7,34 @@ import {AsesorForm, ListAsesor} from "../../../components/Admin/Asesor"
 export function Asesor() {
   const [showModal, setShowModal] = useState(false);
   const [reload, setReload] = useState(false);
-  const onOpenCloseModal =()=>setShowModal((prevState) =>!prevState)
-  const onOpenCloseModal2 =()=>setShowModal((prevState) =>!prevState)
-  const onOpenCloseModal3 =()=>setShowModal((prevState) =>!prevState)
+  const [modalType, setModalType] = useState(null);
+  const onOpenCloseModal = (type) => { 
+    setShowModal(prevState => !prevState);
+    setModalType(type);
+  };  
   const onReload = () => setReload((prevState) => !prevState);
   const panes=[
     {
-      render: ()=>(
+      menuItem: "Nueva Cotización",
+      render: () => (
         <Tab.Pane>
-         <ListAsesor reload={reload} onReload={onReload}/>
+          <ListAsesor actividad="nueva" reload={reload} onReload={onReload} />
+        </Tab.Pane>
+      )
+    },
+    {
+      menuItem: "Alta de Presentación",
+      render: () => (
+        <Tab.Pane>
+          <ListAsesor actividad="agregar" reload={reload} onReload={onReload} />
+        </Tab.Pane>
+      )
+    },
+    {
+      menuItem: "Cambio de Base",
+      render: () => (
+        <Tab.Pane>
+          <ListAsesor actividad="cambio" reload={reload} onReload={onReload} />
         </Tab.Pane>
       )
     }
@@ -23,19 +42,15 @@ export function Asesor() {
   return (
     <>
       <div className='cotizacion-page'>
-        <Button className='cotizacion-page__new' value="nueva" primary onClick={onOpenCloseModal}>Nueva Cotización</Button>
-        <Button className='cotizacion-page__add' value="agregar" primary onClick={onOpenCloseModal2}>Alta de Presentación</Button>
-        <Button className='cotizacion-page__add' value="cambio" primary onClick={onOpenCloseModal3}>Cambio de Base</Button>
+        <Button className='cotizacion-page__new' value="nueva" primary onClick={()=> onOpenCloseModal('nueva')}>Nueva Cotización</Button>
+        <Button className='cotizacion-page__add' value="agregar" primary onClick={()=> onOpenCloseModal('agregar')}>Alta de Presentación</Button>
+        <Button className='cotizacion-page__add' value="cambio" primary onClick={()=> onOpenCloseModal('cambio')}>Cambio de Base</Button>
         <Tab menu={{secondary: true}} panes={panes}/> {" "}
       </div>
-      <BasicModal show={showModal} close={onOpenCloseModal} title="Crear Cotizacion">
-        <AsesorForm onClose={onOpenCloseModal} onReload={onReload}/>
-      </BasicModal>
-      <BasicModal show={showModal} close={onOpenCloseModal2} title="Alta Pesentacion">
-        <h1>Alta de Presentación</h1>
-      </BasicModal>
-      <BasicModal show={showModal} close={onOpenCloseModal3} title="Cambio Base">
-        <h1>Cambio de Base</h1>
+      <BasicModal show={showModal} close={onOpenCloseModal} title={modalType === 'nueva' ? 'Crear cotización': modalType === 'agregar' ? 'Alta Presentación' : 'Cambio Base'}>
+      {modalType === 'nueva' && <AsesorForm onClose={onOpenCloseModal} onReload={onReload} />}
+      {modalType === 'agregar' && <h1>Alta de Presentación</h1>}
+      {modalType === 'cambio' && <h1>Cambio de Base</h1>}
       </BasicModal>
     </>
   )

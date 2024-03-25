@@ -8,7 +8,7 @@ import { useAuth } from '../../../../hooks'
 const magController = new Mag();
 
 export function ListAsesor(props) {
-  const {reload, onReload, onClose} = props;
+  const {reload, onReload, onClose, actividad} = props;
     const [mags, setMags] = useState(null)
     const [page, setPage] = useState(1)
     const [pagination, setPagination] = useState();
@@ -17,7 +17,7 @@ export function ListAsesor(props) {
     useEffect(() => {
       (async () =>{
         try {
-            const response = await magController.getMag({page, limit: 9})     
+            const response = await magController.getMag({page, limit: 9},actividad)     
             setMags(response.docs);
             setPagination({
                 limit: response.limit,
@@ -29,7 +29,7 @@ export function ListAsesor(props) {
             console.error(error)
         }
       })()
-    }, [page, reload])
+    }, [page, reload, actividad])
 
     const changePage=(_,data)=>{
         setPage(data.activePage)

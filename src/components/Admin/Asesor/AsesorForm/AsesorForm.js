@@ -103,9 +103,6 @@ export function AsesorForm(props) {
                     especialidad: formValue.especialidad,
                     padecimiento: formValue.padecimiento,
                     necesita_muestra: formValue.necesita_muestra,
-                    existe: formValue.existe,
-                    base_ex: formValue.base_ex,
-                    clave_ex: formValue.clave_ex,
                     presentacion: formValue.presentacion,
                 };
                 if(!mag){
@@ -142,13 +139,6 @@ export function AsesorForm(props) {
         </Container>
         <Container className='form-cotizacion__tercero'>
         <Form.Checkbox name='necesita_muestra' label="Necesita muestra" onChange={(_,data)=>formik.setFieldValue("necesita_muestra",data.checked)} checked={formik.values.necesita_muestra} error={formik.errors.necesita_muestra}/>
-        <Form.Checkbox name='existe' label="Existe" onChange={(_,data)=>formik.setFieldValue("existe",data.checked)} checked={formik.values.existe} error={formik.errors.existe}/>
-        </Container>
-        <Container className='form-cotizacion__cuarto'>
-        <Dropdown placeholder="Base Existente" fluid selection options={bases} onChange={(_,data)=>formik.setFieldValue("base_ex",data.value)}
-            value={formik.values.base_ex} error={formik.errors.base_ex}
-            />
-            <Form.Input name="clave_ex" placeholder="Clave Existente" onChange={formik.handleChange} value={formik.values.clave_ex} error={formik.errors.clave_ex}/>
         </Container>
         <Form.Button type='submit' primary fluid loading={formik.isSubmitting}>
             {mag ? "Revisar Cotización": "Crear cotización"}

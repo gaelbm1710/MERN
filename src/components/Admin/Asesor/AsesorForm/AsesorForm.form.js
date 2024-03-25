@@ -9,9 +9,6 @@ export function initialValues(mag){
         especialidad:"",
         padecimiento:"",
         necesita_muestra:false,
-        existe:false,
-        base_ex:"",
-        clave_ex:"",
         presentacion:"",
     }
 }
@@ -25,9 +22,6 @@ export function validationSchema(mag){
         especialidad: Yup.string().required(true),
         padecimiento: Yup.string().required(true),
         necesita_muestra: Yup.bool(),
-        existe: Yup.bool(),
-        base_ex:Yup.string().required(false),
-        clave_ex:Yup.string().required(false),
         presentacion: Yup.string().required(false),
     })
 }
