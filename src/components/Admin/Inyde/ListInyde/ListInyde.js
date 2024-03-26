@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Mag} from "../../../../api";
-import { size, map } from 'lodash';
-import { Loader, Pagination } from 'semantic-ui-react';
+import { size, map, filter } from 'lodash';
+import { Loader, Pagination, Form, Search} from 'semantic-ui-react';
 import { InydeItem } from '../InydeItem/InydeItem';
 
 const magController = new Mag();
@@ -11,6 +11,8 @@ export function ListInyde(props){
     const [mags, setMags] = useState(false)
     const [page, setPage] = useState(1)
     const [pagination, setPagination] = useState()
+    const [searchQuery, setSearchQuery] = useState('');
+
     useEffect(() => {
       (async () =>{
         try {
@@ -31,14 +33,31 @@ export function ListInyde(props){
     const changePage=(_,data)=>{
         setPage(data.activePage)
     }
+
+    const handleSearchChange = (event, {value }) => {
+      setSearchQuery(value);
+    };
+
+    const filteredMags = searchQuery
+  ? filter(mags, mag => mag._id.includes(searchQuery))
+  : mags;
     
     if(!mags) return <Loader active inline="centered"/>
     if(size(mags)===0)return "No hay cotizaciones";
+
+
   return (
     <div className='list-cotizaciones'>
-        {map(mags, (mag)=>(
-            <InydeItem key={mag._id} mag={mag} onReload={onReload} onClose={onClose}/>
-        ))}
+        <Search
+        input={{ icon: 'search', iconPosition: 'left' }}
+        placeholder="Buscar..."
+        value={searchQuery}
+        onSearchChange={handleSearchChange}
+      />
+      <br></br>
+      {map(filteredMags, mag => (
+        <InydeItem key={mag._id} mag={mag} onReload={onReload} onClose={onClose} />
+      ))}
         <div className='list-cotizaciones__pagination'>
             <Pagination
             totalPages={pagination.total}
