@@ -16,10 +16,10 @@ export function AdminRouter() {
   return (
     <Routes>
       {!user ?(
-        <Route path="/admin/*" element={<Auth/>}/>
+        <Route path="/admin/*" element={<Auth/>}/> //login
       ): (
         <>
-        {["/admin","/admin/blog"].map((path)=>(
+        {["/admin","/admin/"].map((path)=>(
          <Route 
          key={path} 
          path={path} 
