@@ -19,7 +19,7 @@ export function AdminRouter() {
         <Route path="/admin/*" element={<Auth/>}/> //login
       ): (
         <>
-        {["/admin","/admin/"].map((path)=>(
+        {["/admin","/admin/blog"].map((path)=>(
          <Route 
          key={path} 
          path={path} 
