@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Mag } from '../../../../api';
-import { size, map } from 'lodash';
 import { Loader, Pagination, Search } from 'semantic-ui-react';
 import { InydeItem } from '../InydeItem/InydeItem';
 
@@ -12,6 +11,7 @@ export function ListInyde(props) {
   const [page, setPage] = useState(1);
   const [pagination, setPagination] = useState({});
   const [searchQuery, setSearchQuery] = useState('');
+  const [filteredMags, setFilteredMags] = useState([]);
 
   useEffect(() => {
     const fetchMags = async () => {
@@ -32,37 +32,59 @@ export function ListInyde(props) {
     fetchMags();
   }, [page, reload]);
 
+  useEffect(() => {
+    const searchFilteredMags = () => {
+      const filtered = mags.filter((mag) => {
+        return (
+          mag.asesor.toLowerCase().includes(searchQuery) ||
+          mag.cardcode.toLowerCase().includes(searchQuery) ||
+          mag.base.toLowerCase().includes(searchQuery) ||
+          mag.folio_IyD.toString().includes(searchQuery)
+        );
+      });
+      setFilteredMags(filtered);
+    };
+
+    searchFilteredMags();
+  }, [searchQuery, mags]);
+
   const changePage = (_, data) => {
     setPage(data.activePage);
   };
 
-  const handleSearchChange = (event, { value }) => {
+  const handleSearchChange = (_, { value }) => {
     setSearchQuery(value.toLowerCase());
   };
 
-  const filteredMags = mags.filter((mag) => {
-    return (
-      mag.asesor.toLowerCase().includes(searchQuery) ||
-      mag.cardcode.toLowerCase().includes(searchQuery) ||
-      mag.base.toLowerCase().includes(searchQuery) ||
-      mag.folio_IyD.toString().includes(searchQuery)
-    );
-  });
-
   if (!mags) return <Loader active inline="centered" />;
-  if (size(mags) === 0) return 'No hay cotizaciones';
+  if (mags.length === 0) return 'No hay cotizaciones';
 
   return (
     <div className="list-cotizaciones">
       <Search
-        input={{ icon: 'search', iconPosition: 'left' }}
-        placeholder="Buscar..."
-        value={searchQuery}
-        onSearchChange={handleSearchChange}
-        results={filteredMags}
-      />
+  input={{ icon: 'search', iconPosition: 'left' }}
+  placeholder="Buscar..."
+  value={searchQuery}
+  onSearchChange={handleSearchChange}
+  results={filteredMags.map((mag) => ({
+    title: mag.asesor, // Utilizar el campo 'asesor' como título
+    description: mag.base,
+    // Otros campos relevantes que desees mostrar
+  })).concat(
+    filteredMags.map((mag) => ({
+      title: mag.cardcode,
+      description: mag.base,
+      // Otros campos relevantes que desees mostrar
+    })),
+    filteredMags.map((mag) => ({
+      title: mag.folio_IyD.toString(),
+      description: mag.base,
+      // Otros campos relevantes que desees mostrar
+    }))
+  )}
+/>
       <br />
-      {map(filteredMags, (mag) => (
+      {filteredMags.map((mag) => (
         <InydeItem key={mag._id} mag={mag} onReload={onReload} onClose={onClose} />
       ))}
       <div className="list-cotizaciones__pagination">
