@@ -228,4 +228,18 @@ export class Mag{
         }
     }
 
+    //Busquedas especificas o Menus o Listas
+    async getMagActividad(actividad = undefined, params){
+        try {
+            const pageFilter = `page=${params?.page||1}`;
+            const limitFilter = `limit=${params?.limit||10}`;
+            const url = `${this.baseApi}/${ENV.API_ROUTES.MAG}?actividad=${actividad}&page=${pageFilter}&limit=${limitFilter}`;
+            const response = await fetch(url);
+            const result = await response.json();
+            if(response.status !== 200) throw result;
+            return result;
+        } catch (error) {
+            throw error
+        }
+    }
 }

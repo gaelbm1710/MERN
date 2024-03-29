@@ -59,6 +59,11 @@ export function USerForm(props) {
             key: "com",
             text: "Comercial",
             value: "com"
+        },
+        {
+            key: "conta",
+            text: "Contabilidad",
+            value: "conta"
         }
     ]
 

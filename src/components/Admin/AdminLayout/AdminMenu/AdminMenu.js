@@ -11,7 +11,8 @@ export function AdminMenu() {
     const isIyd = role === "iyd";
     const isOpe = role === "ope";
     const isCom = role === "com";
-    const isAse = role === "user"
+    const isAse = role === "user";
+    const isConta = role === "conta";
 
 
     const isCurrentPath = (path) =>{
@@ -77,6 +78,14 @@ export function AdminMenu() {
             <Menu.Item as={Link} to="/admin/asesor" active={isCurrentPath("/mag/cotizacion")}>
               <Icon name='lab'/>
               Generar Cotización Magistral
+            </Menu.Item>
+            </>
+        )}
+        {isConta&&(
+            <>
+            <Menu.Item as={Link} to="/admin/omicronshoppagos" active={isCurrentPath("/admin/omicronshoppagos")}>
+              <Icon name='money bill alternate outline'/>
+              Pagos de OmicronShop
             </Menu.Item>
             </>
         )}

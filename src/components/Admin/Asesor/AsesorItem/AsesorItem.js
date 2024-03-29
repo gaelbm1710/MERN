@@ -25,6 +25,7 @@ export function AsesorItem(props) {
       <div className='cotizacion-item__info'>
        <p>Cotización: <span className='cotizacion-item__info-dxp'># {dxp}</span></p> 
        <p>Cliente: <span className='cotizacion-item__info-cliente'>{mag.cardcode}</span></p>
+       <p>Actividad: <span className='cotizacion-item__info-cliente'>{mag.actividad}</span></p>
       </div>
       <div>
         <Button icon primary onClick={openUpdareMag}>

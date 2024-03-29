@@ -1,6 +1,6 @@
 import React from 'react';
 import {Routes, Route} from "react-router-dom";
-import {Auth, Users, Blog, Courses, Menu, Newsletter,Inyde,Come, Ope, Asesor} from "../pages/admin";
+import {Auth, Users, Blog, Courses, Menu, Newsletter,Inyde,Come, Ope, Asesor, Omicronshoppagos} from "../pages/admin";
 import {AdminLayout} from "../layouts";
 import {useAuth} from "../hooks";
 
@@ -23,7 +23,7 @@ export function AdminRouter() {
          <Route 
          key={path} 
          path={path} 
-         element={loadLayout(AdminLayout, Blog)}/>
+         element={loadLayout(AdminLayout, Courses)}/> // Donde esta "Courses" cambia la pagina de inicio
         ))}
         <Route path="/admin/users" element={loadLayout(AdminLayout, Users)}/>
         <Route path="/admin/courses" element={loadLayout(AdminLayout, Courses)}/>
@@ -34,6 +34,7 @@ export function AdminRouter() {
         <Route path="/admin/ope" element={loadLayout(AdminLayout,Ope)}/>
         <Route path="/admin/come" element={loadLayout(AdminLayout, Come)}/>
         <Route path="/admin/asesor" element={loadLayout(AdminLayout, Asesor)}/>
+        <Route path="/admin/omicronshoppagos" element={loadLayout(AdminLayout, Omicronshoppagos)}/>
         </>
       )}
     </Routes>

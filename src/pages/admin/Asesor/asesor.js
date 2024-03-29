@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { BasicModal } from '../../../components/Shared'
 import { Button, Tab } from 'semantic-ui-react'
 import "./asesor.scss";
-import {AsesorForm, ListAsesor} from "../../../components/Admin/Asesor"
+import {AsesorForm, ListAsesor, AsesorForma, AsesorFormb} from "../../../components/Admin/Asesor"
 
 export function Asesor() {
   const [showModal, setShowModal] = useState(false);
@@ -17,7 +17,7 @@ export function Asesor() {
     {
       menuItem: "Nueva Cotización",
       render: () => (
-        <Tab.Pane>
+        <Tab.Pane attached={false}>
           <ListAsesor actividad="nueva" reload={reload} onReload={onReload} />
         </Tab.Pane>
       )
@@ -25,7 +25,7 @@ export function Asesor() {
     {
       menuItem: "Alta de Presentación",
       render: () => (
-        <Tab.Pane>
+        <Tab.Pane attached={false}>
           <ListAsesor actividad="agregar" reload={reload} onReload={onReload} />
         </Tab.Pane>
       )
@@ -33,7 +33,7 @@ export function Asesor() {
     {
       menuItem: "Cambio de Base",
       render: () => (
-        <Tab.Pane>
+        <Tab.Pane attached={false}>
           <ListAsesor actividad="cambio" reload={reload} onReload={onReload} />
         </Tab.Pane>
       )
@@ -49,8 +49,8 @@ export function Asesor() {
       </div>
       <BasicModal show={showModal} close={onOpenCloseModal} title={modalType === 'nueva' ? 'Crear cotización': modalType === 'agregar' ? 'Alta Presentación' : 'Cambio Base'}>
       {modalType === 'nueva' && <AsesorForm onClose={onOpenCloseModal} onReload={onReload} />}
-      {modalType === 'agregar' && <h1>Alta de Presentación</h1>}
-      {modalType === 'cambio' && <h1>Cambio de Base</h1>}
+      {modalType === 'agregar' && <AsesorForma onClose={onOpenCloseModal} onReload={onReload}/>}
+      {modalType === 'cambio' && <AsesorFormb onClose={onOpenCloseModal} onReload={onReload} />}
       </BasicModal>
     </>
   )
