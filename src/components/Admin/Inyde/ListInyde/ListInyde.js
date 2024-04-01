@@ -34,14 +34,12 @@ export function ListInyde(props) {
 
   useEffect(() => {
     const searchFilteredMags = () => {
-      const filtered = mags.filter((mag) => {
-        return (
-          mag.asesor.toLowerCase().includes(searchQuery) ||
-          mag.cardcode.toLowerCase().includes(searchQuery) ||
-          mag.base.toLowerCase().includes(searchQuery) ||
-          mag.folio_IyD.toString().includes(searchQuery)
-        );
-      });
+      const filtered = mags.filter((mag) => (
+        mag.asesor.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        mag.cardcode.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        mag.base.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        mag.folio_IyD.toString().includes(searchQuery.toLowerCase())
+      ));
       setFilteredMags(filtered);
     };
 
@@ -53,7 +51,7 @@ export function ListInyde(props) {
   };
 
   const handleSearchChange = (_, { value }) => {
-    setSearchQuery(value.toLowerCase());
+    setSearchQuery(value);
   };
 
   if (!mags) return <Loader active inline="centered" />;
@@ -62,29 +60,18 @@ export function ListInyde(props) {
   return (
     <div className="list-cotizaciones">
       <Search
-  input={{ icon: 'search', iconPosition: 'left' }}
-  placeholder="Buscar..."
-  value={searchQuery}
-  onSearchChange={handleSearchChange}
-  results={filteredMags.map((mag) => ({
-    title: mag.asesor, // Utilizar el campo 'asesor' como título
-    description: mag.base,
-    // Otros campos relevantes que desees mostrar
-  })).concat(
-    filteredMags.map((mag) => ({
-      title: mag.cardcode,
-      description: mag.base,
-      // Otros campos relevantes que desees mostrar
-    })),
-    filteredMags.map((mag) => ({
-      title: mag.folio_IyD.toString(),
-      description: mag.base,
-      // Otros campos relevantes que desees mostrar
-    }))
-  )}
-/>
+        input={{ icon: 'search', iconPosition: 'left' }}
+        placeholder="Buscar..."
+        value={searchQuery}
+        onSearchChange={handleSearchChange}
+        results={Array.from(filteredMags).map((mag) => ({
+          title: mag.asesor,
+          description: mag.base,
+          // Otros campos relevantes que desees mostrar
+        }))}
+      />
       <br />
-      {filteredMags.map((mag) => (
+      {[...filteredMags].map((mag) => (
         <InydeItem key={mag._id} mag={mag} onReload={onReload} onClose={onClose} />
       ))}
       <div className="list-cotizaciones__pagination">
