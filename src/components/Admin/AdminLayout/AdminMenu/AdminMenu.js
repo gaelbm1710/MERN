@@ -14,7 +14,7 @@ export function AdminMenu() {
     const isAse = role === "user";
     const isConta = role === "conta";
 
-
+    
     const isCurrentPath = (path) =>{
         if(path === pathname) return true;
         return false;
