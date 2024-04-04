@@ -10,3 +10,4 @@ export * from "./Come";
 export * from "./Asesor";
 export * from "./Omicronshoppagos";
 export * from "./Princ";
+export * from "./Presentacion";

@@ -229,11 +229,59 @@ export class Mag{
     }
 
     //Busquedas especificas o Menus o Listas
-    async getMagActividad(actividad = undefined, params){
+    async getMagActividad(email = undefined, params){
         try {
             const pageFilter = `page=${params?.page||1}`;
             const limitFilter = `limit=${params?.limit||10}`;
-            const url = `${this.baseApi}/${ENV.API_ROUTES.MAG}?actividad=${actividad}&page=${pageFilter}&limit=${limitFilter}`;
+            const url = `${this.baseApi}/${ENV.API_ROUTES.MAG}?actividad=${email}&page=${pageFilter}&limit=${limitFilter}`;
+            const response = await fetch(url);
+            const result = await response.json();
+            if(response.status !== 200) throw result;
+            return result;
+        } catch (error) {
+            throw error
+        }
+    }
+    /*
+    async getMagByAsesoryActividad(asesor, actividad, params){
+        try {
+            const pageFilter = `page=${params?.page||1}`;
+            const limitFilter = `limit=${params?.limit||10}`;
+            const email = `asesor=${asesor || ""}`;
+            const actividadFilter = `actividad=${actividad || "presentacion"}`;
+            const url = `${this.baseApi}/${ENV.API_ROUTES.MAGS}?actividad=${actividadFilter}&asesor=${email}&page=${pageFilter}&limit=${limitFilter}`;
+            const response = await fetch(url);
+            const result = await response.json();
+            if(response.status !== 200) throw result;
+            return result;
+        } catch (error) {
+            throw error
+        }
+    }
+    */
+    async getMagByNueva(asesor, params){
+        try {
+            const pageFilter = `page=${params?.page||1}`;
+            const limitFilter = `limit=${params?.limit||10}`;
+            const email = `asesor=${asesor || ""}`;
+            const actividad = `actividad=nueva`;
+            const url = `${this.baseApi}/${ENV.API_ROUTES.MAGS}?${actividad}&${email}&${pageFilter}&${limitFilter}`;
+            const response = await fetch(url);
+            const result = await response.json();
+            if(response.status !== 200) throw result;
+            return result;
+        } catch (error) {
+            throw error
+        }
+    }
+
+    async getMagByPresentacion(asesor, params){
+        try {
+            const pageFilter = `page=${params?.page||1}`;
+            const limitFilter = `limit=${params?.limit||10}`;
+            const email = `asesor=${asesor || ""}`;
+            const actividad = `actividad=presentacion`;
+            const url = `${this.baseApi}/${ENV.API_ROUTES.MAGS}?${actividad}&${email}&${pageFilter}&${limitFilter}`;
             const response = await fetch(url);
             const result = await response.json();
             if(response.status !== 200) throw result;

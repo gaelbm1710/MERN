@@ -51,7 +51,7 @@ export function AdminMenu() {
         )}
         {isIyd&&(
             <>
-            <Menu.Item as={Link} to="/admin/inyde" active={isCurrentPath("/mag/cotizacion")}>
+            <Menu.Item as={Link} to="/admin/inyde" active={isCurrentPath("/admin/inyde")}>
               <Icon name='lab'/>
               Cotizaciones Magistrales
             </Menu.Item>
@@ -59,7 +59,7 @@ export function AdminMenu() {
         )}
         {isOpe&&(
             <>
-            <Menu.Item as={Link} to="/admin/ope" active={isCurrentPath("/mag/cotizacion")}>
+            <Menu.Item as={Link} to="/admin/ope" active={isCurrentPath("/admin/ope")}>
               <Icon name='lab'/>
               Cotizaciones Magistrales
             </Menu.Item>
@@ -75,9 +75,13 @@ export function AdminMenu() {
         )}
         {isAse&&(
             <>
-            <Menu.Item as={Link} to="/admin/asesor" active={isCurrentPath("/mag/cotizacion")}>
-              <Icon name='lab'/>
-              Generar Cotización Magistral
+            <Menu.Item as={Link} to="/admin/asesor" active={isCurrentPath("/admin/asesor")}>
+              <Icon name='file alternate'/>
+              Generar Cotización Magistral Nueva
+            </Menu.Item>
+            <Menu.Item as={Link} to="/admin/presentacion" active={isCurrentPath("/admin/presentacion")}>
+              <Icon name='flask'/>
+              Cotización de Nueva Presentación
             </Menu.Item>
             </>
         )}

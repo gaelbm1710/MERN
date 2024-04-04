@@ -8,6 +8,7 @@ import "./ListOpe.scss";
 const magController = new Mag();
 
 export function ListOpe(props) {
+  
   const {reload, onReload, onClose} = props;
   const [mags, setMags] = useState(false);
   const [page, setPage] = useState(1);
