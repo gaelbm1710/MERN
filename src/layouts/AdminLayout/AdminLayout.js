@@ -1,6 +1,7 @@
 import React from 'react';
 import {Icon} from "../../assets";
 import "./AdminLayout.scss";
+import {Link} from "react-router-dom"
 import {AdminMenu, Logout} from "../../components/Admin/AdminLayout"
 
 export function AdminLayout(props) {
@@ -8,7 +9,9 @@ export function AdminLayout(props) {
   return (
     <div className='admin-layout'>
       <div className='admin-layout__left'>
-        <Icon.LogoWhite className='logo' />
+        <Link to="/admin/Princ">
+                    <Icon.LogoWhite className='logo' />
+                </Link>
         <AdminMenu/>
       </div>
       <div className='admin-layout__right'>
