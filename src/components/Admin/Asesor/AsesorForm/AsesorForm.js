@@ -90,11 +90,13 @@ export function AsesorForm(props) {
     const {user: {email}} = useAuth();
     const CorreoAsesor = email;
     const formik = useFormik({
-        initialValues: initialValues(mag),
+        initialValues: initialValues(mag, CorreoAsesor),
         validationSchema: validationSchema(),
         validateOnChange: false,
         onSubmit: async (formValue) =>{
             try {
+                const presentacionesSeleccionadad = formValue.presentacion;
+                const presentacionesTexto = presentacionesSeleccionadad.join(', ');
                 const data={
                     cardcode: formValue.cardcode,
                     asesor: formValue.asesor,
@@ -103,12 +105,14 @@ export function AsesorForm(props) {
                     especialidad: formValue.especialidad,
                     padecimiento: formValue.padecimiento,
                     necesita_muestra: formValue.necesita_muestra,
-                    presentacion: formValue.presentacion,
+                    presentacion: presentacionesTexto,
+                    actividad: "nueva",
                 };
+                
                 if(!mag){
-                    await magController.createMagCome(accessToken, data)
+                    await magController.createMag(accessToken, data)
                 }else{
-                    await magController.updateMag(accessToken, mag._id ,data)
+                    console.log("Cobarde");
                 }
                 onClose();
                 onReload();
@@ -121,24 +125,19 @@ export function AsesorForm(props) {
   return (
     <Form onSubmit={formik.handleSubmit}>
         <Container  className='form-cotizacion__primer'>
-            <Form.Input name="asesor" placeholder="Correo de asesor" onChange={formik.handleChange} value={CorreoAsesor} />
-            <Form.Input name="cardcode" placeholder="CardCode del Cliente" onChange={formik.handleChange} value={formik.values.cardcode} error={formik.errors.cardcode}/>
-            <Dropdown placeholder="especialidad" fluid selection options={especialidades} onChange={(_,data)=>formik.setFieldValue("especialidad",data.value)}
-            value={formik.values.especialidad} error={formik.errors.especialidad}
-            />
+            <Form.Input label="Correo Asesor" name="asesor" placeholder="Correo de asesor" onChange={formik.handleChange} value={CorreoAsesor} />
+            <Form.Input label="CardCode" name="cardcode" placeholder="CardCode del Cliente" onChange={formik.handleChange} value={formik.values.cardcode} error={formik.errors.cardcode}/>
+            <Form.Dropdown label="Especialiadad" placeholder="Especialidad" options={especialidades} selection onChange={(_,data) => formik.setFieldValue("especialidad", data.value)} value={formik.values.especialidad} error={formik.errors.especialidad}/>
         </Container>
         <Container className='form-cotizacion__segundo'>
-        <Dropdown placeholder="Base" fluid selection options={bases} onChange={(_,data)=>formik.setFieldValue("base",data.value)}
-            value={formik.values.base} error={formik.errors.base}
-            />
-            <Form.TextArea name="activos" placeholder="Ingresa los activos para la fórmula, con su porcentaje" onChange={formik.handleChange} value={formik.values.activos} error={formik.errors.activos}/>
-            <Dropdown placeholder="Presentaciones" fluid selection multiple options={presentaciones} onChange={(_,data)=>formik.setFieldValue("presentacion",data.value)}
-            value={formik.values.presentacion || []} error={formik.errors.presentacion}
-            />
-            <Form.Input name="padecimiento" placeholder="Padecimiento o intención de uso (p. ej. Ovario poliquístico o aparato/equipo)" onChange={formik.handleChange} value={formik.values.padecimiento} error={formik.errors.padecimiento}/>
+        <Form.Dropdown label="Base" placeholder="Base" options={bases} selection onChange={(_,data) => formik.setFieldValue("base", data.value)} value={formik.values.base} error={formik.errors.base}/>
+            <Form.TextArea label="Activos" name="activos" placeholder="Ingresa los activos para la fórmula, con su porcentaje" onChange={formik.handleChange} value={formik.values.activos} error={formik.errors.activos}/>
+            <Form.Dropdown label="Presentaciones" placeholder="Presentaciones" fluid selection multiple options={presentaciones} onChange={(_,data)=>formik.setFieldValue("presentacion",data.value)} value={formik.values.presentacion || []} error={formik.errors.presentacion}/>
+            <Form.Input label="Padecimiento" name="padecimiento" placeholder="Padecimiento o intención de uso (p. ej. Ovario poliquístico o aparato/equipo)" onChange={formik.handleChange} value={formik.values.padecimiento} error={formik.errors.padecimiento}/>
         </Container>
         <Container className='form-cotizacion__tercero'>
-        <Form.Checkbox name='necesita_muestra' label="Necesita muestra" onChange={(_,data)=>formik.setFieldValue("necesita_muestra",data.checked)} checked={formik.values.necesita_muestra} error={formik.errors.necesita_muestra}/>
+            <br/>
+        <Form.Checkbox label='Necesita Muestra' name='necesita_muestra' onChange={(_, data) => formik.setFieldValue("necesita_muestra", data.checked)} checked={formik.values.necesita_muestra} error={formik.errors.necesita_muestra}/>
         </Container>
         <Form.Button type='submit' primary fluid loading={formik.isSubmitting}>
             {mag ? "Revisar Cotización": "Crear cotización"}

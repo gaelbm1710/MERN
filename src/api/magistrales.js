@@ -16,26 +16,32 @@ export class Mag{
             throw error;
         }
     }
+
     async createMag(accessToken, MagData){
         try {
             const data = MagData;
-            const url = `${this.baseApi}/${ENV.API_ROUTES.MAG}`;
-            const params = {
+            const formData = new FormData();
+            Object.keys(data).forEach((key)=>{
+                formData.append(key,data[key]);
+            })
+            const url = `${this.baseApi}/${ENV.API_ROUTES.MAG}`
+            const params={
                 method: "POST",
-                headers: {
+                headers:{
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${accessToken}`,
                 },
                 body: JSON.stringify(data),
             }
-            const response = await fetch(url, params);
-            const result= await response.json()
+            const response = await fetch(url, params)
+            const result = await response.json()
             if(response.status !== 200) throw result;
-            return result
+            return result;
         } catch (error) {
             throw error;
         }
     }
+
     async updateMag(accessToken, idMag, MagData){
         try {
             const data = MagData;

@@ -1,11 +1,11 @@
 @import "~/src/scss/index.scss";
 
-$widthLeftMenu: 200px;
+$widthLeftMenu: 250px;
 
 .admin-layout{
     display:flex;
     min-height: 100vh;
-    max-height: 100vh;
+    max-height: 300vh;
     background-color:#ffff;
 
     &__left{
@@ -22,7 +22,7 @@ $widthLeftMenu: 200px;
         width: calc(100% - $widthLeftMenu);
         &-header{
             background-color:$background-dark;
-            height: 50px;
+            height: 60px;
             display: flex;
             align-items: center;
             justify-content: flex-end;

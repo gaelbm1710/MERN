@@ -1,0 +1,24 @@
+.cotizacion-principal{
+    justify-content: space-between;
+    align-content: center;
+    display: block;
+    min-height: 50vh;
+    max-height: 100vh;
+    min-width: 50vh;
+    max-width: 100vh;
+    &_info{
+        margin-bottom: 10px;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        text-align: start;
+        p{
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        span{
+            color: #f3a230;
+            margin-bottom: 5px;
+        }
+    }
+}

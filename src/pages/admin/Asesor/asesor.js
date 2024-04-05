@@ -7,9 +7,7 @@ import {AsesorForm, ListAsesor} from "../../../components/Admin/Asesor"
 export function Asesor() {
   const [showModal, setShowModal] = useState(false);
   const [reload, setReload] = useState(false);
-  const onOpenCloseModal = () => { 
-    setShowModal(prevState => !prevState);
-  };  
+  const onOpenCloseModal = () => setShowModal((prevState) => !prevState);
   const onReload = () => setReload((prevState) => !prevState);
   const panes=[
     {
@@ -26,8 +24,8 @@ export function Asesor() {
         <Button className='cotizacion-page__new' value="nueva" primary onClick={()=> onOpenCloseModal('nueva')}>Nueva Cotización</Button>
         <Tab menu={{secondary: true}} panes={panes}/> 
       </div>
-      <BasicModal show={showModal} close={onOpenCloseModal} title={'Crear cotización'}>
-        <AsesorForm close={onOpenCloseModal} onReload={onReload} />
+      <BasicModal show={showModal} close={onOpenCloseModal} title='Crear cotización'>
+        <AsesorForm onClose={onOpenCloseModal} onReload={onReload} />
       </BasicModal>
     </>
   )
