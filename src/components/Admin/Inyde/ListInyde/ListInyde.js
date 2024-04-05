@@ -38,7 +38,7 @@ export function ListInyde(props) {
         mag.asesor.toLowerCase().includes(searchQuery.toLowerCase()) ||
         mag.cardcode.toLowerCase().includes(searchQuery.toLowerCase()) ||
         mag.base.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        mag.folio_IyD.toString().includes(searchQuery.toString())
+        (mag.folio_IyD && mag.folio_IyD.toString().includes(searchQuery.toString()))
       ));
       setFilteredMags(filtered);
     };
