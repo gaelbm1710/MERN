@@ -35,9 +35,9 @@ export function ListInyde(props) {
   useEffect(() => {
     const searchFilteredMags = () => {
       const filtered = mags.filter((mag) => (
-        mag.asesor.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        mag.cardcode.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        mag.base.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (mag.asesor && mag.asesor.toLowerCase().includes(searchQuery.toLowerCase())) ||
+        (mag.cardcode && mag.cardcode.toLowerCase().includes(searchQuery.toLowerCase())) ||
+        (mag.base && mag.base.toLowerCase().includes(searchQuery.toLowerCase())) ||
         (mag.folio_IyD && mag.folio_IyD.toString().includes(searchQuery.toString()))
       ));
       setFilteredMags(filtered);
