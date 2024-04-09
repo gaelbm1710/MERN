@@ -22,7 +22,10 @@ export const ENV = {
         COME: "come",
         COMES: "comes",
         CONTA: "conta",
-        CONTAS: "contas"
+        CONTAS: "contas",
+        CREDITO: "credito",
+        CREDITOS: "creditos",
+        PAGOS: "pagos"
     },
     JWT: {
         ACCESS: "access",

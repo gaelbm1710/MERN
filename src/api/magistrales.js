@@ -296,4 +296,20 @@ export class Mag{
             throw error
         }
     }
+
+    async getMagByCambioBase(asesor, params){
+        try {
+            const pageFilter = `page=${params?.page||1}`;
+            const limitFilter = `limit=${params?.limit||10}`;
+            const email = `asesor=${asesor || ""}`;
+            const actividad = `actividad=cambio`;
+            const url = `${this.baseApi}/${ENV.API_ROUTES.MAGS}?${actividad}&${email}&${pageFilter}&${limitFilter}`;
+            const response = await fetch(url);
+            const result = await response.json();
+            if(response.status !== 200) throw result;
+            return result;
+        } catch (error) {
+            throw error
+        }
+    }
 }

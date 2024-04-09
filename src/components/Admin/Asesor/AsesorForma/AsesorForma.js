@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Dropdown, Container } from 'semantic-ui-react'
+import { Form, Container } from 'semantic-ui-react'
 import { useFormik } from 'formik'
 import { initialValuesa, validationSchemaa } from './AsesorForma.form'
 import { Mag } from '../../../../api'
@@ -26,21 +26,24 @@ export function AsesorForma(props) {
     const {user: {email}} = useAuth();
     const CorreoAsesor = email;
     const formik = useFormik({
-        initialValues: initialValuesa(mag),
+        initialValues: initialValuesa(mag, CorreoAsesor),
         validationSchema: validationSchemaa(),
         validateOnChange: false,
         onSubmit: async (formValue) =>{
             try {
+                const presentacionesSeleccionadad = formValue.presentacion;
+                const presentacionesTexto = presentacionesSeleccionadad.join(', ');
                 const data={
                     cardcode: formValue.cardcode,
                     asesor: formValue.asesor,
-                    presentacion: formValue.presentacion,
-                    clave_ex: formValue.clave_ex
+                    presentacion: presentacionesTexto,
+                    clave_ex: formValue.clave_ex,
+                    actividad: "presentacion"
                 };
                 if(!mag){
-                    await magController.createMagCome(accessToken, data)
+                    await magController.createMag(accessToken, data)
                 }else{
-                    await magController.updateMag(accessToken, mag._id ,data)
+                    console.log("Esto no debería de pasar");
                 }
                 onClose();
                 onReload();
@@ -52,18 +55,15 @@ export function AsesorForma(props) {
 
   return (
     <Form onSubmit={formik.handleSubmit}>
-        <Container  className='form-cotizacion__primer'>
-            <Form.Input name="asesor" placeholder="Correo de asesor" onChange={formik.handleChange} value={CorreoAsesor} />
-            <Form.Input name="cardcode" placeholder="CardCode del Cliente" onChange={formik.handleChange} value={formik.values.cardcode} error={formik.errors.cardcode}/>
-        </Container>
-        <Container className='form-cotizacion__segundo'>
-            <Dropdown placeholder="Presentaciones" fluid selection multiple options={presentaciones} onChange={(_,data)=>formik.setFieldValue("presentacion",data.value)}
-            value={formik.values.presentacion || []} error={formik.errors.presentacion}
-            />
-        </Container>
-        <Form.Button type='submit' primary fluid loading={formik.isSubmitting}>
-            {mag ? "Revisar Cotización": "Crear cotización"}
-        </Form.Button>
-    </Form>
+    <Container  className='form-cotizacion__primer'>
+        <Form.Input label="Correo Asesor" name="asesor" placeholder="Correo de asesor" onChange={formik.handleChange} value={CorreoAsesor} />
+        <Form.Input label="CardCode" name="cardcode" placeholder="CardCode del Cliente" onChange={formik.handleChange} value={formik.values.cardcode} error={formik.errors.cardcode}/>
+        <Form.Input label="Clave Existente" name="clave_ex" placeholder="Clave Existente" onChange={formik.handleChange} value={formik.values.clave_ex} error={formik.errors.clave_ex}/>
+        <Form.Dropdown label="Presentaciones" placeholder="Presentaciones" fluid selection multiple options={presentaciones} onChange={(_,data)=>formik.setFieldValue("presentacion",data.value)} value={formik.values.presentacion || []} error={formik.errors.presentacion}/>
+    </Container>
+    <Form.Button type='submit' primary fluid loading={formik.isSubmitting}>
+        {mag ? "Revisar Cotización": "Crear cotización"}
+    </Form.Button>
+</Form>
   )
 }

@@ -112,7 +112,7 @@ export function AsesorForm(props) {
                 if(!mag){
                     await magController.createMag(accessToken, data)
                 }else{
-                    console.log("Cobarde");
+                    console.log("Esto no debería de pasar");
                 }
                 onClose();
                 onReload();

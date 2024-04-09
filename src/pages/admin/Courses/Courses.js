@@ -32,7 +32,7 @@ export function Courses() {
         <Tab menu={{secondary: true}} panes={panes}/>
       </div>
       <BasicModal show={showModal} close={onOpenCloseModal} title="Agregar Enlace" >
-        <CourseForm close={onOpenCloseModal} onReload={onReload}/>
+        <CourseForm onClose={onOpenCloseModal} onReload={onReload}/>
       </BasicModal>
     </>
   )

@@ -1,2 +1,3 @@
 export * from "./AsesorFormb";
-export * from "./AsesorForma.form";
+export * from "./AsesorFormb.form";
+export * from "./AsesorViewb";

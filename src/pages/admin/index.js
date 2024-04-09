@@ -11,3 +11,7 @@ export * from "./Asesor";
 export * from "./Omicronshoppagos";
 export * from "./Princ";
 export * from "./Presentacion";
+export * from "./Transaccionescredito";
+export * from "./Clientescreditos";
+export * from "./Facturaspagas";
+export * from "./Cambiobase";

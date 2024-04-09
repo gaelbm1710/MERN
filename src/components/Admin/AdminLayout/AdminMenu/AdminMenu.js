@@ -46,6 +46,22 @@ export function AdminMenu() {
             <Menu.Item as={Link} to="/admin/inyde" active={isCurrentPath("/mag/cotizacion")}>
               <Icon name='lab'/>
               Cotizaciones Magistrales
+        </Menu.Item>
+        <Menu.Item as={Link} to="/admin/omicronshoppagos" active={isCurrentPath("/admin/omicronshoppagos")}>
+              <Icon name='money bill alternate outline'/>
+              Pagos de OmicronShop
+            </Menu.Item>
+            <Menu.Item as={Link} to="/admin/transaccionescredito" active={isCurrentPath("/admin/transaccionescredito")}>
+              <Icon name='money bill alternate outline'/>
+              Transacciones de Crédito
+            </Menu.Item>
+            <Menu.Item as={Link} to="/admin/clientescreditos" active={isCurrentPath("/admin/clientescreditos")}>
+              <Icon name='money bill alternate outline'/>
+              Clientes con Crédito
+            </Menu.Item>
+            <Menu.Item as={Link} to="/admin/presentacion" active={isCurrentPath("/admin/presentacion")}>
+              <Icon name='flask'/>
+              Cotización de Nueva Presentación
             </Menu.Item>
         </>
         )}
@@ -83,6 +99,10 @@ export function AdminMenu() {
               <Icon name='flask'/>
               Cotización de Nueva Presentación
             </Menu.Item>
+            <Menu.Item as={Link} to="/admin/cambiobase" active={isCurrentPath("/admin/cambiobase")}>
+              <Icon name='flask'/>
+              Cotizar cambio de Base
+            </Menu.Item>
             </>
         )}
         {isConta&&(
@@ -90,6 +110,18 @@ export function AdminMenu() {
             <Menu.Item as={Link} to="/admin/omicronshoppagos" active={isCurrentPath("/admin/omicronshoppagos")}>
               <Icon name='money bill alternate outline'/>
               Pagos de OmicronShop
+            </Menu.Item>
+            <Menu.Item as={Link} to="/admin/transaccionescredito" active={isCurrentPath("/admin/transaccionescredito")}>
+              <Icon name='money bill alternate outline'/>
+              Transacciones de Crédito
+            </Menu.Item>
+            <Menu.Item as={Link} to="/admin/clientescreditos" active={isCurrentPath("/admin/clientescreditos")}>
+              <Icon name='money bill alternate outline'/>
+              Clientes con Crédito
+            </Menu.Item>
+            <Menu.Item as={Link} to="/admin/facturapagas" active={isCurrentPath("/admin/facturapagas")}>
+              <Icon name='file'/>
+              Facturas pagadas
             </Menu.Item>
             </>
         )}

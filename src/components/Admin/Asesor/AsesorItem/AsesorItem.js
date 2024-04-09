@@ -1,12 +1,11 @@
 import React, {useState} from 'react'
-import { Button, Icon, Confirm } from 'semantic-ui-react';
+import { Button, Icon } from 'semantic-ui-react';
 import { BasicModal } from '../../../Shared';
-import { Mag } from '../../../../api';
-import { AsesorForm } from '../AsesorForm/AsesorForm';
 import "./AsesorItem.scss";
 import { AsesorView } from '../AsesorForm';
+import { AsesorViewa } from '../AsesorForma';
+import { AsesorViewb } from "../AsesorFormb"
 
-const magController = new Mag();
 
 export function AsesorItem(props) {
   const {mag, onReload} = props;
@@ -18,6 +17,18 @@ export function AsesorItem(props) {
     setTitleModal(`Revisar cotización: #${dxp}`);
     onOpenCloseModal();
   }
+
+  let contentView;
+  if (mag.actividad === 'nueva') {
+    contentView = <AsesorView onClose={onOpenCloseModal} onReload={onReload} mag={mag} />;
+  } else if (mag.actividad === 'presentacion') {
+    contentView = <AsesorViewa onClose={onOpenCloseModal} onReload={onReload} mag={mag} />;
+  } else if (mag.actividad === 'cambio') {
+    contentView = <AsesorViewb onClose={onOpenCloseModal} onReload={onReload} mag={mag} />;
+  }else{
+    contentView = <div>Error en sistema</div>
+  }
+
   return (
     <>
     <div className='cotizacion-item'>
@@ -35,7 +46,7 @@ export function AsesorItem(props) {
       </div>
     </div>
     <BasicModal show={showModal} close={onOpenCloseModal} title={titleModal}>
-        <AsesorView onClose={onOpenCloseModal} onReload={onReload} mag={mag}/>
+      {contentView}
     </BasicModal>
     </>
   )

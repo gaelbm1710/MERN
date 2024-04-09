@@ -1,11 +1,9 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
 import { BasicModal } from '../../../components/Shared';
-import { Button, Tab } from 'semantic-ui-react';
-import "./presentacion.scss";
-import { AsesorForma, ListaAsesor } from '../../../components/Admin/Asesor';
+import {Button, Tab} from "semantic-ui-react";
+import {AsesorFormb, ListbAsesor} from "../../../components/Admin/Asesor"
 
-
-export function Presentacion() {
+export function Cambiobase() {
     const [showModal, setShowModal] = useState(false);
     const [reload, setReload] = useState(false);
     const onOpenCloseModal = () => {
@@ -16,7 +14,7 @@ export function Presentacion() {
         {
             render: () =>(
                 <Tab.Pane attached={false}>
-                    <ListaAsesor reload={reload} onReload={onReload}/>
+                    <ListbAsesor reload={reload} onReload={onReload}/>
                 </Tab.Pane>
             )
         }
@@ -28,7 +26,7 @@ export function Presentacion() {
         <Tab menu={{secondary: true}} panes={panes}/>
     </div>
     <BasicModal show={showModal} close={onOpenCloseModal} title={'Pedir presentación'} >
-        <AsesorForma onClose={onOpenCloseModal} onReload={onReload} />
+        <AsesorFormb onClose={onOpenCloseModal} onReload={onReload} />
     </BasicModal>
     </>
   )
