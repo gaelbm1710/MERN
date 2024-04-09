@@ -15,3 +15,4 @@ export * from "./Transaccionescredito";
 export * from "./Clientescreditos";
 export * from "./Facturaspagas";
 export * from "./Cambiobase";
+export * from "./Soporte";

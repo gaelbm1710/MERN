@@ -1,6 +1,7 @@
 import React from 'react';
 import {Routes, Route} from "react-router-dom";
-import {Auth, Users, Blog, Courses, Menu, Newsletter,Inyde,Come, Ope, Asesor, Omicronshoppagos, Presentacion, Princ, Transaccionescredito, Clientescreditos, Facturapagas, Cambiobase} from "../pages/admin";
+import {Auth, Users, Blog, Courses, Menu, Newsletter,Inyde,Come, Ope, Asesor, Omicronshoppagos, Presentacion, Princ, 
+  Transaccionescredito, Clientescreditos, Facturapagas, Cambiobase, Soporte} from "../pages/admin";
 import {AdminLayout} from "../layouts";
 import {useAuth} from "../hooks";
 
@@ -41,6 +42,7 @@ export function AdminRouter() {
         <Route path="/admin/clientescreditos" element={loadLayout(AdminLayout, Clientescreditos)}/>
         <Route path="/admin/facturapagas" element={loadLayout(AdminLayout, Facturapagas)}/>
         <Route path="/admin/cambiobase" element={loadLayout(AdminLayout, Cambiobase)}/>
+        <Route path="/admin/soporte" element={loadLayout(AdminLayout, Soporte)}/>
         </>
       )}
     </Routes>

@@ -6,3 +6,4 @@ export * from "./newsletter";
 export * from "./blog";
 export * from "./magistrales";
 export * from "./contabilidad";
+export * from "./soporte";

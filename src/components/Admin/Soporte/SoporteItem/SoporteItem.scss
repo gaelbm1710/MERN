@@ -1,0 +1,29 @@
+@import "~/src/scss/index.scss";
+
+.ticket-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #847e80;
+    margin-bottom: 10px;
+    padding-bottom: 10px; 
+    &:nth-last-of-type(2){
+        margin-bottom: 0;
+        padding-bottom: 0;
+        bottom: 0;
+    }
+    &__info{
+        h3{
+            display: flex;
+            margin: 0;
+        }
+        h4{
+            display: flex;
+            margin: 1;
+        }
+        span{
+            display: flex;
+            margin: 2;
+        }
+    }
+}

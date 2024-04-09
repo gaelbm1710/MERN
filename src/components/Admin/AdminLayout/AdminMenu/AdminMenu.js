@@ -13,6 +13,7 @@ export function AdminMenu() {
     const isCom = role === "com";
     const isAse = role === "user";
     const isConta = role === "conta";
+    const isSist = role === "sistemas";
 
     
     const isCurrentPath = (path) =>{
@@ -64,6 +65,34 @@ export function AdminMenu() {
               Cotización de Nueva Presentación
             </Menu.Item>
         </>
+        )}
+        {isSist&&(
+          <>
+        <Menu.Item as={Link} to="/admin/menu" active={isCurrentPath("/admin/menu")}>
+            <Icon name='plus'/>
+            Menu
+        </Menu.Item>
+        <Menu.Item as={Link} to="/admin/users" active={isCurrentPath("/admin/users")}>
+            <Icon name='user outline'/>
+            Usuarios
+        </Menu.Item>
+        <Menu.Item as={Link} to="/admin/courses" active={isCurrentPath("/admin/courses")}>
+            <Icon name='list'/>
+            Enlaces
+        </Menu.Item>
+        <Menu.Item as={Link} to="/admin/newsletter" active={isCurrentPath("/admin/newsletter")} >
+            <Icon name='newspaper'/>
+            Noticias
+        </Menu.Item>
+        <Menu.Item as={Link} to="/admin/blog" active={isCurrentPath("/admin/blog")}>
+            <Icon name='users'/>
+            Blog
+        </Menu.Item>
+        <Menu.Item as={Link} to="/admin/soporte" active={isCurrentPath("/admin/soporte")}>
+            <Icon name='wrench'/>
+            Tickets de Soporte
+        </Menu.Item>
+          </>
         )}
         {isIyd&&(
             <>
