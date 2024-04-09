@@ -1,1 +1,1 @@
-export * from "./come";
+export * from "./Come";
