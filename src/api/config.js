@@ -1,2 +1,2 @@
-export const basePath = "https://backend-kappa.onrender.com";
+export const basePath = `https://kaapa-backend.azurewebsites.net/`;
 export const apiVersion = "v1";
