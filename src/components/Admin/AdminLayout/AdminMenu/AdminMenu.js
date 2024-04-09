@@ -112,7 +112,7 @@ export function AdminMenu() {
         )}
         {isCom&&(
             <>
-            <Menu.Item as={Link} to="/admin/come" active={isCurrentPath("/mag/cotizacion")}>
+            <Menu.Item as={Link} to="/admin/come" active={isCurrentPath("/admin/come")}>
               <Icon name='lab'/>
               Cotizaciones Magistrales
             </Menu.Item>
