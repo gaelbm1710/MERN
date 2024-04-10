@@ -6,7 +6,7 @@ export * from "./Menu";
 export * from "./Newsletter";
 export * from "./Inyde";
 export * from "./Ope";
-export * from "./GestionComercial";
+export * from "./Gestioncomercial";
 export * from "./Asesor";
 export * from "./Omicronshoppagos";
 export * from "./Princ";
