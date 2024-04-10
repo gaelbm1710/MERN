@@ -1,6 +1,6 @@
 import React from 'react';
 import {Routes, Route} from "react-router-dom";
-import {Auth, Users, Blog, Courses, Menu, Newsletter,Inyde, Ope, Come, Asesor, Omicronshoppagos, Presentacion, Princ, 
+import {Auth, Users, Blog, Courses, Menu, Newsletter,Inyde, Ope, GestionComercial, Asesor, Omicronshoppagos, Presentacion, Princ, 
   Transaccionescredito, Clientescreditos, Facturapagas, Cambiobase, Soporte} from "../pages/admin";
 import {AdminLayout} from "../layouts";
 import {useAuth} from "../hooks";
@@ -33,7 +33,7 @@ export function AdminRouter() {
         <Route path="/admin/blog" element={loadLayout(AdminLayout,Blog)}/>
         <Route path="/admin/inyde" element={loadLayout(AdminLayout,Inyde)}/>
         <Route path="/admin/ope" element={loadLayout(AdminLayout,Ope)}/>
-        <Route path="/admin/Come" element={loadLayout(AdminLayout, Come)}/>
+        <Route path="/admin/gestioncomercial" element={loadLayout(AdminLayout, GestionComercial)}/>
         <Route path="/admin/asesor" element={loadLayout(AdminLayout, Asesor)}/>
         <Route path="/admin/presentacion" element={loadLayout(AdminLayout, Presentacion)}/>
         <Route path="/admin/omicronshoppagos" element={loadLayout(AdminLayout, Omicronshoppagos)}/>

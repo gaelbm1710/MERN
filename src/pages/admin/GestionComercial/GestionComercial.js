@@ -4,7 +4,7 @@ import { Tab } from 'semantic-ui-react';
 import "./come.scss";
 import {ComeForm, ListCome} from "../../../components/Admin/Come";
 
-export function Come() {
+export function GestionComercial() {
   const [showModal, setShowModal] = useState(false);
   const [reload, setReload] = useState(false);
   const onOpenCloseModal =()=> setShowModal((prevState) =>!prevState);
