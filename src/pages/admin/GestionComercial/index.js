@@ -1,1 +1,1 @@
-export * from "./GestionComercial";
+export * from "./Come";
