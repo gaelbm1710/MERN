@@ -1,17 +1,13 @@
 import React, {useState} from 'react'
 import "./SoporteItem.scss";
-import {Button, Icon, Confirm} from "semantic-ui-react";
-import { ENV } from '../../../../utils';
+import {Button, Icon} from "semantic-ui-react";
 import { BasicModal } from '../../../Shared';
 import { SoporteForm } from '../SoporteForm/SoporteForm';
-import { Soporte } from '../../../../api';
 import { useAuth } from '../../../../hooks';
 
-const soporteController = new Soporte();
 
 export function SoporteItem(props) {
     const {soporte, onReload, onClose} = props;
-    const {accessToken} = useAuth();
     const dxp = soporte._id.substring(24,18);
     const [showModal, setshowModal] = useState(false);
     const [titleModal, setTitleModal] = useState("");
@@ -22,6 +18,7 @@ export function SoporteItem(props) {
         setTitleModal(`Actualizar enlace: ${dxp}`);
         onOpenCloseModal();
     }
+    /*
     const onDelete = async () =>{
         try {
             console.log("Eliminar el ticket!!!");
@@ -30,7 +27,7 @@ export function SoporteItem(props) {
         } catch (error) {
             console.error(error);
         }
-    }
+    }*/
   return (
     <>
     <div className='ticket-item'>

@@ -2,21 +2,15 @@ import React, {useState} from 'react'
 import "./OpeItem.scss";
 import { Button, Icon } from 'semantic-ui-react';
 import { BasicModal } from '../../../Shared';
-import { Mag } from '../../../../api';
-import { useAuth } from '../../../../hooks';
 import {OpeForm} from "../OpeForm"
 
-const magController = new Mag();
 
 export function OpeItem(props) {
-  const {mag, onReload, onClose} = props
-  const {accessToken} = useAuth();
+  const {mag, onReload} = props
   const [showModal, setShowModal] = useState(false);
   const [titleModal, setTitleModal] = useState("");
-  //const [showConfirm, setShowConfirm] = useState(false)
   const dxp = mag._id.substring(24,18);
   const onOpenCloseModal = ()=>setShowModal((prevState) => !prevState);
- // const onOpenCloseConfirm = ()=> setShowConfirm((prevState) => !prevState);
   const openUpdateMag=()=>{
     setTitleModal(`Revisar cotización: #${dxp}`)
     onOpenCloseModal();

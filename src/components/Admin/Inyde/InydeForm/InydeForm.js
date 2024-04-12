@@ -1,5 +1,5 @@
 import React from 'react';
-import {Form, Dropdown, Container, FormInput} from 'semantic-ui-react';
+import {Form, Container} from 'semantic-ui-react';
 import { useFormik } from 'formik';
 import {initialValues, validationSchema} from './InydeForm.form';
 import { Mag } from '../../../../api';
