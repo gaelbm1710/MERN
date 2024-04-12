@@ -1,9 +1,7 @@
 import React from 'react';
 import { Routes, Route } from "react-router-dom";
-import {
-  Auth, Users, Blog, Courses, Menu, Newsletter, Inyde, Ope, GestionComercial, Asesor, Omicronshoppagos, Presentacion, Princ,
-  Transaccionescredito, Clientescreditos, Facturapagas, Cambiobase, Soporte
-} from "../pages/admin";
+import {Auth, Users, Blog, Courses, Menu, Newsletter, Inyde, Ope, GestionComercial, Asesor, Omicronshoppagos, Presentacion, Princ,
+  Transaccionescredito, Clientescreditos, Facturapagas, Cambiobase, Soporte} from "../pages/admin";
 import { AdminLayout } from "../layouts";
 import { useAuth } from "../hooks";
 
