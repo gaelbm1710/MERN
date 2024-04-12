@@ -6,7 +6,6 @@ export * from "./Menu";
 export * from "./Newsletter";
 export * from "./Inyde";
 export * from "./Ope";
-export * from "./Gestioncomercial";
 export * from "./Asesor";
 export * from "./Omicronshoppagos";
 export * from "./Princ";
@@ -16,4 +15,4 @@ export * from "./Clientescreditos";
 export * from "./Facturaspagas";
 export * from "./Cambiobase";
 export * from "./Soporte";
-export * from "./Come"
+export * from "./GestionComercial"

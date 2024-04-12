@@ -4,12 +4,14 @@ import {useFormik} from "formik";
 import {initialValues, validationSchema} from "./LoginForm.form";
 import {Auth} from "../../../../api"
 import {useAuth} from "../../../../hooks"
+import { useNavigate } from 'react-router-dom';
 
 
 const authController = new Auth();
 
 export function LoginForm() {
     const {login} = useAuth();
+    const navigate = useNavigate();
     const formik = useFormik({
         initialValues: initialValues(),
         validationSchema: validationSchema(),
@@ -20,6 +22,7 @@ export function LoginForm() {
                 authController.setAccessToken(response.access);
                 authController.setRefreshToken(response.access);
                 login(response.access);
+                navigate('/admin')
             } catch (error) {
                 console.error(error);
             }

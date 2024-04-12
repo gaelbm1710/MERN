@@ -1,23 +1,30 @@
 import React from 'react';
 import {Routes, Route} from "react-router-dom";
-import {Home, Contact, Courses, Post, Blog} from "../pages/web";
-import {ClientLayout} from "../layouts";
+import {
+  Auth, Users, Blog, Courses, Menu, Newsletter, Inyde, Ope, GestionComercial, Asesor, Omicronshoppagos, Presentacion, Princ,
+  Transaccionescredito, Clientescreditos, Facturapagas, Cambiobase, Soporte
+} from "../pages/admin";
+import { AdminLayout } from "../layouts";
+import { useAuth } from "../hooks";
 
 export function WebRouter() {
-  const loadLayout = (Layout, Page)=>{
-    return(
+  const { user } = useAuth();
+  const loadLayout = (Layout, Page) => {
+    return (
       <Layout>
         <Page />
       </Layout>
     )
   }
   return (
-        <Routes>
-            <Route path="/" element={loadLayout(ClientLayout, Home)} />
-            <Route path="/course" element={loadLayout(ClientLayout, Courses)} />
-            <Route path="/blog/:path" element={loadLayout(ClientLayout, Post)} />
-            <Route path="/blog" element={loadLayout(ClientLayout, Blog)} />
-            <Route path="/contact" element={loadLayout(ClientLayout, Contact)} />
-        </Routes>
+    <Routes>
+      {!user ? (
+        <Route path="/" element={<Auth />} /> //login
+      ) : (
+        <>
+          
+        </>
+      )}
+    </Routes>
   )
 }

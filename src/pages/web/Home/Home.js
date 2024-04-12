@@ -5,7 +5,6 @@ export function Home() {
   return (
     <div>
         <Banner />
-        <HomeCourses />
         <HomeMyCoursesWork />
     </div>
   )

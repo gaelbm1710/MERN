@@ -3,7 +3,7 @@
 .ui.menu.admin-menu{
     > .item{
         display: flex;
-        color: $text-light;
+        color: black;
         padding: 15px 20px !important;
         margin: 0 !important;
         border-radius: 0 !important;
@@ -11,7 +11,7 @@
         &:hover,
         &.active,
         &active:hover{
-            color:$text-light;
+            color:rgb(255, 255, 255);
             background-color: $primary-hover;
         }
         

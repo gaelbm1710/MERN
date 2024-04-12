@@ -7,15 +7,9 @@ export function ClientLayout(props) {
     return (
     <div className='client-layout'>
         <div className='client-layout__header'>
-          <TopBar />
         </div>
         {children}
         <div className='client-layout__footer'>
-          <Container>
-            <Footer.Info />
-            <Footer.Menu />
-            <Footer.Newsletter />
-          </Container>
           <Container>
             <span>©ALL RIGHTS RESERVED BY HEROICO CUERPO DE TI</span>
           </Container>
