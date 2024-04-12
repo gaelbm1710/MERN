@@ -18,7 +18,7 @@ export default [
         "no-unused-vars": ["error", {
             "vars": "all",
             "args": "after-used",
-            "caughtErrors": "all",
+            "caughtErrors": 2,
             "ignoreRestSiblings": false,
             "reportUsedIgnorePattern": false
         }]
