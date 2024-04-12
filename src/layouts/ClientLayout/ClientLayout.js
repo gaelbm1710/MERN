@@ -1,7 +1,6 @@
 import React from 'react';
 import {Container} from "semantic-ui-react";
 import "./ClientLayout.scss";
-import {TopBar, Footer} from "../../components/web";
 export function ClientLayout(props) {
     const {children} = props;  
     return (

@@ -1,7 +1,5 @@
 import React from 'react'
 import "./info.scss";
-import {Button} from "semantic-ui-react";
-import {map} from "lodash";
 import {Icon} from "../../../../assets";
 
 export function Info() {

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Banner, HomeCourses, HomeMyCoursesWork} from "../../../components/web"
+import {Banner, HomeMyCoursesWork} from "../../../components/web"
 
 export function Home() {
   return (

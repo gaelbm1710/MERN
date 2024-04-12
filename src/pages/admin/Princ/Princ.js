@@ -7,6 +7,6 @@ export function Princ(){
     const Nombre = firstname;
     const Apellido = lastname;
     return(
-        <h1>Hola</h1>
+        <h1>Hola {Nombre}{Apellido}</h1>
     )
 }

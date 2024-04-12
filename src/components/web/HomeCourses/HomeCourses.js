@@ -1,9 +1,6 @@
 import React,{useState,useEffect} from 'react';
-import {Container, Image, Button} from "semantic-ui-react";
-import {Link} from "react-router-dom";
-import { map } from 'lodash';
+import {Container} from "semantic-ui-react";
 import { Course } from '../../../api';
-import { ENV } from '../../../utils';
 import "./HomeCourses.scss"
 
 const courseController = new Course();
@@ -15,6 +12,7 @@ export function HomeCourses() {
         try {
             const response = await courseController.getCourses({limit:6});
             setCourses(response.docs);
+            console.log(courses);
         } catch (error) {
             console.error(error)
         }
@@ -23,42 +21,7 @@ export function HomeCourses() {
     
   return (
     <Container className='home-courses'>
-        <h2>Enlaces de Ayuda</h2>
-        <div className='home-courses__all'>
-            {map(courses,(course)=>(
-               <a key={course._id} href={course.url} target='_blank'>
-                <Image src={`${ENV.BASE_PATH}/${course.miniature}`} />
-                <div>
-                    <span>{course.tittle}</span>
-                    <span>{course.description}</span>
-                </div>
-               </a> 
-            ))}
-        </div>
+      
     </Container>
   )
-  /*
-  return (
-    <Container className='home-courses'>
-        <h2>Enlaces de Ayuda</h2>
-        <div className='home-courses__all'>
-            {map(courses,(course)=>(
-               <a key={course._id} href={course.url} target='_blank'>
-                <Image src={`${ENV.BASE_PATH}/${course.miniature}`} />
-                <div>
-                    <span>{course.tittle}</span>
-                    <span>{course.description}</span>
-                </div>
-               </a> 
-            ))}
-        </div>
-        <div className='home-courses__more'>
-            <Button as={Link} to="/course" primary>
-                Ver más Enlaces
-            </Button>
-        </div>
-    </Container>
-  )
-  */
-
 }

@@ -1,12 +1,10 @@
 import React, {useState} from 'react'
 import {Tab, Button} from "semantic-ui-react";
-import { useAuth } from '../../../hooks';
 import { BasicModal } from '../../../components/Shared';
 import { ListSoporte } from '../../../components/Admin/Soporte/ListSoporte';
 import { SoporteForm } from '../../../components/Admin/Soporte/SoporteForm';
 
 export function Soporte() {
-    const {user: {role}} = useAuth();
     const [showModal, setShowModal] = useState(false);
     const [reload, setReload] = useState(false);
     const onOpenCloseModal = () =>setShowModal((prevState) => !prevState);

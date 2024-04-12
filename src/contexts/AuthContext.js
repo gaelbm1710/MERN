@@ -66,7 +66,7 @@ export function AuthProvider(props){
         accessToken: token,
         user,
         login,
-        logout,
+        logout
     };
 
     if(loading) return null;

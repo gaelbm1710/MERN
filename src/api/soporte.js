@@ -1,4 +1,3 @@
-import { method, result } from "lodash";
 import { ENV } from "../utils";
 
 export class Soporte{

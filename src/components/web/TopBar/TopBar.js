@@ -13,7 +13,6 @@ const menuController = new Menu();
 export function TopBar() {
     const [menu, setMenu] = useState(null);
     const {login} = useAuth(); 
-    //console.log(menu);
     const navigate = useNavigate();
     useEffect(() => {
       (async()=>{

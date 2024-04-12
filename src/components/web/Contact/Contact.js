@@ -1,5 +1,5 @@
 import React from 'react'
-import {Icon, Form} from "semantic-ui-react";
+import { Form} from "semantic-ui-react";
 
 export function Contacto() {
   return (

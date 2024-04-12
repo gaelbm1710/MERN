@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { Contabilidad } from "../../../api";
 import {map, size} from "lodash";
-import {TableRow,TableHeaderCell,TableHeader, TableCell,TableBody, Table, TableFooter, Pagination, Loader} from "semantic-ui-react";
+import {TableRow,TableHeaderCell,TableHeader, TableCell,TableBody, Table, Pagination, Loader} from "semantic-ui-react";
 
 const contaController = new Contabilidad();
 
@@ -40,7 +40,7 @@ export function Clientescreditos() {
 
     return(
         <>
-        <h1></h1>
+        <h1>Clientes con Crédito</h1>
             <div>
                 <Table celled>
                     <TableHeader>
