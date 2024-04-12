@@ -15,4 +15,4 @@ export * from "./Clientescreditos";
 export * from "./Facturaspagas";
 export * from "./Cambiobase";
 export * from "./Soporte";
-export * from "./GestionComercial"
+export * from "./GestionComercial";
