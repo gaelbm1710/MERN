@@ -32,7 +32,7 @@ export function AuthProvider(props){
             }
             setLoading(false);
         })();
-    }, []);
+    }, );
 
     const reLogin = async (refreshToken)=>{
         try {
