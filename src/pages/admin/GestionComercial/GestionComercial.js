@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import { BasicModal } from '../../../components/Shared';
 import { Tab } from 'semantic-ui-react';
-import "./gestionComercial.scss";
 import {ComeForm, ListCome} from "../../../components/Admin/Come";
 
 export function GestionComercial() {
