@@ -10,7 +10,7 @@ export function WebRouter() {
       {!user ? (
         <Route path="/" element={<Auth />} /> //login
       ) : (
-        console.log(user)
+        <></>
       )}
     </Routes>
   )

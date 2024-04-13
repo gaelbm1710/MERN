@@ -17,14 +17,15 @@ export function AdminRouter() {
   return (
     <Routes>
       {!user ? (
-        <Route path="/admin/*" element={<Auth />} /> //login
+        <Route path='/admnin/*' element={<Auth />} />//login
       ) : (
         <>
           {["/admin", "/admin/Princ"].map((path) => (
             <Route
               key={path}
               path={path}
-              element={loadLayout(AdminLayout, Princ)} /> // Donde esta "Courses" cambia la pagina de inicio
+              element={loadLayout(AdminLayout, Princ)}// Donde esta "Courses" cambia la pagina de inicio
+            />
           ))}
           <Route path="/admin/users" element={loadLayout(AdminLayout, Users)} />
           <Route path="/admin/courses" element={loadLayout(AdminLayout, Courses)} />
@@ -44,7 +45,8 @@ export function AdminRouter() {
           <Route path="/admin/cambiobase" element={loadLayout(AdminLayout, Cambiobase)} />
           <Route path="/admin/soporte" element={loadLayout(AdminLayout, Soporte)} />
         </>
-      )}
+      )
+      }
     </Routes>
   )
 }
