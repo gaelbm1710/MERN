@@ -6,10 +6,10 @@ $widthLeftMenu: 250px;
     display:flex;
     min-height: 250vh;
     max-height: 500vh;
-    background-color:#ffff;
+    background-color:#f4f9fd;
 
     &__left{
-        background-color: $background-dark;
+        background-color: #f4f9fd;
         width: $widthLeftMenu;
         .logo{
             height: 45px;
@@ -21,7 +21,7 @@ $widthLeftMenu: 250px;
     &__right{
         width: calc(100% - $widthLeftMenu);
         &-header{
-            background-color:$background-dark;
+            background-color:#f4f9fd;
             height: 60px;
             display: flex;
             align-items: center;

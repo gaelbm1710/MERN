@@ -8,7 +8,7 @@ export function Logout() {
     const navigate = useNavigate();
     const onLogout = () =>{
         logout();
-        navigate("/admin");
+        navigate("/");
     }
   return (
     <Button icon basic color='black' onClick={onLogout} className='logout'>
