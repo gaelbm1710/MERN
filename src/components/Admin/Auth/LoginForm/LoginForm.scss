@@ -1,11 +1,11 @@
 @import "~/src/scss/index.scss";
 
-.register-form{
+.login-form{
     background-color: #ffffff;
     padding: 20px;
     border-radius: 10px;
     height: 50vh;
-    margin: 20px auto;
+    margin-top: 10px;
     &_error{
         color: $error;
         text-align: center;

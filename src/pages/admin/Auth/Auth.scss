@@ -1,7 +1,7 @@
 @import "~/src/scss/index.scss";
 
 .auth{
-    background-image: url("../../../assets/png/Magistrales2.png");
+    background-color: #bad6ec9a;
     min-height: 100vh;
     background-position: center;
     background-size:cover;
@@ -11,25 +11,28 @@
     padding-top: 100px;
 
     .login{
-        width: 200px;
-        margin-bottom: 30px;
+        width: 500px;
+        margin-bottom: 300px;
         
     }
 
+    .logo{
+        margin-top: 70px;
+    }
+
     &_forms{
-        width: 400px;
+        width: 450px;
         .ui.menu{
             .item{
                 width: 50%;
                 justify-content:center;
                 background-color:#ffffffaf !important;
-                border-radius: 0 !important;
-                border-top: 4px solid $border-grey !important;
-                font-size: 14px;
-
+                border-radius: 11px !important;
+                border-top: 10px solid $border-grey !important;
+                font-size: 16px;
                 &.active{
                     font-weight: normal;
-                    border-radius: 0 !important;
+                    border-radius: 5px !important;
                     border-top-color: $primary !important;
                 }
             }           
