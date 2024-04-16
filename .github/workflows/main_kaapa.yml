@@ -10,8 +10,6 @@ on:
   workflow_dispatch:
 
 env: 
-  AZURE_WEBAPP_NAME: current-time-service
-  AZURE_WEBAPP_PACKAGE_PATH: "./publish"
   PORT: 8080
 
 
