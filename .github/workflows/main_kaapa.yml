@@ -64,7 +64,6 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'kaapa-frontend'
-          slot-name: 'Production'
           publis-profile: ${{secrets.AZURE_PUBLISH_PROFILE}}
           package: .
           
