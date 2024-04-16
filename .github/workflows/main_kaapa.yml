@@ -53,11 +53,12 @@ jobs:
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
+
       
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
         with:
           app-name: kaapa
-          slot-name: 'Production'
           publis-profile: ${{secrets.AZURE_PUBLISH_PROFILE}}
+          package: .
           
