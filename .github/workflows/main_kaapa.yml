@@ -9,6 +9,12 @@ on:
       - main
   workflow_dispatch:
 
+env: 
+  AZURE_WEBAPP_NAME: current-time-service
+  AZURE_WEBAPP_PACKAGE_PATH: "./publish"
+  PORT: 8080
+
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -65,5 +71,6 @@ jobs:
         with:
           app-name: 'kaapa-frontend'
           slot-name: 'Production'
+          publish-profile: ${{secrets.AZURE_PUBLISH_PROFILE}}
           package: .
           
