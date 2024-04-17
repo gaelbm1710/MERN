@@ -65,11 +65,9 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID }}
 
-      - name: 'Deploy to Azure Web App'
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
+      - name: Azure CLI script
+        uses: azure/CLI@v1
         with:
-          app-name: 'kaapa'
-          slot-name: 'Production'
-          package: .
-          
+          azcliversion: latest
+          inlineScript: |
+            az account show
