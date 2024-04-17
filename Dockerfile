@@ -1,15 +1,15 @@
-FROM node:20.11.0-alpine
+FROM node:20.11.0-alpine3.19
 
 WORKDIR /app
 
-COPY package*.json .
-COPY yarn.lock .
+COPY package*.json ./
+COPY yarn.lock ./
 
-RUN npm install 
+RUN npm i
 
 COPY . .
 
-RUN yarn build
+RUN npm run build
 
 EXPOSE 8080
 
