@@ -67,7 +67,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'kaapa'
+          app-name: 'kaapa-frontend'
           slot-name: 'Production'
           package: .
           

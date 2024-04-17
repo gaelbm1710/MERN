@@ -4,6 +4,7 @@ import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const port = process.env.port || 8080
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <App />
