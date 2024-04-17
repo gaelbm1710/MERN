@@ -30,7 +30,7 @@ export function ListEmail(props) {
             console.error(error)
         }
       })();
-      }, [page, reload]);
+      }, [accessToken, page, reload]);
     
     if(!emails) return <Loader active inline="centered"/>
     if(size(emails)===0) return "No hay Correos registrados";

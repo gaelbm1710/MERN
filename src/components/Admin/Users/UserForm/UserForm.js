@@ -72,6 +72,7 @@ export function USerForm(props) {
         },
     ]
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const onDrop = useCallback((acceptedFiles) =>{
         const file = acceptedFiles[0];
         formik.setFieldValue("avatar", URL.createObjectURL(file))

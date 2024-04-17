@@ -32,7 +32,7 @@ export function ListbAsesor(props) {
           }
         }
         fetchData();
-      }, [page, reload]);
+      }, [CorreoAsesor, page, reload]);
       
       const changePage = (_, data) => {
         setPage(data.activePage);

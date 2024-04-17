@@ -67,6 +67,7 @@ export function SoporteForm(props) {
         <div {...getRootProps()}>
             <input {...getInputProps()} />
             {getDocumento() ?(
+                // eslint-disable-next-line jsx-a11y/heading-has-content
                 <h3 src={getDocumento}></h3>
             ):(
                 <div>
