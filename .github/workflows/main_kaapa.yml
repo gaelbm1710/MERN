@@ -9,8 +9,6 @@ on:
       - main
   workflow_dispatch:
 
-env: 
-  PORT: 8080
 
 
 jobs:
