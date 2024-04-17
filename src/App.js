@@ -4,6 +4,7 @@ import { WebRouter,AdminRouter } from "./router"
 import { AuthProvider } from "./contexts";
 
 export default function App() {
+  const port = process.env.port || 8080
   return (
 
     <BrowserRouter>
