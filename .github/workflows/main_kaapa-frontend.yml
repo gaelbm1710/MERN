@@ -29,6 +29,9 @@ jobs:
       - name: Zip artifact for deployment
         run: zip react.zip ./* 
 
+      - name: List contents of zip
+        run: unzip -l react.zip
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
@@ -53,7 +56,6 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'kaapa-frontend'
-          slot-name: 'Production'
           package: .
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BE76C78AC68C4E91ADF3C389DF4CE6E3 }}
 
