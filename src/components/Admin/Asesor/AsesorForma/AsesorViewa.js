@@ -1,8 +1,5 @@
 import React from 'react'
 import { Container } from 'semantic-ui-react';
-import { Mag } from '../../../../api';
-
-const magController = new Mag();
 
 
 export function AsesorViewa(props) {
