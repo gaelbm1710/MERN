@@ -3,13 +3,14 @@ FROM node:alpine
 WORKDIR /app
 
 COPY package*.json .
+COPY yarn.lock .
 
-RUN npm install 
+RUN yarn install 
 
 COPY . .
 
-RUN npm run build
+RUN yarn build
 
 EXPOSE 8080
 
-CMD [ "npm", "start" ]
+CMD [ "yarn", "start" ]
