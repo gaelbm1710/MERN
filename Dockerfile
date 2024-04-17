@@ -34,4 +34,4 @@ RUN yarn global add serve
 EXPOSE 80
 
 # Comando para iniciar el servidor HTTP
-CMD ["serve", "-s", "build", "-l", "80"]
+CMD ["serve", "-s", "build", "-l", "8080"]
