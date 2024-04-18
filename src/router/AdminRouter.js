@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { Routes, Route } from "react-router-dom";
 import {Auth, Users, Blog, Courses, Menu, Newsletter, Inyde, Ope, GestionComercial, Asesor, Omicronshoppagos, Presentacion, Princ,
   Transaccionescredito, Clientescreditos, Facturapagas, Cambiobase, Soporte} from "../pages/admin";
@@ -6,19 +6,7 @@ import { AdminLayout } from "../layouts";
 import { useAuth } from "../hooks";
 
 export function AdminRouter() {
-  const { user, logout } = useAuth();
-  useEffect(() => {
-    const handleBeforeUnload  = () =>{
-      logout();
-    };
-    window.addEventListener('beforeunload', handleBeforeUnload);
-    return()=>{
-      window.removeEventListener('beforeunload',handleBeforeUnload);
-    };
-  }, [logout])
-
-  
-  
+  const { user} = useAuth();  
   const loadLayout = (Layout, Page) => {
     return (
       <Layout>
