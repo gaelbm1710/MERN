@@ -64,18 +64,20 @@ export function SoporteForm(props) {
 
   return (
     <Form className='ticket-form' onSubmit={formik.handleSubmit}>
-        <div {...getRootProps()}>
-            <input {...getInputProps()} />
-            {getDocumento() ?(
-                // eslint-disable-next-line jsx-a11y/heading-has-content
-                <h3 src={getDocumento}></h3>
-            ):(
-                <div>
-                    <span>Agregar Documento</span>
-                </div>
-            )}
-        </div>
+        
         <Form.Dropdown label="Elige un tipo de Servicio" placeholder="Servicios" fluid selection multiple options={servicios} onChange={(_,data)=>formik.setFieldValue("servicio",data.value)} value={formik.values.servicio || []} error={formik.errors.servicio}/>
+        <Form.Input />
+        <div className='ticket-form__documento' {...getRootProps()}>
+        <input {...getInputProps()} />
+        {getDocumento() ?(
+            // eslint-disable-next-line jsx-a11y/heading-has-content
+            <h3 src={getDocumento}></h3>
+        ):(
+            <div>
+                <span>Agregar Documento</span>
+            </div>
+        )}
+    </div>
     </Form>
   )
 }

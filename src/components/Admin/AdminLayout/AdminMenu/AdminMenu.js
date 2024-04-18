@@ -128,6 +128,10 @@ export function AdminMenu() {
             <Icon name='lab' />
             Cotizaciones Magistrales
           </Menu.Item>
+          <Menu.Item as={Link} to="/admin/inyde" active={isCurrentPath("/admin/inyde")}>
+            <Icon name='lab' />
+            Cotizaciones
+          </Menu.Item>
         </>
       )}
       {isOpe && (

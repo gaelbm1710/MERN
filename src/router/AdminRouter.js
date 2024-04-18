@@ -17,7 +17,7 @@ export function AdminRouter() {
   return (
     <Routes>
       {!user ? (
-        <Route path='/admnin/*' element={<Auth />} />//login
+        <Route path='/admnin/' element={<Auth />} />//login
       ) : (
         <>
           {["/admin", "/admin/Princ"].map((path) => (
