@@ -1,37 +1,28 @@
-# Paso 1: Construir la aplicación React
-# Utilizar una imagen de Node.js como base
-FROM node:20.11.0-alpine as build-stage
 
-# Establecer el directorio de trabajo en el contenedor
-WORKDIR /app
+FROM node:20.11.0-alpine AS build
 
-# Copiar los archivos de dependencias
-COPY package.json yarn.lock ./
+WORKDIR /usr/src/app
 
-# Instalar las dependencias
-RUN yarn install
+COPY package*.json yarn.lock ./
 
-# Copiar el resto de los archivos de la aplicación
+RUN yarn install --frozen-lockfile
+
 COPY . .
 
-# Construir la aplicación React
-RUN yarn build
+RUN yarn lint
 
-# Paso 2: Ejecutar la aplicación utilizando un servidor Node.js
-# Iniciar desde una imagen de Node.js limpia
+RUN npm run build
+
 FROM node:20.11.0-alpine
 
-# Establecer el directorio de trabajo en el contenedor
 WORKDIR /app
 
-# Copiar el resultado de la compilación desde el paso de construcción
-COPY --from=build-stage /app/build ./build
+COPY --from=build /usr/src/app/package.json /usr/src/app/yarn.lock ./
+RUN yarn install --frozen-lockfile --production
 
-# Instalar un servidor HTTP global para servir la aplicación
-RUN yarn global add serve
+COPY --from=build /usr/src/app/build ./build
+COPY --from=build /usr/src/app/serverconfig.js .
 
-# Exponer el puerto que el servidor HTTP utilizará
-EXPOSE 80
+EXPOSE 8080
 
-# Comando para iniciar el servidor HTTP
-CMD ["serve", "-s", "build", "-l", "8080"]
+CMD ["node", "serverconfig.js"]
