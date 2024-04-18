@@ -117,7 +117,7 @@ export function AsesorForm(props) {
                 onClose();
                 onReload();
             } catch (error) {
-                console.error(error);
+                console.error(error); 
             }
         }
     });
