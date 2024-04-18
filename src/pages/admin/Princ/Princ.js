@@ -7,6 +7,11 @@ export function Princ(){
     const Nombre = firstname;
     const Apellido = lastname;
     return(
-        <h1>Hola {Nombre}{Apellido}</h1>
+        <div className='princ-page'>
+            <h2>¡Bienvenido a KAAPA!</h2>
+            <h4>Unificando flujos, simplificando procesos</h4>
+            <h3>Hola {Nombre} {Apellido}</h3>
+        </div>
+        
     )
 }
