@@ -10,7 +10,7 @@ export function Princ(){
         <div className='princ-page'>
             <h2>¡Bienvenido a KAAPA!</h2>
             <h4>Unificando flujos, simplificando procesos</h4>
-            <strong>¡Hola {Nombre} {Apellido}!</strong>
+            <h3>¡Hola {Nombre} {Apellido}!</h3>
         </div>
         
     )
