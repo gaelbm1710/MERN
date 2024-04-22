@@ -24,17 +24,19 @@ export function UserItem(props) {
         setTitleModal(`Actualizar ${user.email}`);
         onOpenCloseModal();
     }
-    const onActivateDesactivate = async() =>{
+    const onActivateDesactivate = async () => {
         try {
-            await userController.updateUser(accessToken, user._id, {
-                active: !user.active
+            await userController.updateUserActive(accessToken, user._id, {
+                active: !user.active,
+                email: user.email
             });
             onReload();
             onOpenCloseConfirm();
         } catch (error) {
-            console.error(error);
+            console.error("Error during activation/deactivation:", error);
         }
-    }
+    };
+    
     const openDesactivateActivateConfirm = () =>{
         setIsDelete(false);
         setConfirmMessage(user.active ? `Desactivar usuario ${user.email}` : `Activar usuario ${user.email}`);

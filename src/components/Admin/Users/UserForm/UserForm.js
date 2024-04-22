@@ -35,26 +35,10 @@ export function USerForm(props) {
     })
 
     const roleOptions=[
-        {
-            key: "asesor",
-            text: "Asesor",
-            value: "user"
-        },
-        {
-            key: "admin",
-            text: "Administrador",
-            value: "admin"
-        },
-        {
-            key: "iyd",
-            text: "Investigación y Desarrollo",
-            value: "iyd"
-        },
-        {
-            key: "ope",
-            text: "Operaciones",
-            value: "ope"
-        },
+        {key: "asesor",text: "Asesor",value: "user"},
+        {key: "admin",text: "Administrador",value: "admin"},
+        {key: "iyd",text: "Investigación y Desarrollo",value: "iyd"},
+        {key: "ope",text: "Operaciones",value: "ope"},
         {
             key: "com",
             text: "Comercial",
