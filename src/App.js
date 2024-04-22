@@ -8,6 +8,7 @@ export default function App() {
     <AuthProvider>
       <BrowserRouter>
         <AdminRouter />
+        <WebRouter />
       </BrowserRouter>
     </AuthProvider>
   )
