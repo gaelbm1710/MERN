@@ -38,7 +38,7 @@ export function AdminRouter() {
           <Route path="/admin/asesor" element={loadLayout(AdminLayout, Asesor)} />
           <Route path="/admin/presentacion" element={loadLayout(AdminLayout, Presentacion)} />
           <Route path="/admin/omicronshoppagos" element={loadLayout(AdminLayout, Omicronshoppagos)} />
-          <Route path="/admin/omicronshoppagos" element={loadLayout(AdminLayout, Princ)} />
+          <Route path="/admin/princ" element={loadLayout(AdminLayout, Princ)} />
           <Route path="/admin/transaccionescredito" element={loadLayout(AdminLayout, Transaccionescredito)} />
           <Route path="/admin/clientescreditos" element={loadLayout(AdminLayout, Clientescreditos)} />
           <Route path="/admin/facturapagas" element={loadLayout(AdminLayout, Facturapagas)} />
