@@ -4,8 +4,8 @@ import {Auth, Users, Blog, Courses, Menu, Newsletter, Inyde, Ope, GestionComerci
   Transaccionescredito, Clientescreditos, Facturapagas, Cambiobase, Soporte} from "../pages/admin";
 import { useAuth } from "../hooks";
 import { AdminLayout } from "../layouts";
-
-
+ 
+ 
 export function WebRouter() {
   const { user } = useAuth();
   const loadLayout = (Layout, Page) => {
@@ -28,7 +28,7 @@ export function WebRouter() {
               element={loadLayout(AdminLayout, Princ)}// Donde esta "Courses" cambia la pagina de inicio
             />
           ))}
-        
+       
         </>
       )}
     </Routes>

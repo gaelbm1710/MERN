@@ -4,7 +4,7 @@ import {Auth, Users, Blog, Courses, Menu, Newsletter, Inyde, Ope, GestionComerci
   Transaccionescredito, Clientescreditos, Facturapagas, Cambiobase, Soporte} from "../pages/admin";
 import { AdminLayout } from "../layouts";
 import { useAuth } from "../hooks";
-
+ 
 export function AdminRouter() {
   const { user} = useAuth();  
   const loadLayout = (Layout, Page) => {
