@@ -35,7 +35,7 @@ export function InydeItem(props) {
     <div className='cotizacion-item'>
         <div className='cotizacion-item__info'>
             <p className='cotizacion-item__info-inyde'>Cotizacion:</p>
-            <p className='cotizacion-item__info-dxp'>#{dxp}</p>
+            <p className='cotizacion-item__info-dxp'>#{mag.folio}</p>
         </div>
         <div>
             <Button icon primary onClick={openUpdateMag}>
