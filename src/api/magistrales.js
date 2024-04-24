@@ -66,6 +66,57 @@ export class Mag{
             throw error;
         }
     }    
+
+    async updateMagi(accessToken, idMag, MagData){
+        try {
+            const data = MagData;
+            const formData = new FormData();
+            Object.keys(data).forEach((key)=>{
+                formData.append(key,data[key]);
+            })
+            const url = `${this.baseApi}/${ENV.API_ROUTES.MAGI}/${idMag}`
+            const params={
+                method: "PATCH",
+                headers:{
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${accessToken}`,
+                },
+                body: JSON.stringify(data),
+            }
+            const response = await fetch(url, params)
+            const result = await response.json()
+            if(response.status !== 200) throw result;
+            return result;
+        } catch (error) {
+            throw error;
+        }
+    }   
+
+    async updateMagis(accessToken, idMag, MagData){
+        try {
+            const data = MagData;
+            const formData = new FormData();
+            Object.keys(data).forEach((key)=>{
+                formData.append(key,data[key]);
+            })
+            const url = `${this.baseApi}/${ENV.API_ROUTES.MAGIS}/${idMag}`
+            const params={
+                method: "PATCH",
+                headers:{
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${accessToken}`,
+                },
+                body: JSON.stringify(data),
+            }
+            const response = await fetch(url, params)
+            const result = await response.json()
+            if(response.status !== 200) throw result;
+            return result;
+        } catch (error) {
+            throw error;
+        }
+    } 
+
     async deleteMag(accessToken, idMag){
         try {
             const url = `${this.baseApi}/${ENV.API_ROUTES.MAG}/${idMag}`

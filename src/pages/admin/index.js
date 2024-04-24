@@ -5,6 +5,8 @@ export * from "./Courses";
 export * from "./Menu";
 export * from "./Newsletter";
 export * from "./Inyde";
+export * from "./Inydes";
+export * from "./Inydess";
 export * from "./Ope";
 export * from "./Asesor";
 export * from "./Omicronshoppagos";

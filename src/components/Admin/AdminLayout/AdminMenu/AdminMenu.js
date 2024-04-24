@@ -123,35 +123,60 @@ export function AdminMenu() {
         </>
       )}
       {isIyd && (
-        <>
-          <Menu.Item as={Link} to="/admin/inyde" active={isCurrentPath("/admin/inyde")}>
-            <Icon name='lab' />
-            Cotizaciones Magistrales
-          </Menu.Item>
-          <Menu.Item as={Link} to="/admin/inyde" active={isCurrentPath("/admin/inyde")}>
-            <Icon name='lab' />
-            Cotizaciones
-          </Menu.Item>
-        </>
+        <Dropdown item text='Gestión para Formulas'>
+          <DropdownMenu className='admin-menu-lista'>
+            <Menu.Item as={Link} to="/admin/inyde" active={isCurrentPath("/admin/inyde")}>
+              <Icon name='file alternate' />
+              Generar Cotización Magistral Nueva
+            </Menu.Item>
+            <Menu.Item as={Link} to="/admin/inydes" active={isCurrentPath("/admin/inydes")}>
+              <Icon name='flask' />
+              Cotización de Nueva Presentación
+            </Menu.Item>
+            <Menu.Item as={Link} to="/admin/inydess" active={isCurrentPath("/admin/inydess")}>
+              <Icon name='flask' />
+              Cotizar cambio de Base
+            </Menu.Item>
+          </DropdownMenu>
+        </Dropdown>
       )}
       {isOpe && (
-        <>
-          <Menu.Item as={Link} to="/admin/ope" active={isCurrentPath("/admin/ope")}>
-            <Icon name='lab' />
-            Cotizaciones Magistrales
-          </Menu.Item>
-        </>
+        <Dropdown item text='Gestión para Formulas'>
+          <DropdownMenu className='admin-menu-lista'>
+            <Menu.Item as={Link} to="/admin/ope" active={isCurrentPath("/admin/ope")}>
+              <Icon name='file alternate' />
+              Generar Cotización Magistral Nueva
+            </Menu.Item>
+            <Menu.Item as={Link} to="/admin/opes" active={isCurrentPath("/admin/opes")}>
+              <Icon name='flask' />
+              Cotización de Nueva Presentación
+            </Menu.Item>
+            <Menu.Item as={Link} to="/admin/opess" active={isCurrentPath("/admin/opess")}>
+              <Icon name='flask' />
+              Cotizar cambio de Base
+            </Menu.Item>
+          </DropdownMenu>
+        </Dropdown>
       )}
       {isCom && (
-        <>
-          <Menu.Item as={Link} to="/admin/come" active={isCurrentPath("/admin/come")}>
-            <Icon name='lab' />
-            Cotizaciones Magistrales
-          </Menu.Item>
-        </>
+        <Dropdown item text='Gestión para Formulas'>
+          <DropdownMenu className='admin-menu-lista'>
+            <Menu.Item as={Link} to="/admin/come" active={isCurrentPath("/admin/ope")}>
+              <Icon name='file alternate' />
+              Generar Cotización Magistral Nueva
+            </Menu.Item>
+            <Menu.Item as={Link} to="/admin/comes" active={isCurrentPath("/admin/comes")}>
+              <Icon name='flask' />
+              Cotización de Nueva Presentación
+            </Menu.Item>
+            <Menu.Item as={Link} to="/admin/comess" active={isCurrentPath("/admin/comess")}>
+              <Icon name='flask' />
+              Cotizar cambio de Base
+            </Menu.Item>
+          </DropdownMenu>
+        </Dropdown>
       )}
       {isAse && (
-        <>
           <Dropdown item text='Gestión para Formulas'>
             <DropdownMenu className='admin-menu-lista'>
               <Menu.Item as={Link} to="/admin/asesor" active={isCurrentPath("/admin/asesor")}>
@@ -168,7 +193,6 @@ export function AdminMenu() {
               </Menu.Item>
             </DropdownMenu>
           </Dropdown>
-        </>
       )}
       {isConta && (
         <>

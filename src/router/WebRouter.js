@@ -1,7 +1,6 @@
 import React from 'react';
 import {Routes, Route} from "react-router-dom";
-import {Auth, Users, Blog, Courses, Menu, Newsletter, Inyde, Ope, GestionComercial, Asesor, Omicronshoppagos, Presentacion, Princ,
-  Transaccionescredito, Clientescreditos, Facturapagas, Cambiobase, Soporte} from "../pages/admin";
+import {Auth,Princ} from "../pages/admin";
 import { useAuth } from "../hooks";
 import { AdminLayout } from "../layouts";
  

@@ -5,6 +5,8 @@ import { BasicModal } from '../../../Shared';
 import { Mag } from '../../../../api';
 import { useAuth } from '../../../../hooks';
 import {InydeForm} from "../InydeForm";
+import {InydesForm} from "../InydesForm";
+import {InydessForm} from "../InydessForm";
 
 const magController = new Mag();
 
@@ -30,6 +32,15 @@ export function InydeItem(props) {
             console.error(error);
         }
     }
+    let formview;
+    if (mag.actividad === 'nueva') {
+        formview = <InydeForm onClose={onOpenCloseModal} onReload={onReload} mag={mag}/>;
+    } else if (mag.actividad === 'presentacion') {
+        formview = <InydesForm onClose={onOpenCloseModal} onReload={onReload} mag={mag}/>;
+    } else if (mag.actividad === 'cambio') {
+        formview = <InydessForm onClose={onOpenCloseModal} onReload={onReload} mag={mag}/>;
+        formview = <div>Error en sistema</div>
+    }
   return (
     <>
     <div className='cotizacion-item'>
@@ -47,7 +58,7 @@ export function InydeItem(props) {
         </div>
     </div>
     <BasicModal show={showModal} close={onOpenCloseModal} title={titleModal}>
-        <InydeForm onClose={onOpenCloseModal} onReload={onReload} mag={mag}/>
+        {formview}
     </BasicModal>
     <Confirm 
     open={showConfirm}
