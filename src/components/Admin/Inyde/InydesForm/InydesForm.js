@@ -70,7 +70,7 @@ export function InydesForm(props) {
             {mag && [1, 2, 3, 4, 5, 6, 7, 8].map((index) => {
                 const fieldName = `precio${index}`;
                 const presentacionValue = mag.presentacion;
-                const presentacionRowValue = `${index * mag.presentacion} ML`;
+                const presentacionRowValue = `${(index +1)* presentacionValue} ML`;
                 return presentacionValue === presentacionRowValue && (
                   <TableRow key={index}>
                     <TableCell>{presentacionRowValue}</TableCell>
