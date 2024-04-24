@@ -59,7 +59,7 @@ export function InydeForm(props) {
         }
         onClose();
         onReload();
-      } catch (error) {
+      } catch (error) { 
         console.error(error);
       }
     }
@@ -84,7 +84,7 @@ export function InydeForm(props) {
           <Form.Dropdown label='Tipo de Formula' placeholder='' options={tipoF} selection onChange={(_,data) => formik.setFieldValue("tipoF", data.value)} value={formik.values.tipoF} error={formik.errors.tipoF}/>
           <Form.Input label='Caducidad' name='caducidad' onChange={formik.handleChange} value={formik.values.caducidad} error={formik.errors.caducidad}/>
           <br></br><Form.Checkbox label='Necesita Receta'
-          name='receta' onChange={(_, data) => formik.setFieldValue("receta", data.checked)} checked={formik.values.receta} error={formik.errors.receta}/>
+          name='receta' onChange={(_, data) => formik.setFieldValue("receta", data.checked)} checked={formik.values.receta} error={formik.errors.receta} className='custom-checkbox'/>
         </Container>
       </Form.Group>
       <Form.Group widths='equal'>
@@ -93,22 +93,22 @@ export function InydeForm(props) {
           <Form.TextArea label='Comentarios Internos' name='comInt' onChange={formik.handleChange} value={formik.values.comInt} error={formik.errors.comInt}/>
           <Form.TextArea label='Comentarios Clientes' name='comClie' onChange={formik.handleChange} value={formik.values.comClie} error={formik.errors.comClie}/>
           <br></br><Form.Checkbox label='Muestra'
-          name='excl' onChange={(_, data) => formik.setFieldValue("necesita_muestra", data.checked)} checked={formik.values.necesita_muestra} error={formik.errors.necesita_muestra}/>
+          name='excl' onChange={(_, data) => formik.setFieldValue("necesita_muestra", data.checked)} checked={formik.values.necesita_muestra} error={formik.errors.necesita_muestra} className='custom-checkbox'/>
           <br></br><Form.Checkbox label='Exclusiva'
-          name='excl' onChange={(_, data) => formik.setFieldValue("excl", data.checked)} checked={formik.values.excl} error={formik.errors.excl}/>
+          name='excl' onChange={(_, data) => formik.setFieldValue("excl", data.checked)} checked={formik.values.excl} error={formik.errors.excl} className='custom-checkbox'/>
           <br></br><Form.Checkbox label='Refrigeración'
-          name='refri' onChange={(_, data) => formik.setFieldValue("refri", data.checked)} checked={formik.values.refri} error={formik.errors.refri}/>
+          name='refri' onChange={(_, data) => formik.setFieldValue("refri", data.checked)} checked={formik.values.refri} error={formik.errors.refri} className='custom-checkbox'/>
         </Container>
       </Form.Group>
       <Form.Group widths='equal'>
         <Container>
           <Form.Checkbox label='Existe'
-          name='existe' onChange={(_, data) => formik.setFieldValue("existe", data.checked)} checked={formik.values.existe} error={formik.errors.existe}/>
+          name='existe' onChange={(_, data) => formik.setFieldValue("existe", data.checked)} checked={formik.values.existe} error={formik.errors.existe} className='custom-checkbox'/>
           <br></br><Form.Input label='Clave' name='clave_ex' onChange={formik.handleChange} value={formik.values.clave_ex} error={formik.errors.clave_ex}/>
           <Form.Input label='Base' name='base_ex' onChange={formik.handleChange} value={formik.values.base_ex} error={formik.errors.base_ex}/>
         </Container>
       </Form.Group>
-      <Form.Button type='submit' primary fluid loading={formik.isSubmitting}>
+      <Form.Button type='submit' primary fluid loading={formik.isSubmitting} className='custom-button'>
         {mag ?"Actualizar Cotizacion": "Cancelar"}
       </Form.Button>
       </Form>
