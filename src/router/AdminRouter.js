@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from "react-router-dom";
-import {Auth, Users, Blog, Courses, Menu, Newsletter, Inyde, Ope, GestionComercial, Asesor, Omicronshoppagos, Presentacion, Princ,
-  Transaccionescredito, Clientescreditos, Facturapagas, Cambiobase, Soporte, Inydes, Inydess} from "../pages/admin";
+import {Auth, Users, Blog, Courses, Menu, Newsletter, Inyde, Ope, Opes, Opess, GestionComercial, Asesor, Omicronshoppagos, Presentacion, Princ,
+  Transaccionescredito, Clientescreditos, Facturapagas, Cambiobase, Soporte, Inydes, Inydess, GestionComercials, GestionComercialss} from "../pages/admin";
 import { AdminLayout } from "../layouts";
 import { useAuth } from "../hooks";
  
@@ -36,7 +36,11 @@ export function AdminRouter() {
           <Route path="/admin/inydes" element={loadLayout(AdminLayout, Inydes)} />
           <Route path="/admin/inydess" element={loadLayout(AdminLayout, Inydess)} />
           <Route path="/admin/ope" element={loadLayout(AdminLayout, Ope)} />
+          <Route path="/admin/opes" element={loadLayout(AdminLayout, Opes)} />
+          <Route path="/admin/opess" element={loadLayout(AdminLayout, Opess)} />
           <Route path="/admin/gestioncomercial" element={loadLayout(AdminLayout, GestionComercial)} />
+          <Route path="/admin/gestioncomercials" element={loadLayout(AdminLayout, GestionComercials)} />
+          <Route path="/admin/gestioncomercialss" element={loadLayout(AdminLayout, GestionComercialss)} />
           <Route path="/admin/asesor" element={loadLayout(AdminLayout, Asesor)} />
           <Route path="/admin/presentacion" element={loadLayout(AdminLayout, Presentacion)} />
           <Route path="/admin/omicronshoppagos" element={loadLayout(AdminLayout, Omicronshoppagos)} />

@@ -8,15 +8,15 @@ import "./ListOpe.scss";
 const magController = new Mag();
 
 export function ListOpe(props) {
-  
   const {reload, onReload, onClose} = props;
   const [mags, setMags] = useState(false);
   const [page, setPage] = useState(1);
   const [pagination, setPagination] = useState()
+  const actividad = 'nueva'
   useEffect(() => {
     (async () =>{
       try {
-        const response = await magController.getMagOpe({page, limit: 9});
+        const response = await magController.getMagActividadNueva(actividad,{page, limit: 9});
         setMags(response.docs);
         setPagination({
           limit: response.limit,

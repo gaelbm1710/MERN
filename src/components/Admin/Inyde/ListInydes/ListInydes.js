@@ -6,17 +6,17 @@ import { InydeItem } from '../InydeItem';
 const magController = new Mag();
 
 export function ListInydes(props) {
-    const { reload, onReload, onClose } = props;
+  const { reload, onReload, onClose } = props;
   const [mags, setMags] = useState([]);
   const [page, setPage] = useState(1);
   const [pagination, setPagination] = useState({});
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredMags, setFilteredMags] = useState([]);
-
+  const actividad = 'presentacion'
   useEffect(() => {
     const fetchMags = async () => {
       try {
-        const response = await magController.getMag({ page, limit: 10 });
+        const response = await magController.getMagActividadPresentacion(actividad,{ page, limit: 10 });
         setMags(response.docs);
         setPagination({
           limit: response.limit,

@@ -12,10 +12,11 @@ export function ListCome(props) {
   const [mags, setMags] = useState(false);
   const [page, setPage] = useState(1);
   const [pagination, setPagination] = useState()
+  const actividad = 'nueva'
   useEffect(() => {
     (async () =>{
       try {
-        const response = await magController.getMagCome({page, limit: 9});
+        const response = await magController.getMagActividadNueva(actividad,{page, limit: 9});
         setMags(response.docs);
         setPagination({
           limit: response.limit,

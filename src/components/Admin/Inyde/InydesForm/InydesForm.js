@@ -55,6 +55,7 @@ export function InydesForm(props) {
           <p>Cliente: <span>{mag.cardcode}</span></p>
           <p>Clave Existente: <span>{mag.clave_ex}</span></p>
           <p>Presentación: <span>{mag.presentacion}</span></p>
+          <Form.Input label='Folio' name='folio_IyD' onChange={formik.handleChange} value={formik.values.folio_IyD} error={formik.errors.folio_IyD}/>
         </Container>
       </Form.Group>
       <Form.Group>
@@ -67,17 +68,38 @@ export function InydesForm(props) {
               </TableRow>
             </TableHeader>
             <TableBody>
-            {mag && [1, 2, 3, 4, 5, 6, 7, 8].map((index) => {
-                const fieldName = `precio${index}`;
-                const presentacionValue = mag.presentacion;
-                const presentacionRowValue = `${(index +1)* presentacionValue} ML`;
-                return presentacionValue === presentacionRowValue && (
-                  <TableRow key={index}>
-                    <TableCell>{presentacionRowValue}</TableCell>
-                    <TableCell><Form.Input name={fieldName} placeholder='0' onChange={formik.handleChange} value={formik.values[fieldName]} error={formik.errors[fieldName]} /></TableCell>
-                  </TableRow>
-                );
-              })}
+              <TableRow>
+                <TableCell>7.5 ML</TableCell>
+                <TableCell><Form.Input name='precio1' placeholder='0' onChange={formik.handleChange} value={formik.values.precio1} error={formik.errors.precio1} /></TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>15 ML</TableCell>
+                <TableCell><Form.Input name='precio2' placeholder='0' onChange={formik.handleChange} value={formik.values.precio2} error={formik.errors.precio2} /></TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>30 ML</TableCell>
+                <TableCell><Form.Input name='precio3' placeholder='0' onChange={formik.handleChange} value={formik.values.precio3} error={formik.errors.precio3} /></TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>60 ML</TableCell>
+                <TableCell><Form.Input name='precio4' placeholder='0' onChange={formik.handleChange} value={formik.values.precio4} error={formik.errors.precio4} /></TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>120 ML</TableCell>
+                <TableCell><Form.Input name='precio5' placeholder='0' onChange={formik.handleChange} value={formik.values.precio5} error={formik.errors.precio5} /></TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>240 ML</TableCell>
+                <TableCell><Form.Input name='precio6' placeholder='0' onChange={formik.handleChange} value={formik.values.precio6} error={formik.errors.precio6} /></TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>480 ML</TableCell>
+                <TableCell><Form.Input name='precio7' placeholder='0' onChange={formik.handleChange} value={formik.values.precio7} error={formik.errors.precio7} /></TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>960 ML</TableCell>
+                <TableCell><Form.Input name='precio8' placeholder='0' onChange={formik.handleChange} value={formik.values.precio8} error={formik.errors.precio8} /></TableCell>
+              </TableRow>
             </TableBody>
           </Table>
         </Container>
