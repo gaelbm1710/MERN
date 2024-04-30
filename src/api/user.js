@@ -8,7 +8,7 @@ export class User{
             const url = `${this.baseApi}/${ENV.API_ROUTES.USER_ME}`;
             const params={
                 headers: {
-                    Authorization: `Bearer ${accessToken}`
+                    Authorization: `${accessToken}`
                 }
             }
             const response = await fetch(url, params);

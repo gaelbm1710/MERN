@@ -18,7 +18,7 @@ export function ListaAsesor(props) {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await magController.getMagByPresentacion(CorreoAsesor,{ page, limit: 9}); 
+        const response = await magController.getMag({ page, limit: 9}); 
         setMags(response.docs);
         setPagination({
           limit: response.limit,

@@ -161,15 +161,15 @@ export function AdminMenu() {
       {isCom && (
         <Dropdown item text='Gestión para Formulas'>
           <DropdownMenu className='admin-menu-lista'>
-            <Menu.Item as={Link} to="/admin/come" active={isCurrentPath("/admin/ope")}>
+            <Menu.Item as={Link} to="/admin/gestioncomercial" active={isCurrentPath("/admin/gestioncomercial")}>
               <Icon name='file alternate' />
               Generar Cotización Magistral Nueva
             </Menu.Item>
-            <Menu.Item as={Link} to="/admin/comes" active={isCurrentPath("/admin/comes")}>
+            <Menu.Item as={Link} to="/admin/gestioncomercials" active={isCurrentPath("/admin/gestioncomercials")}>
               <Icon name='flask' />
               Cotización de Nueva Presentación
             </Menu.Item>
-            <Menu.Item as={Link} to="/admin/comess" active={isCurrentPath("/admin/comess")}>
+            <Menu.Item as={Link} to="/admin/gestioncomercialss" active={isCurrentPath("/admin/gestioncomercialss")}>
               <Icon name='flask' />
               Cotizar cambio de Base
             </Menu.Item>

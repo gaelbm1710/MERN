@@ -12,11 +12,11 @@ export function ListInyde(props) {
   const [pagination, setPagination] = useState({});
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredMags, setFilteredMags] = useState([]);
-
+  const actividad = 'nueva'
   useEffect(() => {
     const fetchMags = async () => {
       try {
-        const response = await magController.getMag({ page, limit: 10 });
+        const response = await magController.getMagActividadNueva(actividad,{ page, limit: 10 });
         setMags(response.docs);
         setPagination({
           limit: response.limit,
