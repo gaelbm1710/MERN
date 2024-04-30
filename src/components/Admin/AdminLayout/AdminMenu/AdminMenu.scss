@@ -5,18 +5,19 @@
     padding: 0;
 
     > .item {
+        font-size: 15px;
         display: flex;
         align-items: center;
-        color: #637080;
-        padding: 15px 20px !important;
+        color: #ffffff;
+        padding: 20px 50px !important;
         margin: 0 !important;
         border-radius: 0 !important;
 
         &:hover,
         &.active,
         &.active:hover {
-            color: #ffffff;
-            background-color: #0081c1;
+            color: #0081c1;
+            background-color: #ffffff;
         }
 
         > i {
@@ -32,7 +33,7 @@
         }
         .dropdown.icon {
             float: right; 
-            margin-left: 5px !important;
+            margin-left: 10px !important;
         }
     }
     .menu {

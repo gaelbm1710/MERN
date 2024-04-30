@@ -1,0 +1,68 @@
+.button-like {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background-color: #007bff; /* Cambia el color según prefieras */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-like:hover {
+    background-color: #0056b3; /* Cambia el color al pasar el cursor por encima */
+}
+
+.preview-area {
+    margin-top: 10px; /* Ajusta el margen según lo necesites */
+    padding: 10px; /* Ajusta el relleno según lo necesites */
+    border: 1px solid #ccc; /* Ajusta el borde según lo necesites */
+    border-radius: 5px; /* Ajusta el radio de los bordes según lo necesites */
+    background-color: #f9f9f9; /* Color de fondo para la previsualización */
+    max-height: 500px; /* Altura máxima del área de previsualización */
+    overflow: auto; /* Permite desplazamiento si el contenido excede la altura máxima */
+}
+
+/* Estilos para previsualización de imágenes */
+.preview-area img {
+    width: 80%; /* Asegura que las imágenes se ajusten al contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+    border-radius: 5px; /* Bordes redondeados para la imagen */
+    object-fit: contain; /* Ajusta la imagen para mantener su proporción */
+}
+
+/* Estilos para previsualización de PDF */
+.preview-area iframe {
+    width: 100%; /* Asegura que el iframe se ajuste al contenedor */
+    height: 100%; /* Asegura que el iframe ocupe el espacio disponible */
+    border: none; /* Elimina el borde del iframe */
+}
+
+.preview-text {
+    font-size: 16px; /* Cambia el tamaño del texto */
+    color: #333; /* Cambia el color del texto */
+    font-weight: bold; /* Cambia el peso de la fuente */
+    /* Agrega otros estilos según sea necesario */
+}
+
+.ticket-form__documento{
+    .button-upload{
+        background-color: #0081c1; /* Color de fondo del botón */
+    color: white; /* Color del texto del botón */
+    padding: 10px 20px; /* Espacio interno alrededor del texto */
+    border: none; /* Elimina el borde del botón */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor de puntero al pasar sobre el botón */
+    font-size: 14px; /* Tamaño de fuente del texto */
+    width: 100%;
+
+    }
+    .button-upload:hover {
+        background-color: #0075af ; /* Color de fondo del botón */
+        color: white;
+        border-radius: 5px;
+        border-color: #333;
+    }
+}

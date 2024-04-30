@@ -1,22 +1,25 @@
 import React from 'react';
-import {Icon} from "../../assets";
+import { Image } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+import logokaapa from "../../assets/png/LogoK.png";
 import "./AdminLayout.scss";
-import {Link} from "react-router-dom"
-import {AdminMenu, Logout} from "../../components/Admin/AdminLayout"
+import { AdminMenu, Logout } from "../../components/Admin/AdminLayout"
 
 export function AdminLayout(props) {
-    const { children } = props;
+  const { children } = props;
   return (
     <div className='admin-layout'>
       <div className='admin-layout__left'>
-        <Link to="/admin/Princ">
-                    <Icon.LogoWhite className='logo' />
-                </Link>
-        <AdminMenu/>
+      <Link to="/admin/Princ" >
+          <Image src={logokaapa} />
+        </Link>
+        <AdminMenu />
+        <div className='admin-layout__left-bar'></div>
+        
       </div>
       <div className='admin-layout__right'>
         <div className='admin-layout__right-header'>
-          <Logout/>
+          <Logout />
         </div>
         <div className='admin-layout__right-content'>
           {children}
