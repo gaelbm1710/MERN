@@ -6,7 +6,7 @@ export class User{
     async getMe(accessToken){
         try {
             const url = `${this.baseApi}/${ENV.API_ROUTES.USER_ME}`;
-            const params={
+            const params={ 
                 headers: {
                     Authorization: `${accessToken}`
                 }
