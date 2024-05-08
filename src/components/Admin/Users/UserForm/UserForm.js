@@ -56,6 +56,7 @@ export function USerForm(props) {
         },
     ]
 
+ 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const onDrop = useCallback((acceptedFiles) =>{
         const file = acceptedFiles[0];
@@ -63,7 +64,9 @@ export function USerForm(props) {
         formik.setFieldValue("fileAvatar",file);
     });
     const {getRootProps, getInputProps} = useDropzone({
-        accept: "image/jpg, image/png",
+        accept: {
+            "image/*": [".jpg", ".jpeg"],
+        },
         onDrop
     })
 

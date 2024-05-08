@@ -290,8 +290,9 @@ export class Mag {
         try {
             const pageFilter = `page=${params?.page || 1}`;
             const limitFilter = `limit=${params?.limit || 10}`;
-            const act = `${actividad || "nueva"}`;
-            const url = `${this.baseApi}/${ENV.API_ROUTES.MAG}/actividad/${act}?${pageFilter}&${limitFilter}`;
+            const act = `actividad=${actividad || "nueva"}`;
+            const url = `${this.baseApi}/${ENV.API_ROUTES.MAGI}?${act}&${pageFilter}&${limitFilter}`;
+            //console.log(url);
             const response = await fetch(url);
             const result = await response.json();
             if (response.status !== 200) throw result;
@@ -305,8 +306,9 @@ export class Mag {
         try {
             const pageFilter = `page=${params?.page || 1}`;
             const limitFilter = `limit=${params?.limit || 10}`;
-            const act = `${actividad || "presentacion"}`;
-            const url = `${this.baseApi}/${ENV.API_ROUTES.MAG}/actividad/${act}?${pageFilter}&${limitFilter}`;
+            const act = `actividad=${actividad || "presentacion"}`;
+            const url = `${this.baseApi}/${ENV.API_ROUTES.MAGI}?${act}&${pageFilter}&${limitFilter}`;
+            //console.log(url);
             const response = await fetch(url);
             const result = await response.json();
             if (response.status !== 200) throw result;
@@ -320,8 +322,9 @@ export class Mag {
         try {
             const pageFilter = `page=${params?.page || 1}`;
             const limitFilter = `limit=${params?.limit || 10}`;
-            const act = `${actividad || "cambio"}`;
-            const url = `${this.baseApi}/${ENV.API_ROUTES.MAG}/actividad/${act}?${pageFilter}&${limitFilter}`;
+            const act = `actividad=${actividad || "cambio"}`;
+            const url = `${this.baseApi}/${ENV.API_ROUTES.MAGI}?${act}&${pageFilter}&${limitFilter}`;
+            //console.log(url);
             const response = await fetch(url);
             const result = await response.json();
             if (response.status !== 200) throw result;

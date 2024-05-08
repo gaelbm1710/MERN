@@ -147,10 +147,6 @@ export function AdminMenu() {
               <Icon name='file alternate' />
               Generar Cotización Magistral Nueva
             </Menu.Item>
-            <Menu.Item as={Link} to="/admin/opes" active={isCurrentPath("/admin/opes")}>
-              <Icon name='flask' />
-              Cotización de Nueva Presentación
-            </Menu.Item>
             <Menu.Item as={Link} to="/admin/opess" active={isCurrentPath("/admin/opess")}>
               <Icon name='flask' />
               Cotizar cambio de Base

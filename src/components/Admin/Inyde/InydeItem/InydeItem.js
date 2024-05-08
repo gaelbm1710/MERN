@@ -11,7 +11,9 @@ import { InydessForm } from "../InydessForm";
 const magController = new Mag();
 
 export function InydeItem(props) {
-    const { mag, onReload } = props
+    const { mag, onReload } = props;
+    const date = new Date(mag.created_at);
+    const createdate = date.toLocaleDateString();
     const { accessToken } = useAuth();
     const [showModal, setShowModal] = useState(false);
     const [titleModal, setTitleModal] = useState("");
@@ -51,7 +53,11 @@ export function InydeItem(props) {
                 <div className='cotizacion-item__info'>
                     <p className='cotizacion-item__info-dxp'>Folio: {mag.folio}</p>
                     <p className='cotizacion-item__info-asesor'>Correo de Asesor: {mag.asesor}</p>
+                    <p className='cotizacion-item__info-asesor'>CardCode del cliente: {mag.cardcode}</p>
+                    <p className='cotizacion-item__info-asesor'>Nombre del cliente: {}</p>
                     <p className='cotizacion-item__info-actividad'>Actividad: {mag.actividad}</p>
+                    <p className='cotizacion-item__info-actividad'>Fecha de Creación: {createdate}</p>
+                    <p className='cotizacion-item__info-asesor'>CardCode : {mag.cardcode}</p>
                 </div>
                 <div>
                     <Button icon primary onClick={openUpdateMag}>
