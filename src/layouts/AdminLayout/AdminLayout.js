@@ -10,12 +10,12 @@ export function AdminLayout(props) {
   return (
     <div className='admin-layout'>
       <div className='admin-layout__left'>
-      <Link to="/admin/Princ" >
+        <Link to="/admin/Princ" >
           <Image src={logokaapa} />
         </Link>
         <AdminMenu />
         <div className='admin-layout__left-bar'></div>
-        
+
       </div>
       <div className='admin-layout__right'>
         <div className='admin-layout__right-header'>

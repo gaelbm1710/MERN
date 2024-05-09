@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { Mag } from '../../../../api';
 import { size, map } from 'lodash';
 import { Loader, Pagination } from 'semantic-ui-react';
-import {ComeItem} from "../ComeItem/ComeItem"
+import {ComeItem} from "../ComeItem/ComeItem";
 import "./ListCome.scss";
 
 const magController = new Mag();

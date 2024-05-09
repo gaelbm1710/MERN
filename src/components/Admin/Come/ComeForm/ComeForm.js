@@ -40,18 +40,11 @@ export function ComeForm(props) {
       <Container className='gc-form__info'>
         <p>CardCode: <span>{mag.cardcode}</span></p>
         <p>Asesor: <span>{mag.asesor}</span></p>
-        <p>Folio Operaciones: <span>{mag.folio_Op}</span></p>
-        <p>Folio Investigación y Desarrollo: <span>{mag.folio_IyD}</span></p>
         <p>Base: <span>{mag.base}</span></p>
         <p>Activos: <span>{mag.activos}</span></p>
         <p>Clasificación: <span>{mag.clasi}</span></p>
         <p>Especialidad: <span>{mag.especialidad}</span></p>
         <p>Muestra: <span>{mag.necesita_muestra}</span></p>
-        <p>Receta: <span>{mag.receta}</span></p>
-        <p>Refrigerante: <span>{mag.refri}</span></p>
-        <p>Tipo Formula: <span>{mag.tipoF}</span></p>
-        <p>Comentarios internos: <span>{mag.comInt}</span></p>
-        <p>Comentarios Clientes: <span>{mag.comClie}</span></p>
       </Container>
       <Container widths='equal'>
         <Table className='table-precio'>
