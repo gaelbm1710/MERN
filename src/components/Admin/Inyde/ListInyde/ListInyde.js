@@ -85,7 +85,7 @@ export function ListInyde(props) {
 
   return (
     <div className="list-cotizaciones">
-      <Icon name='search' />
+      <Icon name='search' /> 
       <input
         ref={searchRef}
         placeholder='Buscar...'
