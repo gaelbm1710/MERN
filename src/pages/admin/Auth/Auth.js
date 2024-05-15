@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Tab, Image, Container } from "semantic-ui-react";
+import { Tab, Image } from "semantic-ui-react";
 import { Icon } from "../../../assets";
 import "./Auth.scss";
 import { RegisterForm, LoginForm } from "../../../components/Admin/Auth";
 import { Carousel } from 'react-responsive-carousel';
-import img1 from "../../../assets/carousel/pexels-david-besh-884788.jpg";
-import img2 from "../../../assets/carousel/pexels-dreamypixel-547115.jpg";
-import img3 from "../../../assets/carousel/pexels-matthew-montrone-230847-1324803.jpg";
+import img1 from "../../../assets/carousel/KAAPA_Foto-1.png";
+import img2 from "../../../assets/carousel/KAAPA_Foto-2.png";
+import img3 from "../../../assets/carousel/KAAPA_Foto-3.png";
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 
 export function Auth() {
@@ -29,30 +29,27 @@ export function Auth() {
         </Tab.Pane>
       ),
     },
-  ]
-  return (
+  ];
 
+  return (
     <div className='auth'>
       <div className="sidebar">
-        <Carousel className='crsl' infiniteLoop autoPlay interval={5000} showThumbs={false}>
+        <Carousel className='crsl' infiniteLoop autoPlay interval={5000} showThumbs={false} showStatus={false}>
           <div>
-            <Image src={img1} />
-            <h1>Leyenda</h1>
+            <Image src={img1} className="carousel-image" />
           </div>
           <div>
-            <Image src={img2} />
-            <h1>Leyenda</h1>
+            <Image src={img2} className="carousel-image" />
           </div>
           <div>
-            <Image src={img3} />
-            <h1>Leyenda</h1>
+            <Image src={img3} className="carousel-image" />
           </div>
         </Carousel>
       </div>
       <div className="content">
-        <Icon.LogoWhite className="logo" /><br />
+        <Icon.LogoWhite className="logo" />
         <Tab panes={panes} className="auth_forms" activeIndex={activeIndex} onTabChange={(_, data) => setActiveIndex(data.activeIndex)} />
       </div>
     </div>
-  )
+  );
 }

@@ -6,20 +6,18 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-left: 5%; // Ajuste el padding-left con unidades relativas
-
+    padding: 0 5%; // Ajuste el padding con unidades relativas
     .logo {
-        padding-block: 0px 20px;
-        height: 60px;
-        margin-left: -10%; // Ajuste el margen izquierdo con unidades relativas
+        padding:-10px;
+        height: 130px;
+        margin-bottom: -2%;
+        padding-right: 195px;
     }
 
     &_forms {
         width: 30vw; // Ancho del formulario en viewport width
-        margin-left: vw; // Margen izquierdo en viewport width
-        margin-top: -3.5vh; // Margen superior en viewport height
         .ui.menu {
-            padding-block: 2vh 0px; // Padding del menú en viewport height
+            padding: 0vh 0;
             .item {
                 width: 50%;
                 justify-content: center;
@@ -38,39 +36,32 @@
 
     .crsl {
         width: 50vw; // Ancho del carousel en viewport width
-        margin-right: 2vw; // Margen derecho en viewport width
+        .carousel .slide {
+            background: none; // Elimina el fondo predeterminado del carrusel
+        }
         .carousel-image {
-            width: 100%; 
-            height: 20vh; // Altura de la imagen en viewport height
-            object-fit: cover; 
+            width: 100%;
+            height: auto; // Ajuste para mantener la proporción de la imagen
+            max-height: 80vh; // Ajuste máximo de altura para imágenes
+            object-fit: contain; // Ajuste para que la imagen contenga dentro del div
         }
     }
 
     .sidebar {
         flex: 1;
         padding-top: 10vh; // Padding superior en viewport height
-        width: 50vw; // Ancho en viewport width
-        margin: auto;
     }
 
     .content {
         flex: 1;
         width: 25vw; // Ancho en viewport width
         text-align: center;
-        padding-left: 10%; // Padding izquierdo en viewport width
-        padding-bottom: 10vh; // Padding inferior en viewport height
     }
 
     // Media query para ajustes adicionales en tamaños de pantalla más pequeños
     @media (max-width: 768px) {
-        .auth {
-            flex-direction: column; // Cambia la dirección del flex para dispositivos pequeños
-            padding-left: 5vw; // Ajusta el padding-left con unidades relativas
-            padding-right: 5vw; // Añade padding-right para dispositivos pequeños
-        }
-
+        flex-direction: column; // Cambia la dirección del flex para dispositivos pequeños
         .logo {
-            margin-left: 0; // Elimina el margen izquierdo para dispositivos pequeños
             margin-bottom: 5vh; // Añade margen inferior en viewport height
         }
 

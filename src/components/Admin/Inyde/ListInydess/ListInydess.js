@@ -1,7 +1,8 @@
-import React, {useEffect, useState} from 'react'
-import { Mag } from '../../../../api'
-import { Loader, Pagination, Search } from 'semantic-ui-react'
+import React, { useEffect, useState } from 'react';
+import { Mag } from '../../../../api';
+import { Loader, Pagination, Search } from 'semantic-ui-react';
 import { InydeItem } from '../InydeItem';
+import { map } from 'lodash';
 
 const magController = new Mag();
 
@@ -9,49 +10,76 @@ export function ListInydess(props) {
   const { reload, onReload, onClose } = props;
   const [mags, setMags] = useState([]);
   const [page, setPage] = useState(1);
-  const [pagination, setPagination] = useState({});
-  const [searchQuery, setSearchQuery] = useState('');
-  const [filteredMags, setFilteredMags] = useState([]);
-  const actividad = 'cambio'
-  useEffect(() => {
-    const fetchMags = async () => {
-      try {
-        const response = await magController.getMagActividadCambio(actividad,{ page, limit: 10 });
-        setMags(response.docs);
-        setPagination({
-          limit: response.limit,
-          page: response.page,
-          pages: response.pages,
-          total: response.totalPages,
-        });
-      } catch (error) {
-        console.error(error);
-      }
-    };
+  const [pagination, setPagination] = useState();
+  const [searchTerm, setSearchTerm] = useState('');
+  const actividad = 'cambio';
 
-    fetchMags();
+  const fetchMags = async (page) => {
+    try {
+      const response = await magController.getMagActividadCambio(actividad, { page, limit: 2 });
+      return response;
+    } catch (error) {
+      console.error(error);
+      return { docs: [], limit: 0, page: 0, pages: 0, totalPages: 0 };
+    }
+  };
+
+  const loadMags = async () => {
+    const response = await fetchMags(page);
+    setMags(response.docs);
+    setPagination({
+      limit: response.limit,
+      page: response.page,
+      pages: response.pages,
+      total: response.totalPages,
+    });
+  };
+
+  const loadAllMags = async () => {
+    let allMags = [];
+    for (let i = 1; i <= pagination.total; i++) {
+      const response = await fetchMags(i);
+      allMags = allMags.concat(response.docs);
+    }
+    return allMags;
+  };
+
+  useEffect(() => {
+    loadMags();
   }, [page, reload]);
 
   useEffect(() => {
-    const searchFilteredMags = () => {
-      const filtered = mags.filter((mag) => (
-        (mag.asesor && mag.asesor.toLowerCase().includes(searchQuery.toLowerCase())) ||
-        (mag.cardcode && mag.cardcode.toLowerCase().includes(searchQuery.toLowerCase())) ||
-        (mag.base && mag.base.toLowerCase().includes(searchQuery.toLowerCase())) ||
-        (mag.folio_IyD && mag.folio_IyD.toString().includes(searchQuery.toString()))
-      ));
-      setFilteredMags(filtered);
-    };
-
-    searchFilteredMags();
-  }, [searchQuery, mags]);
+    if (searchTerm) {
+      (async () => {
+        const allMags = await loadAllMags();
+        setMags(allMags);
+      })();
+    } else {
+      loadMags();
+    }
+  }, [searchTerm, reload]);
 
   const changePage = (_, data) => {
     setPage(data.activePage);
   };
 
   const handleSearchChange = (_, { value }) => {
-    setSearchQuery(value);
+    setSearchTerm(value);
+  };
+
+  const filterMags = () => {
+    if (!searchTerm) {
+      return mags;
+    } else {
+      return mags.filter(mag =>
+        (mag.folio && mag.folio.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (mag.folio_IyD && mag.folio_IyD.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (mag.folio_sCom && mag.folio_sCom.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (mag.cliente && mag.cliente.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (mag.cardcode && mag.cardcode.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (mag.asesor && mag.asesor.toString().toLowerCase().includes(searchTerm.toLowerCase()))
+      );
+    }
   };
 
   if (!mags) return <Loader active inline="centered" />;
@@ -60,14 +88,13 @@ export function ListInydess(props) {
   return (
     <div className="list-cotizaciones">
       <Search
-        input={{ icon: 'search', iconPosition: 'left' }}
-        placeholder="Buscar..."
-        value={searchQuery}
         onSearchChange={handleSearchChange}
-        showNoResults=""
+        value={searchTerm}
+        placeholder="Buscar..."
+        showNoResults={false}
       />
       <br />
-      {[...filteredMags].map((mag) => (
+      {map(filterMags(), mag => (
         <InydeItem key={mag._id} mag={mag} onReload={onReload} onClose={onClose} />
       ))}
       <div className="list-cotizaciones__pagination">

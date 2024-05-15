@@ -100,14 +100,6 @@ export function InydeForm(props) {
           name='refri' onChange={(_, data) => formik.setFieldValue("refri", data.checked)} checked={formik.values.refri} error={formik.errors.refri} className='custom-checkbox'/>
         </Container>
       </Form.Group>
-      <Form.Group widths='equal'>
-        <Container>
-          <Form.Checkbox label='Existe'
-          name='existe' onChange={(_, data) => formik.setFieldValue("existe", data.checked)} checked={formik.values.existe} error={formik.errors.existe} className='custom-checkbox'/>
-          <br></br><Form.Input label='Clave' name='clave_ex' onChange={formik.handleChange} value={formik.values.clave_ex} error={formik.errors.clave_ex}/>
-          <Form.Input label='Base' name='base_ex' onChange={formik.handleChange} value={formik.values.base_ex} error={formik.errors.base_ex}/>
-        </Container>
-      </Form.Group>
       <Form.Button type='submit' primary fluid loading={formik.isSubmitting} className='custom-button'>
         {mag ?"Actualizar Cotizacion": "Cancelar"}
       </Form.Button>

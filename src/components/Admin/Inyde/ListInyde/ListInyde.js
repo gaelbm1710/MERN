@@ -1,99 +1,100 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Mag } from '../../../../api';
-import { Loader, Pagination, Icon } from 'semantic-ui-react';
-import { InydeItem } from '../InydeItem/InydeItem';
-import { map, size } from 'lodash';
-import { SearchResultList } from './SearchResultList';
+import { Loader, Pagination, Search } from 'semantic-ui-react';
+import { InydeItem } from '../InydeItem';
+import { map } from 'lodash';
 
 const magController = new Mag();
 
 export function ListInyde(props) {
   const { reload, onReload, onClose } = props;
-  const [mags, setMags] = useState(false);
+  const [mags, setMags] = useState([]);
   const [page, setPage] = useState(1);
   const [pagination, setPagination] = useState();
-  const [input, setInput] = useState("");
-  const [results, setResults] = useState();
+  const [searchTerm, setSearchTerm] = useState('');
   const actividad = 'nueva';
-  const searchRef = useRef(null); 
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await magController.getMagActividadNueva(actividad, { page, limit: 9 });
-        setMags(response.docs);
-        setPagination({
-          limit: response.limit,
-          page: response.page,
-          pages: response.pages,
-          total: response.totalPages,
-        });
-      } catch (error) {
-        console.error(error);
-      }
-    })();
-  }, [page, reload]);
 
-  const handleChange = async (value) => {
-    setInput(value);
+  const fetchMags = async (page) => {
     try {
-      const response = await magController.getMagActividadNueva(actividad, { page, limit: 10 });
-      setMags(response.docs);
-      setPagination({
-        limit: response.limit,
-        page: response.page,
-        pages: response.pages,
-        total: response.totalPages,
-      });
-      const results = response.docs.filter((mag) => {
-        return (
-          mag.folio && mag.folio.toString().toLowerCase().includes(value.toLowerCase()) ||
-          mag.folio_IyD && mag.folio_IyD.toString().toLowerCase().includes(value.toLowerCase()) ||
-          mag.folio_sCom && mag.folio_sCom.toString().toLowerCase().includes(value.toLowerCase()) ||
-          mag.cliente && mag.cliente.toLowerCase().includes(value.toLowerCase()) ||
-          mag.base && mag.base.toLowerCase().includes(value.toLowerCase()) ||
-          mag.cardcode && mag.cardcode.toLowerCase().includes(value.toLowerCase()) ||
-          mag.activos && mag.activos.toLowerCase().includes(value.toLowerCase()) ||
-          mag.asesor && mag.asesor.toLowerCase().includes(value.toLowerCase())
-        );
-      });
-      setResults(results);
+      const response = await magController.getMagActividadNueva(actividad, { page, limit: 2 });
+      return response;
     } catch (error) {
       console.error(error);
+      return { docs: [], limit: 0, page: 0, pages: 0, totalPages: 0 };
     }
   };
+
+  const loadMags = async () => {
+    const response = await fetchMags(page);
+    setMags(response.docs);
+    setPagination({
+      limit: response.limit,
+      page: response.page,
+      pages: response.pages,
+      total: response.totalPages,
+    });
+  };
+
+  const loadAllMags = async () => {
+    let allMags = [];
+    for (let i = 1; i <= pagination.total; i++) {
+      const response = await fetchMags(i);
+      allMags = allMags.concat(response.docs);
+    }
+    return allMags;
+  };
+
+  useEffect(() => {
+    loadMags();
+  }, [page, reload]);
+
+  useEffect(() => {
+    if (searchTerm) {
+      (async () => {
+        const allMags = await loadAllMags();
+        setMags(allMags);
+      })();
+    } else {
+      loadMags();
+    }
+  }, [searchTerm, reload]);
 
   const changePage = (_, data) => {
     setPage(data.activePage);
   };
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (searchRef.current && !searchRef.current.contains(event.target)) {
-        setResults([]);
-      }
-    };
+  const handleSearchChange = (_, { value }) => {
+    setSearchTerm(value);
+  };
 
-    document.addEventListener('mousedown', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
+  const filterMags = () => {
+    if (!searchTerm) {
+      return mags;
+    } else {
+      return mags.filter(mag =>
+        (mag.folio && mag.folio.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (mag.folio_IyD && mag.folio_IyD.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (mag.folio_sCom && mag.folio_sCom.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (mag.cliente && mag.cliente.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (mag.cardcode && mag.cardcode.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (mag.asesor && mag.asesor.toString().toLowerCase().includes(searchTerm.toLowerCase()))
+      );
+    }
+  };
 
   if (!mags) return <Loader active inline="centered" />;
-  if (size(mags) === 0) return 'No hay cotizaciones';
+  if (mags.length === 0) return 'No hay cotizaciones';
 
   return (
     <div className="list-cotizaciones">
-      <Icon name='search' /> 
-      <input
-        ref={searchRef}
-        placeholder='Buscar...'
-        value={input}
-        onChange={(e) => handleChange(e.target.value)}
+      <Search
+        onSearchChange={handleSearchChange}
+        value={searchTerm}
+        placeholder="Buscar..."
+        showNoResults={false}
       />
-      <SearchResultList results={results} />
-      {map(mags, (mag) => (
+      <br />
+      {map(filterMags(), mag => (
         <InydeItem key={mag._id} mag={mag} onReload={onReload} onClose={onClose} />
       ))}
       <div className="list-cotizaciones__pagination">

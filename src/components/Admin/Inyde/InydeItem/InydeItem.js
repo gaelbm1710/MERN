@@ -24,10 +24,11 @@ export function InydeItem(props) {
         setTitleModal(`Revisar cotizacion: #${mag.folio}`);
         onOpenCloseModal();
     }
+    /*
     const verMag = () => {
         setTitleModal(`Ver cotización: # ${mag.folio}`)
         onOpenCloseModal();
-    }
+    }*/
     const onDelete = async () => {
         try {
             await magController.deleteMag(accessToken, mag._id);
@@ -52,6 +53,7 @@ export function InydeItem(props) {
             <div className='cotizacion-item'>
                 <div className='cotizacion-item__info'>
                     <p className='cotizacion-item__info-dxp'>Folio: {mag.folio}</p>
+                    <p className='cotizacion-item__info-dxp'>Folio In. y De.: {mag.folio_IyD}</p>
                     <p className='cotizacion-item__info-asesor'>Correo de Asesor: {mag.asesor}</p>
                     <p className='cotizacion-item__info-asesor'>CardCode del cliente: {mag.cardcode}</p>
                     <p className='cotizacion-item__info-asesor'>Nombre del cliente: {mag.cliente}</p>

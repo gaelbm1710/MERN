@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { BasicModal } from '../../../components/Shared';
 import { Tab } from 'semantic-ui-react'
-import { ComeForm, ComesForm, ListCome } from "../../../components/Admin/Come";
+import { ComesForm, ListCome } from "../../../components/Admin/Come";
 
 export function GestionComercial() {
   const [showModal, setShowModal] = useState(false);
