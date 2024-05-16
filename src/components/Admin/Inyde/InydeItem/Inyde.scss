@@ -18,14 +18,16 @@
         display: flex;
         align-items: center;
 
-        &-inyde {
+        &-inyde, &-dxp {
             margin: 0;
+        }
+
+        &-inyde {
             font-weight: normal;
             text-transform: capitalize;
         }
 
         &-dxp {
-            margin: 0;
             font-weight: bold;
             text-transform: uppercase;
         }
@@ -41,18 +43,6 @@
             flex-wrap: wrap;
             justify-content: center;
             text-align: center;
-
-            &-inyde {
-                margin: 0;
-                font-weight: normal;
-                text-transform: capitalize;
-            }
-
-            &-dxp {
-                margin: 0;
-                font-weight: bold;
-                text-transform: uppercase;
-            }
         }
     }
 
@@ -65,18 +55,6 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-
-            &-inyde {
-                margin: 0;
-                font-weight: normal;
-                text-transform: capitalize;
-            }
-
-            &-dxp {
-                margin: 0;
-                font-weight: bold;
-                text-transform: uppercase;
-            }
         }
     }
 }

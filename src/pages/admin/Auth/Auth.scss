@@ -6,9 +6,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 5%; // Ajuste el padding con unidades relativas
+    padding: 0 5%; // Ajusta el padding con unidades relativas
+    
     .logo {
-        padding:-10px;
+        padding: 10px;
         height: 130px;
         margin-bottom: -2%;
         padding-right: 195px;
@@ -17,7 +18,7 @@
     &_forms {
         width: 30vw; // Ancho del formulario en viewport width
         .ui.menu {
-            padding: 0vh 0;
+            padding: 0;
             .item {
                 width: 50%;
                 justify-content: center;
@@ -59,15 +60,50 @@
     }
 
     // Media query para ajustes adicionales en tamaños de pantalla más pequeños
+    @media (max-width: 1024px) {
+        .crsl {
+            width: 45vw; // Ajuste de ancho del carousel para pantallas medianas
+        }
+        &_forms {
+            width: 35vw; // Ajuste de ancho del formulario para pantallas medianas
+        }
+    }
+
     @media (max-width: 768px) {
         flex-direction: column; // Cambia la dirección del flex para dispositivos pequeños
+        padding: 0 2%; // Reducir el padding en pantallas pequeñas
+        align-items: flex-start; // Alinear elementos al inicio para dispositivos pequeños
+
         .logo {
             margin-bottom: 5vh; // Añade margen inferior en viewport height
+            padding-right: 0; // Elimina padding right en pantallas pequeñas
+            height: auto; // Ajustar altura de logo automáticamente
+            width: 100%; // Ancho completo del logo en pantallas pequeñas
+            text-align: center; // Centrar el logo en pantallas pequeñas
         }
 
         .content, .sidebar, .crsl, &_forms {
             width: 90vw; // Ancho en viewport width para dispositivos pequeños
             margin: auto; // Centra los elementos
+            padding: 2% 0; // Ajusta el padding en pantallas pequeñas
+        }
+
+        .content {
+            order: 1; // Ordena el contenido para pantallas pequeñas
+        }
+
+        .sidebar {
+            order: 2; // Ordena la barra lateral para pantallas pequeñas
+            padding-top: 5vh; // Ajustar padding superior en pantallas pequeñas
+        }
+
+        .crsl {
+            order: 3; // Ordena el carousel para pantallas pequeñas
+            width: 100%; // Ancho completo del carousel en pantallas pequeñas
+        }
+
+        &_forms {
+            order: 4; // Ordena los formularios para pantallas pequeñas
         }
     }
 }

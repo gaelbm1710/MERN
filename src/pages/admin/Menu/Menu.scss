@@ -1,10 +1,26 @@
-.menu-page{
-    &__add{
+@import "~/src/scss/index.scss";
+
+.menu-page {
+    &__add {
         position: absolute;
         right: 0;
-        top:0;
-        >.ui.button{
+        top: 0;
+
+        > .ui.button {
             margin: 0;
+        }
+
+        // Media Queries for Responsiveness
+        @media (max-width: 1024px) {
+            right: 10px; // Ajuste de posición derecha para pantallas medianas
+            top: 10px; // Ajuste de posición superior si es necesario
+        }
+
+        @media (max-width: 768px) {
+            position: static; // Cambiar a posicionamiento estático en pantallas pequeñas
+            margin-top: 10px; // Añadir margen superior para espaciar el botón
+            text-align: center; // Centrar el botón horizontalmente
+            width: 100%; // Asegurarse de que el botón ocupe el ancho disponible
         }
     }
 }

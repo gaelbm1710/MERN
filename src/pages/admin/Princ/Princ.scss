@@ -1,31 +1,84 @@
+@import "~/src/scss/index.scss";
 
-
-
-.princ-page{
+.princ-page {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     height: 500px;
-    h1{
+
+    h1 {
         color: #0081c1;
         display: flex;
         line-height: 55px;
         font-size: 80px;
         justify-content: center;
-    } 
-    h2{
+        text-align: center;
+        margin: 0 20px; // Añadir margen para evitar el recorte en pantallas pequeñas
+
+        @media (max-width: 1024px) {
+            font-size: 60px;
+            line-height: 45px;
+        }
+
+        @media (max-width: 768px) {
+            font-size: 40px;
+            line-height: 35px;
+        }
+
+        @media (max-width: 480px) {
+            font-size: 30px;
+            line-height: 30px;
+        }
+    }
+
+    h2 {
         color: #0081c1;
         display: flex;
         line-height: 40px;
         font-size: 40px;
         justify-content: center;
+        text-align: center;
+        margin: 0 20px; // Añadir margen para evitar el recorte en pantallas pequeñas
+
+        @media (max-width: 1024px) {
+            font-size: 30px;
+            line-height: 35px;
+        }
+
+        @media (max-width: 768px) {
+            font-size: 25px;
+            line-height: 30px;
+        }
+
+        @media (max-width: 480px) {
+            font-size: 20px;
+            line-height: 25px;
+        }
     }
-    h3{
+
+    h3 {
         color: #000000;
         display: flex;
         line-height: 20px;
         font-size: 20px;
         justify-content: left;
         margin-top: 20px;
+        margin-left: 20px;
+        text-align: left;
+
+        @media (max-width: 1024px) {
+            font-size: 18px;
+            line-height: 22px;
+        }
+
+        @media (max-width: 768px) {
+            font-size: 16px;
+            line-height: 20px;
+        }
+
+        @media (max-width: 480px) {
+            font-size: 14px;
+            line-height: 18px;
+        }
     }
 }
