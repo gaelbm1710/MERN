@@ -16,7 +16,7 @@ export function ListInyde(props) {
 
   const fetchMags = async (page) => {
     try {
-      const response = await magController.getMagActividadNueva(actividad, { page, limit: 2 });
+      const response = await magController.getMagActividadNueva(actividad, { page, limit: 10 });
       return response;
     } catch (error) {
       console.error(error);

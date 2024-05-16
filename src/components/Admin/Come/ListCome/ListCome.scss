@@ -1,10 +1,21 @@
 @import "~/src/scss/index.scss";
 
-.list-cotizaciones{
-    
-    &__pagination{
+.list-cotizaciones {
+    &__pagination {
         display: flex;
         justify-content: center;
         margin-top: 20px;
+        
+        @media (max-width: 768px) {
+            flex-direction: column;
+            align-items: center;
+            margin-top: 10px;
+
+            // Ejemplo de estilos adicionales para los elementos internos
+            & > * {
+                margin-bottom: 10px;
+                width: 100%; // Ajuste de ancho para elementos internos
+            }
+        }
     }
 }
