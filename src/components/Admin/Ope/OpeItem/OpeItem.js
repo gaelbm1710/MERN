@@ -11,6 +11,8 @@ export function OpeItem(props) {
   const { mag, onReload } = props
   const [showModal, setShowModal] = useState(false);
   const [titleModal, setTitleModal] = useState("");
+  const date = new Date(mag.created_at);
+  const createdate = date.toLocaleDateString();
   const onOpenCloseModal = () => setShowModal((prevState) => !prevState);
   const openUpdateMag = () => {
     setTitleModal(`Revisar cotización: ${mag.folio}`)
@@ -33,9 +35,13 @@ export function OpeItem(props) {
     <>
       <div className='cotizacion-item'>
         <div className='cotizacion-item'>
-          <p className='cotizacion-item__info-ope'>Cotizacion:</p>
           <p className='cotizacion-item__info-dxp'>Folio: {mag.folio}</p>
+          <p className='cotizacion-item__info-dxp'>Folio In. y De.: {mag.folio_IyD}</p>
+          <p className='cotizacion-item__info-asesor'>Correo de Asesor: {mag.asesor}</p>
+          <p className='cotizacion-item__info-asesor'>CardCode: {mag.cardcode}</p>
+          <p className='cotizacion-item__info-asesor'>Nombre del cliente: {mag.cliente}</p>
           <p className='cotizacion-item__info-actividad'>Actividad: {mag.actividad}</p>
+          <p className='cotizacion-item__info-actividad'>Fecha de Creación: {createdate}</p>
         </div>
         <div>
           <Button icon primary onClick={openUpdateMag}>

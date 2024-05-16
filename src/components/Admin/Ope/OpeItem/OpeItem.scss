@@ -1,29 +1,46 @@
 @import "~/src/scss/index.scss";
 
-.cotizacion-item{
+.cotizacion-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #847e80;
     margin-bottom: 10px;
     padding-bottom: 10px;
-    &:nth-last-of-type(2){
+
+    &:nth-last-of-type(2) {
         margin-bottom: 0;
         padding-bottom: 0;
         border: 0;
     }
-    &__info{
+
+    &__info {
         display: flex;
         align-items: center;
-        &-inyde{
+
+        &-inyde {
             margin: 0;
-            font-weight:normal;
-            text-transform:capitalize;
+            font-weight: normal;
+            text-transform: capitalize;
         }
-        &-dxp{
+
+        &-dxp {
             margin: 0;
             font-weight: bold;
-            text-transform:uppercase;
+            text-transform: uppercase;
+        }
+    }
+
+    // Media Queries for Responsiveness
+    @media (max-width: 768px) {
+        flex-direction: column; // Cambia a dirección de columna en pantallas pequeñas
+        justify-content: center; // Centra los elementos en pantallas pequeñas
+        text-align: center; // Centra el texto en pantallas pequeñas
+
+        &__info {
+            flex-direction: column; // Cambia a dirección de columna en pantallas pequeñas
+            justify-content: center; // Centra los elementos en pantallas pequeñas
+            align-items: center; // Centra los elementos en pantallas pequeñas
         }
     }
 }

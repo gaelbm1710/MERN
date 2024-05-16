@@ -1,16 +1,16 @@
-import React from 'react'
-import { Form, Container, TableRow, TableBody, TableHeader, TableHeaderCell, Table, TableCell } from 'semantic-ui-react'
-import { useFormik } from 'formik'
-import { Mag } from '../../../../api'
-import { useAuth } from '../../../../hooks'
+import React from 'react';
+import { Form, Container, TableRow, TableBody, TableHeader, TableHeaderCell, Table, TableCell } from 'semantic-ui-react';
+import { useFormik } from 'formik';
+import { Mag } from '../../../../api';
+import { useAuth } from '../../../../hooks';
 import { initialValuess, validationSchemas } from './InydesForm.form';
 
 const magController = new Mag();
 
 export function InydesForm(props) {
   const { onClose, onReload, mag } = props;
-  // const dxp = mag._id.substring(24,18);
   const { accessToken } = useAuth();
+
   const formik = useFormik({
     initialValues: initialValuess(mag),
     validationSchema: validationSchemas(mag),
@@ -33,19 +33,39 @@ export function InydesForm(props) {
           precio6: formValue.precio6,
           precio7: formValue.precio7,
           precio8: formValue.precio8,
-        }
+        };
         if (!mag) {
           await magController.createMag(accessToken, data);
         } else {
-          await magController.updateMagi(accessToken, mag._id, data);
+          await magController.updateMagi(accessToken, mag._id, data);  
         }
         onClose();
         onReload();
       } catch (error) {
         console.error(error);
       }
-    }
+    },
   });
+
+  const presentaciones = [
+    { label: '7.5 ML', name: 'precio1' },
+    { label: '15 ML', name: 'precio2' },
+    { label: '30 ML', name: 'precio3' },
+    { label: '60 ML', name: 'precio4' },
+    { label: '120 ML', name: 'precio5' },
+    { label: '240 ML', name: 'precio6' },
+    { label: '480 ML', name: 'precio7' },
+    { label: '960 ML', name: 'precio8' },
+  ];
+
+  // Verificar si mag.presentacion es un array o un string
+  const presentacionesDisponibles = mag.presentacion 
+    ? Array.isArray(mag.presentacion)
+      ? mag.presentacion
+      : mag.presentacion.split(',').map(p => p.trim())
+    : [];
+
+  const filteredPresentaciones = presentaciones.filter(p => presentacionesDisponibles.includes(p.label));
 
   return (
     <Form className='inyde-form' onSubmit={formik.handleSubmit}>
@@ -54,8 +74,14 @@ export function InydesForm(props) {
           <p>Asesor: <span>{mag.asesor}</span></p>
           <p>Cliente: <span>{mag.cardcode}</span></p>
           <p>Clave Existente: <span>{mag.clave_ex}</span></p>
-          <p>Presentación: <span>{mag.presentacion}</span></p>
-          <Form.Input label='Folio' name='folio_IyD' onChange={formik.handleChange} value={formik.values.folio_IyD} error={formik.errors.folio_IyD}/>
+          <p>Presentación: <span>{presentacionesDisponibles.join(', ')}</span></p>
+          <Form.Input 
+            label='Folio' 
+            name='folio_IyD' 
+            onChange={formik.handleChange} 
+            value={formik.values.folio_IyD} 
+            error={formik.errors.folio_IyD ? { content: formik.errors.folio_IyD } : null} 
+          />
         </Container>
       </Form.Group>
       <Form.Group>
@@ -68,45 +94,27 @@ export function InydesForm(props) {
               </TableRow>
             </TableHeader>
             <TableBody>
-              <TableRow>
-                <TableCell>7.5 ML</TableCell>
-                <TableCell><Form.Input name='precio1' placeholder='0' onChange={formik.handleChange} value={formik.values.precio1} error={formik.errors.precio1} /></TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>15 ML</TableCell>
-                <TableCell><Form.Input name='precio2' placeholder='0' onChange={formik.handleChange} value={formik.values.precio2} error={formik.errors.precio2} /></TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>30 ML</TableCell>
-                <TableCell><Form.Input name='precio3' placeholder='0' onChange={formik.handleChange} value={formik.values.precio3} error={formik.errors.precio3} /></TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>60 ML</TableCell>
-                <TableCell><Form.Input name='precio4' placeholder='0' onChange={formik.handleChange} value={formik.values.precio4} error={formik.errors.precio4} /></TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>120 ML</TableCell>
-                <TableCell><Form.Input name='precio5' placeholder='0' onChange={formik.handleChange} value={formik.values.precio5} error={formik.errors.precio5} /></TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>240 ML</TableCell>
-                <TableCell><Form.Input name='precio6' placeholder='0' onChange={formik.handleChange} value={formik.values.precio6} error={formik.errors.precio6} /></TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>480 ML</TableCell>
-                <TableCell><Form.Input name='precio7' placeholder='0' onChange={formik.handleChange} value={formik.values.precio7} error={formik.errors.precio7} /></TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>960 ML</TableCell>
-                <TableCell><Form.Input name='precio8' placeholder='0' onChange={formik.handleChange} value={formik.values.precio8} error={formik.errors.precio8} /></TableCell>
-              </TableRow>
+              {filteredPresentaciones.map((p, index) => (
+                <TableRow key={index}>
+                  <TableCell>{p.label}</TableCell>
+                  <TableCell>
+                    <Form.Input
+                      name={p.name}
+                      placeholder='0'
+                      onChange={formik.handleChange}
+                      value={formik.values[p.name]}
+                      error={formik.errors[p.name] ? { content: formik.errors[p.name] } : null}
+                    />
+                  </TableCell>
+                </TableRow>
+              ))}
             </TableBody>
           </Table>
         </Container>
       </Form.Group>
       <Form.Button type='submit' primary fluid loading={formik.isSubmitting}>
-        {mag ? "Actualizar Cotizacion" : "Cancelar"}
+        {mag ? "Actualizar Cotización" : "Cancelar"}
       </Form.Button>
     </Form>
-  )
+  );
 }

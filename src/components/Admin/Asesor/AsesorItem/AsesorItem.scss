@@ -1,4 +1,4 @@
-.cotizacion-item{
+.cotizacion-item {
     display: flex;
     justify-content: space-between;
     align-content: center;
@@ -6,19 +6,74 @@
     margin-bottom: 10px;
     padding-bottom: 10px;
 
-    &:last-of-type{
+    &:last-of-type {
         margin-bottom: 0;
         padding-bottom: 0;
         border: 0;
     }
-    &__info{
+
+    &__info {
         display: flex;
         flex-direction: column;
-        &-dxp{
+
+        &-dxp {
             font-weight: bold;
         }
-        &-cliente{
+
+        &-cliente {
             opacity: 0.6;
+        }
+    }
+
+    // Media Queries for Responsiveness
+    @media (max-width: 1024px) {
+        flex-direction: column;
+        align-items: flex-start;
+
+        &__info {
+            margin-bottom: 10px;
+
+            &-dxp {
+                font-size: 16px; // Adjust font size for medium screens
+            }
+
+            &-cliente {
+                font-size: 14px; // Adjust font size for medium screens
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: flex-start;
+
+        &__info {
+            margin-bottom: 8px;
+
+            &-dxp {
+                font-size: 14px; // Adjust font size for small screens
+            }
+
+            &-cliente {
+                font-size: 12px; // Adjust font size for small screens
+            }
+        }
+    }
+
+    @media (max-width: 480px) {
+        flex-direction: column;
+        align-items: flex-start;
+
+        &__info {
+            margin-bottom: 6px;
+
+            &-dxp {
+                font-size: 12px; // Adjust font size for very small screens
+            }
+
+            &-cliente {
+                font-size: 10px; // Adjust font size for very small screens
+            }
         }
     }
 }

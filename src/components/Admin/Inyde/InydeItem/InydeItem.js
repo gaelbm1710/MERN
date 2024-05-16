@@ -55,11 +55,10 @@ export function InydeItem(props) {
                     <p className='cotizacion-item__info-dxp'>Folio: {mag.folio}</p>
                     <p className='cotizacion-item__info-dxp'>Folio In. y De.: {mag.folio_IyD}</p>
                     <p className='cotizacion-item__info-asesor'>Correo de Asesor: {mag.asesor}</p>
-                    <p className='cotizacion-item__info-asesor'>CardCode del cliente: {mag.cardcode}</p>
+                    <p className='cotizacion-item__info-asesor'>CardCode: {mag.cardcode}</p>
                     <p className='cotizacion-item__info-asesor'>Nombre del cliente: {mag.cliente}</p>
                     <p className='cotizacion-item__info-actividad'>Actividad: {mag.actividad}</p>
                     <p className='cotizacion-item__info-actividad'>Fecha de Creación: {createdate}</p>
-                    <p className='cotizacion-item__info-asesor'>CardCode : {mag.cardcode}</p>
                 </div>
                 <div>
                     <Button icon primary onClick={openUpdateMag}>

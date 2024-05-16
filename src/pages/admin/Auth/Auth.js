@@ -34,7 +34,7 @@ export function Auth() {
   return (
     <div className='auth'>
       <div className="sidebar">
-        <Carousel className='crsl' infiniteLoop autoPlay interval={5000} showThumbs={false} showStatus={false}>
+        <Carousel className='crsl' infiniteLoop autoPlay interval={3500} showThumbs={false} showStatus={false}>
           <div>
             <Image src={img1} className="carousel-image" />
           </div>

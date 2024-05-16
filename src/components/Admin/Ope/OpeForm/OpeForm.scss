@@ -1,44 +1,66 @@
 @import "~/src/scss/index.scss";
 
-.ope-form{
+.ope-form {
     margin-bottom: 10px;
-    &__info{
+
+    &__info {
         margin-bottom: 10px;
         width: 100%;
         align-items: center;
         justify-content: center;
-        text-align:start;
-        p{
-            font-weight:bold;
-            margin-bottom: 5px; 
+        text-align: start;
+
+        p {
+            font-weight: bold;
+            margin-bottom: 5px;
         }
-        span{
+
+        span {
             color: cadetblue;
         }
     }
-    > .ui.container{
+
+    > .ui.container {
         margin-bottom: 10px;
         width: 100%;
         align-items: center;
         justify-content: center;
 
-        span{
+        span {
             font-weight: bold;
         }
-        .ui.input{
-            width: 50%;
+
+        .ui.input {
+            width: 100%; // Ajusta el ancho del input al 100% para que sea responsivo
             margin-bottom: 5px;
         }
+
         .table-precio {
             border-collapse: collapse;
             border: 1px solid black;
             th,
             td {
-              border: 1px solid black;
-              padding: 1px; 
-              text-align: left;
+                border: 1px solid black;
+                padding: 1px;
+                text-align: left;
             }
-          }
-          
+        }
+    }
+
+    // Media Queries for Responsiveness
+    @media (max-width: 768px) {
+        .ui.input {
+            width: 100%; // Ajusta el ancho del input al 100% para pantallas pequeñas
+        }
+    }
+
+    @media (max-width: 480px) {
+        .ui.input {
+            width: 100%; // Ajusta el ancho del input al 100% para pantallas muy pequeñas
+        }
+
+        .table-precio {
+            font-size: 12px; // Ajusta el tamaño de fuente de la tabla para pantallas muy pequeñas
+        }
     }
 }

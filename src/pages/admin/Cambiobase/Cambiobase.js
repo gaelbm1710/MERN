@@ -22,7 +22,7 @@ export function Cambiobase() {
   return (
     <>
     <div>
-        <Button className='cotizacion-page__new' value="agregar" primary onClick={()=> onOpenCloseModal('agregar')}>Nueva Presentación</Button>
+        <Button className='cotizacion-page__new' value="agregar" primary onClick={()=> onOpenCloseModal('agregar')}>Generar Cambio de Base</Button>
         <Tab menu={{secondary: true}} panes={panes}/>
     </div>
     <BasicModal show={showModal} close={onOpenCloseModal} title={'Pedir presentación'} >

@@ -1,4 +1,4 @@
-.cotizacion-principal{
+.cotizacion-principal {
     justify-content: space-between;
     align-content: center;
     display: block;
@@ -6,19 +6,74 @@
     max-height: 100vh;
     min-width: 50vh;
     max-width: 100vh;
-    &_info{
+
+    &_info {
         margin-bottom: 10px;
         width: 100%;
         align-items: center;
         justify-content: center;
         text-align: start;
-        p{
+
+        p {
             font-weight: bold;
             margin-bottom: 5px;
         }
-        span{
+
+        span {
             color: #f3a230;
             margin-bottom: 5px;
+        }
+    }
+
+    // Media Queries for Responsiveness
+    @media (max-width: 1024px) {
+        min-height: 40vh;
+        max-height: 80vh;
+        min-width: 40vh;
+        max-width: 80vh;
+
+        &_info {
+            text-align: center;
+            p {
+                font-size: 14px;
+            }
+            span {
+                font-size: 12px;
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        min-height: 30vh;
+        max-height: 60vh;
+        min-width: 30vh;
+        max-width: 60vh;
+
+        &_info {
+            text-align: center;
+            p {
+                font-size: 12px;
+            }
+            span {
+                font-size: 10px;
+            }
+        }
+    }
+
+    @media (max-width: 480px) {
+        min-height: 20vh;
+        max-height: 40vh;
+        min-width: 20vh;
+        max-width: 40vh;
+
+        &_info {
+            text-align: center;
+            p {
+                font-size: 10px;
+            }
+            span {
+                font-size: 8px;
+            }
         }
     }
 }

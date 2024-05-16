@@ -29,7 +29,92 @@ $widthLeftMenu: 300px;
             align-items: center;
             justify-content: flex-end;
             padding: 0 50px;
+        }@import "~/src/scss/index.scss";
+
+        $widthLeftMenu: 300px;
+        
+        .admin-layout {
+            display: flex;
+            flex-direction: column; // Cambia a columna en pantallas pequeñas
+            min-height: 250vh;
+            max-height: 500vh;
+            background-color: #eff0f3;
+            border-right: 2px solid #e0e0e2;
+        
+            &__left {
+                background-color: #0081c1;
+                width: $widthLeftMenu;
+                .admin-layout__left-bar {
+                    height: 45px;
+                    width: 95%;
+                    margin: 50px;
+                }
+            }
+            
+            &__right {
+                width: calc(100% - $widthLeftMenu);
+                &-header {
+                    border-bottom: 2px solid #e0e0e2;
+                    background-color: #f4f9fd;
+                    height: 100px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-end;
+                    padding: 0 50px;
+                }
+                &-content {
+                    position: relative;
+                    margin: 60px;
+                }
+            }
+        
+            @media (max-width: 1024px) {
+                flex-direction: column; // Cambia la dirección del flex a columna
+                &__left {
+                    width: 100%;
+                    .admin-layout__left-bar {
+                        margin: 20px;
+                    }
+                }
+                &__right {
+                    width: 100%;
+                    &-header {
+                        padding: 0 20px;
+                    }
+                    &-content {
+                        margin: 20px;
+                    }
+                }
+            }
+        
+            @media (max-width: 768px) {
+                &__left {
+                    display: none; // Oculta el menú en pantallas muy pequeñas
+                }
+                &__right {
+                    &-header {
+                        justify-content: center;
+                        padding: 0 10px;
+                    }
+                    &-content {
+                        margin: 10px;
+                    }
+                }
+            }
+        
+            @media (max-width: 480px) {
+                &__right {
+                    &-header {
+                        height: 80px; // Reduce la altura del header en pantallas pequeñas
+                        padding: 0 5px;
+                    }
+                    &-content {
+                        margin: 5px;
+                    }
+                }
+            }
         }
+        
         &-content{
             position: relative;
             margin: 60px;

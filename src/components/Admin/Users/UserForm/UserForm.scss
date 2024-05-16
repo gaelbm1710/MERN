@@ -1,16 +1,42 @@
 @import "~/src/scss/index.scss";
 
-.user-form{
-    &__avatar{
+.user-form {
+    &__avatar {
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: 20px;   
-        >.ui.image{
+        margin-bottom: 20px;
+
+        > .ui.image {
             margin: 0;
             border: 2px dashed $primary;
             padding: 5px;
             cursor: pointer;
+        }
+    }
+
+    // Media Queries for Responsiveness
+    @media (max-width: 768px) {
+        &__avatar {
+            margin-bottom: 15px; // Reduce el margen inferior en pantallas pequeñas
+
+            > .ui.image {
+                width: 80px; // Ajusta el tamaño de la imagen en pantallas pequeñas
+                height: 80px;
+                padding: 4px; // Ajusta el padding en pantallas pequeñas
+            }
+        }
+    }
+
+    @media (max-width: 480px) {
+        &__avatar {
+            margin-bottom: 10px; // Reduce el margen inferior en pantallas muy pequeñas
+
+            > .ui.image {
+                width: 60px; // Ajusta el tamaño de la imagen en pantallas muy pequeñas
+                height: 60px;
+                padding: 3px; // Ajusta el padding en pantallas muy pequeñas
+            }
         }
     }
 }

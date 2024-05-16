@@ -1,10 +1,18 @@
 @import "~/src/scss/index.scss";
 
-.list-cotizaciones{
-    
-    &__pagination{
+.list-cotizaciones {
+    &__pagination {
         display: flex;
         justify-content: center;
         margin-top: 20px;
+
+        // Media Queries for Responsiveness
+        @media (max-width: 768px) {
+            margin-top: 15px; // Reduce el margen superior en pantallas pequeñas
+        }
+
+        @media (max-width: 480px) {
+            margin-top: 10px; // Reduce aún más el margen superior en pantallas muy pequeñas
+        }
     }
 }

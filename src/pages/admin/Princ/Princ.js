@@ -8,12 +8,17 @@ export function Princ() {
     const Apellido = lastname;
     return (
         <div className='princ-page'>
-            <h2>¡Bienvenido a KAAPA!</h2>
-            <h4>Unificando flujos, simplificando procesos</h4>
-            <h3>¡Hola {Nombre} {Apellido}!</h3>
+            <h1>¡Bienvenid@ a KAAPA!</h1>
+            <h2>¡Hola {Nombre} {Apellido}!</h2>
+            <h3>Tu plataforma digital diseñada para simplificar procesos y flujos de trabajo. Con su enfoque centrado en la eficiencia y la colaboración,
+                ofrece una amplia gama de herramientas y funcionalidades para optimizar la gestión de tareas, proyectos y equipos.
+            </h3><br/>
+            <h3>
+            Esto no solo ahorra tiempo y esfuerzo, sino que también facilita la colaboración entre departamentos. Ofrece herramientas de análisis y 
+            seguimiento que permiten a los usuarios supervisar el progreso de sus proyectos en tiempo real y 
+            tomar decisiones informadas para mejorar la eficiencia y la productividad.
+            </h3>
 
-            <h4>Kaapa es una pagina que realizamos para ayudarte a digitalizar y encapsular algunos y proximamente otros flujos de trabajo.</h4>
-            <h4>Esperemos esto sea de tu agrado y si tienes más sugerencias de otro flujo de trabajo sin problema puedes acercarte al equipo de sistemas.</h4>
         </div>
 
     )

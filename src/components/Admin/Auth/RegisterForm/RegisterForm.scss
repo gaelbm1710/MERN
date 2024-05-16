@@ -1,12 +1,40 @@
 @import "~/src/scss/index.scss";
 
-.register-form{
+.register-form {
     background-color: #ffffff;
     padding: 20px;
     border-radius: 8px;
-    &_error{
+
+    &_error {
         color: $error;
         text-align: center;
     }
 
+    // Media Queries for Responsiveness
+    @media (max-width: 1024px) {
+        padding: 18px;
+        border-radius: 6px;
+
+        &_error {
+            font-size: 14px; // Adjust font size for medium screens
+        }
+    }
+
+    @media (max-width: 768px) {
+        padding: 15px;
+        border-radius: 5px;
+
+        &_error {
+            font-size: 12px; // Adjust font size for small screens
+        }
+    }
+
+    @media (max-width: 480px) {
+        padding: 10px;
+        border-radius: 4px;
+
+        &_error {
+            font-size: 10px; // Adjust font size for very small screens
+        }
+    }
 }

@@ -22,7 +22,7 @@ export function Inydess() {
           <div className='presentacion-nueva'>
               <Tab menu={{ secondary: true }} panes={panes} />
           </div>
-          <BasicModal showModal={showModal} close={onOpenCloseModal} title="Nueva Presentacion">
+          <BasicModal showModal={showModal} close={onOpenCloseModal} title="Cambio de Base">
               <InydessForm close={onOpenCloseModal} onReload={onReload} />
           </BasicModal>
       </>

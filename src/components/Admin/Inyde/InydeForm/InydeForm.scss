@@ -1,11 +1,38 @@
-.inyde-form{
+.inyde-form {
     padding: 8px;
+
+    // Media Queries for Responsiveness
+    @media (max-width: 768px) {
+        padding: 6px; // Reducir el padding en pantallas pequeñas
+    }
+
+    @media (max-width: 480px) {
+        padding: 4px; // Reducir aún más el padding en pantallas muy pequeñas
+    }
 }
 
 .custom-button {
-    padding: 8px; 
+    padding: 8px;
+
+    // Media Queries for Responsiveness
+    @media (max-width: 768px) {
+        padding: 6px; // Reducir el padding en pantallas pequeñas
+    }
+
+    @media (max-width: 480px) {
+        padding: 4px; // Reducir aún más el padding en pantallas muy pequeñas
+    }
 }
 
 .custom-checkbox {
     padding-bottom: 8px;
+
+    // Media Queries for Responsiveness
+    @media (max-width: 768px) {
+        padding-bottom: 6px; // Reducir el padding en pantallas pequeñas
+    }
+
+    @media (max-width: 480px) {
+        padding-bottom: 4px; // Reducir aún más el padding en pantallas muy pequeñas
+    }
 }

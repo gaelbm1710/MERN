@@ -1,15 +1,71 @@
-.courses-page{
-    &__add{
+@import "~/src/scss/index.scss";
+
+.courses-page {
+    &__add {
         position: absolute;
         right: 0;
-        top:0;
-        >.ui.button{
+        top: 0;
+
+        > .ui.button {
             margin: 0;
         }
     }
-    .ui.tab.segment{
+
+    .ui.tab.segment {
         height: calc(100vh - 200px);
         overflow: scroll;
-        
+    }
+
+    // Media Queries for Responsiveness
+    @media (max-width: 1024px) {
+        &__add {
+            top: 10px; // Ajusta la posición superior en pantallas medianas
+            right: 10px; // Ajusta la posición derecha en pantallas medianas
+
+            > .ui.button {
+                padding: 8px 16px; // Ajusta el padding del botón en pantallas medianas
+                font-size: 14px; // Ajusta el tamaño de fuente del botón en pantallas medianas
+            }
+        }
+
+        .ui.tab.segment {
+            height: calc(100vh - 150px); // Ajusta la altura en pantallas medianas
+        }
+    }
+
+    @media (max-width: 768px) {
+        &__add {
+            top: 5px; // Ajusta la posición superior en pantallas pequeñas
+            right: 5px; // Ajusta la posición derecha en pantallas pequeñas
+
+            > .ui.button {
+                padding: 6px 12px; // Ajusta el padding del botón en pantallas pequeñas
+                font-size: 12px; // Ajusta el tamaño de fuente del botón en pantallas pequeñas
+            }
+        }
+
+        .ui.tab.segment {
+            height: calc(100vh - 120px); // Ajusta la altura en pantallas pequeñas
+        }
+    }
+
+    @media (max-width: 480px) {
+        &__add {
+            position: relative; // Cambia a posición relativa en pantallas muy pequeñas
+            top: auto;
+            right: auto;
+            text-align: center; // Centra el botón horizontalmente
+
+            > .ui.button {
+                width: 100%; // Hace que el botón ocupe el 100% del ancho disponible
+                padding: 8px; // Ajusta el padding del botón en pantallas muy pequeñas
+                font-size: 14px; // Ajusta el tamaño de fuente del botón en pantallas muy pequeñas
+            }
+        }
+
+        .ui.tab.segment {
+            height: auto; // Permite que la altura se ajuste automáticamente en pantallas muy pequeñas
+            max-height: calc(100vh - 100px); // Ajusta la altura máxima en pantallas muy pequeñas
+        }
     }
 }

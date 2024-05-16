@@ -1,6 +1,6 @@
 @import "~/src/scss/index.scss";
 
-.user-item{
+.user-item {
     display: flex;
     justify-content: space-between;
     align-content: center;
@@ -8,28 +8,67 @@
     margin-bottom: 10px;
     padding-bottom: 10px;
 
-    &:last-of-type{
+    &:last-of-type {
         margin-bottom: 0;
         padding-bottom: 0;
         border: 0;
     }
 
-    &__info{
+    &__info {
         display: flex;
         align-items: center;
 
-        &>.ui.image{
+        > .ui.image {
             width: 40px;
             height: 40px;
             margin-right: 10px;
         }
-        p{
+
+        p {
             margin: 0;
-            &:first-of-type{
+
+            &:first-of-type {
                 font-weight: bold;
             }
-            &:last-of-type{
+
+            &:last-of-type {
                 opacity: 0.4;
+            }
+        }
+    }
+
+    // Media Queries for Responsiveness
+    @media (max-width: 768px) {
+        flex-direction: column; // Cambia a dirección de columna en pantallas pequeñas
+        align-items: center; // Centra los elementos en pantallas pequeñas
+        text-align: center; // Centra el texto en pantallas pequeñas
+
+        &__info {
+            flex-direction: column; // Cambia a dirección de columna en pantallas pequeñas
+            align-items: center; // Centra los elementos en pantallas pequeñas
+
+            > .ui.image {
+                margin-right: 0; // Elimina el margen derecho en pantallas pequeñas
+                margin-bottom: 10px; // Añade margen inferior en pantallas pequeñas
+            }
+        }
+    }
+
+    @media (max-width: 480px) {
+        &__info {
+            > .ui.image {
+                width: 30px; // Ajusta el tamaño de la imagen en pantallas muy pequeñas
+                height: 30px;
+            }
+
+            p {
+                &:first-of-type {
+                    font-size: 14px; // Ajusta el tamaño de fuente en pantallas muy pequeñas
+                }
+
+                &:last-of-type {
+                    font-size: 12px; // Ajusta el tamaño de fuente en pantallas muy pequeñas
+                }
             }
         }
     }

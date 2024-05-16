@@ -2,7 +2,7 @@ import * as Yup from "yup";
 
 export function initialValuesss(mag){
     return{
-        folio_IyD: mag?.folio_IyD || 0,
+        folio_IyD: mag?.folio_IyD,
         email: mag?.email || "",
         cardcode: mag?.cardcode || "",
         base: mag?.base || "",

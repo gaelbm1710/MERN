@@ -1,38 +1,121 @@
 @import "~/src/scss/index.scss";
 
-.gc-form{
+.gc-form {
     margin-bottom: 10px;
-    &__info{
+
+    &__info {
         margin-bottom: 10px;
         width: 100%;
         align-items: center;
         justify-content: center;
-        text-align:start;
-        p{
-            font-weight:bold;
-            margin-bottom: 5px; 
+        text-align: start;
+
+        p {
+            font-weight: bold;
+            margin-bottom: 5px;
         }
-        span{
+
+        span {
             color: #f6ce93;
         }
     }
-        .table-precio {
-            border-collapse: collapse;
+
+    .table-precio {
+        border-collapse: collapse;
+        border: 1px solid black;
+
+        th,
+        td {
             border: 1px solid black;
-            th,
-            td {
-              border: 1px solid black;
-              padding: 1px; 
-              text-align: left;
+            padding: 1px;
+            text-align: left;
+        }
+    }
+
+    > .ui.container {
+        margin-bottom: 20px;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    span {
+        font-weight: bold;
+    }
+
+    // Media Queries for Responsiveness
+    @media (max-width: 1024px) {
+        &__info {
+            p {
+                font-size: 14px; // Ajusta el tamaño de fuente para pantallas medianas
+            }
+
+            span {
+                font-size: 12px; // Ajusta el tamaño de fuente para pantallas medianas
             }
         }
-        >.ui.container{
-            margin-bottom: 20px;
-            width: 100%;
-            align-items: center;
-            justify-content: center;
+
+        .table-precio {
+            th,
+            td {
+                padding: 5px; // Aumenta el padding para pantallas medianas
+            }
         }
-        span{
-            font-weight: bold;
+
+        > .ui.container {
+            margin-bottom: 15px;
         }
+    }
+
+    @media (max-width: 768px) {
+        &__info {
+            text-align: center; // Centra el texto en pantallas pequeñas
+
+            p {
+                font-size: 12px; // Ajusta el tamaño de fuente para pantallas pequeñas
+            }
+
+            span {
+                font-size: 10px; // Ajusta el tamaño de fuente para pantallas pequeñas
+            }
+        }
+
+        .table-precio {
+            th,
+            td {
+                padding: 8px; // Aumenta el padding para pantallas pequeñas
+                font-size: 12px; // Ajusta el tamaño de fuente para pantallas pequeñas
+            }
+        }
+
+        > .ui.container {
+            margin-bottom: 10px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        &__info {
+            text-align: center;
+
+            p {
+                font-size: 10px; // Ajusta el tamaño de fuente para pantallas muy pequeñas
+            }
+
+            span {
+                font-size: 8px; // Ajusta el tamaño de fuente para pantallas muy pequeñas
+            }
+        }
+
+        .table-precio {
+            th,
+            td {
+                padding: 4px; // Aumenta el padding para pantallas muy pequeñas
+                font-size: 10px; // Ajusta el tamaño de fuente para pantallas muy pequeñas
+            }
+        }
+
+        > .ui.container {
+            margin-bottom: 5px;
+        }
+    }
 }
