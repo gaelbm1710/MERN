@@ -120,9 +120,18 @@ export function AdminMenu() {
               </Menu.Item>
             </DropdownMenu>
           </Dropdown>
+          <Dropdown item text= 'ticket 2 soporte'>
+            <DropdownMenu className='admin-menu-lista'>
+              <Menu.Item as={Link} to="/admin/soporte" active={isCurrentPath("/admin/soporte")}>
+                <Icon name='wrench'/>
+                Ticket
+              </Menu.Item>
+            </DropdownMenu>
+          </Dropdown>
         </>
       )}
       {isIyd && (
+        <>
         <Dropdown item text='Gestión para Formulas'>
           <DropdownMenu className='admin-menu-lista'>
             <Menu.Item as={Link} to="/admin/inyde" active={isCurrentPath("/admin/inyde")}>
@@ -139,8 +148,18 @@ export function AdminMenu() {
             </Menu.Item>
           </DropdownMenu>
         </Dropdown>
+        <Dropdown item text='Ticket de Soporte'>
+        <DropdownMenu className='admin-menu-lista'>
+          <Menu.Item as="a" href="https://forms.office.com/pages/responsepage.aspx?id=pRffhtXT0kuFU3sNV6O3PBUZyAc4Wx5EiTVlITBFysBUNTRUM0QyRUszN1pSSUFTRlk5WEpIVklBMC4u" target="_blank">
+            <Icon name='wrench' />
+            Tickets de Soporte
+          </Menu.Item>
+        </DropdownMenu>
+      </Dropdown>
+        </>
       )}
       {isOpe && (
+        <>
         <Dropdown item text='Gestión para Formulas'>
           <DropdownMenu className='admin-menu-lista'>
             <Menu.Item as={Link} to="/admin/ope" active={isCurrentPath("/admin/ope")}>
@@ -153,8 +172,19 @@ export function AdminMenu() {
             </Menu.Item>
           </DropdownMenu>
         </Dropdown>
+        <Dropdown item text='Ticket de Soporte'>
+        <DropdownMenu className='admin-menu-lista'>
+          <Menu.Item as="a" href="https://forms.office.com/pages/responsepage.aspx?id=pRffhtXT0kuFU3sNV6O3PBUZyAc4Wx5EiTVlITBFysBUNTRUM0QyRUszN1pSSUFTRlk5WEpIVklBMC4u" target="_blank">
+            <Icon name='wrench' />
+            Tickets de Soporte
+          </Menu.Item>
+        </DropdownMenu>
+      </Dropdown>
+        </>
+        
       )}
       {isCom && (
+        <>
         <Dropdown item text='Gestión para Formulas'>
           <DropdownMenu className='admin-menu-lista'>
             <Menu.Item as={Link} to="/admin/gestioncomercial" active={isCurrentPath("/admin/gestioncomercial")}>
@@ -171,6 +201,15 @@ export function AdminMenu() {
             </Menu.Item>
           </DropdownMenu>
         </Dropdown>
+        <Dropdown item text='Ticket de Soporte'>
+        <DropdownMenu className='admin-menu-lista'>
+          <Menu.Item as="a" href="https://forms.office.com/pages/responsepage.aspx?id=pRffhtXT0kuFU3sNV6O3PBUZyAc4Wx5EiTVlITBFysBUNTRUM0QyRUszN1pSSUFTRlk5WEpIVklBMC4u" target="_blank">
+            <Icon name='wrench' />
+            Tickets de Soporte
+          </Menu.Item>
+        </DropdownMenu>
+      </Dropdown>
+      </>
       )}
       {isAse && (
           <Dropdown item text='Gestión para Formulas'>
