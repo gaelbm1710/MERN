@@ -1,22 +1,25 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Mag } from '../../../../api';
 import { size, map } from 'lodash';
-import { Loader, Pagination } from 'semantic-ui-react';
-import {ComeItem} from "../ComeItem/ComeItem";
+import { Loader, Pagination, Search } from 'semantic-ui-react';
+import { ComeItem } from "../ComeItem";
 import "./ListCome.scss";
 
 const magController = new Mag();
 
 export function ListCome(props) {
-  const {reload, onReload, onClose} = props;
-  const [mags, setMags] = useState(false);
+  const { reload, onReload, onClose } = props;
+  const [mags, setMags] = useState([]);
   const [page, setPage] = useState(1);
-  const [pagination, setPagination] = useState()
-  const actividad = 'nueva'
+  const [pagination, setPagination] = useState({});
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredMags, setFilteredMags] = useState([]);
+  const actividad = 'nueva';
+
   useEffect(() => {
-    (async () =>{
+    const fetchMags = async () => {
       try {
-        const response = await magController.getMagActividadNueva(actividad,{page, limit: 9});
+        const response = await magController.getMagActividadNueva(actividad, { page, limit: 9 });
         setMags(response.docs);
         setPagination({
           limit: response.limit,
@@ -25,33 +28,60 @@ export function ListCome(props) {
           total: response.totalPages,
         });
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
-    })()
-  }, [page, reload])
+    };
 
-  const changePage=(_,data)=>{
+    fetchMags();
+  }, [page, reload]);
+
+  useEffect(() => {
+    const searchFilteredMags = () => {
+      const filtered = mags.filter((mag) => (
+        (mag.asesor && mag.asesor.toLowerCase().includes(searchQuery.toLowerCase())) ||
+        (mag.cardcode && mag.cardcode.toLowerCase().includes(searchQuery.toLowerCase()))
+      ));
+      setFilteredMags(filtered);
+    };
+
+    searchFilteredMags();
+  }, [searchQuery, mags]);
+
+  const changePage = (_, data) => {
     setPage(data.activePage);
-  }
+  };
 
-  if(!mags) return <Loader active inline="centered"/>
-  if(size(mags)===0) return "No hay cotizaciones"
+  const handleSearchChange = (_, { value }) => {
+    setSearchQuery(value);
+  };
+
+  if (!mags) return <Loader active inline="centered" />;
+  if (size(mags) === 0) return "No hay cotizaciones";
 
   return (
     <div className='list-cotizaciones'>
-      {map(mags, (mag)=>(
+      <Search
+        input={{ icon: 'search', iconPosition: 'left' }}
+        placeholder="Buscar..."
+        value={searchQuery}
+        onSearchChange={handleSearchChange}
+        showNoResults=""
+      />
+      <br />
+      {[...filteredMags].map((mag) => (
         <ComeItem key={mag._id} mag={mag} onReload={onReload} onClose={onClose} />
       ))}
+
       <div className='list-cotizaciones__pagination'>
-      <Pagination
-            totalPages={pagination.total}
-            defaultActivePage={pagination.page}
-            ellipsisItem={null}
-            firstItem={null}
-            lastItem={null}
-            onPageChange={changePage}
-            />
+        <Pagination
+          totalPages={pagination.total}
+          defaultActivePage={pagination.page}
+          ellipsisItem={null}
+          firstItem={null}
+          lastItem={null}
+          onPageChange={changePage}
+        />
       </div>
     </div>
-  )
+  );
 }
