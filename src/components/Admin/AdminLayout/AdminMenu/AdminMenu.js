@@ -120,10 +120,10 @@ export function AdminMenu() {
               </Menu.Item>
             </DropdownMenu>
           </Dropdown>
-          <Dropdown item text= 'ticket 2 soporte'>
+          <Dropdown item text='ticket 2 soporte'>
             <DropdownMenu className='admin-menu-lista'>
               <Menu.Item as={Link} to="/admin/soporte" active={isCurrentPath("/admin/soporte")}>
-                <Icon name='wrench'/>
+                <Icon name='wrench' />
                 Ticket
               </Menu.Item>
             </DropdownMenu>
@@ -132,86 +132,87 @@ export function AdminMenu() {
       )}
       {isIyd && (
         <>
-        <Dropdown item text='Gestión para Formulas'>
-          <DropdownMenu className='admin-menu-lista'>
-            <Menu.Item as={Link} to="/admin/inyde" active={isCurrentPath("/admin/inyde")}>
-              <Icon name='file alternate' />
-              Generar Cotización Magistral Nueva
-            </Menu.Item>
-            <Menu.Item as={Link} to="/admin/inydes" active={isCurrentPath("/admin/inydes")}>
-              <Icon name='flask' />
-              Cotización de Nueva Presentación
-            </Menu.Item>
-            <Menu.Item as={Link} to="/admin/inydess" active={isCurrentPath("/admin/inydess")}>
-              <Icon name='flask' />
-              Cotizar cambio de Base
-            </Menu.Item>
-          </DropdownMenu>
-        </Dropdown>
-        <Dropdown item text='Ticket de Soporte'>
-        <DropdownMenu className='admin-menu-lista'>
-          <Menu.Item as="a" href="https://forms.office.com/pages/responsepage.aspx?id=pRffhtXT0kuFU3sNV6O3PBUZyAc4Wx5EiTVlITBFysBUNTRUM0QyRUszN1pSSUFTRlk5WEpIVklBMC4u" target="_blank">
-            <Icon name='wrench' />
-            Tickets de Soporte
-          </Menu.Item>
-        </DropdownMenu>
-      </Dropdown>
+          <Dropdown item text='Gestión para Formulas'>
+            <DropdownMenu className='admin-menu-lista'>
+              <Menu.Item as={Link} to="/admin/inyde" active={isCurrentPath("/admin/inyde")}>
+                <Icon name='file alternate' />
+                Generar Cotización Magistral Nueva
+              </Menu.Item>
+              <Menu.Item as={Link} to="/admin/inydes" active={isCurrentPath("/admin/inydes")}>
+                <Icon name='flask' />
+                Cotización de Nueva Presentación
+              </Menu.Item>
+              <Menu.Item as={Link} to="/admin/inydess" active={isCurrentPath("/admin/inydess")}>
+                <Icon name='flask' />
+                Cotizar cambio de Base
+              </Menu.Item>
+            </DropdownMenu>
+          </Dropdown>
+          <Dropdown item text='Ticket de Soporte'>
+            <DropdownMenu className='admin-menu-lista'>
+              <Menu.Item as="a" href="https://forms.office.com/pages/responsepage.aspx?id=pRffhtXT0kuFU3sNV6O3PBUZyAc4Wx5EiTVlITBFysBUNTRUM0QyRUszN1pSSUFTRlk5WEpIVklBMC4u" target="_blank">
+                <Icon name='wrench' />
+                Tickets de Soporte
+              </Menu.Item>
+            </DropdownMenu>
+          </Dropdown>
         </>
       )}
       {isOpe && (
         <>
-        <Dropdown item text='Gestión para Formulas'>
-          <DropdownMenu className='admin-menu-lista'>
-            <Menu.Item as={Link} to="/admin/ope" active={isCurrentPath("/admin/ope")}>
-              <Icon name='file alternate' />
-              Generar Cotización Magistral Nueva
-            </Menu.Item>
-            <Menu.Item as={Link} to="/admin/opess" active={isCurrentPath("/admin/opess")}>
-              <Icon name='flask' />
-              Cotizar cambio de Base
-            </Menu.Item>
-          </DropdownMenu>
-        </Dropdown>
-        <Dropdown item text='Ticket de Soporte'>
-        <DropdownMenu className='admin-menu-lista'>
-          <Menu.Item as="a" href="https://forms.office.com/pages/responsepage.aspx?id=pRffhtXT0kuFU3sNV6O3PBUZyAc4Wx5EiTVlITBFysBUNTRUM0QyRUszN1pSSUFTRlk5WEpIVklBMC4u" target="_blank">
-            <Icon name='wrench' />
-            Tickets de Soporte
-          </Menu.Item>
-        </DropdownMenu>
-      </Dropdown>
+          <Dropdown item text='Gestión para Formulas'>
+            <DropdownMenu className='admin-menu-lista'>
+              <Menu.Item as={Link} to="/admin/ope" active={isCurrentPath("/admin/ope")}>
+                <Icon name='file alternate' />
+                Generar Cotización Magistral Nueva
+              </Menu.Item>
+              <Menu.Item as={Link} to="/admin/opess" active={isCurrentPath("/admin/opess")}>
+                <Icon name='flask' />
+                Cotizar cambio de Base
+              </Menu.Item>
+            </DropdownMenu>
+          </Dropdown>
+          <Dropdown item text='Ticket de Soporte'>
+            <DropdownMenu className='admin-menu-lista'>
+              <Menu.Item as="a" href="https://forms.office.com/pages/responsepage.aspx?id=pRffhtXT0kuFU3sNV6O3PBUZyAc4Wx5EiTVlITBFysBUNTRUM0QyRUszN1pSSUFTRlk5WEpIVklBMC4u" target="_blank">
+                <Icon name='wrench' />
+                Tickets de Soporte
+              </Menu.Item>
+            </DropdownMenu>
+          </Dropdown>
         </>
-        
+
       )}
       {isCom && (
         <>
-        <Dropdown item text='Gestión para Formulas'>
-          <DropdownMenu className='admin-menu-lista'>
-            <Menu.Item as={Link} to="/admin/gestioncomercial" active={isCurrentPath("/admin/gestioncomercial")}>
-              <Icon name='file alternate' />
-              Generar Cotización Magistral Nueva
-            </Menu.Item>
-            <Menu.Item as={Link} to="/admin/gestioncomercials" active={isCurrentPath("/admin/gestioncomercials")}>
-              <Icon name='flask' />
-              Cotización de Nueva Presentación
-            </Menu.Item>
-            <Menu.Item as={Link} to="/admin/gestioncomercialss" active={isCurrentPath("/admin/gestioncomercialss")}>
-              <Icon name='flask' />
-              Cotizar cambio de Base
-            </Menu.Item>
-          </DropdownMenu>
-        </Dropdown>
-        <Dropdown item text='Ticket de Soporte'>
-        <DropdownMenu className='admin-menu-lista'>
-          <Menu.Item as="a" href="https://forms.office.com/pages/responsepage.aspx?id=pRffhtXT0kuFU3sNV6O3PBUZyAc4Wx5EiTVlITBFysBUNTRUM0QyRUszN1pSSUFTRlk5WEpIVklBMC4u" target="_blank">
-            <Icon name='wrench' />
-            Tickets de Soporte
-          </Menu.Item>
-        </DropdownMenu>
-      </Dropdown>
-      </>
+          <Dropdown item text='Gestión para Formulas'>
+            <DropdownMenu className='admin-menu-lista'>
+              <Menu.Item as={Link} to="/admin/gestioncomercial" active={isCurrentPath("/admin/gestioncomercial")}>
+                <Icon name='file alternate' />
+                Generar Cotización Magistral Nueva
+              </Menu.Item>
+              <Menu.Item as={Link} to="/admin/gestioncomercials" active={isCurrentPath("/admin/gestioncomercials")}>
+                <Icon name='flask' />
+                Cotización de Nueva Presentación
+              </Menu.Item>
+              <Menu.Item as={Link} to="/admin/gestioncomercialss" active={isCurrentPath("/admin/gestioncomercialss")}>
+                <Icon name='flask' />
+                Cotizar cambio de Base
+              </Menu.Item>
+            </DropdownMenu>
+          </Dropdown>
+          <Dropdown item text='Ticket de Soporte'>
+            <DropdownMenu className='admin-menu-lista'>
+              <Menu.Item as="a" href="https://forms.office.com/pages/responsepage.aspx?id=pRffhtXT0kuFU3sNV6O3PBUZyAc4Wx5EiTVlITBFysBUNTRUM0QyRUszN1pSSUFTRlk5WEpIVklBMC4u" target="_blank">
+                <Icon name='wrench' />
+                Tickets de Soporte
+              </Menu.Item>
+            </DropdownMenu>
+          </Dropdown>
+        </>
       )}
       {isAse && (
+        <>
           <Dropdown item text='Gestión para Formulas'>
             <DropdownMenu className='admin-menu-lista'>
               <Menu.Item as={Link} to="/admin/asesor" active={isCurrentPath("/admin/asesor")}>
@@ -228,6 +229,15 @@ export function AdminMenu() {
               </Menu.Item>
             </DropdownMenu>
           </Dropdown>
+          <Dropdown item text='Ticket de Soporte'>
+            <DropdownMenu className='admin-menu-lista'>
+              <Menu.Item as="a" href="https://forms.office.com/pages/responsepage.aspx?id=pRffhtXT0kuFU3sNV6O3PBUZyAc4Wx5EiTVlITBFysBUNTRUM0QyRUszN1pSSUFTRlk5WEpIVklBMC4u" target="_blank">
+                <Icon name='wrench' />
+                Tickets de Soporte
+              </Menu.Item>
+            </DropdownMenu>
+          </Dropdown>
+        </>
       )}
       {isConta && (
         <>
@@ -247,6 +257,14 @@ export function AdminMenu() {
             <Icon name='file' />
             Facturas pagadas
           </Menu.Item>
+          <Dropdown item text='Ticket de Soporte'>
+            <DropdownMenu className='admin-menu-lista'>
+              <Menu.Item as="a" href="https://forms.office.com/pages/responsepage.aspx?id=pRffhtXT0kuFU3sNV6O3PBUZyAc4Wx5EiTVlITBFysBUNTRUM0QyRUszN1pSSUFTRlk5WEpIVklBMC4u" target="_blank">
+                <Icon name='wrench' />
+                Tickets de Soporte
+              </Menu.Item>
+            </DropdownMenu>
+          </Dropdown>
         </>
       )}
     </Menu>
