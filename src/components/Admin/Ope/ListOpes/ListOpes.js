@@ -15,7 +15,7 @@ const [searchTerm, setSearchTerm] = useState('');
   const actividad = 'presentacion'
   const fetchMags = async (page) => {
     try {
-      const response = await magController.getMagActividadPresentacion(actividad, { page, limit: 2 });
+      const response = await magController.getMagActividadPresentacion(actividad, { page, limit: 10 });
       return response;
     } catch (error) {
       console.error(error);

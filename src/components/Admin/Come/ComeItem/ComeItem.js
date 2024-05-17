@@ -47,8 +47,6 @@ export function ComeItem(props) {
           <p className='cotizacion-item__info'>
             <span className='cotizacion-item__info-label'>Folio:</span>
             <span className='cotizacion-item__info-valor'>{mag.folio}</span><br />
-            <span className='cotizacion-item__info-label'>Cotización:</span>
-            <span className='cotizacion-item__info-valor'>#{dxp}</span><br />
             <span className='cotizacion-item__info-label'>Creado:</span>
             <span className='cotizacion-item__info-valor'>{createdate}</span>
           </p>
@@ -58,7 +56,8 @@ export function ComeItem(props) {
             <span className='cotizacion-item__info-label'>Asesor:</span>
             <span className='cotizacion-item__info-valor'>{mag.asesor}</span><br />
             <span className='cotizacion-item__info-label'>Medico:</span>
-            <span className='cotizacion-item__info-valor'>{mag.cardcode}</span><br />
+            <span className='cotizacion-item__info-valor'>{mag.cardcode}</span>
+            <span className='cotizacion-item__info-valor'>{mag.cliente}</span><br />
             <span className='cotizacion-item__info-label'>Activos:</span>
             <span className='cotizacion-item__info-valor'>{mag.activos}</span>
           </p>

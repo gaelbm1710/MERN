@@ -19,6 +19,7 @@ export function OpeForm(props) {
     onSubmit: async (formValue) => {
       try {
         const data={
+          folio: mag ? mag.folio : 0,
           folio_Op: formValue.folio_Op,
           precio1: formValue.precio1,
           precio2: formValue.precio2,

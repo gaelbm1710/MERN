@@ -29,6 +29,7 @@ export function initialValues(mag){
 
 export function validationSchema(){
     return Yup.object({
+        folio: Yup.number(),
         folio_IyD: Yup.number().required(true),
         infoDesa: Yup.string().required(true),
        // clasi: Yup.string().required(true),

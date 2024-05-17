@@ -30,6 +30,7 @@ export function InydeForm(props) {
     onSubmit: async (formValue) => {
       try {
         const data={
+          folio: mag ? mag.folio : 0,
           folio_IyD: formValue.folio_IyD,
           cardcode: formValue.cardcode,
           base: formValue.base,

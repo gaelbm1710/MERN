@@ -34,14 +34,30 @@ export function OpeItem(props) {
   return (
     <>
       <div className='cotizacion-item'>
-        <div className='cotizacion-item'>
-          <p className='cotizacion-item__info-dxp'>Folio: {mag.folio}</p>
-          <p className='cotizacion-item__info-dxp'>Folio In. y De.: {mag.folio_IyD}</p>
-          <p className='cotizacion-item__info-asesor'>Correo de Asesor: {mag.asesor}</p>
-          <p className='cotizacion-item__info-asesor'>CardCode: {mag.cardcode}</p>
-          <p className='cotizacion-item__info-asesor'>Nombre del cliente: {mag.cliente}</p>
-          <p className='cotizacion-item__info-actividad'>Actividad: {mag.actividad}</p>
-          <p className='cotizacion-item__info-actividad'>Fecha de Creación: {createdate}</p>
+      <div className='column'>
+          <p className='cotizacion-item__info'>
+            <span className='cotizacion-item__info-label'>Folio:</span>
+            <span className='cotizacion-item__info-valor'>{mag.folio}</span><br />
+            <span className='cotizacion-item__info-label'>Creado:</span>
+            <span className='cotizacion-item__info-valor'>{createdate}</span>
+          </p>
+        </div>
+        <div className='column'>
+          <p className='cotizacion-item__info'>
+            <span className='cotizacion-item__info-label'>Asesor:</span>
+            <span className='cotizacion-item__info-valor'>{mag.asesor}</span><br />
+            <span className='cotizacion-item__info-label'>Medico:</span>
+            <span className='cotizacion-item__info-valor'>{mag.cardcode}</span><br />
+            <span className='cotizacion-item__info-valor'>{mag.cliente}</span><br />
+            <span className='cotizacion-item__info-label'>Activos:</span>
+            <span className='cotizacion-item__info-valor'>{mag.activos}</span>
+          </p>
+        </div>
+        <div className='column'>
+          <p className='cotizacion-item__info'>
+            <span className='cotizacion-item__info-label'>Folio Operaciones:</span>
+            <span className='cotizacion-item__info-valor'>{mag.folio_Op}</span>
+          </p>
         </div>
         <div>
           <Button icon primary onClick={openUpdateMag}>

@@ -1,50 +1,81 @@
 import React from 'react';
 import { Form, TableRow, TableBody, TableHeader, TableHeaderCell, Table, Container, TableCell } from "semantic-ui-react";
 import { useFormik } from "formik";
-import { initialValues,validationSchema} from "./ComeForm.form";
-import {Mag} from "../../../../api";
-import {useAuth} from "../../../../hooks";
+import { initialValues, validationSchema } from "./ComeForm.form";
+import { Mag } from "../../../../api";
+import { useAuth } from "../../../../hooks";
 import "./ComeForm.scss";
 
 
 const magController = new Mag();
 
 export function ComeForm(props) {
-  const { onClose, onReload, mag} = props;
-  const {accessToken} = useAuth();
+  const { onClose, onReload, mag } = props;
+  const { accessToken } = useAuth();
   const formik = useFormik({
     initialValues: initialValues(mag),
     validationSchema: validationSchema(mag),
     validateOnChange: false,
     onSubmit: async (formValue) => {
       try {
-        const data={
+        const data = {
+          folio: mag ? mag.folio : 0,
           folio_sCom: formValue.folio_sCom,
         }
-        if(!mag){
+        if (!mag) {
           await magController.createMagCome(accessToken, data);
-        }else{
+        } else {
           await magController.updateMagCome(accessToken, mag._id, data);
         };
         onClose();
         onReload();
-      }catch (error) {
+      } catch (error) {
         console.error(error);
       }
     }
 
   });
 
+  let formview;
+  if (mag.actividad === 'nueva') {
+    formview = <>
+      <p>CardCode: <span>{mag.cardcode}</span></p>
+      <p>Cliente: <span>{mag.cliente}</span></p>
+      <p>Asesor: <span>{mag.asesor}</span></p>
+      <p>Base: <span>{mag.base}</span></p>
+      <p>Activos: <span>{mag.activos}</span></p>
+      <p>Clasificación: <span>{mag.clasi}</span></p>
+      <p>Especialidad: <span>{mag.especialidad}</span></p>
+      <p>Muestra: <span>{mag.necesita_muestra}</span></p>
+    </>
+  } else if (mag.actividad === 'presentacion') {
+    formview = <>
+      <p>CardCode: <span>{mag.cardcode}</span></p>
+      <p>Cliente: <span>{mag.cliente}</span></p>
+      <p>Asesor: <span>{mag.asesor}</span></p>
+      <p>Clave: <span>{mag.clave_ex}</span></p>
+    </>
+  } else if (mag.actividad === 'cambio') {
+    formview = <>
+      <p>CardCode: <span>{mag.cardcode}</span></p>
+      <p>Cliente: <span>{mag.cliente}</span></p>
+      <p>Asesor: <span>{mag.asesor}</span></p>
+      <p>Clave Existente: <span>{mag.clave_ex}</span></p>
+      <p>Base: <span>{mag.base}</span></p>
+      <p>Cambio a Base: <span>{mag.base_ex}</span></p>
+      <p>Activos: <span>{mag.activos}</span></p>
+      <p>Clasificación: <span>{mag.clasi}</span></p>
+      <p>Especialidad: <span>{mag.especialidad}</span></p>
+      <p>Muestra: <span>{mag.necesita_muestra}</span></p>
+    </>
+  } else {
+    formview = <div>Error en sistema</div>
+  }
+
   return (
     <Form className='gc-form' onSubmit={formik.handleSubmit}>
       <Container className='gc-form__info'>
-        <p>CardCode: <span>{mag.cardcode}</span></p>
-        <p>Asesor: <span>{mag.asesor}</span></p>
-        <p>Base: <span>{mag.base}</span></p>
-        <p>Activos: <span>{mag.activos}</span></p>
-        <p>Clasificación: <span>{mag.clasi}</span></p>
-        <p>Especialidad: <span>{mag.especialidad}</span></p>
-        <p>Muestra: <span>{mag.necesita_muestra}</span></p>
+        {formview}
       </Container>
       <Container widths='equal'>
         <Table className='table-precio'>
@@ -91,9 +122,9 @@ export function ComeForm(props) {
         </Table>
       </Container>
       <span>Folio Gestión Comercial:</span>
-      <Form.Input className='folio_op' name="folio_sCom" placeholeder="Folio Gestión Comercial" onChange={formik.handleChange} value={formik.values.folio_sCom} error={formik.errors.folio_sCom}/>
+      <Form.Input className='folio_op' name="folio_sCom" placeholeder="Folio Gestión Comercial" onChange={formik.handleChange} value={formik.values.folio_sCom} error={formik.errors.folio_sCom} />
       <Form.Button type='submit' primary fluid loading={formik.isSubmitting}>
-        {mag ? "Actualizar Cotización": "Crear Cotización"}
+        {mag ? "Actualizar Cotización" : "Crear Cotización"}
       </Form.Button>
     </Form>
   );
