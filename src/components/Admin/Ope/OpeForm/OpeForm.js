@@ -20,6 +20,14 @@ export function OpeForm(props) {
       try {
         const data={
           folio: mag ? mag.folio : 0,
+          asesor: mag ? mag.asesor : 'soporte.sistemas@o-lab.mx',
+          cardcode: mag ? mag.cardcode : 'Null',
+          activos: mag ? mag.activos : 'Null',
+          base: mag ? mag.base : 'Null',
+          refri: mag ? mag.refri : false,
+          caducidad: mag ? mag.caducidad : 6,
+          excl: mag ? mag.excl : false,
+          clasi: mag ? mag.clasi : 'Null',
           folio_Op: formValue.folio_Op,
           precio1: formValue.precio1,
           precio2: formValue.precio2,

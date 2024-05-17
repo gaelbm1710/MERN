@@ -21,6 +21,7 @@ export function ComeForm(props) {
         const data = {
           folio: mag ? mag.folio : 0,
           folio_sCom: formValue.folio_sCom,
+          asesor: mag ? mag.asesor : 'soporte.sistemas@o-lab.mx',
         }
         if (!mag) {
           await magController.createMagCome(accessToken, data);
