@@ -1,7 +1,7 @@
 import React , {useEffect, useState} from 'react';
 import { Mag } from '../../../../api';
 import { size, map } from 'lodash';
-import { Loader, Pagination } from 'semantic-ui-react';
+import { Loader, Pagination, Search } from 'semantic-ui-react';
 import {ComeItem} from "../ComeItem/ComeItem"
 
 const magController = new Mag();
@@ -11,46 +11,102 @@ export function ListComess(props) {
   const [mags, setMags] = useState(false);
   const [page, setPage] = useState(1);
   const [pagination, setPagination] = useState()
-  const actividad = 'cambio'
+  const [searchTerm, setSearchTerm] = useState('');
+  const actividad = 'cambio';
+
+  const fetchMags = async (page) => {
+    try {
+      const response = await magController.getMagActividadCambio(actividad, { page, limit: 2 });
+      return response;
+    } catch (error) {
+      console.error(error);
+      return { docs: [], limit: 0, page: 0, pages: 0, totalPages: 0 };
+    }
+  };
+
+  const loadMags = async () => {
+    const response = await fetchMags(page);
+    setMags(response.docs);
+    setPagination({
+      limit: response.limit,
+      page: response.page,
+      pages: response.pages,
+      total: response.totalPages,
+    });
+  };
+
+  const loadAllMags = async () => {
+    let allMags = [];
+    for (let i = 1; i <= pagination.total; i++) {
+      const response = await fetchMags(i);
+      allMags = allMags.concat(response.docs);
+    }
+    return allMags;
+  };
+
   useEffect(() => {
-    (async () =>{
-      try {
-        const response = await magController.getMagActividadCambio(actividad,{page, limit: 9});
-        setMags(response.docs);
-        setPagination({
-          limit: response.limit,
-          page: response.page,
-          pages: response.pages,
-          total: response.totalPages,
-        });
-      } catch (error) {
-        console.error(error)
-      }
-    })()
-  }, [page, reload])
+    loadMags();
+  }, [page, reload]);
 
-  const changePage=(_,data)=>{
+  useEffect(() => {
+    if (searchTerm) {
+      (async () => {
+        const allMags = await loadAllMags();
+        setMags(allMags);
+      })();
+    } else {
+      loadMags();
+    }
+  }, [searchTerm, reload]);
+
+  const changePage = (_, data) => {
     setPage(data.activePage);
-  }
+  };
 
-  if(!mags) return <Loader active inline="centered"/>
-  if(size(mags)===0) return "No hay cotizaciones"
+  const handleSearchChange = (_, { value }) => {
+    setSearchTerm(value);
+  };
+
+  const filterMags = () => {
+    if (!searchTerm) {
+      return mags;
+    } else {
+      return mags.filter(mag =>
+        (mag.folio && mag.folio.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (mag.folio_IyD && mag.folio_IyD.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (mag.folio_sCom && mag.folio_sCom.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (mag.cliente && mag.cliente.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (mag.cardcode && mag.cardcode.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (mag.asesor && mag.asesor.toString().toLowerCase().includes(searchTerm.toLowerCase()))
+      );
+    }
+  };
+
+  if (!mags) return <Loader active inline="centered" />;
+  if (mags.length === 0) return 'No hay cotizaciones';
 
   return (
-    <div className='list-cotizaciones'>
-      {map(mags, (mag)=>(
+    <div className="list-cotizaciones">
+      <Search
+        onSearchChange={handleSearchChange}
+        value={searchTerm}
+        placeholder="Buscar..."
+        showNoResults={false}
+      />
+      <br />
+      {map(filterMags(), mag => (
         <ComeItem key={mag._id} mag={mag} onReload={onReload} onClose={onClose} />
       ))}
-      <div className='list-cotizaciones__pagination'>
-      <Pagination
-            totalPages={pagination.total}
-            defaultActivePage={pagination.page}
-            ellipsisItem={null}
-            firstItem={null}
-            lastItem={null}
-            onPageChange={changePage}
-            />
+      <div className="list-cotizaciones__pagination">
+        <Pagination
+          totalPages={pagination.total}
+          defaultActivePage={pagination.page}
+          ellipsisItem={null}
+          firstItem={null}
+          lastItem={null}
+          onPageChange={changePage}
+        />
       </div>
     </div>
-  )
+  );
 }
