@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "./Inyde.scss";
-import { Button, Icon, Confirm } from 'semantic-ui-react';
+import { Button, Icon, Confirm, Label } from 'semantic-ui-react';
 import { BasicModal } from '../../../Shared';
 import { Mag } from '../../../../api';
 import { useAuth } from '../../../../hooks';
@@ -38,6 +38,7 @@ export function InydeItem(props) {
             console.error(error);
         }
     }
+    const getStatusColor = (status) => status ? 'green' : 'orange';
     let formview;
     if (mag.actividad === 'nueva') {
         formview = <InydeForm onClose={onOpenCloseModal} onReload={onReload} mag={mag} />;
@@ -59,6 +60,15 @@ export function InydeItem(props) {
                     <p className='cotizacion-item__info-asesor'>Nombre del cliente: {mag.cliente}</p>
                     <p className='cotizacion-item__info-actividad'>Actividad: {mag.actividad}</p>
                     <p className='cotizacion-item__info-actividad'>Fecha de Creación: {createdate}</p>
+                    <Label className={`cotizacion-item__info-statusinde ${getStatusColor(mag.sIyD)}`}>
+                        Estatus de Inv. y Desarollo: {mag.sIyD ? 'Finalizado' : 'Pendiente'}
+                    </Label>
+                    <Label className={`cotizacion-item__info-statusope ${getStatusColor(mag.sOp)}`}>
+                        Estatus de Operaciones: {mag.sOp ? 'Finalizado' : 'Pendiente'}
+                    </Label>
+                    <Label className={`cotizacion-item__info-statusgcome ${getStatusColor(mag.sCom)}`}>
+                        Estatus de Gestión Comercial: {mag.sCom ? 'Finalizado' : 'Pendiente'}
+                    </Label>
                 </div>
                 <div>
                     <Button icon primary onClick={openUpdateMag}>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import "./OpeItem.scss";
-import { Button, Icon } from 'semantic-ui-react';
+import { Button, Icon, Label } from 'semantic-ui-react';
 import { BasicModal } from '../../../Shared';
 import { OpeForm } from "../OpeForm"
 import { OpesForm } from "../OpesForm"
@@ -18,6 +18,7 @@ export function OpeItem(props) {
     setTitleModal(`Revisar cotización: ${mag.folio}`)
     onOpenCloseModal();
   }
+  const getStatusColor = (status) => status ? 'green' : 'orange';
 
   let formview;
   if (mag.actividad === 'nueva') {
@@ -56,7 +57,16 @@ export function OpeItem(props) {
         <div className='column'>
           <p className='cotizacion-item__info'>
             <span className='cotizacion-item__info-label'>Folio Operaciones:</span>
-            <span className='cotizacion-item__info-valor'>{mag.folio_Op}</span>
+            <span className='cotizacion-item__info-valor'>{mag.folio_Op}</span><br />
+            <Label className={`cotizacion-item__info-statusinde ${getStatusColor(mag.sIyD)}`}>
+            Estatus de Inv. y Desarollo: {mag.sIyD ? 'Finalizado' : 'Pendiente'}
+          </Label>
+          <Label className={`cotizacion-item__info-statusope ${getStatusColor(mag.sOp)}`}>
+            Estatus de Operaciones: {mag.sOp ? 'Finalizado' : 'Pendiente'}
+          </Label>
+          <Label className={`cotizacion-item__info-statusgcome ${getStatusColor(mag.sCom)}`}>
+            Estatus de Gestión Comercial: {mag.sCom ? 'Finalizado' : 'Pendiente'}
+          </Label>
           </p>
         </div>
         <div>

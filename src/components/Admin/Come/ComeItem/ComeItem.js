@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import "./ComeItem.scss";
-import { Button, Icon, Confirm } from 'semantic-ui-react';
+import { Button, Icon, Confirm, Label } from 'semantic-ui-react';
 import { BasicModal } from '../../../Shared';
 import { Mag } from '../../../../api';
 import { useAuth } from '../../../../hooks';
@@ -40,6 +40,9 @@ export function ComeItem(props) {
     }
   }
 
+  const getStatusColor = (status) => status ? 'green' : 'orange';
+
+
   return (
     <>
       <div className='cotizacion-item'>
@@ -65,7 +68,16 @@ export function ComeItem(props) {
         <div className='column'>
           <p className='cotizacion-item__info'>
             <span className='cotizacion-item__info-label'>Folio COME:</span>
-            <span className='cotizacion-item__info-valor'>{mag.folio_sCom}</span>
+            <span className='cotizacion-item__info-valor'>{mag.folio_sCom}</span><br />
+            <Label className={`cotizacion-item__info-statusinde ${getStatusColor(mag.sIyD)}`}>
+              Estatus de Inv. y Desarollo: {mag.sIyD ? 'Finalizado' : 'Pendiente'}
+            </Label>
+            <Label className={`cotizacion-item__info-statusope ${getStatusColor(mag.sOp)}`}>
+              Estatus de Operaciones: {mag.sOp ? 'Finalizado' : 'Pendiente'}
+            </Label>
+            <Label className={`cotizacion-item__info-statusgcome ${getStatusColor(mag.sCom)}`}>
+              Estatus de Gestión Comercial: {mag.sCom ? 'Finalizado' : 'Pendiente'}
+            </Label>
           </p>
         </div>
         <div className='button-container'>
