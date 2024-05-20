@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { Button, Icon } from 'semantic-ui-react';
+import { Button, Icon, Label } from 'semantic-ui-react';
 import { BasicModal } from '../../../Shared';
 import "./AsesorItem.scss";
 import { AsesorView } from '../AsesorForm';
@@ -11,12 +11,16 @@ export function AsesorItem(props) {
   const {mag, onReload} = props;
   const [showModal, setShowModal] = useState(false);
   const [titleModal, setTitleModal] = useState("");
-  const dxp = mag._id.substring(24,18);
+  const date = new Date(mag.created_at);
+  const createdate = date.toLocaleDateString();
   const onOpenCloseModal = ()=>setShowModal((prevState)=>!prevState);
   const openVerMag=()=>{
-    setTitleModal(`Revisar cotización: #${dxp}`);
+    setTitleModal(`Revisar cotización: ${mag.folio}`);
     onOpenCloseModal();
   }
+
+  const getStatusColor = (status) => status ? 'green' : 'orange';
+
 
   let contentView;
   if (mag.actividad === 'nueva') {
@@ -33,11 +37,19 @@ export function AsesorItem(props) {
     <>
     <div className='cotizacion-item'>
       <div className='cotizacion-item__info'>
-       <p>Cotización: <span className='cotizacion-item__info-dxp'># {dxp}</span></p> 
+       <p>Cotización: <span className='cotizacion-item__info-dxp'>{mag.folio}</span></p> 
        <p>Cliente: <span className='cotizacion-item__info-cliente'>{mag.cardcode}</span></p>
        <p>Actividad: <span className='cotizacion-item__info-cliente'>{mag.actividad}</span></p>
-       <p>Asesor: <span className='cotizacion-item__info-cliente'>{mag.asesor}</span></p>
-       <p>Fecha de Creacion: <span className='cotizacion-item__info-cliente'>{mag.created_at}</span></p>
+       <p>Fecha de Creacion: <span className='cotizacion-item__info-cliente'>{createdate}</span></p>
+       <Label className='cotizacion-item__info-statusinde' color='teal'>
+        Estatus de Inv. y Desarollo: {mag.sIyD? 'Finalizado' : 'Pendiente'}
+       </Label>
+       <Label className='cotizacion-item__info-statusope' color='teal'>
+        Estatus de Operaciones: {mag.sOp? 'Finalizado' : 'Pendiente'}
+       </Label>
+       <Label className='cotizacion-item__info-statusgcome' color='teal'>
+        Estatus de Gestión Comercial: {mag.sCom? 'Finalizado' : 'Pendiente'}
+       </Label>
       </div>
       <div>
         <Button icon primary onClick={openVerMag}>

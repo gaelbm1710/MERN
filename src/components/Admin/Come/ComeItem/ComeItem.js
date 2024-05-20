@@ -72,9 +72,6 @@ export function ComeItem(props) {
           <Button icon primary onClick={openUpdateMag}>
             <Icon name='edit' />
           </Button>
-          <Button icon color='red' onClick={onOpenCloseConfirm}>
-            <Icon name='trash alternate outline' />
-          </Button>
         </div>
       </div>
       <BasicModal show={showModal} close={onOpenCloseModal} title={titleModal}>
