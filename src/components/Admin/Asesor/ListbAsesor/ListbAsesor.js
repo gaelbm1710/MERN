@@ -19,7 +19,7 @@ export function ListbAsesor(props) {
     useEffect(() => {
         async function fetchData() {
           try {
-            const response = await magController.getMagByCambioBase(CorreoAsesor,{ page, limit: 9}); 
+            const response = await magController.getMagByCambioBase(CorreoAsesor,{ page, limit: 10}); 
             setMags(response.docs);
             setPagination({
               limit: response.limit,
