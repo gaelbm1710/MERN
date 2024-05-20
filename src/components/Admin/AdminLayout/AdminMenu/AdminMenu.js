@@ -136,7 +136,7 @@ export function AdminMenu() {
             <DropdownMenu className='admin-menu-lista'>
               <Menu.Item as={Link} to="/admin/inyde" active={isCurrentPath("/admin/inyde")}>
                 <Icon name='file alternate' />
-                Generar Cotización Magistral Nueva
+                Generar Cotización Magistral Derma Nueva
               </Menu.Item>
               <Menu.Item as={Link} to="/admin/inydes" active={isCurrentPath("/admin/inydes")}>
                 <Icon name='flask' />
@@ -164,7 +164,7 @@ export function AdminMenu() {
             <DropdownMenu className='admin-menu-lista'>
               <Menu.Item as={Link} to="/admin/ope" active={isCurrentPath("/admin/ope")}>
                 <Icon name='file alternate' />
-                Generar Cotización Magistral Nueva
+                Generar Cotización Magistral Derma Nueva
               </Menu.Item>
               <Menu.Item as={Link} to="/admin/opess" active={isCurrentPath("/admin/opess")}>
                 <Icon name='flask' />
@@ -189,7 +189,7 @@ export function AdminMenu() {
             <DropdownMenu className='admin-menu-lista'>
               <Menu.Item as={Link} to="/admin/gestioncomercial" active={isCurrentPath("/admin/gestioncomercial")}>
                 <Icon name='file alternate' />
-                Generar Cotización Magistral Nueva
+                Generar Cotización Magistral Derma Nueva
               </Menu.Item>
               <Menu.Item as={Link} to="/admin/gestioncomercials" active={isCurrentPath("/admin/gestioncomercials")}>
                 <Icon name='flask' />
@@ -217,7 +217,7 @@ export function AdminMenu() {
             <DropdownMenu className='admin-menu-lista'>
               <Menu.Item as={Link} to="/admin/asesor" active={isCurrentPath("/admin/asesor")}>
                 <Icon name='file alternate' />
-                Generar Cotización Magistral Nueva
+                Generar Cotización Magistral Derma Nueva
               </Menu.Item>
               <Menu.Item as={Link} to="/admin/presentacion" active={isCurrentPath("/admin/presentacion")}>
                 <Icon name='flask' />

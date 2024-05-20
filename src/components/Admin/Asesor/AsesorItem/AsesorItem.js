@@ -41,15 +41,15 @@ export function AsesorItem(props) {
        <p>Cliente: <span className='cotizacion-item__info-cliente'>{mag.cardcode}</span></p>
        <p>Actividad: <span className='cotizacion-item__info-cliente'>{mag.actividad}</span></p>
        <p>Fecha de Creacion: <span className='cotizacion-item__info-cliente'>{createdate}</span></p>
-       <Label className='cotizacion-item__info-statusinde' color='teal'>
-        Estatus de Inv. y Desarollo: {mag.sIyD? 'Finalizado' : 'Pendiente'}
-       </Label>
-       <Label className='cotizacion-item__info-statusope' color='teal'>
-        Estatus de Operaciones: {mag.sOp? 'Finalizado' : 'Pendiente'}
-       </Label>
-       <Label className='cotizacion-item__info-statusgcome' color='teal'>
-        Estatus de Gestión Comercial: {mag.sCom? 'Finalizado' : 'Pendiente'}
-       </Label>
+          <Label className={`cotizacion-item__info-statusinde ${getStatusColor(mag.sIyD)}`}>
+            Estatus de Inv. y Desarollo: {mag.sIyD ? 'Finalizado' : 'Pendiente'}
+          </Label>
+          <Label className={`cotizacion-item__info-statusope ${getStatusColor(mag.sOp)}`}>
+            Estatus de Operaciones: {mag.sOp ? 'Finalizado' : 'Pendiente'}
+          </Label>
+          <Label className={`cotizacion-item__info-statusgcome ${getStatusColor(mag.sCom)}`}>
+            Estatus de Gestión Comercial: {mag.sCom ? 'Finalizado' : 'Pendiente'}
+          </Label>
       </div>
       <div>
         <Button icon primary onClick={openVerMag}>
