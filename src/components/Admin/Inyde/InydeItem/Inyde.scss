@@ -1,9 +1,8 @@
-@import "~/src/scss/index.scss";
-
 .cotizacion-item {
     display: flex;
+    flex-wrap: nowrap; // Cambiado de wrap a nowrap
     justify-content: space-between;
-    align-items: center;
+    align-items: center; // Alinear verticalmente los elementos
     border-bottom: 1px solid #847e80;
     margin-bottom: 10px;
     padding-bottom: 10px;
@@ -16,45 +15,63 @@
 
     &__info {
         display: flex;
-        align-items: center;
-
-        &-inyde, &-dxp {
-            margin: 0;
-        }
+        flex-wrap: wrap;
+        align-items: center; // Alinear verticalmente los elementos
+        text-align: center; // Alinear el texto a la izquierda
+        width: 100%;
 
         &-inyde {
+            margin: 0;
             font-weight: normal;
             text-transform: capitalize;
         }
 
         &-dxp {
+            margin: 0;
             font-weight: bold;
             text-transform: uppercase;
         }
+
+        &-label {
+            font-weight: bold; // Hace que los encabezados estén en negritas
+        }
+
+        &-valor {
+            width: 200px;
+            word-break: break-all;
+            margin-left: 5px; // Un pequeño margen para separar los encabezados de sus valores
+        }
+
+        .estatus_Id,
+        .estatus_Ope,
+        .estatus_GC {
+            font-weight: bold;
+            margin-bottom: 2.5px; // Espacio entre los elementos y los otros datos
+            margin-left: auto;
+        }
     }
+
+
 
     // Media Queries for Responsiveness
     @media (max-width: 1024px) {
-        flex-wrap: wrap;
         justify-content: center;
-        text-align: center;
+        flex-direction: column;
 
         &__info {
-            flex-wrap: wrap;
             justify-content: center;
             text-align: center;
         }
     }
 
     @media (max-width: 768px) {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        padding-bottom: 5px;
+        margin-bottom: 5px;
+    }
 
-        &__info {
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
+    @media (max-width: 480px) {
+        padding-bottom: 3px;
+        margin-bottom: 3px;
+        border-bottom-width: 0;
     }
 }

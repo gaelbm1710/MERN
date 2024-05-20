@@ -8,8 +8,8 @@ export function Princ() {
     const Apellido = lastname;
     return (
         <div className='princ-page'>
-            <h1>¡Bienvenid@ a KAAPA!</h1>
-            <h2>¡Hola {Nombre} {Apellido}!</h2>
+            <h1>¡Bienvenid@ a KAAPA!</h1><br/>
+            <h2>¡Hola {Nombre} {Apellido}!</h2><br/>
             <h3>Tu plataforma digital diseñada para simplificar procesos y flujos de trabajo. Con su enfoque centrado en la eficiencia y la colaboración,
                 ofrece una amplia gama de herramientas y funcionalidades para optimizar la gestión de tareas, proyectos y equipos.
             </h3><br/>

@@ -1,10 +1,8 @@
-@import "~/src/scss/index.scss";
-
 .cotizacion-item {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap; // Cambiado de wrap a nowrap
     justify-content: space-between;
-    align-items: center;
+    align-items: center; // Alinear verticalmente los elementos
     border-bottom: 1px solid #847e80;
     margin-bottom: 10px;
     padding-bottom: 10px;
@@ -18,7 +16,9 @@
     &__info {
         display: flex;
         flex-wrap: wrap;
-        align-items: center;
+        align-items: center; // Alinear verticalmente los elementos
+        text-align: center; // Alinear el texto a la izquierda
+        width: 100%;
 
         &-inyde {
             margin: 0;
@@ -37,9 +37,20 @@
         }
 
         &-valor {
+            width: 200px;
+            word-break: break-all;
             margin-left: 5px; // Un pequeño margen para separar los encabezados de sus valores
         }
+
+        .estatus_Id,
+        .estatus_Ope,
+        .estatus_GC {
+            font-weight: bold;
+            margin-bottom: 2.5px; // Espacio entre los elementos y los otros datos
+            margin-left: auto;
+        }
     }
+
 
     // Media Queries for Responsiveness
     @media (max-width: 1024px) {
