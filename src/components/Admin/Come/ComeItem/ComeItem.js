@@ -43,13 +43,13 @@ export function ComeItem(props) {
   const getStatusColor = (status) => status ? 'green' : 'orange';
   let formview;
   if (mag.actividad === 'nueva') {
-      formview = <ComeForm onClose={onOpenCloseModal} onReload={onReload} mag={mag} />;
+    formview = <ComeForm onClose={onOpenCloseModal} onReload={onReload} mag={mag} />;
   } else if (mag.actividad === 'presentacion') {
-      formview = <ComesForm onClose={onOpenCloseModal} onReload={onReload} mag={mag} />;
+    formview = <ComesForm onClose={onOpenCloseModal} onReload={onReload} mag={mag} />;
   } else if (mag.actividad === 'cambio') {
-      formview = <ComessForm onClose={onOpenCloseModal} onReload={onReload} mag={mag} />;
+    formview = <ComessForm onClose={onOpenCloseModal} onReload={onReload} mag={mag} />;
   } else {
-      formview = <div>Error en sistema</div>
+    formview = <div>Error en sistema</div>
   }
 
   return (
@@ -59,6 +59,8 @@ export function ComeItem(props) {
           <p className='cotizacion-item__info'>
             <span className='cotizacion-item__info-label'>Folio:</span>
             <span className='cotizacion-item__info-valor'>{mag.folio}</span><br />
+            <span className='cotizacion-item__info-label'>Folio COME:</span>
+            <span className='cotizacion-item__info-valor'>{mag.folio_sCom}</span><br />
             <span className='cotizacion-item__info-label'>Creado:</span>
             <span className='cotizacion-item__info-valor'>{createdate}</span>
           </p>
@@ -70,16 +72,18 @@ export function ComeItem(props) {
             <span className='cotizacion-item__info-label'>Medico:</span>
             <span className='cotizacion-item__info-valor'>{mag.cardcode}</span>
             <span className='cotizacion-item__info-valor'>{mag.cliente}</span><br />
+          </p>
+        </div>
+        <div className='column'>
+          <p className='cotizacion-item__info'>
+            <span className='cotizacion-item__info-label'>Base:</span>
+            <span className='cotizacion-item__info-valor'>{mag.base}</span><br />
             <span className='cotizacion-item__info-label'>Activos:</span>
             <span className='cotizacion-item__info-valor'>{mag.activos}</span>
           </p>
         </div>
         <div className='column'>
           <p className='cotizacion-item__info'>
-          <span className='cotizacion-item__info-label'>Base:</span>
-            <span className='cotizacion-item__info-valor'>{mag.base}</span><br/>
-            <span className='cotizacion-item__info-label'>Folio COME:</span>
-            <span className='cotizacion-item__info-valor'>{mag.folio_sCom}</span><br />
             <label className='estatus_Id'>Estatus de Inv. y Desarollo: <Label className={`cotizacion-item__info-statusinde ${getStatusColor(mag.sIyD)}`}>
               {mag.sIyD ? 'Finalizado' : 'Pendiente'}
             </Label></label>

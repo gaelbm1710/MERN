@@ -56,6 +56,8 @@ export function InydeItem(props) {
                         <p className='cotizacion-item__info'>
                             <span className='cotizacion-item__info-label'>Folio:</span>
                             <span className='cotizacion-item__info-valor'>{mag.folio}</span><br />
+                            <span className='cotizacion-item__info-label'>Folio In. y De.:</span>
+                            <span className='cotizacion-item__info-valor'>{mag.folio_IyD}</span><br />
                             <span className='cotizacion-item__info-label'>Creado:</span>
                             <span className='cotizacion-item__info-valor'>{createdate}</span>
                         </p>
@@ -66,18 +68,20 @@ export function InydeItem(props) {
                             <span className='cotizacion-item__info-valor'>{mag.asesor}</span><br />
                             <span className='cotizacion-item__info-label'>Medico:</span>
                             <span className='cotizacion-item__info-valor'>{mag.cardcode}</span>
-                            <span className='cotizacion-item__info-valor'>{mag.cliente}</span><br />
-                            <span className='cotizacion-item__info-label'>Activos:</span>
-                            <span className='cotizacion-item__info-valor'>{mag.activos}</span>
+                            <span className='cotizacion-item__info-valor'>{mag.cliente}</span>
                         </p>
                     </div>
                     <div className='column'>
                         <p className='cotizacion-item__info'>
                             <span className='cotizacion-item__info-label'>Base:</span>
-                            <span className='cotizacion-item__info-valor'>{mag.base}</span><br />
-                            <span className='cotizacion-item__info-label'>Folio In. y De.:</span>
-                            <span className='cotizacion-item__info-valor'>{mag.folio_IyD}</span><br />
-                            <label className='estatus_Id'>Estatus de Inv. y Desarollo: <Label className={`cotizacion-item__info-statusinde ${getStatusColor(mag.sIyD)}`}>
+                            <span className='cotizacion-item__info-valor'>{mag.base}</span><br/>
+                            <span className='cotizacion-item__info-label'>Activos:</span>
+                            <span className='cotizacion-item__info-valor'>{mag.activos}</span>
+                        </p>
+                    </div>
+                    <div className='column'>
+                    <p className='cotizacion-item__info'>
+                             <label className='estatus_Id'>Estatus de Inv. y Desarollo: <Label className={`cotizacion-item__info-statusinde ${getStatusColor(mag.sIyD)}`}>
                                 {mag.sIyD ? 'Finalizado' : 'Pendiente'}
                             </Label></label>
                             <label className='estatus_Ope'>Estatus de Operaciones: <Label className={`cotizacion-item__info-statusope ${getStatusColor(mag.sOp)}`}>
