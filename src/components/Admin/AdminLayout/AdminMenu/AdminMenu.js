@@ -241,6 +241,8 @@ export function AdminMenu() {
       )}
       {isConta && (
         <>
+        <Dropdown item text='Gestión para Formulas'>
+        <DropdownMenu className='admin-menu-lista'>
           <Menu.Item as={Link} to="/admin/omicronshoppagos" active={isCurrentPath("/admin/omicronshoppagos")}>
             <Icon name='money bill alternate outline' />
             Pagos de OmicronShop
@@ -257,6 +259,8 @@ export function AdminMenu() {
             <Icon name='file' />
             Facturas pagadas
           </Menu.Item>
+          </DropdownMenu>
+          </Dropdown>
           <Dropdown item text='Ticket de Soporte'>
             <DropdownMenu className='admin-menu-lista'>
               <Menu.Item as="a" href="https://forms.office.com/pages/responsepage.aspx?id=pRffhtXT0kuFU3sNV6O3PBUZyAc4Wx5EiTVlITBFysBUNTRUM0QyRUszN1pSSUFTRlk5WEpIVklBMC4u" target="_blank">

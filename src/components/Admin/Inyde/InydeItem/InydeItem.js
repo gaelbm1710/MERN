@@ -52,6 +52,7 @@ export function InydeItem(props) {
     return (
         <>
             <div className='cotizacion-item'>
+<<<<<<< HEAD
             <div className='column'>
                         <p className='cotizacion-item__info'>
                             <span className='cotizacion-item__info-label'>Folio:</span>
@@ -93,6 +94,28 @@ export function InydeItem(props) {
                         </p>
                     </div>
                 <div className='button-container'>
+=======
+                <div className='cotizacion-item__info'>
+                    <p className='cotizacion-item__info-dxp'>Folio: {mag.folio}</p>
+                    <p className='cotizacion-item__info-dxp'>Folio In. y De.: {mag.folio_IyD}</p>
+                    <p className='cotizacion-item__info-asesor'>Asesor: {mag.asesornom}</p>
+                    <p className='cotizacion-item__info-asesor'>Correo de Asesor: {mag.asesor}</p>
+                    <p className='cotizacion-item__info-asesor'>CardCode: {mag.cardcode}</p>
+                    <p className='cotizacion-item__info-asesor'>Nombre del cliente: {mag.cliente}</p>
+                    <p className='cotizacion-item__info-actividad'>Actividad: {mag.actividad}</p>
+                    <p className='cotizacion-item__info-actividad'>Fecha de Creación: {createdate}</p>
+                    <Label className={`cotizacion-item__info-statusinde ${getStatusColor(mag.sIyD)}`}>
+                        Estatus de Inv. y Desarollo: {mag.sIyD ? 'Finalizado' : 'Pendiente'}
+                    </Label>
+                    <Label className={`cotizacion-item__info-statusope ${getStatusColor(mag.sOp)}`}>
+                        Estatus de Operaciones: {mag.sOp ? 'Finalizado' : 'Pendiente'}
+                    </Label>
+                    <Label className={`cotizacion-item__info-statusgcome ${getStatusColor(mag.sCom)}`}>
+                        Estatus de Gestión Comercial: {mag.sCom ? 'Finalizado' : 'Pendiente'}
+                    </Label>
+                </div>
+                <div>
+>>>>>>> f6513af (Cambios  21/05/2024 9:14)
                     <Button icon primary onClick={openUpdateMag}>
                         <Icon name='edit' />
                     </Button>

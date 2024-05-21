@@ -38,6 +38,8 @@ export function AsesorItem(props) {
     <div className='cotizacion-item'>
       <div className='cotizacion-item__info'>
        <p>Cotización: <span className='cotizacion-item__info-dxp'>{mag.folio}</span></p> 
+       <p>Asesor: <span className='cotizacion-item__info-cliente'>{mag.asesornom}</span></p>
+       <p>Correo Asesor: <span className='cotizacion-item__info-cliente'>{mag.asesor}</span></p>
        <p>Cliente: <span className='cotizacion-item__info-cliente'>{mag.cardcode}</span></p>
        <p>Actividad: <span className='cotizacion-item__info-cliente'>{mag.actividad}</span></p>
        <p>Fecha de Creacion: <span className='cotizacion-item__info-cliente'>{createdate}</span></p>

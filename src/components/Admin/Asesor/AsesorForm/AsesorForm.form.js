@@ -1,20 +1,22 @@
 import * as Yup from "yup";
 
-export function initialValues(mag, email){
-    return{
-        cardcode:"",
+export function initialValues(mag, email, nombreCompleto) {
+    return {
+        cardcode: "",
+        cliente: "",
         asesor: mag && mag.asesor ? mag.asesor : email,
-        base:"",
-        activos:"",
-        especialidad:"",
-        padecimiento:"",
-        necesita_muestra:false,
-        presentacion:"",
+        asesornom: mag && mag.asesornom ? mag.asesornom : nombreCompleto,
+        base: "",
+        activos: "",
+        especialidad: "",
+        padecimiento: "",
+        necesita_muestra: false,
+        presentacion: "",
         actividad: "nueva"
     }
 }
 
-export function validationSchema(mag){
+export function validationSchema() {
     return Yup.object({
         asesor: Yup.string().email(true).required(true),
         cardcode: Yup.string().required(true),
