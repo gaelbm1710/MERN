@@ -9,16 +9,17 @@ import { ENV } from '../../../../utils';
 import "./SoporteForm.scss";
 
 const servicios = [
-    { key: "SoporteTecnico", text: "Soporte Técnico", value: "SoporteTecnico" },
-    { key: "SoporteSistemas", text: "Soporte Sistemas", value: "SoporteSistemas" },
-    { key: "DMR", text: "Desarrollo o modificaciones de Reportes", value: "DMR" },
+    { key: "SoporteTecnico", text: "Soporte Técnico (0 - 3 días)", value: "SoporteTecnico" },
+    { key: "SoporteSistemas", text: "Soporte Sistemas (0 - 3 días)", value: "SoporteSistemas" },
+    { key: "DMR", text: "Desarrollo o modificaciones de Reportes (0 - 6 días)", value: "DMR" },
+    { key: "AC", text: "Asesorías y/o capacitaciones", value: "AC" },
     { key: "otro", text: "Otro", value: "otro" }
 ];
 
 const soporteController = new Soporte();
 
 export function SoporteForm(props) {
-    const { onClose, onReload, soporte } = props;
+    const { onClose, onReload, soporte } = props
     const { accessToken } = useAuth();
     const { user: { email } } = useAuth();
     const CorreoDueno = email;
@@ -29,10 +30,15 @@ export function SoporteForm(props) {
         validateOnChange: false,
         onSubmit: async (formValue) => {
             try {
+                const data = {
+                    servicio: formValue.servicio,
+                    descripcion: formValue.descripcion
+
+                };
                 if (!soporte) {
-                    await soporteController.createTicket(accessToken, formValue);
+                    await soporteController.createTicket(accessToken, data)
                 } else {
-                    await soporteController.updateTicket(accessToken, soporte._id, formValue);
+                    console.log("Esto no debería de pasar");
                 }
                 onReload();
                 onClose();
@@ -63,11 +69,12 @@ export function SoporteForm(props) {
     };
 
     return (
+
         <Form className='ticket-form' onSubmit={formik.handleSubmit}>
-            <Form.Dropdown label="Elige un tipo de Servicio" placeholder="Servicios" fluid selection multiple options={servicios} onChange={(_, data) => formik.setFieldValue("servicio", data.value)} value={formik.values.servicio || []} error={formik.errors.servicio} />
-            
+            <Form.Dropdown label="Elige un tipo de Servicio" placeholder="Servicio" options={servicios} fluid selection multiple onChange={(_, data) => formik.setFieldValue("servicio", data.value)} value={formik.values.servicio || []} error={formik.errors.servicio} />
+
             {/* Campo de entrada */}
-            <Form.Input />
+            <Form.Input label="Describa la incidencia o solicitud" name="descripcion" placeholder="Descripción" onChange={formik.handleChange} value={formik.values.descripcion} error={formik.errors.descripcion} />
 
             {/* Botón para subir documentos */}
             <div className='ticket-form__documento' {...getRootProps()}>
@@ -94,7 +101,10 @@ export function SoporteForm(props) {
             </div>
 
             {/* Botón de envío del formulario */}
-            <br></br><Button type="submit">Enviar</Button>
+            <br />
+            <Form.Button type='submit' primary fluid loading={formik.isSubmitting}>
+                {soporte ? "Revisar Ticket" : "Crear Ticket"}
+            </Form.Button>
         </Form>
-    );
+    )
 }
