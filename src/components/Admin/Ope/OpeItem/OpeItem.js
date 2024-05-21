@@ -46,6 +46,7 @@ export function OpeItem(props) {
         <div className='column'>
           <p className='cotizacion-item__info'>
             <span className='cotizacion-item__info-label'>Asesor:</span>
+            <span className='cotizacion-item__info-valor'>{mag.asesornom}</span>
             <span className='cotizacion-item__info-valor'>{mag.asesor}</span><br />
             <span className='cotizacion-item__info-label'>Medico:</span>
             <span className='cotizacion-item__info-valor'>{mag.cardcode}</span><br />
