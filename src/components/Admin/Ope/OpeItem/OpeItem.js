@@ -35,10 +35,13 @@ export function OpeItem(props) {
   return (
     <>
       <div className='cotizacion-item'>
-      <div className='column'>
+        <div className='column'>
           <p className='cotizacion-item__info'>
+            <br/>
             <span className='cotizacion-item__info-label'>Folio:</span>
             <span className='cotizacion-item__info-valor'>{mag.folio}</span><br />
+            <span className='cotizacion-item__info-label'>Folio Operaciones:</span>
+            <span className='cotizacion-item__info-valor'>{mag.folio_Op}</span><br />
             <span className='cotizacion-item__info-label'>Creado:</span>
             <span className='cotizacion-item__info-valor'>{createdate}</span>
           </p>
@@ -47,29 +50,34 @@ export function OpeItem(props) {
           <p className='cotizacion-item__info'>
             <span className='cotizacion-item__info-label'>Asesor:</span>
             <span className='cotizacion-item__info-valor'>{mag.asesor}</span><br />
+            <span className='cotizacion-item__info-valor'>{mag.asesornom}</span>
             <span className='cotizacion-item__info-label'>Medico:</span>
             <span className='cotizacion-item__info-valor'>{mag.cardcode}</span><br />
             <span className='cotizacion-item__info-valor'>{mag.cliente}</span><br />
+          </p>
+        </div>
+        <div className='column'>
+          <p className='cotizacion-item__info'>
+            <span className='cotizacion-item__info-label'>Base:</span>
+            <span className='cotizacion-item__info-valor'>{mag.base}</span><br />
             <span className='cotizacion-item__info-label'>Activos:</span>
             <span className='cotizacion-item__info-valor'>{mag.activos}</span>
           </p>
         </div>
         <div className='column'>
           <p className='cotizacion-item__info'>
-            <span className='cotizacion-item__info-label'>Folio Operaciones:</span>
-            <span className='cotizacion-item__info-valor'>{mag.folio_Op}</span><br />
-            <Label className={`cotizacion-item__info-statusinde ${getStatusColor(mag.sIyD)}`}>
-            Estatus de Inv. y Desarollo: {mag.sIyD ? 'Finalizado' : 'Pendiente'}
-          </Label>
-          <Label className={`cotizacion-item__info-statusope ${getStatusColor(mag.sOp)}`}>
-            Estatus de Operaciones: {mag.sOp ? 'Finalizado' : 'Pendiente'}
-          </Label>
-          <Label className={`cotizacion-item__info-statusgcome ${getStatusColor(mag.sCom)}`}>
-            Estatus de Gestión Comercial: {mag.sCom ? 'Finalizado' : 'Pendiente'}
-          </Label>
+            <label className='estatus_Id'>Estatus de Inv. y Desarollo: <Label className={`cotizacion-item__info-statusinde ${getStatusColor(mag.sIyD)}`}>
+              {mag.sIyD ? 'Finalizado' : 'Pendiente'}
+            </Label></label>
+            <label className='estatus_Ope'>Estatus de Operaciones: <Label className={`cotizacion-item__info-statusope ${getStatusColor(mag.sOp)}`}>
+              {mag.sOp ? 'Finalizado' : 'Pendiente'}
+            </Label></label>
+            <label className='estatus_GC'>Estatus de Gestión Comercial: <Label className={`cotizacion-item__info-statusgcome ${getStatusColor(mag.sCom)}`}>
+              {mag.sCom ? 'Finalizado' : 'Pendiente'}
+            </Label></label>
           </p>
         </div>
-        <div>
+        <div className='button-container'> 
           <Button icon primary onClick={openUpdateMag}>
             <Icon name='edit' />
           </Button>
