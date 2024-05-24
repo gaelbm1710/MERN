@@ -1,12 +1,12 @@
-import {ENV} from "../utils";
+import { ENV } from "../utils";
 
-export class User{
+export class User {
     baseApi = ENV.BASE_API;
 
-    async getMe(accessToken){
+    async getMe(accessToken) {
         try {
             const url = `${this.baseApi}/${ENV.API_ROUTES.USER_ME}`;
-            const params={ 
+            const params = {
                 headers: {
                     Authorization: `${accessToken}`
                 }
@@ -14,19 +14,20 @@ export class User{
             const response = await fetch(url, params);
             const result = await response.json();
 
-            if(response.status !== 200) throw result;
+            if (response.status !== 200) throw result;
+
             return result;
-        } catch(error) {
+        } catch (error) {
             throw error;
         }
     }
-    async createUser(accessToken, data){
-        try{
+    async createUser(accessToken, data) {
+        try {
             const formData = new FormData();
-            Object.keys(data).forEach((key)=>{
-                formData.append(key,data[key]);
+            Object.keys(data).forEach((key) => {
+                formData.append(key, data[key]);
             });
-            if(data.fileAvatar){
+            if (data.fileAvatar) {
                 formData.append("avatar", data.fileAvatar);
             }
             const url = `${this.baseApi}/${ENV.API_ROUTES.USER}`
@@ -39,50 +40,50 @@ export class User{
             };
             const response = await fetch(url, params);
             const result = await response.json();
-            if(response.status !== 201) throw result;
+            if (response.status !== 201) throw result;
             return result;
-        }catch(error){
+        } catch (error) {
             throw error;
         }
     }
-    async getUsers(accessToken, active = undefined){
+    async getUsers(accessToken, active = undefined) {
         try {
             const url = `${this.baseApi}/${ENV.API_ROUTES.USERS}?active=${active}`;
-            const params={
-                headers:{
+            const params = {
+                headers: {
                     Authorization: `Bearer ${accessToken}`
                 }
             }
             const response = await fetch(url, params);
             const result = await response.json();
-            if(response.status !== 200) throw result;
+            if (response.status !== 200) throw result;
             return result;
-        }catch(error) {
+        } catch (error) {
             throw error;
         }
     }
-    async updateUser(accessToken, idUser, userData){
+    async updateUser(accessToken, idUser, userData) {
         try {
             const data = userData;
-            if(data.password) delete data.password
+            if (data.password) delete data.password
             const formData = new FormData();
-            Object.keys(data).forEach((key)=>{
-                formData.append(key,data[key]);
+            Object.keys(data).forEach((key) => {
+                formData.append(key, data[key]);
             });
-            if(data.fileAvatar){
+            if (data.fileAvatar) {
                 formData.append("avatar", data.fileAvatar);
             }
             const url = `${ENV.BASE_API}/${ENV.API_ROUTES.USER}/${idUser}`
-            const params ={
+            const params = {
                 method: "PATCH",
-                headers:{
+                headers: {
                     Authorization: `Bearer ${accessToken}`,
                 },
                 body: formData,
             };
             const response = await fetch(url, params);
             const result = await response.json();
-            if(response.status !== 200) throw result;
+            if (response.status !== 200) throw result;
             return result;
         } catch (error) {
             throw error;
@@ -91,46 +92,46 @@ export class User{
     async updateUserActive(accessToken, idUser, userData) {
         try {
             const data = userData;
-            if(data.password) delete data.password
+            if (data.password) delete data.password
             const formData = new FormData();
-            console.log('Correo userdata: ',userData.email);
-            Object.keys(data).forEach((key)=>{
-                formData.append(key,data[key]);
+            console.log('Correo userdata: ', userData.email);
+            Object.keys(data).forEach((key) => {
+                formData.append(key, data[key]);
             });
-            if(data.fileAvatar){
+            if (data.fileAvatar) {
                 formData.append("avatar", data.fileAvatar);
             }
             const url = `${ENV.BASE_API}/${ENV.API_ROUTES.USERR}/${idUser}`
-            const params ={
+            const params = {
                 method: "PATCH",
-                headers:{
+                headers: {
                     Authorization: `Bearer ${accessToken}`,
                 },
                 body: formData,
             };
             const response = await fetch(url, params);
             const result = await response.json();
-            console.log('Correo userdata: ',userData.email);
-            console.log('Correo formdata: ',formData.email);
-            if(response.status !== 200) throw result;
+            console.log('Correo userdata: ', userData.email);
+            console.log('Correo formdata: ', formData.email);
+            if (response.status !== 200) throw result;
             return result;
         } catch (error) {
             throw error;
         }
     }
 
-    async deleteUser(accessToken, idUser){
+    async deleteUser(accessToken, idUser) {
         try {
             const url = `${this.baseApi}/${ENV.API_ROUTES.USER}/${idUser}`;
-            const params= {
+            const params = {
                 method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${accessToken}`
                 },
             };
-            const response = await fetch(url,params);
+            const response = await fetch(url, params);
             const result = await response.json();
-            if(response.status !== 200) throw result;
+            if (response.status !== 200) throw result;
             return result;
         } catch (error) {
             throw error;

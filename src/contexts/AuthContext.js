@@ -1,42 +1,43 @@
-import {useState, useEffect, createContext } from "react";
-import {User, Auth} from "../api";
-import {hasExpiredToken} from "../utils";
+import { useState, useEffect, createContext, useMemo } from "react";
+import { User, Auth } from "../api";
+import { hasExpiredToken } from "../utils";
 
 const userController = new User();
 const authController = new Auth();
 
 export const AuthContext = createContext();
 
-export function AuthProvider(props){
-    const {children} = props;
+export function AuthProvider(props) {
+    const { children } = props;
     const [user, setUser] = useState(null);
     const [token, setToken] = useState(null);
     const [loading, setLoading] = useState(true);
-    useEffect(()=>{
-        (async () =>{
+
+    useEffect(() => {
+        (async () => {
             const accessToken = authController.getAccessToken();
             const refreshToken = authController.getRefreshToken();
-            if(!accessToken || !refreshToken){
+            if (!accessToken || !refreshToken) {
                 logout();
                 setLoading(false);
                 return;
             }
-            if(hasExpiredToken(accessToken)){
-                if(hasExpiredToken(refreshToken)){
+            if (hasExpiredToken(accessToken)) {
+                if (hasExpiredToken(refreshToken)) {
                     logout();
-                }else{
+                } else {
                     await reLogin(refreshToken);
                 }
-            }else{
+            } else {
                 await login(accessToken);
             }
             setLoading(false);
         })();
-    }, );
+    }, []);
 
-    const reLogin = async (refreshToken)=>{
+    const reLogin = async (refreshToken) => {
         try {
-            const {accessToken} = await authController.refreshAccessToken(refreshToken);
+            const { accessToken } = await authController.refreshAccessToken(refreshToken);
             authController.setAccessToken(accessToken);
             await login(accessToken);
         } catch (error) {
@@ -44,14 +45,13 @@ export function AuthProvider(props){
         }
     }
 
-
-    const logout = ()=>{
+    const logout = () => {
         setUser(null);
         setToken(null);
         authController.removeTokens();
     }
 
-    const login = async (accessToken) =>{
+    const login = async (accessToken) => {
         try {
             const response = await userController.getMe(accessToken);
             delete response.password;
@@ -62,14 +62,14 @@ export function AuthProvider(props){
         }
     };
 
-    const data = {
+    const data = useMemo(() => ({
         accessToken: token,
         user,
         login,
         logout
-    };
+    }), [token, user]);
 
-    if(loading) return null;
+    if (loading) return null;
 
     return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>
 }

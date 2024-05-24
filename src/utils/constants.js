@@ -1,12 +1,12 @@
 
 export const ENV = {
     //Conexion prod
-   BASE_PATH: `https://kaapa-backend.azurewebsites.net/`, 
-   BASE_API: `https://kaapa-backend.azurewebsites.net/api/v1`,
+    BASE_PATH: `https://kaapa-backend.azurewebsites.net/`,
+    BASE_API: `https://kaapa-backend.azurewebsites.net/api/v1`,
     //Conexion Local
     //BASE_PATH: `http://localhost:8080`,
     //BASE_API: `http://localhost:8080/api/v1`,
-    API_ROUTES:{
+    API_ROUTES: {
         REGISTER: "auth/register",
         LOGIN: "auth/login",
         REFRESH_ACCESS_TOKEN: "auth/refresh_acces_token",
@@ -20,12 +20,12 @@ export const ENV = {
         BLOG: "post",
         MAG: "mag",
         MAGS: "mags",
-        MAGI:"magi",
-        MAGIS:"magis",
+        MAGI: "magi",
+        MAGIS: "magis",
         OPE: "ope",
         OPES: "opes",
-        OPEI:"opei",
-        OPEIS:"opeis",
+        OPEI: "opei",
+        OPEIS: "opeis",
         COME: "come",
         COMES: "comes",
         COMEI: "comei",
@@ -34,7 +34,15 @@ export const ENV = {
         CONTAS: "contas",
         CREDITO: "credito",
         CREDITOS: "creditos",
+        CONTAR: "contar",
+        CREDITOR: "creditor",
+        PAGAR: "pagar",
         PAGOS: "pagos",
+        ECONTA: "econta",
+        ECREDITO: "ecredito",
+        EPAGOS: "epagos",
+        CREDTIOSS: "creditoss",
+        PAGOSF: "pagosf",
         SOPORTE: "soporte"
     },
     JWT: {
