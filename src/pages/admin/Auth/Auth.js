@@ -4,9 +4,9 @@ import { Icon } from "../../../assets";
 import "./Auth.scss";
 import { RegisterForm, LoginForm } from "../../../components/Admin/Auth";
 import { Carousel } from 'react-responsive-carousel';
-import img1 from "../../../assets/carousel/KAAPA_Foto-1.png";
-import img2 from "../../../assets/carousel/KAAPA_Foto-2.png";
-import img3 from "../../../assets/carousel/KAAPA_Foto-3.png";
+import img1 from "../../../assets/carousel/KAAPA_Imagen-02.png";
+import img2 from "../../../assets/carousel/KAAPA_Imagen-03.png";
+import img3 from "../../../assets/carousel/KAAPA_Imagen-04.png";
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 
 export function Auth() {

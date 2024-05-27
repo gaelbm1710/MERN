@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { Button, Icon, Label } from 'semantic-ui-react';
 import { BasicModal } from '../../../Shared';
 import "./AsesorItem.scss";
@@ -8,13 +8,13 @@ import { AsesorViewb } from "../AsesorFormb"
 
 
 export function AsesorItem(props) {
-  const {mag, onReload} = props;
+  const { mag, onReload } = props;
   const [showModal, setShowModal] = useState(false);
   const [titleModal, setTitleModal] = useState("");
   const date = new Date(mag.created_at);
   const createdate = date.toLocaleDateString();
-  const onOpenCloseModal = ()=>setShowModal((prevState)=>!prevState);
-  const openVerMag=()=>{
+  const onOpenCloseModal = () => setShowModal((prevState) => !prevState);
+  const openVerMag = () => {
     setTitleModal(`Revisar cotización: ${mag.folio}`);
     onOpenCloseModal();
   }
@@ -29,39 +29,59 @@ export function AsesorItem(props) {
     contentView = <AsesorViewa onClose={onOpenCloseModal} onReload={onReload} mag={mag} />;
   } else if (mag.actividad === 'cambio') {
     contentView = <AsesorViewb onClose={onOpenCloseModal} onReload={onReload} mag={mag} />;
-  }else{
+  } else {
     contentView = <div>Error en sistema</div>
   }
 
   return (
     <>
-    <div className='cotizacion-item'>
-      <div className='cotizacion-item__info'>
-       <p>Cotización: <span className='cotizacion-item__info-dxp'>{mag.folio}</span></p> 
-       <p>Asesor: <span className='cotizacion-item__info-cliente'>{mag.asesornom}</span></p>
-       <p>Correo Asesor: <span className='cotizacion-item__info-cliente'>{mag.asesor}</span></p>
-       <p>Cliente: <span className='cotizacion-item__info-cliente'>{mag.cardcode}</span></p>
-       <p>Actividad: <span className='cotizacion-item__info-cliente'>{mag.actividad}</span></p>
-       <p>Fecha de Creacion: <span className='cotizacion-item__info-cliente'>{createdate}</span></p>
-          <Label className={`cotizacion-item__info-statusinde ${getStatusColor(mag.sIyD)}`}>
-            Estatus de Inv. y Desarollo: {mag.sIyD ? 'Finalizado' : 'Pendiente'}
-          </Label>
-          <Label className={`cotizacion-item__info-statusope ${getStatusColor(mag.sOp)}`}>
-            Estatus de Operaciones: {mag.sOp ? 'Finalizado' : 'Pendiente'}
-          </Label>
-          <Label className={`cotizacion-item__info-statusgcome ${getStatusColor(mag.sCom)}`}>
-            Estatus de Gestión Comercial: {mag.sCom ? 'Finalizado' : 'Pendiente'}
-          </Label>
+      <div className='cotizacion-item'>
+        <div className='column'>
+          <p className='cotizacion-item__info'>
+            <span className='cotizacion-item__info-label'>Cotización:</span>
+            <span className='cotizacion-item__info-valor'>{mag.folio}</span><br />
+            <span className='cotizacion-item__info-label'>Creado:</span>
+            <span className='cotizacion-item__info-valor'>{createdate}</span>
+          </p>
+        </div>
+        <div className='column'>
+          <p className='cotizacion-item__info'>
+            <span className='cotizacion-item__info-label'>Correo Asesor:</span>
+            <span className='cotizacion-item__info-valor'>{mag.asesor}</span><br />
+            <span className='cotizacion-item__info-label'>Asesor:</span>
+            <span className='cotizacion-item__info-valor'>{mag.asesornom}</span>
+          </p>
+        </div>
+        <div className='column'>
+          <p className='cotizacion-item__info'>
+            <span className='cotizacion-item__info-label'>Actividad:</span>
+            <span className='cotizacion-item__info-valor'>{mag.actividad}</span><br />
+            <span className='cotizacion-item__info-label'>Cliente:</span>
+            <span className='cotizacion-item__info-valor'>{mag.cardcode}</span>
+          </p>
+        </div>
+        <div className='column'>
+          <p className='cotizacion-item__info'>
+            <label className='estatus_Id'>Estatus de Inv. y Desarollo: <Label className={`cotizacion-item__info-statusinde ${getStatusColor(mag.sIyD)}`}>
+              {mag.sIyD ? 'Finalizado' : 'Pendiente'}
+            </Label></label>
+            <label className='estatus_Ope'>Estatus de Operaciones: <Label className={`cotizacion-item__info-statusope ${getStatusColor(mag.sOp)}`}>
+              {mag.sOp ? 'Finalizado' : 'Pendiente'}
+            </Label></label>
+            <label className='estatus_GC'>Estatus de Gestión Comercial: <Label className={`cotizacion-item__info-statusgcome ${getStatusColor(mag.sCom)}`}>
+              {mag.sCom ? 'Finalizado' : 'Pendiente'}
+            </Label></label>
+          </p>
+        </div>
+        <div>
+          <Button icon primary onClick={openVerMag}>
+            <Icon name='eye' />
+          </Button>
+        </div>
       </div>
-      <div>
-        <Button icon primary onClick={openVerMag}>
-          <Icon name='eye'/>
-        </Button>
-      </div>
-    </div>
-    <BasicModal show={showModal} close={onOpenCloseModal} title={titleModal}>
-      {contentView}
-    </BasicModal>
+      <BasicModal show={showModal} close={onOpenCloseModal} title={titleModal}>
+        {contentView}
+      </BasicModal>
     </>
   )
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import logokaapa from "../../assets/svg/KAAPA2-Logo-2.svg";
+import logokaapa from "../../assets/svg/KAAPA_Logo-Negativo.svg";
 import "./AdminLayout.scss";
 import { AdminMenu, Logout } from "../../components/Admin/AdminLayout"
 
