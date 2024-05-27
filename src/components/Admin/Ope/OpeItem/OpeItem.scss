@@ -1,14 +1,14 @@
 @import "~/src/scss/index.scss";
-
 .cotizacion-item {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #847e80;
+    align-content: center;
+    border-bottom: 1px solid #867f81;
+    padding-bottom: 20px;
+    margin-top: 30px;
     margin-bottom: 10px;
-    padding-bottom: 10px;
 
-    &:nth-last-of-type(2) {
+    &:last-of-type {
         margin-bottom: 0;
         padding-bottom: 0;
         border: 0;
@@ -16,31 +16,84 @@
 
     &__info {
         display: flex;
-        align-items: center;
-
-        &-inyde {
-            margin: 0;
-            font-weight: normal;
-            text-transform: capitalize;
-        }
+        flex-direction: column;
+        align-items: center; // Centrar los elementos
+        text-align: center;  // Alinear el texto al centro
 
         &-dxp {
-            margin: 0;
             font-weight: bold;
-            text-transform: uppercase;
+        }
+
+        &-cliente {
+            opacity: 0.6;
+        }
+
+        &-statusinde,
+        &-statusope,
+        &-statusgcome {
+            margin-top: 5px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: white; // Color del texto en blanco para mejor visibilidad
+        }
+
+        .green {
+            background-color: green; // Color verde para finalizados
+        }
+
+        .orange {
+            background-color: orange; // Color naranja para pendientes
         }
     }
 
-    // Media Queries for Responsiveness
-    @media (max-width: 768px) {
-        flex-direction: column; // Cambia a dirección de columna en pantallas pequeñas
-        justify-content: center; // Centra los elementos en pantallas pequeñas
-        text-align: center; // Centra el texto en pantallas pequeñas
+    @media (max-width: 1024px) {
+        flex-direction: column;
+        align-items: flex-start;
 
         &__info {
-            flex-direction: column; // Cambia a dirección de columna en pantallas pequeñas
-            justify-content: center; // Centra los elementos en pantallas pequeñas
-            align-items: center; // Centra los elementos en pantallas pequeñas
+            margin-bottom: 10px;
+
+            &-dxp {
+                font-size: 16px;
+            }
+
+            &-cliente {
+                font-size: 14px;
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: flex-start;
+
+        &__info {
+            margin-bottom: 8px;
+
+            &-dxp {
+                font-size: 14px;
+            }
+
+            &-cliente {
+                font-size: 12px;
+            }
+        }
+    }
+
+    @media (max-width: 480px) {
+        flex-direction: column;
+        align-items: flex-start;
+
+        &__info {
+            margin-bottom: 6px;
+
+            &-dxp {
+                font-size: 12px;
+            }
+
+            &-cliente {
+                font-size: 10px;
+            }
         }
     }
 }

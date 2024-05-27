@@ -1,13 +1,13 @@
 .cotizacion-item {
     display: flex;
-    flex-wrap: nowrap; // Cambiado de wrap a nowrap
     justify-content: space-between;
-    align-items: center; // Alinear verticalmente los elementos
-    border-bottom: 1px solid #847e80;
+    align-content: center;
+    border-bottom: 1px solid #867f81;
+    padding-bottom: 20px;
+    margin-top: 30px;
     margin-bottom: 10px;
-    padding-bottom: 10px;
 
-    &:nth-last-of-type(2) {
+    &:last-of-type {
         margin-bottom: 0;
         padding-bottom: 0;
         border: 0;
@@ -15,62 +15,84 @@
 
     &__info {
         display: flex;
-        flex-wrap: wrap;
-        align-items: center; // Alinear verticalmente los elementos
-        text-align: center; // Alinear el texto a la izquierda
-        width: 100%;
-
-        &-inyde {
-            margin: 0;
-            font-weight: normal;
-            text-transform: capitalize;
-        }
+        flex-direction: column;
+        align-items: center; // Centrar los elementos
+        text-align: center;  // Alinear el texto al centro
 
         &-dxp {
-            margin: 0;
             font-weight: bold;
-            text-transform: uppercase;
         }
 
-        &-label {
-            font-weight: bold; // Hace que los encabezados estén en negritas
+        &-cliente {
+            opacity: 0.6;
         }
 
-        &-valor {
-            width: 200px;
-            word-break: break-all;
-            margin-left: 5px; // Un pequeño margen para separar los encabezados de sus valores
+        &-statusinde,
+        &-statusope,
+        &-statusgcome {
+            margin-top: 5px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: white; // Color del texto en blanco para mejor visibilidad
         }
 
-        .estatus_Id,
-        .estatus_Ope,
-        .estatus_GC {
-            font-weight: bold;
-            margin-bottom: 2.5px; // Espacio entre los elementos y los otros datos
-            margin-left: auto;
+        .green {
+            background-color: green; // Color verde para finalizados
+        }
+
+        .orange {
+            background-color: orange; // Color naranja para pendientes
         }
     }
 
-
-    // Media Queries for Responsiveness
     @media (max-width: 1024px) {
-        justify-content: center;
         flex-direction: column;
+        align-items: flex-start;
 
         &__info {
-            justify-content: center;
-            text-align: center;
+            margin-bottom: 10px;
+
+            &-dxp {
+                font-size: 16px;
+            }
+
+            &-cliente {
+                font-size: 14px;
+            }
         }
     }
 
     @media (max-width: 768px) {
-        padding-bottom: 5px;
-        margin-bottom: 5px;
+        flex-direction: column;
+        align-items: flex-start;
+
+        &__info {
+            margin-bottom: 8px;
+
+            &-dxp {
+                font-size: 14px;
+            }
+
+            &-cliente {
+                font-size: 12px;
+            }
+        }
     }
 
     @media (max-width: 480px) {
-        padding-bottom: 3px;
-        margin-bottom: 3px;
-        border-bottom-width: 0;
+        flex-direction: column;
+        align-items: flex-start;
+
+        &__info {
+            margin-bottom: 6px;
+
+            &-dxp {
+                font-size: 12px;
+            }
+
+            &-cliente {
+                font-size: 10px;
+            }
+        }
     }
 }
