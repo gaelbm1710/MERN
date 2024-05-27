@@ -30,6 +30,7 @@ export class User {
             if (data.fileAvatar) {
                 formData.append("avatar", data.fileAvatar);
             }
+            console.log(data.fileAvatar);
             const url = `${this.baseApi}/${ENV.API_ROUTES.USER}`
             const params = {
                 method: "POST",
