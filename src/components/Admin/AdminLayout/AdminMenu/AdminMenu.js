@@ -241,25 +241,25 @@ export function AdminMenu() {
       )}
       {isConta && (
         <>
-        <Dropdown item text='Gestión para Formulas'>
-        <DropdownMenu className='admin-menu-lista'>
-          <Menu.Item as={Link} to="/admin/omicronshoppagos" active={isCurrentPath("/admin/omicronshoppagos")}>
-            <Icon name='money bill alternate outline' />
-            Pagos de OmicronShop
-          </Menu.Item>
-          <Menu.Item as={Link} to="/admin/transaccionescredito" active={isCurrentPath("/admin/transaccionescredito")}>
-            <Icon name='money bill alternate outline' />
-            Transacciones de Crédito
-          </Menu.Item>
-          <Menu.Item as={Link} to="/admin/clientescreditos" active={isCurrentPath("/admin/clientescreditos")}>
-            <Icon name='money bill alternate outline' />
-            Clientes con Crédito
-          </Menu.Item>
-          <Menu.Item as={Link} to="/admin/facturapagas" active={isCurrentPath("/admin/facturapagas")}>
-            <Icon name='file' />
-            Facturas pagadas
-          </Menu.Item>
-          </DropdownMenu>
+          <Dropdown item text='Reportes de Pagos'>
+            <DropdownMenu className='admin-menu-lista'>
+              <Menu.Item as={Link} to="/admin/omicronshoppagos" active={isCurrentPath("/admin/omicronshoppagos")}>
+                <Icon name='money bill alternate outline' />
+                Pagos de OmicronShop
+              </Menu.Item>
+              <Menu.Item as={Link} to="/admin/transaccionescredito" active={isCurrentPath("/admin/transaccionescredito")}>
+                <Icon name='money bill alternate outline' />
+                Transacciones de Crédito
+              </Menu.Item>
+              <Menu.Item as={Link} to="/admin/clientescreditos" active={isCurrentPath("/admin/clientescreditos")}>
+                <Icon name='money bill alternate outline' />
+                Clientes con Crédito
+              </Menu.Item>
+              <Menu.Item as={Link} to="/admin/facturapagas" active={isCurrentPath("/admin/facturapagas")}>
+                <Icon name='file' />
+                Facturas pagadas
+              </Menu.Item>
+            </DropdownMenu>
           </Dropdown>
           <Dropdown item text='Ticket de Soporte'>
             <DropdownMenu className='admin-menu-lista'>
