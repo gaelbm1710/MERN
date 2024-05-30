@@ -104,7 +104,7 @@ export function Facturapagas() {
     return (
         <>
             <div className="title">
-                <h1>Pagos en OmicronShop</h1>
+                <h1>Pagos de Facturas</h1>
             </div>
             <div className="export-button">
                 <Button value="exportar" primary onClick={contaController.exportReportePagosFacturas}>Exportar</Button>

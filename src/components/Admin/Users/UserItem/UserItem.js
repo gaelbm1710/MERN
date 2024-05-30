@@ -62,15 +62,13 @@ export function UserItem(props) {
         }
     };
 
-    const imageUrl = user.avatar ? `${ENV.BASE_PATH}/${user.avatar}` : image.noAvatar;
+    const imageUrl = user.avatar ? `${ENV.USUSARIOS}/${user.avatar}` : image.noAvatar;
 
     return (
         <>
             <div className='user-item'>
                 <div className='user-item__info'>
                     <Image avatar src={imageUrl} />
-                    {console.log('user.avatar:', user.avatar)}
-                    {console.log('Imagen completa:', imageUrl)}
                     <div>
                         <p>Nombre: {user.firstname} {user.lastname}</p>
                         <p>Email: {user.email}</p>
