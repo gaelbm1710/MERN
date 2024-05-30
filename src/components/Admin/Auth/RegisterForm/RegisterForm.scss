@@ -10,6 +10,13 @@
         text-align: center;
     }
 
+    .info-button{
+        text-align: center;
+        padding-left: 100px;
+        padding-right: 100px;
+        cursor: pointer;
+    }
+
     // Media Queries for Responsiveness
     @media (max-width: 1024px) {
         padding: 18px;
