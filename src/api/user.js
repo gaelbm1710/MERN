@@ -71,7 +71,7 @@ export class User {
     async updateUser(accessToken, idUser, userData) {
         try {
             const data = userData;
-            if (data.password) delete data.password
+            if (!data.password) delete data.password
             const formData = new FormData();
             Object.keys(data).forEach((key) => {
                 if (key === 'fileAvatar') {
@@ -99,7 +99,7 @@ export class User {
     async updateUserActive(accessToken, idUser, userData) {
         try {
             const data = userData;
-            if (data.password) delete data.password
+            if (!data.password) delete data.password
             const formData = new FormData();
             console.log('Correo userdata: ', userData.email);
             Object.keys(data).forEach((key) => {
