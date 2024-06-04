@@ -51,9 +51,10 @@ export function USerForm(props) {
         formik.setFieldValue("avatar", URL.createObjectURL(file))
         formik.setFieldValue("fileAvatar", file);
     });
+
     const { getRootProps, getInputProps } = useDropzone({
         accept: {
-            "image/*": [".jpg", ".jpeg"],
+            "image/*": [".jpg", ".jpeg", ".png"],
         },
         onDrop
     })
@@ -62,7 +63,7 @@ export function USerForm(props) {
         if (formik.values.fileAvatar) {
             return formik.values.avatar;
         } else if (formik.values.avatar) {
-            return `${ENV.BASE_PATH}/${formik.values.avatar}`;
+            return `${ENV.USUSARIOS}/avatar/${formik.values.avatar}`;
         }
         return image.noAvatar;
     }
@@ -70,7 +71,7 @@ export function USerForm(props) {
     return (
         <Form className='user-form' onSubmit={formik.handleSubmit}>
             <div className='user-form__avatar' {...getRootProps()}>
-                <input {...getInputProps()} />
+                <input {...getInputProps()} name='avatar' />
                 <Image avatar size='small' src={getAvatar()} />
             </div>
             <Form.Group widths="equal">
