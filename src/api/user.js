@@ -21,17 +21,19 @@ export class User {
             throw error;
         }
     }
+
     async createUser(accessToken, data) {
         try {
             const formData = new FormData();
             Object.keys(data).forEach((key) => {
-                formData.append(key, data[key]);
+                if (key === 'fileAvatar') {
+                    formData.append('avatar', data[key]);
+                } else {
+                    formData.append(key, data[key]);
+                }
             });
-            if (data.fileAvatar) {
-                formData.append("avatar", data.fileAvatar);
-            }
-            console.log(data.fileAvatar);
-            const url = `${this.baseApi}/${ENV.API_ROUTES.USER}`
+
+            const url = `${this.baseApi}/${ENV.API_ROUTES.USER}`;
             const params = {
                 method: "POST",
                 headers: {
@@ -39,6 +41,7 @@ export class User {
                 },
                 body: formData,
             };
+
             const response = await fetch(url, params);
             const result = await response.json();
             if (response.status !== 201) throw result;
@@ -47,6 +50,8 @@ export class User {
             throw error;
         }
     }
+
+
     async getUsers(accessToken, active = undefined) {
         try {
             const url = `${this.baseApi}/${ENV.API_ROUTES.USERS}?active=${active}`;
@@ -66,14 +71,15 @@ export class User {
     async updateUser(accessToken, idUser, userData) {
         try {
             const data = userData;
-            if (data.password) delete data.password
+            if (!data.password) delete data.password
             const formData = new FormData();
             Object.keys(data).forEach((key) => {
-                formData.append(key, data[key]);
+                if (key === 'fileAvatar') {
+                    formData.append('avatar', data[key]);
+                } else {
+                    formData.append(key, data[key]);
+                }
             });
-            if (data.fileAvatar) {
-                formData.append("avatar", data.fileAvatar);
-            }
             const url = `${ENV.BASE_API}/${ENV.API_ROUTES.USER}/${idUser}`
             const params = {
                 method: "PATCH",
@@ -93,7 +99,7 @@ export class User {
     async updateUserActive(accessToken, idUser, userData) {
         try {
             const data = userData;
-            if (data.password) delete data.password
+            if (!data.password) delete data.password
             const formData = new FormData();
             console.log('Correo userdata: ', userData.email);
             Object.keys(data).forEach((key) => {

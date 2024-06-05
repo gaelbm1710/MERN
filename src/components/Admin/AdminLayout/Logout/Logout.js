@@ -1,12 +1,15 @@
 import React from 'react';
-import { Button, Dropdown, Icon } from "semantic-ui-react";
+import { Dropdown, Image } from "semantic-ui-react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../../hooks";
+import { image } from "../../../../assets";
+import { ENV } from '../../../../utils';
+import "./Logout.scss";
+
 
 export function Logout() {
-    const { logout } = useAuth();
+    const { logout, user: { avatar } } = useAuth();
     const navigate = useNavigate();
-
     const onLogout = () => {
         logout();
         navigate("/");
@@ -18,28 +21,21 @@ export function Logout() {
         { key: 'logout', text: 'Cerrar Sesión', icon: 'sign-out', onClick: onLogout },
     ];
 
-    const profileIconStyle ={
+    const profileIconStyle = {
         fontSize: '20px',
         alignItems: 'center',
     };
 
+    const imagenUrl = avatar ? `${ENV.USUSARIOS}/${avatar}` : image.noAvatar;
+
     return (
-        <div style={{ display: 'flex', alignItems: 'center' }}>
+        <div>
             <Dropdown
                 icon={null}
                 trigger={(
-                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                        <div style={{ 
-                            width: '40px', 
-                            height: '40px', 
-                            borderRadius: '50%', 
-                            backgroundColor: '#0081c1', 
-                            color: 'white', 
-                            display: 'flex', 
-                            alignItems: 'center', 
-                            justifyContent: 'center' 
-                        }}>
-                            <Icon name='user' style={profileIconStyle} />
+                    <div >
+                        <div>
+                            <Image avatar src={imagenUrl} style={profileIconStyle} />
                         </div>
                     </div>
                 )}

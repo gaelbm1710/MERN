@@ -1,8 +1,8 @@
 import * as Yup from "yup";
 
-export function initialValues(come){
-    return{
-        folio_sCom: come?.folio_sCom || 0,
+export function initialValues(come) {
+    return {
+        folio_sCom: come?.folio_sCom,
         email: come?.email || "",
         cardcode: come?.cardcode || "",
         base: come?.base || "",
@@ -37,7 +37,7 @@ export function initialValues(come){
     };
 }
 
-export function validationSchema(){
+export function validationSchema() {
     return Yup.object({
         folio_sCom: Yup.number().required(true),
     });
