@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { Form, Image } from "semantic-ui-react";
 import { useFormik } from "formik";
-import { initialValues, validationSchema } from "./UserForm.form"
+import { initialValues, validationSchema } from "./UserForm.form";
 import "./UserForm.scss";
 import { useDropzone } from "react-dropzone";
 import { image } from "../../../../assets";
@@ -10,7 +10,6 @@ import { useAuth } from "../../../../hooks";
 import { ENV } from "../../../../utils";
 
 const userController = new User();
-
 
 export function USerForm(props) {
     const { close, onReload, user } = props;
@@ -32,7 +31,7 @@ export function USerForm(props) {
                 console.error(error);
             }
         }
-    })
+    });
 
     const roleOptions = [
         { key: "asesor", text: "Asesor", value: "user" },
@@ -42,31 +41,31 @@ export function USerForm(props) {
         { key: "com", text: "Comercial", value: "com" },
         { key: "conta", text: "Contabilidad", value: "conta" },
         { key: "sistemas", text: "Sistemas", value: "sistemas" },
-    ]
+    ];
 
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     const onDrop = useCallback((acceptedFiles) => {
         const file = acceptedFiles[0];
-        formik.setFieldValue("avatar", URL.createObjectURL(file))
+        const fileUrl = URL.createObjectURL(file);
+        formik.setFieldValue("avatar", fileUrl);
         formik.setFieldValue("fileAvatar", file);
-    });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const { getRootProps, getInputProps } = useDropzone({
         accept: {
             "image/*": [".jpg", ".jpeg", ".png"],
         },
         onDrop
-    })
+    });
 
     const getAvatar = () => {
         if (formik.values.fileAvatar) {
             return formik.values.avatar;
         } else if (formik.values.avatar) {
-            return `${ENV.USUSARIOS}/avatar/${formik.values.avatar}`;
+            return `${ENV.USUSARIOS}/${formik.values.avatar}`;
         }
         return image.noAvatar;
-    }
+    };
 
     return (
         <Form className='user-form' onSubmit={formik.handleSubmit}>
@@ -87,5 +86,5 @@ export function USerForm(props) {
                 {user ? "Actualizar Usuario" : "Crear usuario"}
             </Form.Button>
         </Form>
-    )
+    );
 }

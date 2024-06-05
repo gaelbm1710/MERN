@@ -24,6 +24,7 @@ export function initialValues(ope) {
         sIyD: ope?.sIyD || "",
         comClie: ope?.comClie || "",
         asesor: ope?.asesor || "",
+        infoDes: ope?.infoDes || '',
         precioUni: ope?.precioUni,
         precio1: ope?.precio1,
         precio2: ope?.precio2,

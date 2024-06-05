@@ -5,9 +5,9 @@ const Icon = {
     LogoWhite,
 };
 
-const image ={
+const image = {
     noAvatar
 };
 
 
-export {Icon, image};
+export { Icon, image };

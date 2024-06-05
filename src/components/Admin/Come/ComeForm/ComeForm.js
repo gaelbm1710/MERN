@@ -22,6 +22,7 @@ export function ComeForm(props) {
           folio: mag ? mag.folio : 0,
           folio_sCom: formValue.folio_sCom,
           asesor: mag ? mag.asesor : 'soporte.sistemas@o-lab.mx',
+
         }
         if (!mag) {
           await magController.createMagCome(accessToken, data);
@@ -47,7 +48,7 @@ export function ComeForm(props) {
       <p>Activos: <span>{mag.activos}</span></p>
       <p>Clasificación: <span>{mag.clasi}</span></p>
       <p>Especialidad: <span>{mag.especialidad}</span></p>
-      <p>Muestra: <span>{mag.necesita_muestra}</span></p>
+      <p>Muestra: <span>{mag.necesita_muestra ? 'Si' : 'No'}</span></p>
     </>
   } else if (mag.actividad === 'presentacion') {
     formview = <>
@@ -123,7 +124,7 @@ export function ComeForm(props) {
         </Table>
       </Container>
       <span>Folio Gestión Comercial:</span>
-      <Form.Input className='folio_op' name="folio_sCom" placeholeder="Folio Gestión Comercial" onChange={formik.handleChange} value={formik.values.folio_sCom} error={formik.errors.folio_sCom} />
+      <Form.Input className='folio_op' name="folio_sCom" placeholeder="0" onChange={formik.handleChange} value={formik.values.folio_sCom} error={formik.errors.folio_sCom} />
       <Form.Button type='submit' primary fluid loading={formik.isSubmitting}>
         {mag ? "Actualizar Cotización" : "Crear Cotización"}
       </Form.Button>
