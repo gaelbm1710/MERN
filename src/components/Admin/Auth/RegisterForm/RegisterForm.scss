@@ -1,5 +1,6 @@
 @import "~/src/scss/index.scss";
 
+
 .register-form {
     background-color: #ffffff;
     padding: 20px;
@@ -10,12 +11,13 @@
         text-align: center;
     }
 
-    .info-button{
+    .info-button {
         text-align: center;
         padding-left: 100px;
         padding-right: 100px;
         cursor: pointer;
     }
+
 
     // Media Queries for Responsiveness
     @media (max-width: 1024px) {
