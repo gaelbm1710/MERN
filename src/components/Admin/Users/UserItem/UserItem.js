@@ -4,7 +4,7 @@ import { Image, Button, Icon, Confirm } from "semantic-ui-react";
 import { image } from "../../../../assets";
 import { ENV } from "../../../../utils"
 import { BasicModal } from "../../../Shared"
-import { USerForm } from "../UserForm"
+import { UserForm } from "../UserForm"
 import { User } from "../../../../api"
 import { useAuth } from "../../../../hooks"
 
@@ -88,7 +88,7 @@ export function UserItem(props) {
                 </div>
             </div>
             <BasicModal show={showModal} close={onOpenCloseModal} title={titleModal}>
-                <USerForm close={onOpenCloseModal} onReload={onReload} user={user} />
+                <UserForm close={onOpenCloseModal} onReload={onReload} user={user} />
             </BasicModal>
             <Confirm open={showConfirm} onCancel={onOpenCloseConfirm} onConfirm={isDelete ? onDelete : onActivateDesactivate} content={confirmMessage} size='mini' />
         </>

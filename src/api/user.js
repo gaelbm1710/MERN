@@ -71,7 +71,11 @@ export class User {
     async updateUser(accessToken, idUser, userData) {
         try {
             const data = userData;
-            if (!data.password) delete data.password
+            if (!data.password) {
+                delete data.password;
+            }
+            console.log('USerData: ', userData.password);
+            console.log(userData);
             const formData = new FormData();
             Object.keys(data).forEach((key) => {
                 if (key === 'fileAvatar') {
@@ -80,7 +84,8 @@ export class User {
                     formData.append(key, data[key]);
                 }
             });
-            const url = `${ENV.BASE_API}/${ENV.API_ROUTES.USER}/${idUser}`
+
+            const url = `${ENV.BASE_API}/${ENV.API_ROUTES.USER}/${idUser}`;
             const params = {
                 method: "PATCH",
                 headers: {
@@ -88,14 +93,17 @@ export class User {
                 },
                 body: formData,
             };
+
             const response = await fetch(url, params);
             const result = await response.json();
             if (response.status !== 200) throw result;
+
             return result;
         } catch (error) {
             throw error;
         }
     }
+
     async updateUserActive(accessToken, idUser, userData) {
         try {
             const data = userData;
@@ -118,8 +126,6 @@ export class User {
             };
             const response = await fetch(url, params);
             const result = await response.json();
-            console.log('Correo userdata: ', userData.email);
-            console.log('Correo formdata: ', formData.email);
             if (response.status !== 200) throw result;
             return result;
         } catch (error) {

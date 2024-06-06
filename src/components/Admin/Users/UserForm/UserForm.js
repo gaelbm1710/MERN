@@ -11,7 +11,7 @@ import { ENV } from "../../../../utils";
 
 const userController = new User();
 
-export function USerForm(props) {
+export function UserForm(props) {
     const { close, onReload, user } = props;
     const { accessToken } = useAuth();
     const formik = useFormik({
@@ -48,7 +48,7 @@ export function USerForm(props) {
         const fileUrl = URL.createObjectURL(file);
         formik.setFieldValue("avatar", fileUrl);
         formik.setFieldValue("fileAvatar", file);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line
     }, []);
 
     const { getRootProps, getInputProps } = useDropzone({
@@ -81,6 +81,7 @@ export function USerForm(props) {
                 <Form.Input name="email" placeholder="Correo" onChange={formik.handleChange} value={formik.values.email} error={formik.errors.email} />
                 <Form.Dropdown placeholder='Selecciona un Rol' options={roleOptions} selection onChange={(_, data) => formik.setFieldValue("role", data.value)} value={formik.values.role} error={formik.errors.role} />
             </Form.Group>
+            <h5>Generar Contraseña</h5>
             <Form.Input type='password' name="password" placeholder="Contraseña" onChange={formik.handleChange} value={formik.values.password} error={formik.errors.password} />
             <Form.Button type='submit' primary fluid loading={formik.isSubmitting}>
                 {user ? "Actualizar Usuario" : "Crear usuario"}
