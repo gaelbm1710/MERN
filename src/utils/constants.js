@@ -6,7 +6,6 @@ export const ENV = {
     //Conexion Local
     //BASE_PATH: `http://localhost:8080`,
     //BASE_API: `http://localhost:8080/api/v1`,
-
     //Contenedor
     USUSARIOS: `https://kaapauploads.blob.core.windows.net`,
     DEFAULT: 'https://kaapauploads.blob.core.windows.net/avatar/default.jpg',
