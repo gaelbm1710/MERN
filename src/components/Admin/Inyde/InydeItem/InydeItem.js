@@ -76,7 +76,7 @@ export function InydeItem(props) {
                 <div className='column'>
                     <p className='cotizacion-item__info'>
                         <span className='cotizacion-item__info-label'>Base:</span>
-                        <span className='cotizacion-item__info-valor'>{mag.base}</span><br/>
+                        <span className='cotizacion-item__info-valor'>{mag.base}</span><br />
                         <span className='cotizacion-item__info-label'>Activos:</span>
                         <span className='cotizacion-item__info-valor'>{mag.activos}</span>
                     </p>
@@ -86,9 +86,12 @@ export function InydeItem(props) {
                         <label className='estatus_Id'>Estatus de Inv. y Desarollo: <Label className={`cotizacion-item__info-statusinde ${getStatusColor(mag.sIyD)}`}>
                             {mag.sIyD ? 'Finalizado' : 'Pendiente'}
                         </Label></label>
-                        <label className='estatus_Ope'>Estatus de Operaciones: <Label className={`cotizacion-item__info-statusope ${getStatusColor(mag.sOp)}`}>
-                            {mag.sOp ? 'Finalizado' : 'Pendiente'}
-                        </Label></label>
+                        {(mag.actividad === 'nueva' || mag.actividad === 'cambio') && (
+                            <label className='estatus_Ope'>Estatus de Operaciones: <Label className={`cotizacion-item__info-statusope ${getStatusColor(mag.sOp)}`}>
+                                {mag.sOp ? 'Finalizado' : 'Pendiente'}
+                            </Label></label>
+                        )}
+
                         <label className='estatus_GC'>Estatus de Gestión Comercial: <Label className={`cotizacion-item__info-statusgcome ${getStatusColor(mag.sCom)}`}>
                             {mag.sCom ? 'Finalizado' : 'Pendiente'}
                         </Label></label>
