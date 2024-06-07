@@ -39,6 +39,6 @@ export function initialValues(come) {
 
 export function validationSchema() {
     return Yup.object({
-        folio_sCom: Yup.number().required(true),
+        folio_sCom: Yup.string().required(true),
     });
 }
