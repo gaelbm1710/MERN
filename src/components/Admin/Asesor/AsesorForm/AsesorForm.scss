@@ -6,8 +6,10 @@
     max-height: 100vh;
     min-width: 50vh;
     max-width: 100vh;
+    font-size: 17px;
 
     &_info {
+        font-size: 15px;
         margin-bottom: 10px;
         width: 100%;
         align-items: center;
@@ -20,7 +22,7 @@
         }
 
         span {
-            color: #f3a230;
+            color: rgb(38, 49, 148);
             margin-bottom: 5px;
         }
     }

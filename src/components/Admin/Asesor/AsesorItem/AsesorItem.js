@@ -46,10 +46,10 @@ export function AsesorItem(props) {
         </div>
         <div className='column'>
           <p className='cotizacion-item__info'>
-            <span className='cotizacion-item__info-label'>Correo Asesor:</span>
-            <span className='cotizacion-item__info-valor'>{mag.asesor}</span><br />
-            <span className='cotizacion-item__info-label'>Asesor:</span>
-            <span className='cotizacion-item__info-valor'>{mag.asesornom}</span>
+            <span className='cotizacion-item__info-label'>Base:</span>
+            <span className='cotizacion-item__info-valor'>{mag.base}</span><br />
+            <span className='cotizacion-item__info-label'>Activo:</span>
+            <span className='cotizacion-item__info-valor'>{mag.activo}</span>
           </p>
         </div>
         <div className='column'>
@@ -58,6 +58,7 @@ export function AsesorItem(props) {
             <span className='cotizacion-item__info-valor'>{mag.actividad}</span><br />
             <span className='cotizacion-item__info-label'>Cliente:</span>
             <span className='cotizacion-item__info-valor'>{mag.cardcode}</span>
+            <span className='cotizacion-item__info-valor'>{mag.cliente}</span>
           </p>
         </div>
         <div className='column'>

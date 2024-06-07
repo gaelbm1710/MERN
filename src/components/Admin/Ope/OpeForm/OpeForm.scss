@@ -2,7 +2,7 @@
 
 .ope-form {
     margin-bottom: 10px;
-
+    
     &__info {
         margin-bottom: 10px;
         width: 100%;
@@ -16,10 +16,12 @@
         }
 
         span {
-            color: cadetblue;
+            color: rgb(38, 49, 148);
         }
     }
-
+.ope-form__info{
+    font-size: 15px;
+}
     > .ui.container {
         margin-bottom: 10px;
         width: 100%;

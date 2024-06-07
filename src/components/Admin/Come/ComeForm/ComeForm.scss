@@ -9,6 +9,7 @@
         align-items: center;
         justify-content: center;
         text-align: start;
+        font-size: 15px;
 
         p {
             font-weight: bold;
@@ -16,13 +17,14 @@
         }
 
         span {
-            color: #f6ce93;
+            color: rgb(38, 49, 148);
         }
     }
 
     .table-precio {
         border-collapse: collapse;
         border: 1px solid black;
+        font-size: 15px;
 
         th,
         td {
@@ -41,6 +43,7 @@
 
     span {
         font-weight: bold;
+        font-size: 15px;
     }
 
     // Media Queries for Responsiveness
