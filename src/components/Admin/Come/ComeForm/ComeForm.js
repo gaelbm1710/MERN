@@ -53,7 +53,6 @@ export function ComeForm(props) {
   } else if (mag.actividad === 'presentacion') {
     formview = <>
       <p>CardCode: <span>{mag.cardcode}</span></p>
-      <p>Cliente: <span>{mag.cliente}</span></p>
       <p>Asesor: <span>{mag.asesor}</span></p>
       <p>Clave: <span>{mag.clave_ex}</span></p>
     </>
@@ -68,7 +67,7 @@ export function ComeForm(props) {
       <p>Activos: <span>{mag.activos}</span></p>
       <p>Clasificación: <span>{mag.clasi}</span></p>
       <p>Especialidad: <span>{mag.especialidad}</span></p>
-      <p>Muestra: <span>{mag.necesita_muestra}</span></p>
+      <p>Muestra: <span>{mag.necesita_muestra ? 'Si' : 'No'}</span></p>
     </>
   } else {
     formview = <div>Error en sistema</div>
