@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Container} from 'semantic-ui-react'
+import { Form, Container } from 'semantic-ui-react'
 import { useFormik } from 'formik'
 import { Mag } from '../../../../api'
 import { useAuth } from '../../../../hooks'
@@ -8,13 +8,13 @@ import { initialValuesss, validationSchemass } from './InydessForm.form';
 const magController = new Mag();
 
 const clasi = [
-  {key:"FM", text:"FM", value:"FM"},
-  {key:"DC", text:"DC", value:"DC"}
+  { key: "FM", text: "FM", value: "FM" },
+  { key: "DC", text: "DC", value: "DC" }
 ];
 
 const tipoF = [
-  {key:"Cerrada", text:"Cerrada", value:"cd"},
-  {key:"Atributos", text:"Atributos", value:"at"}
+  { key: "Cerrada", text: "Cerrada", value: "cd" },
+  { key: "Atributos", text: "Atributos", value: "at" }
 ];
 
 export function InydessForm(props) {
@@ -49,6 +49,7 @@ export function InydessForm(props) {
           presentacion: formValue.presentacion,
           comClie: formValue.comClie,
           asesor: formValue.asesor,
+          comeAsesor: formValue.comeAsesor
         }
         if (!mag) {
           await magController.createMag(accessToken, data);
@@ -72,31 +73,32 @@ export function InydessForm(props) {
           <p>Base Existente: <span>{mag.base_ex}</span></p>
           <p>Clave Existente: <span>{mag.clave_ex}</span></p>
           <p>Cambio de Base: <span>{mag.base}</span></p>
-          <p>Activos: <span>{mag.activos}</span></p>
           <p>Presentación: <span>{mag.presentacion}</span></p>
+          <p>Comentarios Asesor: <span>{mag.comeAsesor}</span></p>
         </Container>
       </Form.Group>
       <Form.Group widths='equal'>
         <Container>
-          <Form.Input label='Folio' name='folio_IyD' onChange={formik.handleChange} value={formik.values.folio_IyD} error={formik.errors.folio_IyD}/>
-          <Form.Dropdown label='Clasificacion' placeholder='' options={clasi} selection onChange={(_,data) => formik.setFieldValue("clasi", data.value)} value={formik.values.clasi} error={formik.errors.clasi}/>
-          <Form.Dropdown label='Tipo de Formula' placeholder='' options={tipoF} selection onChange={(_,data) => formik.setFieldValue("tipoF", data.value)} value={formik.values.tipoF} error={formik.errors.tipoF}/>
-          <Form.Input label='Caducidad' name='caducidad' onChange={formik.handleChange} value={formik.values.caducidad} error={formik.errors.caducidad}/>
+          <Form.Input label='Folio' name='folio_IyD' onChange={formik.handleChange} value={formik.values.folio_IyD} error={formik.errors.folio_IyD} />
+          <Form.TextArea label='Activos' name='activos' onChange={formik.handleChange} value={formik.values.activos} error={formik.errors.activos} />
+          <Form.Dropdown label='Clasificacion' placeholder='' options={clasi} selection onChange={(_, data) => formik.setFieldValue("clasi", data.value)} value={formik.values.clasi} error={formik.errors.clasi} />
+          <Form.Dropdown label='Tipo de Formula' placeholder='' options={tipoF} selection onChange={(_, data) => formik.setFieldValue("tipoF", data.value)} value={formik.values.tipoF} error={formik.errors.tipoF} />
+          <Form.Input label='Caducidad' name='caducidad' onChange={formik.handleChange} value={formik.values.caducidad} error={formik.errors.caducidad} />
           <br></br><Form.Checkbox label='Necesita Receta'
-          name='receta' onChange={(_, data) => formik.setFieldValue("receta", data.checked)} checked={formik.values.receta} error={formik.errors.receta} className='custom-checkbox'/>
+            name='receta' onChange={(_, data) => formik.setFieldValue("receta", data.checked)} checked={formik.values.receta} error={formik.errors.receta} className='custom-checkbox' />
         </Container>
       </Form.Group>
       <Form.Group widths='equal'>
         <Container>
-          <Form.TextArea label='Información' name='infoDesa' onChange={formik.handleChange} value={formik.values.infoDesa} error={formik.errors.infoDesa}/>
-          <Form.TextArea label='Comentarios Internos' name='comInt' onChange={formik.handleChange} value={formik.values.comInt} error={formik.errors.comInt}/>
-          <Form.TextArea label='Comentarios Clientes' name='comClie' onChange={formik.handleChange} value={formik.values.comClie} error={formik.errors.comClie}/>
+          <Form.TextArea label='Información' name='infoDesa' onChange={formik.handleChange} value={formik.values.infoDesa} error={formik.errors.infoDesa} />
+          <Form.TextArea label='Comentarios Internos' name='comInt' onChange={formik.handleChange} value={formik.values.comInt} error={formik.errors.comInt} />
+          <Form.TextArea label='Comentarios Clientes' name='comClie' onChange={formik.handleChange} value={formik.values.comClie} error={formik.errors.comClie} />
           <br></br><Form.Checkbox label='Muestra'
-          name='excl' onChange={(_, data) => formik.setFieldValue("necesita_muestra", data.checked)} checked={formik.values.necesita_muestra} error={formik.errors.necesita_muestra} className='custom-checkbox'/>
+            name='excl' onChange={(_, data) => formik.setFieldValue("necesita_muestra", data.checked)} checked={formik.values.necesita_muestra} error={formik.errors.necesita_muestra} className='custom-checkbox' />
           <br></br><Form.Checkbox label='Exclusiva'
-          name='excl' onChange={(_, data) => formik.setFieldValue("excl", data.checked)} checked={formik.values.excl} error={formik.errors.excl} className='custom-checkbox'/>
+            name='excl' onChange={(_, data) => formik.setFieldValue("excl", data.checked)} checked={formik.values.excl} error={formik.errors.excl} className='custom-checkbox' />
           <br></br><Form.Checkbox label='Refrigeración'
-          name='refri' onChange={(_, data) => formik.setFieldValue("refri", data.checked)} checked={formik.values.refri} error={formik.errors.refri} className='custom-checkbox'/>
+            name='refri' onChange={(_, data) => formik.setFieldValue("refri", data.checked)} checked={formik.values.refri} error={formik.errors.refri} className='custom-checkbox' />
         </Container>
       </Form.Group>
       <Form.Button type='submit' primary fluid loading={formik.isSubmitting}>

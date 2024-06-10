@@ -23,8 +23,10 @@ const magController = new Mag();
 export function AsesorForma(props) {
     const { onClose, onReload, mag } = props
     const { accessToken } = useAuth();
-    const { user: { email } } = useAuth();
+    const { user: { email, firstname, lastname } } = useAuth();
     const CorreoAsesor = email;
+    const nombreCompleto = `${firstname} ${lastname}`;
+
     const formik = useFormik({
         initialValues: initialValuesa(mag, CorreoAsesor),
         validationSchema: validationSchemaa(),
@@ -35,7 +37,9 @@ export function AsesorForma(props) {
                 const presentacionesTexto = presentacionesSeleccionadad.join(', ');
                 const data = {
                     cardcode: formValue.cardcode,
+                    cliente: formValue.cliente,
                     asesor: formValue.asesor,
+                    asesornom: nombreCompleto,
                     presentacion: presentacionesTexto,
                     clave_ex: formValue.clave_ex,
                     actividad: "presentacion"
@@ -58,6 +62,7 @@ export function AsesorForma(props) {
             <Container className='form-cotizacion__primer'>
                 <Form.Input label="Correo Asesor" name="asesor" placeholder="Correo de asesor" onChange={formik.handleChange} value={CorreoAsesor} />
                 <Form.Input label="CardCode" name="cardcode" placeholder="CardCode del Cliente" onChange={formik.handleChange} value={formik.values.cardcode} error={formik.errors.cardcode} />
+                <Form.Input label="Cliente" name="cliente" placeholder="Nombre del Cliente" onChange={formik.handleChange} value={formik.values.cliente} error={formik.errors.cliente} />
                 <Form.Input label="Clave Existente" name="clave_ex" placeholder="Clave Existente" onChange={formik.handleChange} value={formik.values.clave_ex} error={formik.errors.clave_ex} />
                 <Form.Dropdown label="Presentaciones" placeholder="Presentaciones" fluid selection multiple options={presentaciones} onChange={(_, data) => formik.setFieldValue("presentacion", data.value)} value={formik.values.presentacion || []} error={formik.errors.presentacion} />
                 <Form.TextArea label="Comentarios" name="comeAsesor" placeholder="Comentarios" onChange={formik.handleChange} value={formik.values.comeAsesor} error={formik.errors.comeAsesor} />

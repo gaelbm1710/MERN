@@ -52,8 +52,10 @@ const magController = new Mag();
 export function AsesorFormb(props) {
     const { onClose, onReload, mag } = props
     const { accessToken } = useAuth();
-    const { user: { email } } = useAuth();
+    const { user: { email, firstname, lastname } } = useAuth();
     const CorreoAsesor = email;
+    const nombreCompleto = `${firstname} ${lastname}`;
+
     const formik = useFormik({
         initialValues: initialValuesb(mag, CorreoAsesor),
         validationSchema: validationSchemab(),
@@ -64,7 +66,9 @@ export function AsesorFormb(props) {
                 const presentacionesTexto = presentacionesSeleccionadad.join(', ');
                 const data = {
                     cardcode: formValue.cardcode,
+                    cliente: formValue.cliente,
                     asesor: formValue.asesor,
+                    asesornom: nombreCompleto,
                     presentacion: presentacionesTexto,
                     clave_ex: formValue.clave_ex,
                     actividad: "cambio",
@@ -92,6 +96,7 @@ export function AsesorFormb(props) {
                 <h3>Datos de Formula Existente</h3>
                 <Form.Input label="Correo Asesor" name="asesor" placeholder="Correo de asesor" onChange={formik.handleChange} value={CorreoAsesor} />
                 <Form.Input label="CardCode" name="cardcode" placeholder="CardCode del Cliente" onChange={formik.handleChange} value={formik.values.cardcode} error={formik.errors.cardcode} />
+                <Form.Input label="Cliente" name="cliente" placeholder="Nombre del Cliente" onChange={formik.handleChange} value={formik.values.cliente} error={formik.errors.cliente} />
                 <Form.Dropdown label="Base Existente" placeholder="Base Existente" options={bases} selection onChange={(_, data) => formik.setFieldValue("base_ex", data.value)} value={formik.values.base_ex} error={formik.errors.base_ex} />
                 <Form.Input label="Clave Existente" name="clave_ex" placeholder="Clave Existente" onChange={formik.handleChange} value={formik.values.clave_ex} error={formik.errors.clave_ex} />
             </Container>

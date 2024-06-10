@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { Mag } from '../../../../api';
 import { map } from 'lodash';
@@ -76,8 +77,7 @@ export function ListAsesor(props) {
         (mag.folio && mag.folio.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
         (mag.folio_sCom && mag.folio_sCom.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
         (mag.cliente && mag.cliente.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
-        (mag.cardcode && mag.cardcode.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
-        (mag.asesor && mag.asesor.toString().toLowerCase().includes(searchTerm.toLowerCase()))
+        (mag.cardcode && mag.cardcode.toString().toLowerCase().includes(searchTerm.toLowerCase()))
       );
     }
   };

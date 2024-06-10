@@ -33,6 +33,22 @@ export function AsesorItem(props) {
     contentView = <div>Error en sistema</div>
   }
 
+  let vistaRapida;
+  if (mag.actividad === 'nueva') {
+    vistaRapida = <>    <span className='cotizacion-item__info-label'>Base:</span>
+      <span className='cotizacion-item__info-valor'>{mag.base}</span><br />
+      <span className='cotizacion-item__info-label'>Activos:</span>
+      <span className='cotizacion-item__info-valor'>{mag.activos}</span></>
+  } else if (mag.actividad === 'presentacion') {
+    vistaRapida = <> <span className='cotizacion-item__info-label'>Clave Existente:</span>
+      <span className='cotizacion-item__info-valor'>{mag.clave_ex}</span><br /></>
+  } else if (mag.actividad === 'cambio') {
+    vistaRapida = <>    <span className='cotizacion-item__info-label'>Clase Existente:</span>
+      <span className='cotizacion-item__info-valor'>{mag.clave_ex}</span><br />
+      <span className='cotizacion-item__info-label'>Base de Cambio:</span>
+      <span className='cotizacion-item__info-valor'>{mag.base}</span></>
+  }
+
   return (
     <>
       <div className='cotizacion-item'>
@@ -46,16 +62,11 @@ export function AsesorItem(props) {
         </div>
         <div className='column'>
           <p className='cotizacion-item__info'>
-            <span className='cotizacion-item__info-label'>Base:</span>
-            <span className='cotizacion-item__info-valor'>{mag.base}</span><br />
-            <span className='cotizacion-item__info-label'>Activo:</span>
-            <span className='cotizacion-item__info-valor'>{mag.activo}</span>
+            {vistaRapida}
           </p>
         </div>
         <div className='column'>
           <p className='cotizacion-item__info'>
-            <span className='cotizacion-item__info-label'>Clave:</span>
-            <span className='cotizacion-item__info-valor'>{mag.actividad}</span><br />
             <span className='cotizacion-item__info-label'>Cliente:</span>
             <span className='cotizacion-item__info-valor'>{mag.cardcode}</span>
             <span className='cotizacion-item__info-valor'>{mag.cliente}</span>

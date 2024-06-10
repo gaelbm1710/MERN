@@ -103,6 +103,7 @@ export function InydeForm(props) {
           <p>Cliente: <span>{mag.cardcode}</span></p>
           <p>Especialidad: <span>{mag.especialidad}</span></p>
           <p>Padecimiento: <span>{mag.padecimiento}</span></p>
+          <p>Comentarios Asesor: <span>{mag.comeAsesor}</span></p>
         </Container>
       </Form.Group>
       <Form.Group widths='equal'>

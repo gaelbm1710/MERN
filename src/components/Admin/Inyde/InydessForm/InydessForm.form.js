@@ -1,7 +1,7 @@
 import * as Yup from "yup";
 
-export function initialValuesss(mag){
-    return{
+export function initialValuesss(mag) {
+    return {
         folio_IyD: mag?.folio_IyD,
         email: mag?.email || "",
         cardcode: mag?.cardcode || "",
@@ -14,7 +14,7 @@ export function initialValuesss(mag){
         base_ex: mag?.base_ex || "",
         clave_ex: mag?.clave_ex || "",
         clasi: mag?.clasi || "",
-        receta: !!mag?.receta, 
+        receta: !!mag?.receta,
         refri: mag?.refri || false,
         infoDesa: mag?.infoDesa || "",
         tipoF: mag?.tipoF || "",
@@ -23,15 +23,16 @@ export function initialValuesss(mag){
         excl: mag?.excl || false,
         presentacion: mag?.presentacion || "",
         comClie: mag?.comClie || "",
-        asesor: mag?.asesor || ""
+        asesor: mag?.asesor || "",
+        comeAsesor: mag?.comeAsesor || ""
     };
 }
 
-export function validationSchemass(){
+export function validationSchemass() {
     return Yup.object({
         folio_IyD: Yup.number().required(true),
         infoDesa: Yup.string().required(true),
-       // clasi: Yup.string().required(true),
+        // clasi: Yup.string().required(true),
         caducidad: Yup.number().required(true),
         tipoF: Yup.string().required(true),
         //refri: Yup.boolean().required(true),

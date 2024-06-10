@@ -34,11 +34,12 @@ export function InydesForm(props) {
           precio6: formValue.precio6,
           precio7: formValue.precio7,
           precio8: formValue.precio8,
+          comeAsesor: formValue.comeAsesor
         };
         if (!mag) {
           await magController.createMag(accessToken, data);
         } else {
-          await magController.updateMagi(accessToken, mag._id, data);  
+          await magController.updateMagi(accessToken, mag._id, data);
         }
         onClose();
         onReload();
@@ -60,7 +61,7 @@ export function InydesForm(props) {
   ];
 
   // Verificar si mag.presentacion es un array o un string
-  const presentacionesDisponibles = mag.presentacion 
+  const presentacionesDisponibles = mag.presentacion
     ? Array.isArray(mag.presentacion)
       ? mag.presentacion
       : mag.presentacion.split(',').map(p => p.trim())
@@ -76,12 +77,12 @@ export function InydesForm(props) {
           <p>Cliente: <span>{mag.cardcode}</span></p>
           <p>Clave Existente: <span>{mag.clave_ex}</span></p>
           <p>Presentación: <span>{presentacionesDisponibles.join(', ')}</span></p>
-          <Form.Input 
-            label='Folio' 
-            name='folio_IyD' 
-            onChange={formik.handleChange} 
-            value={formik.values.folio_IyD} 
-            error={formik.errors.folio_IyD ? { content: formik.errors.folio_IyD } : null} 
+          <Form.Input
+            label='Folio'
+            name='folio_IyD'
+            onChange={formik.handleChange}
+            value={formik.values.folio_IyD}
+            error={formik.errors.folio_IyD ? { content: formik.errors.folio_IyD } : null}
           />
         </Container>
       </Form.Group>
