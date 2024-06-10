@@ -111,6 +111,7 @@ export function AsesorForm(props) {
                     necesita_muestra: formValue.necesita_muestra,
                     presentacion: presentacionesTexto,
                     actividad: "nueva",
+                    comeAsesor: formValue.comeAsesor
                 };
 
                 if (!mag) {
@@ -138,6 +139,7 @@ export function AsesorForm(props) {
                 <Form.TextArea label="Activos" name="activos" placeholder="Ingresa los activos para la fórmula, con su porcentaje" onChange={formik.handleChange} value={formik.values.activos} error={formik.errors.activos} />
                 <Form.Dropdown label="Presentaciones" placeholder="Presentaciones" fluid selection multiple options={presentaciones} onChange={(_, data) => formik.setFieldValue("presentacion", data.value)} value={formik.values.presentacion || []} error={formik.errors.presentacion} />
                 <Form.Input label="Padecimiento" name="padecimiento" placeholder="Padecimiento o intención de uso (p. ej. Ovario poliquístico o aparato/equipo)" onChange={formik.handleChange} value={formik.values.padecimiento} error={formik.errors.padecimiento} />
+                <Form.TextArea label="Comentarios" name="comeAsesor" placeholder="Comentarios" onChange={formik.handleChange} value={formik.values.comeAsesor} error={formik.errors.comeAsesor} />
             </Container>
             <Container className='form-cotizacion__tercero'>
                 <br />

@@ -12,7 +12,8 @@ export function initialValues(mag, email, nombreCompleto) {
         padecimiento: "",
         necesita_muestra: false,
         presentacion: "",
-        actividad: "nueva"
+        actividad: "nueva",
+        comeAsesor: ""
     }
 }
 

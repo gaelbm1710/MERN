@@ -54,7 +54,7 @@ export function AsesorItem(props) {
         </div>
         <div className='column'>
           <p className='cotizacion-item__info'>
-            <span className='cotizacion-item__info-label'>Actividad:</span>
+            <span className='cotizacion-item__info-label'>Clave:</span>
             <span className='cotizacion-item__info-valor'>{mag.actividad}</span><br />
             <span className='cotizacion-item__info-label'>Cliente:</span>
             <span className='cotizacion-item__info-valor'>{mag.cardcode}</span>
