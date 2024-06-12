@@ -5,3 +5,4 @@ export * from "./ListInydess"
 export * from "./InydeForm";
 export * from "./InydesForm";
 export * from "./InydessForm";
+export * from "./InydeFormCancel"

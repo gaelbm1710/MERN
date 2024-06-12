@@ -49,6 +49,15 @@ export function AsesorItem(props) {
       <span className='cotizacion-item__info-valor'>{mag.base}</span></>
   }
 
+  let getStatusGeneralColor;
+  if (mag.StatusGeneral === 'Pendiente') {
+    getStatusGeneralColor = 'organge'
+  } else if (mag.StatusGeneral === 'Cancelado') {
+    getStatusGeneralColor = 'red'
+  } else if (mag.StatusGeneral === 'Finalizado') {
+    getStatusGeneralColor = 'green'
+  }
+
   return (
     <>
       <div className='cotizacion-item'>
@@ -74,6 +83,10 @@ export function AsesorItem(props) {
         </div>
         <div className='column'>
           <p className='cotizacion-item__info'>
+            <label className='cotizacion-item__info-label'>Estatus General:
+              <Label className={`cotizacion-item__info-statusinde`} color={getStatusGeneralColor}>
+                {mag.StatusGeneral}
+              </Label></label>
             <label className='estatus_Id'>Estatus de Inv. y Desarollo: <Label className={`cotizacion-item__info-statusinde ${getStatusColor(mag.sIyD)}`}>
               {mag.sIyD ? 'Finalizado' : 'Pendiente'}
             </Label></label>

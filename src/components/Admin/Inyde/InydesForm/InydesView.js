@@ -1,18 +1,60 @@
 import React from 'react'
-import { Container } from 'semantic-ui-react';
+import { TableRow, TableBody, TableHeader, TableHeaderCell, Table, Container, TableCell } from "semantic-ui-react";
 
 export function InydesView(props) {
-    const {mag} = props;
+  const { mag } = props;
   return (
-    <div>
-        <Container>
-        <p>Cliente: <span className='cotizacion-principal_info-cliente'>{mag.cardcode}</span></p>
-        <p>Clave Existente: <span className='cotizacion-principal_info-clave_ex'>{mag.clave_ex}</span></p>
+    <div className='cotizacion-principal'>
+      <Container className='cotizacion-principal_info'>
+        <p>Folio Investigación y Desarrollo: <span className='cotizacion-principal_info-dxp'>{mag.folio_IyD}</span></p>
+        <p>Nombre del Asesor: <span className='cotizacion-principal_info-cliente'>{mag.asesornom}</span></p>
+        <p>Nombre del Cliente: <span className='cotizacion-principal_info-cliente'>{mag.cliente}</span></p>
+        <p>Clave Existente: <span className='cotizacion-principal_info-cliente'>{mag.clave_ex}</span></p>
         <p>Presentaciones: <span className='cotizacion-principal_info-presentacion'>{mag.presentacion}</span></p>
-        <p>Satus Inves. y Desarollo: <span className='cotizacion-principal_info-sIyD'>{mag.sIyD? 'Finalizado' : 'Pendiente'}</span></p>
-        <p>Satus Operaciones: <span className='cotizacion-principal_info-sOp'>{mag.sOp? 'Finalizado' : 'Pendiente'}</span></p>
-        <p>Satus Gestión Comercial: <span className='cotizacion-principal_info-sCom'>{mag.sCom? 'Finalizado' : 'Pendiente'}</span></p>
-        </Container>
+        <Table className='table-precio'>
+          <TableHeader>
+            <TableRow>
+              <TableHeaderCell>Presentaciones</TableHeaderCell>
+              <TableHeaderCell>Precios</TableHeaderCell>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            <TableRow>
+              <TableCell>7.5 ML</TableCell>
+              <TableCell>{mag.precio1}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>15 ML</TableCell>
+              <TableCell>{mag.precio2}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>30 ML</TableCell>
+              <TableCell>{mag.precio3}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>60 ML</TableCell>
+              <TableCell>{mag.precio4}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>120 ML</TableCell>
+              <TableCell>{mag.precio5}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>240 ML</TableCell>
+              <TableCell>{mag.precio6}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>480 ML</TableCell>
+              <TableCell>{mag.precio7}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>960 ML</TableCell>
+              <TableCell>{mag.precio8}</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </Container>
     </div>
+
   )
 }

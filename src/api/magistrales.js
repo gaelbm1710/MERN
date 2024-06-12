@@ -134,6 +134,32 @@ export class Mag {
             throw error;
         }
     }
+
+    async cancelarMag(accessToken, idMag, MagData) {
+        try {
+            const data = MagData;
+            const formData = new FormData();
+            Object.keys(data).forEach((key) => {
+                formData.append(key, data[key]);
+            })
+            const url = `${this.baseApi}/${ENV.API_ROUTES.CANCELAR}/${idMag}`
+            const params = {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${accessToken}`,
+                },
+                body: JSON.stringify(data),
+            }
+            const response = await fetch(url, params)
+            const result = await response.json()
+            if (response.status !== 200) throw result;
+            return result;
+        } catch (error) {
+            throw error;
+        }
+    }
+
     // OPERACIONES
     async getMagOpe(params) {
         try {
@@ -210,6 +236,7 @@ export class Mag {
     }
 
 
+
     //COMERCIAL o MARCELA :D
     async createMagCome(accessToken, data) {
         try {
@@ -271,6 +298,7 @@ export class Mag {
             throw error;
         }
     }
+
     async getMagCome(params) {
         try {
             const pageFilter = `page=${params?.page || 1}`;

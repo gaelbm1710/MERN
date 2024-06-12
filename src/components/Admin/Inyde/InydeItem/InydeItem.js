@@ -1,45 +1,57 @@
 import React, { useState } from 'react';
 import "./Inyde.scss";
-import { Button, Icon, Confirm, Label } from 'semantic-ui-react';
+import { Button, Icon, Label } from 'semantic-ui-react';
 import { BasicModal } from '../../../Shared';
-import { Mag } from '../../../../api';
-import { useAuth } from '../../../../hooks';
-import { InydeForm } from "../InydeForm";
-import { InydesForm } from "../InydesForm";
-import { InydessForm } from "../InydessForm";
-
-const magController = new Mag();
+import { InydeForm, InydeView } from "../InydeForm";
+import { InydesForm, InydesView } from "../InydesForm";
+import { InydessForm, InydessView } from "../InydessForm";
+import { InydeFormCancel } from "../InydeFormCancel";
 
 export function InydeItem(props) {
-
     const { mag, onReload } = props;
     const date = new Date(mag.created_at);
     const createdate = date.toLocaleDateString();
-    const { accessToken } = useAuth();
     const [showModal, setShowModal] = useState(false);
+    const [showsecondModal, setShowsecondModal] = useState(false);
+    const [showshowModal, setshowshowModal] = useState(false)
     const [titleModal, setTitleModal] = useState("");
-    const [showConfirm, setShowConfirm] = useState(false)
     const onOpenCloseModal = () => setShowModal((prevState) => !prevState);
-    const onOpenCloseConfirm = () => setShowConfirm((prevState) => !prevState);
+    const onOpenCloseSecondModal = () => setShowsecondModal((prevState) => !prevState);
+    const onOpenCloseShowModal = () => setshowshowModal((prevState) => !prevState);
     const openUpdateMag = () => {
-        setTitleModal(`Revisar cotizacion: #${mag.folio}`);
+        setTitleModal(`Revisar cotización: ${mag.folio}`);
         onOpenCloseModal();
     }
-    /*
-    const verMag = () => {
-        setTitleModal(`Ver cotización: # ${mag.folio}`)
-        onOpenCloseModal();
-    }*/
-    const onDelete = async () => {
-        try {
-            await magController.deleteMag(accessToken, mag._id);
-            onReload();
-            onOpenCloseConfirm();
-        } catch (error) {
-            console.error(error);
+    const openCancelMag = () => {
+        setTitleModal(`Cancelar cotización: ${mag.folio}`);
+        onOpenCloseSecondModal();
+    }
+    const openVerMag = () => {
+        setTitleModal(`Cotizacion: ${mag.folio}`)
+        onOpenCloseShowModal();
+    }
+    const getStatusColor = (status) => {
+        switch (status) {
+            case 'Finalizado':
+                return 'green';
+            case 'Pendiente':
+                return 'orange';
+            case 'Cancelado':
+                return 'red';
+            default:
+                return 'green';
         }
+    };
+
+    let getStatusGeneralColor;
+    if (mag.StatusGeneral === 'Pendiente') {
+        getStatusGeneralColor = 'orange';
+    } else if (mag.StatusGeneral === 'Cancelado') {
+        getStatusGeneralColor = 'red';
+    } else if (mag.StatusGeneral === 'Finalizado') {
+        getStatusGeneralColor = 'green';
     }
-    const getStatusColor = (status) => status ? 'green' : 'orange';
+
     let formview;
     if (mag.actividad === 'nueva') {
         formview = <InydeForm onClose={onOpenCloseModal} onReload={onReload} mag={mag} />;
@@ -50,72 +62,118 @@ export function InydeItem(props) {
     } else {
         formview = <div>Error en sistema</div>
     }
+
+    let sIyD = mag.sIyD, sOp = mag.sOp, sCom = mag.sCom;
+
+    if (mag.StatusGeneral !== 'Cancelado') {
+        sIyD = mag.sIyD ? 'Finalizado' : 'Pendiente';
+        sOp = mag.sOp ? 'Finalizado' : 'Pendiente';
+        sCom = mag.sCom ? 'Finalizado' : 'Pendiente';
+    } else {
+        sIyD = 'Cancelado';
+        sOp = 'Cancelado';
+        sCom = 'Cancelado';
+    }
+
+
+    let estatusviews;
+    if (mag.actividad === 'nueva' || mag.actividad === 'cambio') {
+        estatusviews =
+            <>
+                <label className='cotizacion-item__info-label'>Estatus General:<Label className={`cotizacion-item__info-statusinde`} color={getStatusGeneralColor}>{mag.StatusGeneral}</Label></label>
+                <label className='estatus_Id'>Estatus de Inv. y Desarollo: <Label className={`cotizacion-item__info-statusinde ${getStatusColor(sIyD)}`}>{sIyD}</Label></label>
+                <label className='estatus_Ope'>Estatus de Operaciones: <Label className={`cotizacion-item__info-statusope ${getStatusColor(sOp)}`}>{sOp}</Label></label>
+                <label className='estatus_GC'>Estatus de Gestión Comercial: <Label className={`cotizacion-item__info-statusgcome ${getStatusColor(sCom)}`}>{sCom}</Label></label>
+            </>
+    } else if (mag.actividad === 'presentacion') {
+        estatusviews =
+            <>
+                <label className='cotizacion-item__info-label'>Estatus General:<Label className={`cotizacion-item__info-statusinde`} color={getStatusGeneralColor}>{mag.StatusGeneral}</Label></label>
+                <label className='estatus_Id'>Estatus de Inv. y Desarollo: <Label className={`cotizacion-item__info-statusinde ${getStatusColor(sIyD)}`}>{sIyD}</Label></label>
+                <label className='estatus_GC'>Estatus de Gestión Comercial: <Label className={`cotizacion-item__info-statusgcome ${getStatusColor(sCom)}`}>{sCom}</Label></label>
+            </>
+    }
+
+    let botonesviews;
+    if (mag.StatusGeneral === 'Pendiente' && mag.sIyD === false) {
+        botonesviews = <><Button icon primary onClick={openUpdateMag}><Icon name='edit' /></Button><Button icon color='red' onClick={openCancelMag}><Icon name='trash alternate outline' /></Button></>
+    } else {
+        botonesviews = <><Button icon primary onClick={openVerMag}><Icon name='eye' /></Button></>
+    }
+
+    let vistaRapida;
+    if (mag.actividad === 'nueva') {
+        vistaRapida = <>    <span className='cotizacion-item__info-label'>Base:</span>
+            <span className='cotizacion-item__info-valor'>{mag.base}</span><br />
+            <span className='cotizacion-item__info-label'>Activos:</span>
+            <span className='cotizacion-item__info-valor'>{mag.activos}</span></>
+    } else if (mag.actividad === 'presentacion') {
+        vistaRapida = <> <span className='cotizacion-item__info-label'>Clave Existente:</span>
+            <span className='cotizacion-item__info-valor'>{mag.clave_ex}</span><br /></>
+    } else if (mag.actividad === 'cambio') {
+        vistaRapida = <>    <span className='cotizacion-item__info-label'>Clase Existente:</span>
+            <span className='cotizacion-item__info-valor'>{mag.clave_ex}</span><br />
+            <span className='cotizacion-item__info-label'>Base de Cambio:</span>
+            <span className='cotizacion-item__info-valor'>{mag.base}</span></>
+    }
+
+    let contentView;
+    if (mag.actividad === 'nueva') {
+        contentView = <InydeView onClose={onOpenCloseShowModal} onReload={onReload} mag={mag} />
+    } else if (mag.actividad === 'presentacion') {
+        contentView = <InydesView onClose={onOpenCloseShowModal} onReload={onReload} mag={mag} />
+    } else if (mag.actividad === 'cambio') {
+        contentView = <InydessView onClose={onOpenCloseShowModal} onReload={onReload} mag={mag} />
+    } else {
+        contentView = <div>Error en sistema</div>
+    }
+
     return (
         <>
             <div className='cotizacion-item'>
                 <div className='column'>
-                    <p className='cotizacion-item__info'>
+                    <div className='cotizacion-item__info'>
                         <span className='cotizacion-item__info-label'>Folio:</span>
                         <span className='cotizacion-item__info-valor'>{mag.folio}</span><br />
                         <span className='cotizacion-item__info-label'>Folio In. y De.:</span>
                         <span className='cotizacion-item__info-valor'>{mag.folio_IyD}</span><br />
                         <span className='cotizacion-item__info-label'>Creado:</span>
                         <span className='cotizacion-item__info-valor'>{createdate}</span>
-                    </p>
+                    </div>
                 </div>
                 <div className='column'>
-                    <p className='cotizacion-item__info'>
+                    <div className='cotizacion-item__info'>
                         <span className='cotizacion-item__info-label'>Asesor:</span>
                         <span className='cotizacion-item__info-valor'>{mag.asesornom}</span>
                         <span className='cotizacion-item__info-valor'>{mag.asesor}</span><br />
                         <span className='cotizacion-item__info-label'>Medico:</span>
                         <span className='cotizacion-item__info-valor'>{mag.cardcode}</span>
                         <span className='cotizacion-item__info-valor'>{mag.cliente}</span>
-                    </p>
+                    </div>
                 </div>
                 <div className='column'>
-                    <p className='cotizacion-item__info'>
-                        <span className='cotizacion-item__info-label'>Base:</span>
-                        <span className='cotizacion-item__info-valor'>{mag.base}</span><br />
-                        <span className='cotizacion-item__info-label'>Activos:</span>
-                        <span className='cotizacion-item__info-valor'>{mag.activos}</span>
-                    </p>
+                    <div className='cotizacion-item__info'>
+                        {vistaRapida}
+                    </div>
                 </div>
                 <div className='column'>
-                    <p className='cotizacion-item__info'>
-                        <label className='estatus_Id'>Estatus de Inv. y Desarollo: <Label className={`cotizacion-item__info-statusinde ${getStatusColor(mag.sIyD)}`}>
-                            {mag.sIyD ? 'Finalizado' : 'Pendiente'}
-                        </Label></label>
-                        {(mag.actividad === 'nueva' || mag.actividad === 'cambio') && (
-                            <label className='estatus_Ope'>Estatus de Operaciones: <Label className={`cotizacion-item__info-statusope ${getStatusColor(mag.sOp)}`}>
-                                {mag.sOp ? 'Finalizado' : 'Pendiente'}
-                            </Label></label>
-                        )}
-
-                        <label className='estatus_GC'>Estatus de Gestión Comercial: <Label className={`cotizacion-item__info-statusgcome ${getStatusColor(mag.sCom)}`}>
-                            {mag.sCom ? 'Finalizado' : 'Pendiente'}
-                        </Label></label>
-                    </p>
+                    <div className='cotizacion-item__info'>
+                        {estatusviews}
+                    </div>
                 </div>
                 <div className='button-container'>
-                    <Button icon primary onClick={openUpdateMag}>
-                        <Icon name='edit' />
-                    </Button>
-                    <Button icon color='red' onClick={onOpenCloseConfirm}>
-                        <Icon name='trash alternate outline' />
-                    </Button>
+                    {botonesviews}
                 </div>
             </div>
             <BasicModal show={showModal} close={onOpenCloseModal} title={titleModal}>
                 {formview}
             </BasicModal>
-            <Confirm
-                open={showConfirm}
-                onCancel={onOpenCloseConfirm}
-                onConfirm={onDelete}
-                content={`Eliminar la cotización: #${mag.folio}`}
-                size='mini'
-            />
+            <BasicModal show={showsecondModal} close={onOpenCloseSecondModal} title={titleModal}>
+                <InydeFormCancel onClose={onOpenCloseSecondModal} onReload={onReload} mag={mag} />
+            </BasicModal>
+            <BasicModal show={showshowModal} close={onOpenCloseShowModal} title={titleModal}>
+                {contentView}
+            </BasicModal>
         </>
     )
 }

@@ -22,6 +22,7 @@ export const ENV = {
         NEWSLETTER: "newsletter",
         BLOG: "post",
         MAG: "mag",
+        CANCELAR: "mag/cancelacion",
         MAGS: "mags",
         MAGI: "magi",
         MAGIS: "magis",
