@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import "./OpeItem.scss";
 import { Button, Icon, Label } from 'semantic-ui-react';
 import { BasicModal } from '../../../Shared';
-import { OpeForm } from "../OpeForm"
+import { OpeForm, OpeView } from "../OpeForm"
 import { OpesForm } from "../OpesForm"
 import { OpessForm } from "../OpessForm"
 
@@ -10,15 +10,22 @@ import { OpessForm } from "../OpessForm"
 export function OpeItem(props) {
   const { mag, onReload } = props
   const [showModal, setShowModal] = useState(false);
+  const [showshowModal, setshowshowModal] = useState(false)
+
   const [titleModal, setTitleModal] = useState("");
   const date = new Date(mag.created_at);
   const createdate = date.toLocaleDateString();
   const onOpenCloseModal = () => setShowModal((prevState) => !prevState);
+  const onOpenCloseShowModal = () => setshowshowModal((prevState) => !prevState);
+
   const openUpdateMag = () => {
     setTitleModal(`Revisar cotización: ${mag.folio}`)
     onOpenCloseModal();
   }
-  const getStatusColor = (status) => status ? 'green' : 'orange';
+  const openVerMag = () => {
+    setTitleModal(`Cotizacion: ${mag.folio}`)
+    onOpenCloseShowModal();
+  }
 
   let formview;
   if (mag.actividad === 'nueva') {
@@ -30,6 +37,82 @@ export function OpeItem(props) {
   } else {
     formview = <div>Error en sistema</div>
   }
+
+  const getStatusColor = (status) => {
+    switch (status) {
+      case 'Finalizado':
+        return 'green';
+      case 'Pendiente':
+        return 'orange';
+      case 'Cancelado':
+        return 'red';
+      default:
+        return 'green';
+    }
+  };
+
+  let getStatusGeneralColor;
+  if (mag.StatusGeneral === 'Pendiente') {
+    getStatusGeneralColor = 'orange';
+  } else if (mag.StatusGeneral === 'Cancelado') {
+    getStatusGeneralColor = 'red';
+  } else if (mag.StatusGeneral === 'Finalizado') {
+    getStatusGeneralColor = 'green';
+  }
+
+  let sIyD = mag.sIyD, sOp = mag.sOp, sCom = mag.sCom;
+
+  if (mag.StatusGeneral !== 'Cancelado') {
+    sIyD = mag.sIyD ? 'Finalizado' : 'Pendiente';
+    sOp = mag.sOp ? 'Finalizado' : 'Pendiente';
+    sCom = mag.sCom ? 'Finalizado' : 'Pendiente';
+  } else {
+    sIyD = 'Cancelado';
+    sOp = 'Cancelado';
+    sCom = 'Cancelado';
+  }
+
+  let estatusviews;
+  if (mag.actividad === 'nueva' || mag.actividad === 'cambio') {
+    estatusviews =
+      <>
+        <label className='cotizacion-item__info-label'>Estatus General:<Label className={`cotizacion-item__info-statusinde`} color={getStatusGeneralColor}>{mag.StatusGeneral}</Label></label>
+        <label className='estatus_Id'>Estatus de Inv. y Desarollo: <Label className={`cotizacion-item__info-statusinde ${getStatusColor(sIyD)}`}>{sIyD}</Label></label>
+        <label className='estatus_Ope'>Estatus de Operaciones: <Label className={`cotizacion-item__info-statusope ${getStatusColor(sOp)}`}>{sOp}</Label></label>
+        <label className='estatus_GC'>Estatus de Gestión Comercial: <Label className={`cotizacion-item__info-statusgcome ${getStatusColor(sCom)}`}>{sCom}</Label></label>
+      </>
+  } else if (mag.actividad === 'presentacion') {
+    estatusviews =
+      <>
+        <label className='cotizacion-item__info-label'>Estatus General:<Label className={`cotizacion-item__info-statusinde`} color={getStatusGeneralColor}>{mag.StatusGeneral}</Label></label>
+        <label className='estatus_Id'>Estatus de Inv. y Desarollo: <Label className={`cotizacion-item__info-statusinde ${getStatusColor(sIyD)}`}>{sIyD}</Label></label>
+        <label className='estatus_GC'>Estatus de Gestión Comercial: <Label className={`cotizacion-item__info-statusgcome ${getStatusColor(sCom)}`}>{sCom}</Label></label>
+      </>
+  }
+
+  let botonesviews;
+  if (mag.StatusGeneral === 'Pendiente' && mag.sOp === false) {
+    botonesviews = <><Button icon primary onClick={openUpdateMag}><Icon name='edit' /></Button></>
+  } else {
+    botonesviews = <><Button icon primary onClick={openVerMag}><Icon name='eye' /></Button></>
+  }
+
+  let vistaRapida;
+  if (mag.actividad === 'nueva') {
+    vistaRapida = <>    <span className='cotizacion-item__info-label'>Base:</span>
+      <span className='cotizacion-item__info-valor'>{mag.base}</span><br />
+      <span className='cotizacion-item__info-label'>Activos:</span>
+      <span className='cotizacion-item__info-valor'>{mag.activos}</span></>
+  } else if (mag.actividad === 'presentacion') {
+    vistaRapida = <> <span className='cotizacion-item__info-label'>Clave Existente:</span>
+      <span className='cotizacion-item__info-valor'>{mag.clave_ex}</span><br /></>
+  } else if (mag.actividad === 'cambio') {
+    vistaRapida = <>    <span className='cotizacion-item__info-label'>Clase Existente:</span>
+      <span className='cotizacion-item__info-valor'>{mag.clave_ex}</span><br />
+      <span className='cotizacion-item__info-label'>Base de Cambio:</span>
+      <span className='cotizacion-item__info-valor'>{mag.base}</span></>
+  }
+
 
 
   return (
@@ -56,36 +139,20 @@ export function OpeItem(props) {
           </p>
         </div>
         <div className='column'>
-          <p className='cotizacion-item__info'>
-            <span className='cotizacion-item__info-label'>Base:</span>
-            <span className='cotizacion-item__info-valor'>{mag.base}</span><br />
-            <span className='cotizacion-item__info-label'>Activos:</span>
-            <span className='cotizacion-item__info-valor'>{mag.activos}</span>
-          </p>
+          {vistaRapida}
         </div>
         <div className='column'>
-          <p className='cotizacion-item__info'>
-            <label className='estatus_Id'>Estatus de Inv. y Desarollo: <Label className={`cotizacion-item__info-statusinde ${getStatusColor(mag.sIyD)}`}>
-              {mag.sIyD ? 'Finalizado' : 'Pendiente'}
-            </Label></label>
-            {(mag.actividad === 'nueva' || mag.actividad === 'cambio') && (
-              <label className='estatus_Ope'>Estatus de Operaciones: <Label className={`cotizacion-item__info-statusope ${getStatusColor(mag.sOp)}`}>
-                {mag.sOp ? 'Finalizado' : 'Pendiente'}
-              </Label></label>
-            )}
-            <label className='estatus_GC'>Estatus de Gestión Comercial: <Label className={`cotizacion-item__info-statusgcome ${getStatusColor(mag.sCom)}`}>
-              {mag.sCom ? 'Finalizado' : 'Pendiente'}
-            </Label></label>
-          </p>
+          {estatusviews}
         </div>
-        <div className='button-container'> 
-          <Button icon primary onClick={openUpdateMag}>
-            <Icon name='edit' />
-          </Button>
+        <div className='button-container'>
+          {botonesviews}
         </div>
       </div>
       <BasicModal show={showModal} close={onOpenCloseModal} title={titleModal}>
         <OpeForm onClose={onOpenCloseModal} onReload={onReload} mag={mag} />
+      </BasicModal>
+      <BasicModal show={showshowModal} close={onOpenCloseShowModal} title={titleModal}>
+        <OpeView onClose={onOpenCloseShowModal} onReload={onReload} mag={mag} />
       </BasicModal>
     </>
   )
