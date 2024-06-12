@@ -132,7 +132,7 @@ export function AsesorForm(props) {
             <Container className='form-cotizacion__primer'>
                 <Form.Input label="CardCode" name="cardcode" placeholder="CardCode del Cliente" onChange={formik.handleChange} value={formik.values.cardcode} error={formik.errors.cardcode} />
                 <Form.Input label="Cliente" name="cliente" placeholder="Nombre del Cliente" onChange={formik.handleChange} value={formik.values.cliente} error={formik.errors.cliente} />
-                <Form.Dropdown label="Especialiadad" placeholder="Especialidad" options={especialidades} selection onChange={(_, data) => formik.setFieldValue("especialidad", data.value)} value={formik.values.especialidad} error={formik.errors.especialidad} />
+                <Form.Dropdown label="Especialidad" placeholder="Especialidad" options={especialidades} selection onChange={(_, data) => formik.setFieldValue("especialidad", data.value)} value={formik.values.especialidad} error={formik.errors.especialidad} />
             </Container>
             <Container className='form-cotizacion__segundo'>
                 <Form.Dropdown label="Base" placeholder="Base" options={bases} selection onChange={(_, data) => formik.setFieldValue("base", data.value)} value={formik.values.base} error={formik.errors.base} />

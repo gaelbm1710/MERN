@@ -3,9 +3,7 @@ import "./OpeItem.scss";
 import { Button, Icon, Label } from 'semantic-ui-react';
 import { BasicModal } from '../../../Shared';
 import { OpeForm, OpeView } from "../OpeForm"
-import { OpesForm } from "../OpesForm"
-import { OpessForm } from "../OpessForm"
-
+import { OpessView } from '../OpessForm/Opessview';
 
 export function OpeItem(props) {
   const { mag, onReload } = props
@@ -27,16 +25,6 @@ export function OpeItem(props) {
     onOpenCloseShowModal();
   }
 
-  let formview;
-  if (mag.actividad === 'nueva') {
-    formview = <OpeForm onClose={onOpenCloseModal} onReload={onReload} mag={mag} />;
-  } else if (mag.actividad === 'presentacion') {
-    formview = <OpesForm onClose={onOpenCloseModal} onReload={onReload} mag={mag} />;
-  } else if (mag.actividad === 'cambio') {
-    formview = <OpessForm onClose={onOpenCloseModal} onReload={onReload} mag={mag} />;
-  } else {
-    formview = <div>Error en sistema</div>
-  }
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -113,6 +101,14 @@ export function OpeItem(props) {
       <span className='cotizacion-item__info-valor'>{mag.base}</span></>
   }
 
+  let contentView;
+  if (mag.actividad === 'nueva') {
+    contentView = <OpeView onClose={onOpenCloseShowModal} onReload={onReload} mag={mag} />
+  } else if (mag.actividad === 'cambio') {
+    contentView = <OpessView onClose={onOpenCloseShowModal} onReload={onReload} mag={mag} />
+  } else {
+    contentView = <div>Error en sistema</div>
+  }
 
 
   return (
@@ -152,7 +148,7 @@ export function OpeItem(props) {
         <OpeForm onClose={onOpenCloseModal} onReload={onReload} mag={mag} />
       </BasicModal>
       <BasicModal show={showshowModal} close={onOpenCloseShowModal} title={titleModal}>
-        <OpeView onClose={onOpenCloseShowModal} onReload={onReload} mag={mag} />
+        {contentView}
       </BasicModal>
     </>
   )

@@ -2,12 +2,12 @@ import React from 'react'
 import { TableRow, TableBody, TableHeader, TableHeaderCell, Table, Container, TableCell } from "semantic-ui-react";
 
 
-export function OpeView(props) {
+export function ComeView(props) {
     const { mag } = props;
     return (
         <div className='cotizacion-principal'>
             <Container className='cotizacion-principal_info'>
-                <p>Folio de Operaciones: <span className='cotizacion-principal_info-dxp'>{mag.folio_Op}</span></p>
+                <p>Folio Gestión Comercial: <span className='cotizacion-principal_info-dxp'>{mag.folio_sCom}</span></p>
                 <p>Nombre del Asesor: <span className='cotizacion-principal_info-cliente'>{mag.asesornom}</span></p>
                 <p>Nombre del Cliente: <span className='cotizacion-principal_info-cliente'>{mag.cliente}</span></p>
                 <p>Especialidad: <span className='cotizacion-principal_info-especialidad'>{mag.especialidad}</span></p>
@@ -20,8 +20,6 @@ export function OpeView(props) {
                 <p>Tipo de Formula: <span className='cotizacion-principal_info-presentacion'>{mag.tipoF}</span></p>
                 <p>Caducidad: <span className='cotizacion-principal_info-presentacion'>{mag.caducidad}</span></p>
                 <p>Necesita Receta: <span className='cotizacion-principal_info-muestra'>{mag.receta ? 'Sí' : 'No'}</span></p>
-                <p>Información: <span className='cotizacion-principal_info-presentacion'>{mag.infoDesa}</span></p>
-                <p>Comentarios Asesor: <span className='cotizacion-principal_info-presentacion'>{mag.comeAsesor}</span></p>
                 <p>Comentarios Internos: <span className='cotizacion-principal_info-presentacion'>{mag.comInt}</span></p>
                 <p>Comentarios al Cliente: <span className='cotizacion-principal_info-presentacion'>{mag.comClie}</span></p>
                 <p>Exclusiva: <span className='cotizacion-principal_info-presentacion'>{mag.excl ? 'Sí' : 'No'}</span></p>
@@ -70,6 +68,5 @@ export function OpeView(props) {
                 </Table>
             </Container>
         </div>
-
     )
 }
