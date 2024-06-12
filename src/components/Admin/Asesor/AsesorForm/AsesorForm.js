@@ -128,7 +128,7 @@ export function AsesorForm(props) {
     });
 
     return (
-        <Form onSubmit={formik.handleSubmit}>
+        <Form onSubmit={formik.handleSubmit} className='form'>
             <Container className='form-cotizacion__primer'>
                 <Form.Input label="CardCode" name="cardcode" placeholder="CardCode del Cliente" onChange={formik.handleChange} value={formik.values.cardcode} error={formik.errors.cardcode} />
                 <Form.Input label="Cliente" name="cliente" placeholder="Nombre del Cliente" onChange={formik.handleChange} value={formik.values.cliente} error={formik.errors.cliente} />
@@ -144,7 +144,7 @@ export function AsesorForm(props) {
             <Container className='form-cotizacion__tercero'>
                 <br />
                 <Form.Checkbox label='Necesita Muestra' name='necesita_muestra' onChange={(_, data) => formik.setFieldValue("necesita_muestra", data.checked)} checked={formik.values.necesita_muestra} error={formik.errors.necesita_muestra} />
-            </Container>
+            </Container><br/>
             <Form.Button type='submit' primary fluid loading={formik.isSubmitting}>
                 {mag ? "Revisar Cotización" : "Crear cotización"}
             </Form.Button>

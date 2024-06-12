@@ -80,7 +80,7 @@ export function InydeItem(props) {
     if (mag.actividad === 'nueva' || mag.actividad === 'cambio') {
         estatusviews =
             <>
-                <label className='cotizacion-item__info-label'>Estatus General:<Label className={`cotizacion-item__info-statusinde`} color={getStatusGeneralColor}>{mag.StatusGeneral}</Label></label>
+                <label className='estatus_gn'>Estatus General: <Label className={`cotizacion-item__info-statusinde`} color={getStatusGeneralColor}>{mag.StatusGeneral}</Label></label>
                 <label className='estatus_Id'>Estatus de Inv. y Desarollo: <Label className={`cotizacion-item__info-statusinde ${getStatusColor(sIyD)}`}>{sIyD}</Label></label>
                 <label className='estatus_Ope'>Estatus de Operaciones: <Label className={`cotizacion-item__info-statusope ${getStatusColor(sOp)}`}>{sOp}</Label></label>
                 <label className='estatus_GC'>Estatus de Gestión Comercial: <Label className={`cotizacion-item__info-statusgcome ${getStatusColor(sCom)}`}>{sCom}</Label></label>
@@ -88,7 +88,7 @@ export function InydeItem(props) {
     } else if (mag.actividad === 'presentacion') {
         estatusviews =
             <>
-                <label className='cotizacion-item__info-label'>Estatus General:<Label className={`cotizacion-item__info-statusinde`} color={getStatusGeneralColor}>{mag.StatusGeneral}</Label></label>
+                <label className='estatus_gn'>Estatus General: <Label className={`cotizacion-item__info-statusinde`} color={getStatusGeneralColor}>{mag.StatusGeneral}</Label></label>
                 <label className='estatus_Id'>Estatus de Inv. y Desarollo: <Label className={`cotizacion-item__info-statusinde ${getStatusColor(sIyD)}`}>{sIyD}</Label></label>
                 <label className='estatus_GC'>Estatus de Gestión Comercial: <Label className={`cotizacion-item__info-statusgcome ${getStatusColor(sCom)}`}>{sCom}</Label></label>
             </>

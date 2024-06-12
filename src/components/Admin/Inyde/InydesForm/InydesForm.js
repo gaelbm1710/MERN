@@ -72,12 +72,12 @@ export function InydesForm(props) {
   return (
     <Form className='inyde-form' onSubmit={formik.handleSubmit}>
       <Form.Group widths='equal'>
-        <Container className='inyde-form__info'>
+        <Container className='inyde-form__info' >
           <p>Asesor: <span>{mag.asesor}</span></p>
           <p>Cliente: <span>{mag.cardcode}</span></p>
           <p>Clave Existente: <span>{mag.clave_ex}</span></p>
           <p>Presentación: <span>{presentacionesDisponibles.join(', ')}</span></p>
-          <Form.Input
+          <Form.Input className='inyde-form__label'
             label='Folio'
             name='folio_IyD'
             onChange={formik.handleChange}
@@ -87,7 +87,7 @@ export function InydesForm(props) {
         </Container>
       </Form.Group>
       <Form.Group>
-        <Container>
+        <Container className='inyde-form__label'>
           <Table className='table-precio' celled>
             <TableHeader>
               <TableRow>

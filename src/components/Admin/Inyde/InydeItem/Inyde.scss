@@ -45,7 +45,8 @@
 
         .estatus_Id,
         .estatus_Ope,
-        .estatus_GC {
+        .estatus_GC,
+        .estatus_gn{
             font-weight: bold;
             margin-bottom: 2.5px; // Espacio entre los elementos y los otros datos
             margin-left: auto;

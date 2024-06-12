@@ -11,23 +11,30 @@
     }
 }
 
-.inyde-form{
-    font-size: 15px;
+.inyde-form {
     margin-bottom: 10px;
     width: 100%;
     align-items: center;
     justify-content: center;
     text-align: start;
+    overflow-wrap: break-word;
 
     p {
         font-weight: bold;
         margin-bottom: 5px;
+        font-size: 15px;
     }
 
     span {
         color: rgb(38, 49, 148);
+        
     }
+    
 }
+.inyde-form__label{
+    font-size: 15px;
+}
+
 .custom-button {
     padding: 8px;
 

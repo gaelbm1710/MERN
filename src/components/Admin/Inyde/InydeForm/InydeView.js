@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container } from 'semantic-ui-react'
+import "./InydeForm.scss"
 
 export function InydeView(props) {
   const { mag } = props;

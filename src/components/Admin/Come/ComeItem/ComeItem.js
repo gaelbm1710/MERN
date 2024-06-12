@@ -62,17 +62,21 @@ export function ComeItem(props) {
   if (mag.actividad === 'nueva' || mag.actividad === 'cambio') {
     estatusviews =
       <>
-        <label className='cotizacion-item__info-label'>Estatus General:<Label className={`cotizacion-item__info-statusinde`} color={getStatusGeneralColor}>{mag.StatusGeneral}</Label></label>
+      <p className='cotizacion-item__info'>
+        <label className='estatus_gn'>Estatus General: <Label className={`cotizacion-item__info-statusinde`} color={getStatusGeneralColor}>{mag.StatusGeneral}</Label></label>
         <label className='estatus_Id'>Estatus de Inv. y Desarollo: <Label className={`cotizacion-item__info-statusinde ${getStatusColor(sIyD)}`}>{sIyD}</Label></label>
         <label className='estatus_Ope'>Estatus de Operaciones: <Label className={`cotizacion-item__info-statusope ${getStatusColor(sOp)}`}>{sOp}</Label></label>
         <label className='estatus_GC'>Estatus de Gestión Comercial: <Label className={`cotizacion-item__info-statusgcome ${getStatusColor(sCom)}`}>{sCom}</Label></label>
+        </p>
       </>
   } else if (mag.actividad === 'presentacion') {
     estatusviews =
       <>
-        <label className='cotizacion-item__info-label'>Estatus General:<Label className={`cotizacion-item__info-statusinde`} color={getStatusGeneralColor}>{mag.StatusGeneral}</Label></label>
+      <p className='cotizacion-item__info'>
+        <label className='estatus_gn'>Estatus General: <Label className={`cotizacion-item__info-statusinde`} color={getStatusGeneralColor}>{mag.StatusGeneral}</Label></label>
         <label className='estatus_Id'>Estatus de Inv. y Desarollo: <Label className={`cotizacion-item__info-statusinde ${getStatusColor(sIyD)}`}>{sIyD}</Label></label>
         <label className='estatus_GC'>Estatus de Gestión Comercial: <Label className={`cotizacion-item__info-statusgcome ${getStatusColor(sCom)}`}>{sCom}</Label></label>
+        </p>
       </>
   }
 
@@ -85,18 +89,18 @@ export function ComeItem(props) {
 
   let vistaRapida;
   if (mag.actividad === 'nueva') {
-    vistaRapida = <>    <span className='cotizacion-item__info-label'>Base:</span>
+    vistaRapida = <>  <p className='cotizacion-item__info'> <span className='cotizacion-item__info-label'>Base:</span>
       <span className='cotizacion-item__info-valor'>{mag.base}</span><br />
       <span className='cotizacion-item__info-label'>Activos:</span>
-      <span className='cotizacion-item__info-valor'>{mag.activos}</span></>
+      <span className='cotizacion-item__info-valor'>{mag.activos}</span></p> </>
   } else if (mag.actividad === 'presentacion') {
-    vistaRapida = <> <span className='cotizacion-item__info-label'>Clave Existente:</span>
-      <span className='cotizacion-item__info-valor'>{mag.clave_ex}</span><br /></>
+    vistaRapida = <>  <p className='cotizacion-item__info'><span className='cotizacion-item__info-label'>Clave Existente:</span>
+      <span className='cotizacion-item__info-valor'>{mag.clave_ex}</span><br /></p></>
   } else if (mag.actividad === 'cambio') {
-    vistaRapida = <>    <span className='cotizacion-item__info-label'>Clase Existente:</span>
+    vistaRapida = <>    <p className='cotizacion-item__info'><span className='cotizacion-item__info-label'>Clase Existente:</span>
       <span className='cotizacion-item__info-valor'>{mag.clave_ex}</span><br />
       <span className='cotizacion-item__info-label'>Base de Cambio:</span>
-      <span className='cotizacion-item__info-valor'>{mag.base}</span></>
+      <span className='cotizacion-item__info-valor'>{mag.base}</span></p> </>
   }
 
   let contentView;

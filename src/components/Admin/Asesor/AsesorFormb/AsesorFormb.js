@@ -108,7 +108,7 @@ export function AsesorFormb(props) {
                 <Form.Dropdown label="Presentaciones" placeholder="Presentaciones" fluid selection multiple options={presentaciones} onChange={(_, data) => formik.setFieldValue("presentacion", data.value)} value={formik.values.presentacion || []} error={formik.errors.presentacion} />
                 <Form.Checkbox label='Necesita Muestra' name='necesita_muestra' onChange={(_, data) => formik.setFieldValue("necesita_muestra", data.checked)} checked={formik.values.necesita_muestra} error={formik.errors.necesita_muestra} />
                 <Form.TextArea label="Comentarios" name="comeAsesor" placeholder="Comentarios" onChange={formik.handleChange} value={formik.values.comeAsesor} error={formik.errors.comeAsesor} />
-            </Container>
+            </Container><br/>
             <Form.Button type='submit' primary fluid loading={formik.isSubmitting}>
                 {mag ? "Revisar Cotización" : "Crear cotización"}
             </Form.Button>

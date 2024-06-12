@@ -3,12 +3,14 @@
 .ope-form {
     margin-bottom: 10px;
     
+    
     &__info {
         margin-bottom: 10px;
         width: 100%;
         align-items: center;
         justify-content: center;
         text-align: start;
+        overflow-wrap: break-word;
 
         p {
             font-weight: bold;
@@ -20,6 +22,9 @@
         }
     }
 .ope-form__info{
+    font-size: 15px;
+}
+.ope-form__label{
     font-size: 15px;
 }
     > .ui.container {

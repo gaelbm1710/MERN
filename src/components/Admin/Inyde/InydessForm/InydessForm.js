@@ -78,7 +78,7 @@ export function InydessForm(props) {
         </Container>
       </Form.Group>
       <Form.Group widths='equal'>
-        <Container>
+        <Container className='inyde-form__label'>
           <Form.Input label='Folio' name='folio_IyD' onChange={formik.handleChange} value={formik.values.folio_IyD} error={formik.errors.folio_IyD} />
           <Form.TextArea label='Activos' name='activos' onChange={formik.handleChange} value={formik.values.activos} error={formik.errors.activos} />
           <Form.Dropdown label='Clasificacion' placeholder='' options={clasi} selection onChange={(_, data) => formik.setFieldValue("clasi", data.value)} value={formik.values.clasi} error={formik.errors.clasi} />
@@ -89,7 +89,7 @@ export function InydessForm(props) {
         </Container>
       </Form.Group>
       <Form.Group widths='equal'>
-        <Container>
+        <Container className='inyde-form__label'>
           <Form.TextArea label='Información' name='infoDesa' onChange={formik.handleChange} value={formik.values.infoDesa} error={formik.errors.infoDesa} />
           <Form.TextArea label='Comentarios Internos' name='comInt' onChange={formik.handleChange} value={formik.values.comInt} error={formik.errors.comInt} />
           <Form.TextArea label='Comentarios Clientes' name='comClie' onChange={formik.handleChange} value={formik.values.comClie} error={formik.errors.comClie} />

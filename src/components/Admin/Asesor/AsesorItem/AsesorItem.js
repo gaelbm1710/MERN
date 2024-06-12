@@ -35,23 +35,23 @@ export function AsesorItem(props) {
 
   let vistaRapida;
   if (mag.actividad === 'nueva') {
-    vistaRapida = <>    <span className='cotizacion-item__info-label'>Base:</span>
+    vistaRapida = <>   <p className='cotizacion-item__info'> <span className='cotizacion-item__info-label'>Base:</span>
       <span className='cotizacion-item__info-valor'>{mag.base}</span><br />
       <span className='cotizacion-item__info-label'>Activos:</span>
-      <span className='cotizacion-item__info-valor'>{mag.activos}</span></>
+      <span className='cotizacion-item__info-valor'>{mag.activos}</span></p></>
   } else if (mag.actividad === 'presentacion') {
-    vistaRapida = <> <span className='cotizacion-item__info-label'>Clave Existente:</span>
-      <span className='cotizacion-item__info-valor'>{mag.clave_ex}</span><br /></>
+    vistaRapida = <> <p className='cotizacion-item__info'><span className='cotizacion-item__info-label'>Clave Existente:</span>
+      <span className='cotizacion-item__info-valor'>{mag.clave_ex}</span><br /></p> </>
   } else if (mag.actividad === 'cambio') {
-    vistaRapida = <>    <span className='cotizacion-item__info-label'>Clase Existente:</span>
+    vistaRapida = <>  <p className='cotizacion-item__info'> <span className='cotizacion-item__info-label'>Clase Existente:</span>
       <span className='cotizacion-item__info-valor'>{mag.clave_ex}</span><br />
       <span className='cotizacion-item__info-label'>Base de Cambio:</span>
-      <span className='cotizacion-item__info-valor'>{mag.base}</span></>
+      <span className='cotizacion-item__info-valor'>{mag.base}</span></p></>
   }
 
   let getStatusGeneralColor;
   if (mag.StatusGeneral === 'Pendiente') {
-    getStatusGeneralColor = 'organge'
+    getStatusGeneralColor = 'orange'
   } else if (mag.StatusGeneral === 'Cancelado') {
     getStatusGeneralColor = 'red'
   } else if (mag.StatusGeneral === 'Finalizado') {
@@ -83,8 +83,7 @@ export function AsesorItem(props) {
         </div>
         <div className='column'>
           <p className='cotizacion-item__info'>
-            <label className='cotizacion-item__info-label'>Estatus General:
-              <Label className={`cotizacion-item__info-statusinde`} color={getStatusGeneralColor}>
+            <label className='estatus_gn'>Estatus General: <Label className={`cotizacion-item__info-statusinde`} color={getStatusGeneralColor}>
                 {mag.StatusGeneral}
               </Label></label>
             <label className='estatus_Id'>Estatus de Inv. y Desarollo: <Label className={`cotizacion-item__info-statusinde ${getStatusColor(mag.sIyD)}`}>

@@ -64,7 +64,7 @@ export function OpeForm(props) {
         <p>Presentaciones: <span>{mag.presentacion}</span></p>
         <p>Comentarios Internos: <span>{mag.comInt}</span></p>
       </Container>
-      <Container widths='equal'>
+      <Container widths='equal' className='ope-form__label'>
         <span>Folio Operaciones:</span>
         <Form.Input className='folio_op' name="folio_Op" placeholeder="Folio Operaciones" onChange={formik.handleChange} value={formik.values.folio_Op} error={formik.errors.folio_Op} />
         <Table className='table-precio' celled>

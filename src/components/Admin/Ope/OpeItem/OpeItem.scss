@@ -1,6 +1,7 @@
 @import "~/src/scss/index.scss";
 .cotizacion-item {
     display: flex;
+    flex-wrap: nowrap; 
     justify-content: space-between;
     align-content: center;
     border-bottom: 1px solid #867f81;
@@ -18,6 +19,7 @@
     &__info {
         font-size: 15px;
         display: flex;
+        flex-wrap: wrap;
         flex-direction: column;
         align-items: center; // Centrar los elementos
         text-align: center;  // Alinear el texto al centro
@@ -30,14 +32,14 @@
             opacity: 0.6;
         }
 
-        &-statusinde,
-        &-statusope,
-        &-statusgcome {
-            margin-top: 5px;
-            padding: 5px 10px;
-            border-radius: 5px;
-            color: white; // Color del texto en blanco para mejor visibilidad
-        }
+        .estatus_Id,
+        .estatus_Ope,
+        .estatus_GC, 
+        .estatus_gn
+         {
+            font-weight: bold;
+            margin-bottom: 2.5px; // Espacio entre los elementos y los otros datos
+            margin-left: auto;}
 
         .green {
             background-color: green; // Color verde para finalizados

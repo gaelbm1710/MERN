@@ -66,7 +66,7 @@ export function AsesorForma(props) {
                 <Form.Input label="Clave Existente" name="clave_ex" placeholder="Clave Existente" onChange={formik.handleChange} value={formik.values.clave_ex} error={formik.errors.clave_ex} />
                 <Form.Dropdown label="Presentaciones" placeholder="Presentaciones" fluid selection multiple options={presentaciones} onChange={(_, data) => formik.setFieldValue("presentacion", data.value)} value={formik.values.presentacion || []} error={formik.errors.presentacion} />
                 <Form.TextArea label="Comentarios" name="comeAsesor" placeholder="Comentarios" onChange={formik.handleChange} value={formik.values.comeAsesor} error={formik.errors.comeAsesor} />
-            </Container>
+            </Container><br/>
             <Form.Button type='submit' primary fluid loading={formik.isSubmitting}>
                 {mag ? "Revisar Cotización" : "Crear cotización"}
             </Form.Button>
