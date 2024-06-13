@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { Mag } from '../../../../api';
 import { Loader, Pagination, Search } from 'semantic-ui-react';
@@ -68,10 +69,10 @@ export function ListInyde(props) {
   };
 
   const filterMags = () => {
-    if (!searchTerm) {
-      return mags;
-    } else {
-      return mags.filter(mag =>
+    let filteredMags = mags;
+
+    if (searchTerm) {
+      filteredMags = filteredMags.filter(mag =>
         (mag.folio && mag.folio.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
         (mag.folio_IyD && mag.folio_IyD.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
         (mag.folio_sCom && mag.folio_sCom.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
@@ -80,6 +81,8 @@ export function ListInyde(props) {
         (mag.asesor && mag.asesor.toString().toLowerCase().includes(searchTerm.toLowerCase()))
       );
     }
+
+    return filteredMags.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
   };
 
   if (!mags) return <Loader active inline="centered" />;

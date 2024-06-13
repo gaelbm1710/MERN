@@ -43,7 +43,7 @@ export function AsesorItem(props) {
     vistaRapida = <> <p className='cotizacion-item__info'><span className='cotizacion-item__info-label'>Clave Existente:</span>
       <span className='cotizacion-item__info-valor'>{mag.clave_ex}</span><br /></p> </>
   } else if (mag.actividad === 'cambio') {
-    vistaRapida = <>  <p className='cotizacion-item__info'> <span className='cotizacion-item__info-label'>Clase Existente:</span>
+    vistaRapida = <>  <p className='cotizacion-item__info'> <span className='cotizacion-item__info-label'>Clave Existente:</span>
       <span className='cotizacion-item__info-valor'>{mag.clave_ex}</span><br />
       <span className='cotizacion-item__info-label'>Base de Cambio:</span>
       <span className='cotizacion-item__info-valor'>{mag.base}</span></p></>
@@ -84,8 +84,8 @@ export function AsesorItem(props) {
         <div className='column'>
           <p className='cotizacion-item__info'>
             <label className='estatus_gn'>Estatus General: <Label className={`cotizacion-item__info-statusinde`} color={getStatusGeneralColor}>
-                {mag.StatusGeneral}
-              </Label></label>
+              {mag.StatusGeneral}
+            </Label></label>
             <label className='estatus_Id'>Estatus de Inv. y Desarollo: <Label className={`cotizacion-item__info-statusinde ${getStatusColor(mag.sIyD)}`}>
               {mag.sIyD ? 'Finalizado' : 'Pendiente'}
             </Label></label>

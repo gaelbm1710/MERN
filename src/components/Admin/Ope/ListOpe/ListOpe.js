@@ -1,18 +1,18 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Mag } from '../../../../api';
 import { size, map } from 'lodash';
 import { Loader, Pagination, Search } from 'semantic-ui-react';
-import {OpeItem} from "../OpeItem/OpeItem"
+import { OpeItem } from "../OpeItem/OpeItem"
 import "./ListOpe.scss";
 
 const magController = new Mag();
 
 export function ListOpe(props) {
-  const {reload, onReload, onClose} = props;
+  const { reload, onReload, onClose } = props;
   const [mags, setMags] = useState([]);
   const [page, setPage] = useState(1);
   const [pagination, setPagination] = useState();
-const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
   const actividad = 'nueva'
   const fetchMags = async (page) => {
     try {
@@ -69,10 +69,10 @@ const [searchTerm, setSearchTerm] = useState('');
   };
 
   const filterMags = () => {
-    if (!searchTerm) {
-      return mags;
-    } else {
-      return mags.filter(mag =>
+    let filteredMags = mags;
+
+    if (searchTerm) {
+      filteredMags = filteredMags.filter(mag =>
         (mag.folio && mag.folio.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
         (mag.folio_Op && mag.folio_Op.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
         (mag.folio_sCom && mag.folio_sCom.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
@@ -81,6 +81,8 @@ const [searchTerm, setSearchTerm] = useState('');
         (mag.asesor && mag.asesor.toString().toLowerCase().includes(searchTerm.toLowerCase()))
       );
     }
+
+    return filteredMags.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
   };
 
   if (!mags) return <Loader active inline="centered" />;
@@ -90,23 +92,23 @@ const [searchTerm, setSearchTerm] = useState('');
   return (
     <div className='list-cotizaciones'>
       <Search
-      onSearchChange={handleSearchChange}
-      value={searchTerm}
-      placeholder='Buscar...'
-      showNoResults={false} 
+        onSearchChange={handleSearchChange}
+        value={searchTerm}
+        placeholder='Buscar...'
+        showNoResults={false}
       />
-      {map(filterMags(), mag=>(
+      {map(filterMags(), mag => (
         <OpeItem key={mag._id} mag={mag} onReload={onReload} onClose={onClose} />
       ))}
       <div className='list-cotizaciones__pagination'>
-      <Pagination
-            totalPages={pagination.total}
-            defaultActivePage={pagination.page}
-            ellipsisItem={null}
-            firstItem={null}
-            lastItem={null}
-            onPageChange={changePage}
-            />
+        <Pagination
+          totalPages={pagination.total}
+          defaultActivePage={pagination.page}
+          ellipsisItem={null}
+          firstItem={null}
+          lastItem={null}
+          onPageChange={changePage}
+        />
       </div>
     </div>
   )

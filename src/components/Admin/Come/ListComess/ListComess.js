@@ -1,13 +1,13 @@
-import React , {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Mag } from '../../../../api';
 import { size, map } from 'lodash';
 import { Loader, Pagination, Search } from 'semantic-ui-react';
-import {ComeItem} from "../ComeItem/ComeItem"
+import { ComeItem } from "../ComeItem/ComeItem"
 
 const magController = new Mag();
 
 export function ListComess(props) {
-  const {reload, onReload, onClose} = props;
+  const { reload, onReload, onClose } = props;
   const [mags, setMags] = useState(false);
   const [page, setPage] = useState(1);
   const [pagination, setPagination] = useState()
@@ -68,18 +68,19 @@ export function ListComess(props) {
   };
 
   const filterMags = () => {
-    if (!searchTerm) {
-      return mags;
-    } else {
-      return mags.filter(mag =>
+    let filteredMags = mags;
+
+    if (searchTerm) {
+      filteredMags = filteredMags.filter(mag =>
         (mag.folio && mag.folio.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
-        (mag.folio_IyD && mag.folio_IyD.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
         (mag.folio_sCom && mag.folio_sCom.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
         (mag.cliente && mag.cliente.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
         (mag.cardcode && mag.cardcode.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
         (mag.asesor && mag.asesor.toString().toLowerCase().includes(searchTerm.toLowerCase()))
       );
     }
+
+    return filteredMags.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
   };
 
   if (!mags) return <Loader active inline="centered" />;

@@ -70,18 +70,19 @@ export function ListCome(props) {
 
 
   const filterMags = () => {
-    if (!searchTerm) {
-      return mags;
-    } else {
-      return mags.filter(mag =>
+    let filteredMags = mags;
+
+    if (searchTerm) {
+      filteredMags = filteredMags.filter(mag =>
         (mag.folio && mag.folio.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
-        (mag.folio_IyD && mag.folio_IyD.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
         (mag.folio_sCom && mag.folio_sCom.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
         (mag.cliente && mag.cliente.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
         (mag.cardcode && mag.cardcode.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
         (mag.asesor && mag.asesor.toString().toLowerCase().includes(searchTerm.toLowerCase()))
       );
     }
+
+    return filteredMags.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
   };
 
 

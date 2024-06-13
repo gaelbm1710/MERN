@@ -1,19 +1,19 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Mag } from '../../../../api';
 import { size, map } from 'lodash';
 import { Loader, Pagination, Search } from 'semantic-ui-react';
-import {ComeItem} from '../ComeItem';
+import { ComeItem } from '../ComeItem';
 
 const magController = new Mag();
 
 export function ListComes(props) {
-  const {reload, onReload, onClose} = props;
+  const { reload, onReload, onClose } = props;
   const [mags, setMags] = useState([]);
   const [page, setPage] = useState(1);
   const [pagination, setPagination] = useState();
   const [searchTerm, setSearchTerm] = useState('');
   const actividad = 'presentacion';
- 
+
   const fetchMags = async (page) => {
     try {
       const response = await magController.getMagActividadPresentacion(actividad, { page, limit: 10 });
@@ -47,7 +47,7 @@ export function ListComes(props) {
   useEffect(() => {
     loadMags();
   }, [page, reload]);
-  
+
   useEffect(() => {
     if (searchTerm) {
       (async () => {
@@ -59,7 +59,7 @@ export function ListComes(props) {
     }
   }, [searchTerm, reload]);
 
-  const changePage=(_,data)=>{
+  const changePage = (_, data) => {
     setPage(data.activePage);
   };
 
@@ -68,22 +68,23 @@ export function ListComes(props) {
   };
 
   const filterMags = () => {
-    if (!searchTerm) {
-      return mags;
-    } else {
-      return mags.filter(mag =>
+    let filteredMags = mags;
+
+    if (searchTerm) {
+      filteredMags = filteredMags.filter(mag =>
         (mag.folio && mag.folio.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
-        (mag.folio_IyD && mag.folio_IyD.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
         (mag.folio_sCom && mag.folio_sCom.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
         (mag.cliente && mag.cliente.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
         (mag.cardcode && mag.cardcode.toString().toLowerCase().includes(searchTerm.toLowerCase())) ||
         (mag.asesor && mag.asesor.toString().toLowerCase().includes(searchTerm.toLowerCase()))
       );
     }
+
+    return filteredMags.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
   };
 
-  if(!mags) return <Loader active inline="centered"/>
-  if(size(mags)===0) return "No hay cotizaciones"
+  if (!mags) return <Loader active inline="centered" />
+  if (size(mags) === 0) return "No hay cotizaciones"
 
   return (
     <div className='list-cotizaciones'>
@@ -98,14 +99,14 @@ export function ListComes(props) {
         <ComeItem key={mag._id} mag={mag} onReload={onReload} onClose={onClose} />
       ))}
       <div className='list-cotizaciones__pagination'>
-      <Pagination
-            totalPages={pagination.total}
-            defaultActivePage={pagination.page}
-            ellipsisItem={null}
-            firstItem={null}
-            lastItem={null}
-            onPageChange={changePage}
-            />
+        <Pagination
+          totalPages={pagination.total}
+          defaultActivePage={pagination.page}
+          ellipsisItem={null}
+          firstItem={null}
+          lastItem={null}
+          onPageChange={changePage}
+        />
       </div>
     </div>
   );
