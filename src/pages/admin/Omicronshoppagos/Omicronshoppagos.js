@@ -4,7 +4,7 @@ import { map, size } from "lodash";
 import { TableRow, TableHeaderCell, TableHeader, TableCell, TableBody, Table, Pagination, Loader, Input, Button, Dropdown } from "semantic-ui-react";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-import "./Omicronshoppagos.scss"; // Importa tu archivo SCSS
+import "./Omicronshoppagos.scss";
 
 const contaController = new Contabilidad();
 
