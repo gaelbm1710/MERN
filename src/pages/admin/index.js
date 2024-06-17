@@ -22,3 +22,6 @@ export * from "./Soporte";
 export * from "./GestionComercial";
 export * from "./GestionComercials";
 export * from "./GestionComercialss";
+export * from "./MarkCatPromos";
+export * from "./Markfacturas";
+export * from "./Markpromos";

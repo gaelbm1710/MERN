@@ -41,6 +41,7 @@ export function UserForm(props) {
         { key: "com", text: "Comercial", value: "com" },
         { key: "conta", text: "Contabilidad", value: "conta" },
         { key: "sistemas", text: "Sistemas", value: "sistemas" },
+        {key: "marketing", text: "Marketing", value: "marketing"}
     ];
 
     const onDrop = useCallback((acceptedFiles) => {

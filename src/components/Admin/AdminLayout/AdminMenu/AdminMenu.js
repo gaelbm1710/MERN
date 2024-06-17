@@ -14,6 +14,7 @@ export function AdminMenu() {
   const isAse = role === "user";
   const isConta = role === "conta";
   const isSist = role === "sistemas";
+  const isMarket = role === "marketing"
 
 
   const isCurrentPath = (path) => {
@@ -21,6 +22,7 @@ export function AdminMenu() {
     return false;
   }
   return (
+  <>
     <Menu fluid vertical icon text className='admin-menu'>
       {isAdmin && (
         <>
@@ -271,6 +273,35 @@ export function AdminMenu() {
           </Dropdown>
         </>
       )}
+      {isMarket && (
+        <>
+        <Dropdown item text='Reportes de Pagos'>
+          <DropdownMenu className='admin-menu-lista'>
+            <Menu.Item as={Link} to="/admin/MarkCatPromos" active={isCurrentPath("/admin/MarkCatPromos")}>
+              <Icon name='money bill alternate outline' />
+              Transacciones con Código Promocional
+            </Menu.Item>
+            <Menu.Item as={Link} to="/admin/Markfacturas" active={isCurrentPath("/admin/Markfacturas")}>
+              <Icon name='money bill alternate outline' />
+              Facturas de SAP
+            </Menu.Item>
+            <Menu.Item as={Link} to="/admin/Markpromos" active={isCurrentPath("/admin/Markpromos")}>
+              <Icon name='money bill alternate outline' />
+              Información de Códigos Promocionales
+            </Menu.Item>
+          </DropdownMenu>
+        </Dropdown>
+        <Dropdown item text='Ticket de Soporte'>
+          <DropdownMenu className='admin-menu-lista'>
+            <Menu.Item as="a" href="https://forms.office.com/pages/responsepage.aspx?id=pRffhtXT0kuFU3sNV6O3PBUZyAc4Wx5EiTVlITBFysBUNTRUM0QyRUszN1pSSUFTRlk5WEpIVklBMC4u" target="_blank">
+              <Icon name='wrench' />
+              Tickets de Soporte
+            </Menu.Item>
+          </DropdownMenu>
+        </Dropdown>
+      </>
+      )}
     </Menu>
+    </>
   )
 }

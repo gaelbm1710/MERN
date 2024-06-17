@@ -1,11 +1,11 @@
 
 export const ENV = {
     //Conexion prod
-    BASE_PATH: `https://kaapa-backend.azurewebsites.net`,
-    BASE_API: `https://kaapa-backend.azurewebsites.net/api/v1`,
+    //BASE_PATH: `https://kaapa-backend.azurewebsites.net`,
+    //BASE_API: `https://kaapa-backend.azurewebsites.net/api/v1`,
     //Conexion Local 
-    //BASE_PATH: `http://localhost:8080`,
-    //BASE_API: `http://localhost:8080/api/v1`, 
+    BASE_PATH: `http://localhost:8080`,
+    BASE_API: `http://localhost:8080/api/v1`, 
     //Contenedor
     USUSARIOS: `https://kaapauploads.blob.core.windows.net`,
     DEFAULT: 'https://kaapauploads.blob.core.windows.net/avatar/default.jpg',
@@ -47,7 +47,13 @@ export const ENV = {
         EPAGOS: "epagos",
         CREDTIOSS: "creditoss",
         PAGOSF: "pagosf",
-        SOPORTE: "soporte"
+        SOPORTE: "soporte",
+        MARKFACTURAS: "consultafacturas",
+        MARKPROMOS: "reportepromociones",
+        MARKCATPROMOS: "categoriapromociones",
+        EMARKFACTURAS: "consultafacturas",
+        EMARKPROMOS: "reportepromociones",
+        EMARKCATPROMOS: "categoriapromociones"
     },
     JWT: {
         ACCESS: "access",
