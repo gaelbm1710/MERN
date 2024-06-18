@@ -15,11 +15,7 @@ export function initialValues(soporte, email){
 export function validationSchema(){
     return Yup.object({
         documentos: Yup.string().required(false),
-        servicio: Yup.array().of(Yup.string()).nullable(),
-        descripcion: Yup.string().required(false) ,
-        dueno: Yup.string().email(true).required(true),
-        asignado: Yup.string().required(true),
-        estado: Yup.string().required(true),
-        comentarios: Yup.string().required(true)
+        servicio: Yup.string().required(true),
+        descripcion: Yup.string().required(true) ,
     });
 }

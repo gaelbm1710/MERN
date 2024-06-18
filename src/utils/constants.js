@@ -9,6 +9,7 @@ export const ENV = {
     //Contenedor
     USUSARIOS: `https://kaapauploads.blob.core.windows.net`,
     DEFAULT: 'https://kaapauploads.blob.core.windows.net/avatar/default.jpg',
+    TICKETSOPORTE: 'https://kaapauploads.blob.core.windows.net',
     API_ROUTES: {
         REGISTER: "auth/register",
         LOGIN: "auth/login",
@@ -48,6 +49,7 @@ export const ENV = {
         CREDTIOSS: "creditoss",
         PAGOSF: "pagosf",
         SOPORTE: "soporte",
+        ASOPORTE: "asoporte",
         MARKFACTURAS: "consultafacturas",
         MARKPROMOS: "reportepromociones",
         MARKCATPROMOS: "categoriapromociones",

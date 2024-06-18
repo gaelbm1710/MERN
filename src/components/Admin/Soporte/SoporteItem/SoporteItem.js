@@ -7,12 +7,11 @@ import { SoporteForm } from '../SoporteForm/SoporteForm';
 
 export function SoporteItem(props) {
     const {soporte, onReload} = props;
-    const dxp = soporte._id.substring(24,18);
     const [showModal, setshowModal] = useState(false);
     const [titleModal, setTitleModal] = useState("");
     const onOpenCloseModal = ()=> setshowModal((prevState) => !prevState);
     const openUpdateSoporte =() =>{
-        setTitleModal(`Actualizar enlace: ${dxp}`);
+        setTitleModal(`Actualizar enlace: ${soporte.folio}`);
         onOpenCloseModal();
     }
     
@@ -20,7 +19,7 @@ export function SoporteItem(props) {
     <>
     <div className='ticket-item'>
         <div className='ticket-item__info'>
-            <h3>#{dxp}</h3>
+            <h3>{soporte.folio}</h3>
             <h4>{soporte.servicio}</h4>
             <span>{soporte.estado}</span>
             <span>{soporte.asignado}</span>

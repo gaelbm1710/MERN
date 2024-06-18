@@ -40,6 +40,34 @@ export class Soporte{
             throw error;
         }
     }
+
+    async createATicket(accessToken,data){
+        try {
+            const formData = new FormData();
+            Object.keys(data).forEach((key) =>{
+                if(key === 'documentos'){
+                    formData.append('documentos', data[key]);
+                }else{
+                    formData.append(key,data[key]);
+                }
+            })
+            const url = `${ENV.BASE_API}/${ENV.API_ROUTES.ASOPORTE}`
+            const params = {
+                method: 'POST',
+                headers: {
+                    Authorization: `Bearer ${accessToken}`
+                },
+                body: formData,
+            };
+            const response = await fetch(url, params);
+            const result = await response.json();
+            if(response.status !== 200) throw result;
+            return result;
+        } catch (error) {
+            throw error;
+        }
+    }
+
     async updateTicket(accessToken, idTicket, ticketData){
         try {
             const data = ticketData;
