@@ -3,7 +3,7 @@ import { ENV } from "../utils";
 export class Marketing{
     baseApi = ENV.BASE_API;
 
-    async getReporteFacturas(){
+    async ConsultaFacturas(){
         try {
             const url = `${this.baseApi}/${ENV.API_ROUTES.MARKFACTURAS}`;
             const response = await fetch(url);
@@ -27,9 +27,11 @@ export class Marketing{
         }
     }
 
-    async getReporteCatPromos(){
+    async getReporteCatPromos(params){
         try {
-            const url = `${this.baseApi}/${ENV.API_ROUTES.MARKCATPROMOS}`;
+            const pageFilter = `page=${params?.page || 1}`;
+            const limitFilter = `limit=${params?.limit || 10}`;
+            const url = `${this.baseApi}/${ENV.API_ROUTES.MARKCATPROMOS}?${pageFilter}&${limitFilter}`;
             const response = await fetch(url);
             const result = await response.json();
             if(response.status !== 200) throw result;
@@ -40,7 +42,7 @@ export class Marketing{
     }
 
     //Exportar Archivos
-    async exportReporteFacturas(){
+    async ExportarConsultaFacturas(){
         try {
             const url = `https://kaapa-backend.azurewebsites.net/api/v1/${ENV.API_ROUTES.EMARKFACTURAS}`;
             const response = await fetch(url);
@@ -58,7 +60,7 @@ export class Marketing{
             const urlBlob = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = urlBlob;
-            a.download = 'ReporteFacturas.xlsx';
+            a.download = 'Facturas.xlsx';
             document.body.appendChild(a);
             a.click();
             a.remove();

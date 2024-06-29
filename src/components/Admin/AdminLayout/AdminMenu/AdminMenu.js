@@ -279,7 +279,7 @@ export function AdminMenu() {
           <DropdownMenu className='admin-menu-lista'>
             <Menu.Item as={Link} to="/admin/MarkCatPromos" active={isCurrentPath("/admin/MarkCatPromos")}>
               <Icon name='money bill alternate outline' />
-              Transacciones con Código Promocional
+              Información de Códigos Promocionales
             </Menu.Item>
             <Menu.Item as={Link} to="/admin/Markfacturas" active={isCurrentPath("/admin/Markfacturas")}>
               <Icon name='money bill alternate outline' />
@@ -287,7 +287,7 @@ export function AdminMenu() {
             </Menu.Item>
             <Menu.Item as={Link} to="/admin/Markpromos" active={isCurrentPath("/admin/Markpromos")}>
               <Icon name='money bill alternate outline' />
-              Información de Códigos Promocionales
+              Transacciones con Código Promocional
             </Menu.Item>
           </DropdownMenu>
         </Dropdown>
