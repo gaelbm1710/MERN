@@ -46,8 +46,11 @@ export function Markfacturas() {
             const filtered = promo.filter(data => {
                 return Object.keys(filters).every(key => {
                     if (!filters[key]) return true;
-                    if (key === 'responsedate' || key === 'createdate') {
-                        return new Date(data[key]).toLocaleDateString() === new Date(filters[key]).toLocaleDateString();
+                    if (key === 'Fecha_Factura') {
+                        // Compare dates by converting them to UTC date strings for precise comparison
+                        const filterDate = filters[key].toISOString().slice(0, 10); // yyyy-mm-dd format
+                        const dataDate = new Date(data[key]).toISOString().slice(0, 10); // yyyy-mm-dd format
+                        return filterDate === dataDate;
                     }
                     return String(data[key]).toLowerCase().includes(filters[key].toLowerCase());
                 });
@@ -55,12 +58,12 @@ export function Markfacturas() {
             setFilteredPromo(filtered);
             setPagination({
                 ...pagination,
-                total:filtered.length,
+                total: filtered.length,
             });
             setPage(1);
         };
         applyFilters();
-    },[filters, promo]);
+    }, [filters, promo]);
 
     const changePage = (_, data) => {
         setPage(data.activePage);
@@ -97,10 +100,10 @@ export function Markfacturas() {
                     <span>CardCode: <Input name="CardCode" value={filters.CardCode} onChange={handleFilterChange} placeholder="Filtrar por CardCode" /></span>
                 </div>
                 <div className="filter-item">
-                    <span>DocNum: <Input name="DocNum" value={filters.DocNum} onChange={handleFilterChange} placeholder="Filtrar por DocNum" /></span>
+                    <span>Numero Factura: <Input name="DocNum" value={filters.DocNum} onChange={handleFilterChange} placeholder="Filtrar por numero de factura" /></span>
                 </div>
                 <div className="filter-item">
-                    <span>Fecha Factura: <Input name="Fecha_Factura" value={filters.Fecha_Factura} onChange={handleFilterChange} placeholder="Filtrar por Fecha Factura" /></span>
+                    <span>Fecha Factura: <DatePicker selected={filters.Fecha_Factura} onChange={date => handleDateChange(date, 'Fecha_Factura')} dateFormat="yyyy/MM/dd" showIcon isClearable /></span>
                 </div>
                 <div className="filter-item">
                     <span>DXP: <Input name="U_Pedido_DXP" value={filters.U_Pedido_DXP} onChange={handleFilterChange} placeholder="Filtrar por DXP" /></span>
@@ -112,7 +115,7 @@ export function Markfacturas() {
                     <TableHeader>
                         <TableRow>
                             <TableHeaderCell>CardCode</TableHeaderCell>
-                            <TableHeaderCell>DocNum</TableHeaderCell>
+                            <TableHeaderCell>Numero Factura</TableHeaderCell>
                             <TableHeaderCell>Fecha Factura</TableHeaderCell>
                             <TableHeaderCell>DXP</TableHeaderCell>
                         </TableRow>

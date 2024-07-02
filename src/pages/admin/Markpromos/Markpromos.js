@@ -53,7 +53,7 @@ export function Markpromos() {
             const filtered = promo.filter(data => {
                 return Object.keys(filters).every(key => {
                     if (!filters[key]) return true;
-                    if (key === 'responsedate' || key === 'createdate') {
+                    if (key === 'pago' || key === 'creacion') {
                         return new Date(data[key]).toLocaleDateString() === new Date(filters[key]).toLocaleDateString();
                     }
                     return String(data[key]).toLowerCase().includes(filters[key].toLowerCase());
@@ -62,12 +62,13 @@ export function Markpromos() {
             setFilteredPromo(filtered);
             setPagination({
                 ...pagination,
-                total:filtered.length,
+                total: filtered.length,
             });
-            setPage(1);
+            setPage(1); // Reset to first page after filtering
         };
+    
         applyFilters();
-    },[filters, promo]);
+    }, [filters, promo]);
 
     const changePage = (_, data) => {
         setPage(data.activePage);
@@ -120,6 +121,9 @@ export function Markpromos() {
                 </div>
                 <div className="filter-item">
                     <span>Creación: <DatePicker selected={filters.creacion} onChange={date => handleDateChange(date, 'creacion')} dateFormat="yyyy/MM/dd" showIcon isClearable /></span>
+                </div>
+                <div className="filter-item">
+                    <span>Fecha de Pago: <DatePicker selected={filters.pago} onChange={date => handleDateChange(date, 'pago')} dateFormat="yyyy/MM/dd" showIcon isClearable /></span>
                 </div>
                 <div className="filter-item">
                     <span>Producto: <Input name="itemcode" value={filters.itemcode} onChange={handleFilterChange} placeholder="Filtrar por Producto" /></span>
