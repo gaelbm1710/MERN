@@ -24,6 +24,7 @@ export function ComeView(props) {
                 <p>Comentarios al Cliente: <span className='cotizacion-principal_info-presentacion'>{mag.comClie}</span></p>
                 <p>Exclusiva: <span className='cotizacion-principal_info-presentacion'>{mag.excl ? 'Sí' : 'No'}</span></p>
                 <p>Refrigeración: <span className='cotizacion-principal_info-presentacion'>{mag.refri ? 'Sí' : 'No'}</span></p>
+                <p>Padecimiento: <span className='cotizacion-principal_info-presentacion'>{mag.padecimiento}</span></p>
                 <Table className='table-precio'>
                     <TableHeader>
                         <TableRow>

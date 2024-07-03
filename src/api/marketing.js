@@ -1,40 +1,40 @@
 import { ENV } from "../utils";
 
-export class Marketing{
+export class Marketing {
     baseApi = ENV.BASE_API;
 
-    async ConsultaFacturas(){
+    async ConsultaFacturas() {
         try {
             const url = `${this.baseApi}/${ENV.API_ROUTES.MARKFACTURAS}`;
             const response = await fetch(url);
             const result = await response.json();
-            if(response.status !== 200) throw result;
+            if (response.status !== 200) throw result;
             return result;
         } catch (error) {
             throw error;
         }
     }
 
-    async getReportePromos(){
+    async getReportePromos() {
         try {
             const url = `${this.baseApi}/${ENV.API_ROUTES.MARKPROMOS}`;
             const response = await fetch(url);
             const result = await response.json();
-            if(response.status !== 200) throw result;
+            if (response.status !== 200) throw result;
             return result;
         } catch (error) {
             throw error;
         }
     }
 
-    async getReporteCatPromos(params){
+    async getReporteCatPromos(params) {
         try {
             const pageFilter = `page=${params?.page || 1}`;
             const limitFilter = `limit=${params?.limit || 10}`;
             const url = `${this.baseApi}/${ENV.API_ROUTES.MARKCATPROMOS}?${pageFilter}&${limitFilter}`;
             const response = await fetch(url);
             const result = await response.json();
-            if(response.status !== 200) throw result;
+            if (response.status !== 200) throw result;
             return result;
         } catch (error) {
             throw error;
@@ -42,9 +42,10 @@ export class Marketing{
     }
 
     //Exportar Archivos
-    async ExportarConsultaFacturas(){
+    async ExportarConsultaFacturas() {
         try {
-            const url = `https://kaapa-backend.azurewebsites.net/api/v1/${ENV.API_ROUTES.EMARKFACTURAS}`;
+            const url = `${ENV.BASE_API}/${ENV.API_ROUTES.EMARKFACTURAS}`;
+            console.log(url);
             const response = await fetch(url);
             console.log(response.status);
             console.log(response);
@@ -70,7 +71,7 @@ export class Marketing{
         }
     }
 
-    async exportReportePromos(){
+    async exportReportePromos() {
         try {
             const url = `https://kaapa-backend.azurewebsites.net/api/v1/${ENV.API_ROUTES.EMARKPROMOS}`;
             const response = await fetch(url);
