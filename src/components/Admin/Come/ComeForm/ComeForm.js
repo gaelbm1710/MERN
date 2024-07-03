@@ -51,7 +51,7 @@ export function ComeForm(props) {
       <p>Muestra: <span>{mag.necesita_muestra ? 'Si' : 'No'}</span></p>
       <p>Refrigeración: <span>{mag.refri ? 'Si' : 'No'}</span></p>
       <p>Padecimiento: <span>{mag.padecimiento}</span></p>
-      <p>Caducidad: <span>{mag.caducidad}</span></p>
+      <p>Caducidad: <span>{mag.caducidad ? `${mag.caducidad} meses` : ''}</span></p>
     </>
   } else if (mag.actividad === 'presentacion') {
     formview = <>

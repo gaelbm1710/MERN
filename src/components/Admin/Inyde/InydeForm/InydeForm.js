@@ -113,7 +113,7 @@ export function InydeForm(props) {
           <Form.Input label='Folio' name='folio_IyD' onChange={formik.handleChange} value={formik.values.folio_IyD} error={formik.errors.folio_IyD} />
           <Form.Dropdown label='Clasificacion' placeholder='' options={clasi} selection onChange={(_, data) => formik.setFieldValue("clasi", data.value)} value={formik.values.clasi} error={formik.errors.clasi} />
           <Form.Dropdown label='Tipo de Formula' placeholder='' options={tipoF} selection onChange={(_, data) => formik.setFieldValue("tipoF", data.value)} value={formik.values.tipoF} error={formik.errors.tipoF} />
-          <Form.Input label='Caducidad' name='caducidad' onChange={formik.handleChange} value={formik.values.caducidad} error={formik.errors.caducidad} />
+          <Form.Input label='Caducidad (meses)' name='caducidad' onChange={formik.handleChange} value={formik.values.caducidad} error={formik.errors.caducidad} />
           <br></br><Form.Checkbox label='Necesita Receta'
             name='receta' onChange={(_, data) => formik.setFieldValue("receta", data.checked)} checked={formik.values.receta} error={formik.errors.receta} className='custom-checkbox' />
         </Container>

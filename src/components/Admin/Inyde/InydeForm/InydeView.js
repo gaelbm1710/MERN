@@ -19,7 +19,7 @@ export function InydeView(props) {
         <p>Presentaciones: <span className='cotizacion-principal_info-presentacion'>{mag.presentacion}</span></p>
         <p>Clasificación: <span className='cotizacion-principal_info-presentacion'>{mag.clasi}</span></p>
         <p>Tipo de Formula: <span className='cotizacion-principal_info-presentacion'>{mag.tipoF}</span></p>
-        <p>Caducidad: <span className='cotizacion-principal_info-presentacion'>{mag.caducidad}</span></p>
+        <p>Caducidad: <span className='cotizacion-principal_info-presentacion'>{mag.caducidad ? `${mag.caducidad} meses` : ''}</span></p>
         <p>Necesita Receta: <span className='cotizacion-principal_info-muestra'>{mag.receta ? 'Sí' : 'No'}</span></p>
         <p>Información: <span className='cotizacion-principal_info-presentacion'>{mag.infoDesa}</span></p>
         <p>Comentarios Asesor: <span className='cotizacion-principal_info-presentacion'>{mag.comeAsesor}</span></p>

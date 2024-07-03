@@ -106,15 +106,23 @@ export function InydeItem(props) {
         vistaRapida = <>    <span className='cotizacion-item__info-label'>Base:</span>
             <span className='cotizacion-item__info-valor'>{mag.base}</span><br />
             <span className='cotizacion-item__info-label'>Activos:</span>
-            <span className='cotizacion-item__info-valor'>{mag.activos}</span></>
+            <span className='cotizacion-item__info-valor'>{mag.activos}</span><br />
+            <span className='cotizacion-item__info-label'>Muestra:</span>
+            <span className='cotizacion-item__info-valor'>{mag.necesita_muestra ? 'Sí' : 'No'}</span></>
     } else if (mag.actividad === 'presentacion') {
         vistaRapida = <> <span className='cotizacion-item__info-label'>Clave Existente:</span>
-            <span className='cotizacion-item__info-valor'>{mag.clave_ex}</span><br /></>
+            <span className='cotizacion-item__info-valor'>{mag.clave_ex}</span><br />
+            <span className='cotizacion-item__info-label'>Presentaciones:</span>
+            <span className='cotizacion-item__info-valor'>{mag.presentacion}</span>
+            </>
+
     } else if (mag.actividad === 'cambio') {
-        vistaRapida = <>    <span className='cotizacion-item__info-label'>Clase Existente:</span>
+        vistaRapida = <>    <span className='cotizacion-item__info-label'>Clave Existente:</span>
             <span className='cotizacion-item__info-valor'>{mag.clave_ex}</span><br />
             <span className='cotizacion-item__info-label'>Base de Cambio:</span>
-            <span className='cotizacion-item__info-valor'>{mag.base}</span></>
+            <span className='cotizacion-item__info-valor'>{mag.base}</span><br />
+            <span className='cotizacion-item__info-label'>Muestra:</span>
+            <span className='cotizacion-item__info-valor'>{mag.necesita_muestra ? 'Sí' : 'No'}</span></>
     }
 
     let contentView;
