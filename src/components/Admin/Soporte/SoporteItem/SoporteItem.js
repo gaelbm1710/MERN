@@ -33,6 +33,15 @@ export function SoporteItem(props) {
 
     const documentosUrl = soporte.documentos ? `${ENV.TICKETSOPORTE}/${soporte.documentos}` : 'No agrego Documentos'
 
+    let descargaDocumentos;
+    if (documentosUrl === 'No agrego Documentos') {
+        descargaDocumentos = <span>No agregó Documento</span>
+    } else {
+        descargaDocumentos = <Button icon primary onClick={documentosUrl}>
+            <Icon name='download' />
+        </Button>
+    }
+
     return (
         <>
             <div className='ticket-item'>
@@ -42,7 +51,8 @@ export function SoporteItem(props) {
                     <span>Estatus: {soporte.estado}</span>
                     <span>Asignado: {soporte.asignado}</span>
                     <span>Creador: {soporte.dueno}</span>
-                    <span>{documentosUrl}</span>
+                    {documentosUrl}
+                    {descargaDocumentos}
                 </div>
                 <Button icon primary onClick={openVerSoporte}>
                     <Icon name='eye' />
