@@ -1,12 +1,13 @@
-import React, { useCallback } from 'react';
-import { Form, Button, Label, Icon, Image } from 'semantic-ui-react';
-import { useDropzone } from 'react-dropzone';
+import React, { useCallback, useState } from 'react';
+import { Form, Icon, Label } from 'semantic-ui-react';
 import { useFormik } from 'formik';
 import { initialValues, validationSchema } from './SoporteForm.form';
+import { useDropzone } from 'react-dropzone';
 import { Soporte } from '../../../../api';
 import { useAuth } from '../../../../hooks';
-import { ENV } from '../../../../utils';
-import "./SoporteForm.scss";
+//import { ENV } from '../../../../utils';
+import './SoporteForm.scss';
+const soporteController = new Soporte();
 
 const servicios = [
     { key: "SoporteTecnico", text: "Soporte Técnico (0 - 3 días)", value: "SoporteTecnico" },
@@ -16,79 +17,97 @@ const servicios = [
     { key: "otro", text: "Otro", value: "otro" }
 ];
 
-const soporteController = new Soporte();
-
 export function SoporteForm(props) {
-    const { onClose, onReload, soporte } = props
-    const { accessToken } = useAuth();
-    const { user: { email } } = useAuth();
-    const CorreoDueno = email;
-
+    const { close, onReload, soporte } = props
+    const { accessToken, user: { email } } = useAuth();
+    const [myFiles, setMyFiles] = useState([]);
+    const correoDueno = email;
     const formik = useFormik({
-        initialValues: initialValues(soporte, CorreoDueno),
-        validationSchema: validationSchema(),
+        initialValues: initialValues(soporte, correoDueno),
+        validationSchema: validationSchema(soporte),
         validateOnChange: false,
         onSubmit: async (formValue) => {
             try {
-                const data = {
-                    servicio: formValue.servicio,
-                    descripcion: formValue.descripcion,
-                    dueno: CorreoDueno,
-                    documentos: formValue.documentos
-                };
                 if (!soporte) {
-                    await soporteController.createATicket(accessToken, data)
+                    await soporteController.createATicket(accessToken, formValue);
                 } else {
-                    console.log("Esto no debería de pasar");
+                    console.log('Actualizar Ticket, no debería de pasar');
                 }
                 onReload();
-                onClose();
+                close();
             } catch (error) {
                 console.error(error);
             }
         }
     });
-/*
-    const onDrop = useCallback((acceptedFiles) => {
-        const file = acceptedFiles[0];
-        formik.setFieldValue("documentos", URL.createObjectURL(file));
-        formik.setFieldValue("file", file);
-    });
-*/
+
     const onDrop = useCallback((acceptedFiles) => {
         const file = acceptedFiles[0];
         const fileUrl = URL.createObjectURL(file);
         formik.setFieldValue("documentos", fileUrl);
-        formik.setFieldValue("documentos", file);
+        formik.setFieldValue("fileDocumentos", file);
         // eslint-disable-next-line
-    }, []);
+        setMyFiles([...myFiles, ...acceptedFiles])
+    }, [myFiles]);
 
-    const { getRootProps, getInputProps } = useDropzone({
-        accept: "image/jpeg, image/png, application/pdf, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.ms-powerpoint, application/vnd.openxmlformats-officedocument.presentationml.presentation",
-        onDrop
+    const { getRootProps, getInputProps, isDragActive, isDragAccept, isDragReject } = useDropzone({
+        accept: {
+            'image/png': ['.jpeg', '.png', '.jpg'],
+            'video/mp3': ['.mp3', '.mp4'],
+            'text/csv': ['.csv'],
+            'application/pdf': ['.doc', '.docx', '.pdf', '.xls', '.xlsx']
+        },
+        onDrop,
     });
 
-    const getDocumento = () => {
-        if (formik.values.documentos) {
-            return formik.values.documentos;
-        } else if (formik.values.documentos) {
-            return `${ENV.TICKETSOPORTE}/${formik.values.documentos}`;
-        }
-        return null;
-    };
+
+    /*const handleRemoveFile = () => {
+        formik.setFieldValue("documentos", null);
+    };*/
+
+    const removeFile = file => () => {
+        const newFiles = [...myFiles]
+        newFiles.splice(newFiles.indexOf(file), 1)
+        setMyFiles(newFiles)
+    }
+
+
+
+
+    /* const getDocumentos = () => {
+         if (formik.values.fileDocumentos) {
+             return formik.values.documentos;
+         } else if (formik.values.documentos) {
+             return `${ENV.TICKETSOPORTE}/${formik.values.documentos}`;
+         }
+         return null;
+     };*/
+
+    const files = myFiles.map(file => (
+        <span key={file.path}>
+            {file.path}
+            <Icon onClick={removeFile(file)} name='trash alternate' />
+        </span>
+    ))
+
 
     return (
-        <Form className='ticket-form' onSubmit={formik.handleSubmit}>
-            <Form.Dropdown label='Selecciona un Servicio' placeholder='Selecciona un Servicio' options={servicios} selection onChange={(_, data) => formik.setFieldValue("servicio", data.value)} value={formik.values.servicio} error={formik.errors.servicio} />
-            <Form.TextArea name="descripcion"  label='Ingrese la solicitud o incidencia' placeholder='Describa su solicitud o incidencia' onChange={formik.handleChange} value={formik.values.descripcion} error={formik.errors.descripcion} />
-            <div className='ticket-form__documento'{...getRootProps()}>
-                <input {...getInputProps()} name='documentos'/>
+        <Form className='soporte-form' onSubmit={formik.handleSubmit}>
+            <Form.Dropdown className='soporte-form__servicio' label="Seleciona un Servicio" placeholder='Servicio....' options={servicios} selection clearable onChange={(_, data) => formik.setFieldValue("servicio", data.value)} value={formik.values.servicio} error={formik.errors.servicio} />
+            <Form.TextArea className='soporte-form__descripcion' name='descripcion' placeholder='Solicitud o Incidencia' label="Ingresa la solicitud o incidencia" onChange={formik.handleChange} value={formik.values.descripcion} error={formik.errors.descripcion} />
+            <h4>Agregar Archivos</h4>
+            <div className='soporte-form__documentos' {...getRootProps()}>
                 <Label>
-                    Agregar Documentos y/o Imagenes <input src={getDocumento()} type='file' name='documentos'/>
+                    Imágenes (jpg, png, jpeg), Archivos (.doc, .docx, .pdf, .xls, .xlsx, .csv)
+                    <input {...getInputProps()} name="documentos" />
+                    {isDragAccept && (<p>Imágenes (jpg, png, jpeg), Archivos (.doc, .docx, .pdf, .xls, .xlsx)</p>)}
+                    {isDragReject && (<p>Otros tipos de Archivos son Rechazados</p>)}
+                    {isDragActive && (<p>Suelta varios Archivos Aquí...</p>)}
                 </Label>
             </div>
+            {files}
             <Form.Button type='submit' primary fluid loading={formik.isSubmitting}>
-                {soporte ? "Revisar Ticket" : "Crear Ticket"}
+                {soporte ? 'Revisar Ticket' : 'Crear Ticket'}
             </Form.Button>
         </Form>
     )

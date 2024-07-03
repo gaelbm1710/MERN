@@ -52,11 +52,16 @@ export function ComeForm(props) {
       <p>Refrigeración: <span>{mag.refri ? 'Si' : 'No'}</span></p>
       <p>Padecimiento: <span>{mag.padecimiento}</span></p>
       <p>Caducidad: <span>{mag.caducidad}</span></p>
+      <p>Refrigerado: <span>{mag.refri ? 'Si' : 'No'}</span></p>
+      <p>Pademciminto: <span>{mag.padecimiento}</span></p>
+      <p>Caducidad: <span>{mag.caducidad} meses</span></p>
     </>
   } else if (mag.actividad === 'presentacion') {
     formview = <>
       <p>CardCode: <span>{mag.cardcode}</span></p>
+      <p>Cliente: <span>{mag.cliente}</span></p>
       <p>Asesor: <span>{mag.asesor}</span></p>
+      <p>Asesor: <span>{mag.asesornom}</span></p>
       <p>Clave: <span>{mag.clave_ex}</span></p>
     </>
   } else if (mag.actividad === 'cambio') {
@@ -71,6 +76,9 @@ export function ComeForm(props) {
       <p>Clasificación: <span>{mag.clasi}</span></p>
       <p>Especialidad: <span>{mag.especialidad}</span></p>
       <p>Muestra: <span>{mag.necesita_muestra ? 'Si' : 'No'}</span></p>
+      <p>Refrigerado: <span>{mag.refri ? 'Si' : 'No'}</span></p>
+      <p>Pademciminto: <span>{mag.padecimiento}</span></p>
+      <p>Caducidad: <span>{mag.caducidad} meses</span></p>
     </>
   } else {
     formview = <div>Error en sistema</div>

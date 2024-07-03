@@ -81,7 +81,7 @@ export function ListInydes(props) {
       );
     }
 
-    return filteredMags.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+    return filteredMags;
   };
 
   if (!mags) return <Loader active inline="centered" />;
