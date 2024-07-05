@@ -68,6 +68,7 @@ export class User {
             throw error;
         }
     }
+
     async updateUser(accessToken, idUser, userData) {
         try {
             const data = userData;
@@ -142,6 +143,24 @@ export class User {
                     Authorization: `Bearer ${accessToken}`
                 },
             };
+            const response = await fetch(url, params);
+            const result = await response.json();
+            if (response.status !== 200) throw result;
+            return result;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    //Traer por Rol de sistemas
+    async getUserSistemas(accessToken, role = 'sistemas') {
+        try {
+            const url = `${this.baseApi}/${ENV.API_ROUTES.USER}/role?role=${role}`;
+            const params = {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`
+                }
+            }
             const response = await fetch(url, params);
             const result = await response.json();
             if (response.status !== 200) throw result;

@@ -10,10 +10,10 @@ import './SoporteForm.scss';
 const soporteController = new Soporte();
 
 const servicios = [
-    { key: "SoporteTecnico", text: "Soporte Técnico (0 - 3 días)", value: "SoporteTecnico" },
-    { key: "SoporteSistemas", text: "Soporte Sistemas (0 - 3 días)", value: "SoporteSistemas" },
-    { key: "DMR", text: "Desarrollo o modificaciones de Reportes (0 - 6 días)", value: "DMR" },
-    { key: "AC", text: "Asesorías y/o capacitaciones", value: "AC" },
+    { key: "Soporte Tecnico", text: "Soporte Técnico (0 - 3 días)", value: "Soporte Tecnico" },
+    { key: "Soporte Sistemas", text: "Soporte Sistemas (0 - 3 días)", value: "Soporte Sistemas" },
+    { key: "Desarrollo o modificaciones de Reportes", text: "Desarrollo o modificaciones de Reportes (0 - 6 días)", value: "Desarrollo o modificaciones de Reportes" },
+    { key: "Asesorías y/o capacitaciones", text: "Asesorías y/o capacitaciones", value: "Asesorías y/o capacitaciones" },
     { key: "otro", text: "Otro", value: "otro" }
 ];
 

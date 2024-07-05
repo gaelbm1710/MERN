@@ -97,4 +97,29 @@ export class Soporte {
             throw error;
         }
     }
+
+    async cancelTikcet(accessToken, idTicket, ticketData){
+        try {
+            const data = ticketData;
+            const formData = new FormData();
+            Object.keys(data).forEach((key) =>{
+                formData.append(key,data[key]);
+            })
+            const url = `${this.baseApi}/${ENV.API_ROUTES.CANCELSOPORTE}/${idTicket}`
+            const params = {
+                method: "PATCH",
+                eaders: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${accessToken}`,
+                },
+                body: JSON.stringify(data),
+            }
+            const response = await fetch(url, params);
+            const result = await response.json();
+            if(response.status !== 200) throw result;
+            return result;
+        } catch (error) {
+            throw error;
+        }
+    }
 }

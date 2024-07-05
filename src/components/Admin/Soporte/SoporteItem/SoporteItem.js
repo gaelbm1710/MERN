@@ -3,6 +3,8 @@ import "./SoporteItem.scss";
 import { Button, Icon } from "semantic-ui-react";
 import { BasicModal } from '../../../Shared';
 import { SoporteForm, SoporteView } from '../SoporteForm';
+import { SoporteAsignar } from '../SoporteAsignar'
+import { SoporteComentarios } from '../SoporteComentarios';
 import { useAuth } from "../../../../hooks";
 import { ENV } from '../../../../utils';
 
@@ -25,8 +27,8 @@ export function SoporteItem(props) {
         setTitleModal(`Información del Ticket: ${soporte.folio}`);
         onOpenCloseSecondModal();
     }
-    const openComentariosSoporte = () => {
-        setTitleModal(`Agregar Comentarios al Ticket: ${soporte.folio}`)
+    const openAsignarTicket = () => {
+        setTitleModal(`Asignar Ticket: ${soporte.folio}`)
         onOpenCloseThirdModal();
     }
     const isSist = role === "sistemas";
@@ -37,9 +39,7 @@ export function SoporteItem(props) {
     if (documentosUrl === 'No agrego Documentos') {
         descargaDocumentos = <span>No agregó Documento</span>
     } else {
-        descargaDocumentos = <Button icon primary onClick={documentosUrl}>
-            <Icon name='download' />
-        </Button>
+        descargaDocumentos = <span>Descarga Documentos<Button icon primary href={documentosUrl} download={soporte.documentos}><Icon name='download' /></Button></span>
     }
 
     return (
@@ -51,21 +51,26 @@ export function SoporteItem(props) {
                     <span>Estatus: {soporte.estado}</span>
                     <span>Asignado: {soporte.asignado}</span>
                     <span>Creador: {soporte.dueno}</span>
-                    {documentosUrl}
                     {descargaDocumentos}
                 </div>
                 <Button icon primary onClick={openVerSoporte}>
                     <Icon name='eye' />
                 </Button>
                 <Button icon primary onClick={openUpdateSoporte}>
-                    <Icon name='edit' />
+                    <Icon name='comments' />
+                </Button>
+                <Button icon primary onClick={openAsignarTicket}>
+                    <Icon name='users' />
                 </Button>
             </div>
             <BasicModal show={showModal} close={onOpenCloseModal} title={titleModal}>
-                <SoporteForm close={onOpenCloseModal} onReload={onReload} soporte={soporte} />
+                <SoporteComentarios close={onOpenCloseModal} onReload={onReload} soporte={soporte} />
             </BasicModal>
             <BasicModal show={showsecondModal} close={onOpenCloseSecondModal} title={titleModal}>
                 <SoporteView close={onOpenCloseSecondModal} onReload={onReload} soporte={soporte} />
+            </BasicModal>
+            <BasicModal show={showthirdModal} close={onOpenCloseThirdModal} title={titleModal}>
+                <SoporteAsignar close={onOpenCloseThirdModal} onReload={onReload} soporte={soporte} />
             </BasicModal>
         </>
     )
