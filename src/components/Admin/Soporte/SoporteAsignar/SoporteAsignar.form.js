@@ -2,7 +2,7 @@ import * as Yup from "yup"
 
 export function initialValuess(soporte) {
     return {
-        asignado: soporte?.asignado || "",
+        asignado: soporte?.asignado ? soporte.asignado.split(', ') : [] || [],
     }
 }
 

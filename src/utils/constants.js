@@ -50,6 +50,7 @@ export const ENV = {
         PAGOSF: "pagosf",
         SOPORTE: "soporte",
         ASOPORTE: "asoporte",
+        ASSOPORTE: "asignticket",
         CANCELSOPORTE: "soporte/cancelar",
         MARKFACTURAS: "consultafacturas",
         MARKPROMOS: "reportepromociones",

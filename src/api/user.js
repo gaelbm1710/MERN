@@ -163,8 +163,13 @@ export class User {
             }
             const response = await fetch(url, params);
             const result = await response.json();
+            const sistemas = result.map(user => ({
+                key: user.email,
+                text: user.firstname,
+                value: user.firstname
+            }))
             if (response.status !== 200) throw result;
-            return result;
+            return sistemas;
         } catch (error) {
             throw error;
         }
