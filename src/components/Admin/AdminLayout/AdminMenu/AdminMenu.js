@@ -110,7 +110,7 @@ export function AdminMenu() {
                 </Menu.Item>
               </DropdownMenu>
             </Dropdown>
-            <Dropdown item text='Contabilidad'>
+            <Dropdown item text="Contabilidad">
               <DropdownMenu className='admin-menu-lista'>
                 <Menu.Item as={Link} to="/admin/omicronshoppagos" active={isCurrentPath("/admin/omicronshoppagos")}>
                   <Icon name='money bill alternate outline' />
@@ -127,6 +127,14 @@ export function AdminMenu() {
                 <Menu.Item as={Link} to="/admin/facturapagas" active={isCurrentPath("/admin/facturapagas")}>
                   <Icon name='file' />
                   Facturas pagadas
+                </Menu.Item>
+              </DropdownMenu>
+            </Dropdown>
+            <Dropdown item text='Ticket de Soporte'>
+              <DropdownMenu className='admin-menu-lista'>
+                <Menu.Item as="a" href="https://forms.office.com/pages/responsepage.aspx?id=pRffhtXT0kuFU3sNV6O3PBUZyAc4Wx5EiTVlITBFysBUNTRUM0QyRUszN1pSSUFTRlk5WEpIVklBMC4u" target="_blank">
+                  <Icon name='wrench' />
+                  Tickets de Soporte
                 </Menu.Item>
               </DropdownMenu>
             </Dropdown>
