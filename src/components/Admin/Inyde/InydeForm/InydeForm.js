@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form, Container } from 'semantic-ui-react';
 import { useFormik } from 'formik';
 import { initialValues, validationSchema } from './InydeForm.form';
@@ -50,6 +50,7 @@ const magController = new Mag();
 
 export function InydeForm(props) {
   const { onClose, onReload, mag } = props;
+  const [envase, setEnvase] = useState([]);
   // const dxp = mag._id.substring(24,18);
   const { accessToken } = useAuth();
   const formik = useFormik({
@@ -58,6 +59,8 @@ export function InydeForm(props) {
     validateOnChange: false,
     onSubmit: async (formValue) => {
       try {
+        const envasesSeleccionados = formValue.envases;
+        const envasesTexto = envasesSeleccionados.join(', ');
         const data = {
           folio: mag ? mag.folio : 0,
           folio_IyD: formValue.folio_IyD,
@@ -81,6 +84,7 @@ export function InydeForm(props) {
           presentacion: formValue.presentacion,
           comClie: formValue.comClie,
           asesor: formValue.asesor,
+          envases: envasesTexto
         }
         if (!mag) {
           await magController.createMag(accessToken, data);
@@ -94,6 +98,56 @@ export function InydeForm(props) {
       }
     }
   });
+
+  useEffect(() => {
+    const fetchEnvases = async () => {
+      try {
+        const envases = await magController.getEnvases();
+        setEnvase(envases)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    fetchEnvases();
+  }, [])
+
+
+  const handleSave = async () => {
+    try {
+      const envasesSeleccionados = formik.values.envases;
+      const envasesTexto = envasesSeleccionados.join(', ');
+      const data = {
+        folio: mag ? mag.folio : 0,
+        folio_IyD: formik.values.folio_IyD,
+        cardcode: formik.values.cardcode,
+        base: formik.values.base,
+        activos: formik.values.activos,
+        especialidad: formik.values.especialidad,
+        padecimiento: formik.values.padecimiento,
+        necesita_muestra: formik.values.necesita_muestra,
+        existe: formik.values.existe,
+        base_ex: formik.values.base_ex,
+        clave_ex: formik.values.clave_ex,
+        clasi: formik.values.clasi,
+        receta: formik.values.receta,
+        refri: formik.values.refri,
+        infoDesa: formik.values.infoDesa,
+        tipoF: formik.values.tipoF,
+        caducidad: formik.values.caducidad,
+        comInt: formik.values.comInt,
+        excl: formik.values.excl,
+        presentacion: formik.values.presentacion,
+        comClie: formik.values.comClie,
+        asesor: formik.values.asesor,
+        envases: envasesTexto
+      }
+      await magController.saveMag(accessToken, mag._id, data)
+      onClose();
+      onReload();
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   return (
     <Form className='inyde-form' onSubmit={formik.handleSubmit}>
@@ -130,12 +184,13 @@ export function InydeForm(props) {
           <br></br><Form.Checkbox label='Refrigeración'
             name='refri' onChange={(_, data) => formik.setFieldValue("refri", data.checked)} checked={formik.values.refri} error={formik.errors.refri} className='custom-checkbox' />
         </Container>
+        <Form.Dropdown label="Envases" placeholder="Envases" fluid selection multiple options={envase} onChange={(_, data) => formik.setFieldValue("envases", data.value)} value={formik.values.envases || []} error={formik.errors.envases} />
       </Form.Group>
-      <Form.Button type='submit' primary fluid loading={formik.isSubmitting} className='custom-button'>
+      <Form.Button type='button' primary fluid loading={formik.isSubmitting} onClick={handleSave} className='custom-button'>
         {mag ? "Guardar Cotizacion" : "Cancelar"}
       </Form.Button>
       <Form.Button type='submit' primary fluid loading={formik.isSubmitting} className='custom-button'>
-        {mag ? "Actualizar Cotizacion" : "Cancelar"}
+        {mag ? "Enviar Cotizacion" : "Cancelar"}
       </Form.Button>
     </Form>
   )

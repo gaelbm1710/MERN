@@ -425,4 +425,96 @@ export class Mag {
             throw error
         }
     }
+
+    async saveMag(accessToken, idMag, MagData) {
+        try {
+            const data = MagData;
+            const formData = new FormData();
+            Object.keys(data).forEach((key) => {
+                formData.append(key, data[key]);
+            })
+            const url = `${this.baseApi}/${ENV.API_ROUTES.SAVEMAG}/${idMag}`
+            const params = {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${accessToken}`,
+                },
+                body: JSON.stringify(data),
+            }
+            const response = await fetch(url, params)
+            const result = await response.json()
+            if (response.status !== 200) throw result;
+            return result;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async saveMagi(accessToken, idMag, MagData) {
+        try {
+            const data = MagData;
+            const formData = new FormData();
+            Object.keys(data).forEach((key) => {
+                formData.append(key, data[key]);
+            })
+            const url = `${this.baseApi}/${ENV.API_ROUTES.SAVEMAGI}/${idMag}`
+            const params = {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${accessToken}`,
+                },
+                body: JSON.stringify(data),
+            }
+            const response = await fetch(url, params)
+            const result = await response.json()
+            if (response.status !== 200) throw result;
+            return result;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async saveMagis(accessToken, idMag, MagData) {
+        try {
+            const data = MagData;
+            const formData = new FormData();
+            Object.keys(data).forEach((key) => {
+                formData.append(key, data[key]);
+            })
+            const url = `${this.baseApi}/${ENV.API_ROUTES.SAVEMAGIS}/${idMag}`
+            const params = {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${accessToken}`,
+                },
+                body: JSON.stringify(data),
+            }
+            const response = await fetch(url, params)
+            const result = await response.json()
+            if (response.status !== 200) throw result;
+            return result;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async getEnvases() {
+        try {
+            const url = `${this.baseApi}/${ENV.API_ROUTES.ENVASES}`;
+            const response = await fetch(url);
+            const result = await response.json();
+            const envases = result.map(envase => ({
+                key: envase.IndexID,
+                text: envase.FldValue,
+                value: envase.FldValue
+            }))
+            if (response.status !== 200) throw result;
+            return envases;
+        } catch (error) {
+            throw error;
+        }
+    }
 }

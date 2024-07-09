@@ -30,6 +30,7 @@ export function OpeForm(props) {
           clasi: mag ? mag.clasi : 'Null',
           comClie: mag ? mag.comClie : 'Revisar con Investigación y Desarrollo',
           infoDesa: mag ? mag.infoDesa : 'Revisar con Investigación y Desarrollo',
+          receta: mag ? mag.receta : 'Si',
           folio_Op: formValue.folio_Op,
           precio1: formValue.precio1,
           precio2: formValue.precio2,
