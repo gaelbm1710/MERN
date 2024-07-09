@@ -64,6 +64,41 @@ export function InydessForm(props) {
     }
   });
 
+  const handleSave = async () => {
+    try {
+      const data = {
+        folio: mag ? mag.folio : 0,
+        folio_IyD: formik.values.folio_IyD,
+        cardcode: formik.values.cardcode,
+        base: formik.values.base,
+        activos: formik.values.activos,
+        especialidad: formik.values.especialidad,
+        padecimiento: formik.values.padecimiento,
+        necesita_muestra: formik.values.necesita_muestra,
+        existe: formik.values.existe,
+        base_ex: formik.values.base_ex,
+        clave_ex: formik.values.clave_ex,
+        clasi: formik.values.clasi,
+        receta: formik.values.receta,
+        refri: formik.values.refri,
+        infoDesa: formik.values.infoDesa,
+        tipoF: formik.values.tipoF,
+        caducidad: formik.values.caducidad,
+        comInt: formik.values.comInt,
+        excl: formik.values.excl,
+        presentacion: formik.values.presentacion,
+        comClie: formik.values.comClie,
+        asesor: formik.values.asesor,
+        comeAsesor: formik.values.comeAsesor
+      }
+      await magController.saveMagis(accessToken, mag._id, data)
+      onClose();
+      onReload();
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
     <Form className='inyde-form' onSubmit={formik.handleSubmit}>
       <Form.Group widths='equal'>
@@ -101,8 +136,11 @@ export function InydessForm(props) {
             name='refri' onChange={(_, data) => formik.setFieldValue("refri", data.checked)} checked={formik.values.refri} error={formik.errors.refri} className='custom-checkbox' />
         </Container>
       </Form.Group>
+      <Form.Button type='submit' primary fluid loading={formik.isSubmitting} onClick={handleSave} >
+        {mag ? 'Guardar Cotización' : 'Cancelar'}
+      </Form.Button>
       <Form.Button type='submit' primary fluid loading={formik.isSubmitting}>
-        {mag ? "Actualizar Cotizacion" : "Cancelar"}
+        {mag ? "Enviar Cotizacion" : "Cancelar"}
       </Form.Button>
     </Form>
   )
