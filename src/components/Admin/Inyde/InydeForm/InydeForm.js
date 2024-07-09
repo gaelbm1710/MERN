@@ -107,7 +107,7 @@ export function InydeForm(props) {
         </Container>
       </Form.Group>
       <Form.Group widths='equal'>
-        <Container  className='inyde-form__label'>
+        <Container className='inyde-form__label'>
           <Form.Input label='Activos' name='activos' onChange={formik.handleChange} value={formik.values.activos} error={formik.errors.activos} />
           <Form.Dropdown label="Base" placeholder="Base" options={bases} selection onChange={(_, data) => formik.setFieldValue("base", data.value)} value={formik.values.base} error={formik.errors.base} />
           <Form.Input label='Folio' name='folio_IyD' onChange={formik.handleChange} value={formik.values.folio_IyD} error={formik.errors.folio_IyD} />
@@ -131,6 +131,9 @@ export function InydeForm(props) {
             name='refri' onChange={(_, data) => formik.setFieldValue("refri", data.checked)} checked={formik.values.refri} error={formik.errors.refri} className='custom-checkbox' />
         </Container>
       </Form.Group>
+      <Form.Button type='submit' primary fluid loading={formik.isSubmitting} className='custom-button'>
+        {mag ? "Guardar Cotizacion" : "Cancelar"}
+      </Form.Button>
       <Form.Button type='submit' primary fluid loading={formik.isSubmitting} className='custom-button'>
         {mag ? "Actualizar Cotizacion" : "Cancelar"}
       </Form.Button>
