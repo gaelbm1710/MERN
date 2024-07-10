@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Mag } from '../../../../api';
 import { size, map } from 'lodash';
-import { Loader, Pagination, Search } from 'semantic-ui-react';
+import { Loader, Pagination, Search, Popup } from 'semantic-ui-react';
 import { OpeItem } from "../OpeItem/OpeItem"
 import "./ListOpe.scss";
 
@@ -91,11 +91,14 @@ export function ListOpe(props) {
 
   return (
     <div className='list-cotizaciones'>
-      <Search
+      <Popup trigger={<Search
         onSearchChange={handleSearchChange}
         value={searchTerm}
-        placeholder='Buscar...'
+        placeholder="Buscar..."
         showNoResults={false}
+      />}
+        header='Busca por:'
+        content='Folio, Folio Operaciones. , Folio G. Comercial, Nombre y CardCode Cliente, Correo Asesor'
       />
       {map(filterMags(), mag => (
         <OpeItem key={mag._id} mag={mag} onReload={onReload} onClose={onClose} />

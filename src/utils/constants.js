@@ -61,6 +61,7 @@ export const ENV = {
         MARKCATPROMOS: "categoriapromociones",
         EMARKFACTURAS: "econsultafacturas",
         EMARKPROMOS: "ereportepromociones",
+        SISTEMAS: "usersoporte",
     },
     JWT: {
         ACCESS: "access",

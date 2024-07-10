@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Mag } from '../../../../api';
 import { size, map } from 'lodash';
-import { Loader, Pagination, Search } from 'semantic-ui-react';
+import { Loader, Pagination, Search, Popup } from 'semantic-ui-react';
 import { ComeItem } from '../ComeItem';
 
 const magController = new Mag();
@@ -88,11 +88,14 @@ export function ListComes(props) {
 
   return (
     <div className='list-cotizaciones'>
-      <Search
+      <Popup trigger={<Search
         onSearchChange={handleSearchChange}
         value={searchTerm}
         placeholder="Buscar..."
         showNoResults={false}
+      />}
+        header='Busca por:'
+        content='Folio, Folio G. Comercial, Nombre y CardCode Cliente, Correo Asesor'
       />
       <br />
       {map(filterMags(), mag => (

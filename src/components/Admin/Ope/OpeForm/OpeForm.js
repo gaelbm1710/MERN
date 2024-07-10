@@ -40,6 +40,7 @@ export function OpeForm(props) {
           precio6: formValue.precio6,
           precio7: formValue.precio7,
           precio8: formValue.precio8,
+          envases: mag ? mag.envases : 'Revisar con Investigación y Desarrollo'
         }
         if (!mag) {
           await magController.createMagOpe(accessToken, data);

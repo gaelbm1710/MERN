@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { Mag } from '../../../../api';
-import { Loader, Pagination, Search } from 'semantic-ui-react';
+import { Loader, Pagination, Search, Popup } from 'semantic-ui-react';
 import { InydeItem } from '../InydeItem';
 import { map } from 'lodash';
 
@@ -90,13 +90,17 @@ export function ListInyde(props) {
 
   return (
     <div className="list-cotizaciones">
-      <Search
+      <Popup trigger={<Search
         onSearchChange={handleSearchChange}
         value={searchTerm}
         placeholder="Buscar..."
         showNoResults={false}
+      />}
+        header='Busca por:'
+        content='Folio, Folio In. y De. , Folio G. Comercial, Nombre y CardCode Cliente, Correo Asesor'
       />
       <br />
+
       {map(filterMags(), mag => (
         <InydeItem key={mag._id} mag={mag} onReload={onReload} onClose={onClose} />
       ))}

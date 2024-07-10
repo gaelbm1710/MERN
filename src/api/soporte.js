@@ -128,11 +128,12 @@ export class Soporte {
             const data = ticketData;
             const formData = new FormData();
             Object.keys(data).forEach((key) => {
-                formData.append(key, data[key]);
+                if (key === "documentos") {
+                    formData.append('documentos', data[key])
+                } else {
+                    formData.append(key, data[key])
+                }
             });
-            if (data.file) {
-                formData.append("documentos", data.file);
-            }
             const url = `${this.baseApi}/${ENV.API_ROUTES.ASSOPORTE}/${idTicket}`
             const params = {
                 method: "PATCH",
@@ -141,8 +142,11 @@ export class Soporte {
                 },
                 body: formData,
             };
+            console.log(formData);
             const response = await fetch(url, params);
+            console.log(response);
             const result = await response.json();
+            console.log(result);
             if (response.status !== 200) throw result;
             return result;
         } catch (error) {

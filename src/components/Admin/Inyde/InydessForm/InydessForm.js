@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Form, Container } from 'semantic-ui-react'
 import { useFormik } from 'formik'
 import { Mag } from '../../../../api'
@@ -19,6 +19,7 @@ const tipoF = [
 
 export function InydessForm(props) {
   const { onClose, onReload, mag } = props;
+  const [envase, setEnvase] = useState([]);
   const { accessToken } = useAuth();
   const formik = useFormik({
     initialValues: initialValuesss(mag),
@@ -26,6 +27,8 @@ export function InydessForm(props) {
     validateOnChange: false,
     onSubmit: async (formValue) => {
       try {
+        const envasesSeleccionados = formValue.envases;
+        const envasesTexto = envasesSeleccionados.join(', ');
         const data = {
           folio: mag ? mag.folio : 0,
           folio_IyD: formValue.folio_IyD,
@@ -49,7 +52,8 @@ export function InydessForm(props) {
           presentacion: formValue.presentacion,
           comClie: formValue.comClie,
           asesor: formValue.asesor,
-          comeAsesor: formValue.comeAsesor
+          comeAsesor: formValue.comeAsesor,
+          envases: envasesTexto
         }
         if (!mag) {
           await magController.createMag(accessToken, data);
@@ -64,8 +68,22 @@ export function InydessForm(props) {
     }
   });
 
+  useEffect(() => {
+    const fetchEnvases = async () => {
+      try {
+        const envases = await magController.getEnvases();
+        setEnvase(envases)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    fetchEnvases();
+  }, [])
+
   const handleSave = async () => {
     try {
+      const envasesSeleccionados = formik.values.envases;
+      const envasesTexto = envasesSeleccionados.join(', ');
       const data = {
         folio: mag ? mag.folio : 0,
         folio_IyD: formik.values.folio_IyD,
@@ -89,7 +107,8 @@ export function InydessForm(props) {
         presentacion: formik.values.presentacion,
         comClie: formik.values.comClie,
         asesor: formik.values.asesor,
-        comeAsesor: formik.values.comeAsesor
+        comeAsesor: formik.values.comeAsesor,
+        envases: envasesTexto
       }
       await magController.saveMagis(accessToken, mag._id, data)
       onClose();
@@ -135,9 +154,10 @@ export function InydessForm(props) {
           <br></br><Form.Checkbox label='Refrigeración'
             name='refri' onChange={(_, data) => formik.setFieldValue("refri", data.checked)} checked={formik.values.refri} error={formik.errors.refri} className='custom-checkbox' />
         </Container>
+        <Form.Dropdown label="Envases" placeholder="Envases" fluid selection multiple options={envase} onChange={(_, data) => formik.setFieldValue("envases", data.value)} value={formik.values.envases || []} error={formik.errors.envases} />
       </Form.Group>
-      <Form.Button type='submit' primary fluid loading={formik.isSubmitting} onClick={handleSave} >
-        {mag ? 'Guardar Cotización' : 'Cancelar'}
+      <Form.Button type='button' primary fluid loading={formik.isSubmitting} onClick={handleSave} className='custom-button'>
+        {mag ? "Guardar Cotizacion" : "Cancelar"}
       </Form.Button>
       <Form.Button type='submit' primary fluid loading={formik.isSubmitting}>
         {mag ? "Enviar Cotizacion" : "Cancelar"}

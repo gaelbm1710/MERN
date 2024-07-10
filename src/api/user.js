@@ -155,7 +155,7 @@ export class User {
     //Traer por Rol de sistemas
     async getUserSistemas(accessToken, role = 'sistemas') {
         try {
-            const url = `${this.baseApi}/${ENV.API_ROUTES.USER}/role?role=${role}`;
+            const url = `${this.baseApi}/${ENV.API_ROUTES.SISTEMAS}/role?role=${role}`;
             const params = {
                 headers: {
                     Authorization: `Bearer ${accessToken}`
@@ -165,8 +165,8 @@ export class User {
             const result = await response.json();
             const sistemas = result.map(user => ({
                 key: user.email,
-                text: user.firstname,
-                value: user.firstname
+                text: `${user.firstname} ${user.lastname}`,
+                value: user.email
             }))
             if (response.status !== 200) throw result;
             return sistemas;

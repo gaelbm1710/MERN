@@ -114,7 +114,7 @@ export function InydeItem(props) {
             <span className='cotizacion-item__info-valor'>{mag.clave_ex}</span><br />
             <span className='cotizacion-item__info-label'>Presentaciones:</span>
             <span className='cotizacion-item__info-valor'>{mag.presentacion}</span>
-            </>
+        </>
 
     } else if (mag.actividad === 'cambio') {
         vistaRapida = <>    <span className='cotizacion-item__info-label'>Clave Existente:</span>
@@ -145,6 +145,8 @@ export function InydeItem(props) {
                         <span className='cotizacion-item__info-valor'>{mag.folio}</span><br />
                         <span className='cotizacion-item__info-label'>Folio In. y De.:</span>
                         <span className='cotizacion-item__info-valor'>{mag.folio_IyD}</span><br />
+                        <span className='cotizacion-item__info-label'>Folio Gestión Comercial:</span>
+                        <span className='cotizacion-item__info-valor'>{mag.folio_sCom}</span><br />
                         <span className='cotizacion-item__info-label'>Creado:</span>
                         <span className='cotizacion-item__info-valor'>{createdate}</span>
                     </div>

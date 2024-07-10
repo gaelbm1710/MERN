@@ -24,7 +24,7 @@ export function initialValues(mag) {
         presentacion: mag?.presentacion || "",
         comClie: mag?.comClie || "",
         asesor: mag?.asesor || "",
-        envases: mag?.envases || ""
+        envases: mag ? mag.envases.split(', ') : []
     };
 }
 

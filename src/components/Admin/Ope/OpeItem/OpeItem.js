@@ -68,7 +68,7 @@ export function OpeItem(props) {
         <label className='estatus_Id'>Estatus de Inv. y Desarollo: <Label className={`cotizacion-item__info-statusinde ${getStatusColor(sIyD)}`}>{sIyD}</Label></label>
         <label className='estatus_Ope'>Estatus de Operaciones: <Label className={`cotizacion-item__info-statusope ${getStatusColor(sOp)}`}>{sOp}</Label></label>
         <label className='estatus_GC'>Estatus de Gestión Comercial: <Label className={`cotizacion-item__info-statusgcome ${getStatusColor(sCom)}`}>{sCom}</Label></label>
-        </p>
+      </p>
       </>
   } else if (mag.actividad === 'presentacion') {
     estatusviews =
@@ -76,7 +76,7 @@ export function OpeItem(props) {
         <label className='estatus_gn'>Estatus General: <Label className={`cotizacion-item__info-statusinde`} color={getStatusGeneralColor}>{mag.StatusGeneral}</Label></label>
         <label className='estatus_Id'>Estatus de Inv. y Desarollo: <Label className={`cotizacion-item__info-statusinde ${getStatusColor(sIyD)}`}>{sIyD}</Label></label>
         <label className='estatus_GC'>Estatus de Gestión Comercial: <Label className={`cotizacion-item__info-statusgcome ${getStatusColor(sCom)}`}>{sCom}</Label></label>
-     
+
       </>
   }
 
@@ -122,6 +122,8 @@ export function OpeItem(props) {
             <span className='cotizacion-item__info-valor'>{mag.folio}</span><br />
             <span className='cotizacion-item__info-label'>Folio Operaciones:</span>
             <span className='cotizacion-item__info-valor'>{mag.folio_Op}</span><br />
+            <span className='cotizacion-item__info-label'>Folio Gestión Comercial:</span>
+            <span className='cotizacion-item__info-valor'>{mag.folio_sCom}</span><br />
             <span className='cotizacion-item__info-label'>Creado:</span>
             <span className='cotizacion-item__info-valor'>{createdate}</span>
           </p>

@@ -24,7 +24,8 @@ export function initialValuesss(mag) {
         presentacion: mag?.presentacion || "",
         comClie: mag?.comClie || "",
         asesor: mag?.asesor || "",
-        comeAsesor: mag?.comeAsesor || ""
+        comeAsesor: mag?.comeAsesor || "",
+        envases: mag?.envases.split(', ') || [],
     };
 }
 
@@ -39,5 +40,6 @@ export function validationSchemass() {
         receta: Yup.boolean().required(true),
         //comClie: Yup.string().required(true),
         //comInt: Yup.string().required(true),
+        envases: Yup.array().of(Yup.string()).nullable(),
     });
 }

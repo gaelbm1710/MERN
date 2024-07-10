@@ -78,7 +78,7 @@ export function AdminMenu() {
                 </Menu.Item>
                 <Menu.Item as={Link} to="/admin/inydess" active={isCurrentPath("/admin/inydess")}>
                   <Icon name='flask' />
-                  Cotizar cambio de Base
+                  Cotización de Cambio de Base
                 </Menu.Item>
               </DropdownMenu>
             </Dropdown>
@@ -90,7 +90,7 @@ export function AdminMenu() {
                 </Menu.Item>
                 <Menu.Item as={Link} to="/admin/opess" active={isCurrentPath("/admin/opess")}>
                   <Icon name='flask' />
-                  Cotizar cambio de Base
+                  Cotización de Cambio de Base
                 </Menu.Item>
               </DropdownMenu>
             </Dropdown>
