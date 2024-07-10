@@ -147,6 +147,7 @@ export function InydessForm(props) {
           <Form.TextArea label='Información' name='infoDesa' onChange={formik.handleChange} value={formik.values.infoDesa} error={formik.errors.infoDesa} />
           <Form.TextArea label='Comentarios Internos' name='comInt' onChange={formik.handleChange} value={formik.values.comInt} error={formik.errors.comInt} />
           <Form.TextArea label='Comentarios Clientes' name='comClie' onChange={formik.handleChange} value={formik.values.comClie} error={formik.errors.comClie} />
+          <Form.Dropdown label="Envases" placeholder="Envases" fluid selection multiple options={envase} onChange={(_, data) => formik.setFieldValue("envases", data.value)} value={formik.values.envases || []} error={formik.errors.envases} />
           <br></br><Form.Checkbox label='Muestra'
             name='excl' onChange={(_, data) => formik.setFieldValue("necesita_muestra", data.checked)} checked={formik.values.necesita_muestra} error={formik.errors.necesita_muestra} className='custom-checkbox' />
           <br></br><Form.Checkbox label='Exclusiva'
@@ -154,7 +155,6 @@ export function InydessForm(props) {
           <br></br><Form.Checkbox label='Refrigeración'
             name='refri' onChange={(_, data) => formik.setFieldValue("refri", data.checked)} checked={formik.values.refri} error={formik.errors.refri} className='custom-checkbox' />
         </Container>
-        <Form.Dropdown label="Envases" placeholder="Envases" fluid selection multiple options={envase} onChange={(_, data) => formik.setFieldValue("envases", data.value)} value={formik.values.envases || []} error={formik.errors.envases} />
       </Form.Group>
       <Form.Button type='button' primary fluid loading={formik.isSubmitting} onClick={handleSave} className='custom-button'>
         {mag ? "Guardar Cotizacion" : "Cancelar"}

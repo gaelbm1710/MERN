@@ -66,7 +66,9 @@ export function AsesorItem(props) {
             <span className='cotizacion-item__info-label'>Cotización:</span>
             <span className='cotizacion-item__info-valor'>{mag.folio}</span><br />
             <span className='cotizacion-item__info-label'>Creado:</span>
-            <span className='cotizacion-item__info-valor'>{createdate}</span>
+            <span className='cotizacion-item__info-valor'>{createdate}</span><br/>
+            <span className='cotizacion-item__info-label'>Folio Gestión Comercial:</span>
+            <span className='cotizacion-item__info-valor'>{mag.folio_sCom}</span><br />
           </p>
         </div>
         <div className='column'>

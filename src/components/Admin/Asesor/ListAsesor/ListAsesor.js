@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Mag } from '../../../../api';
 import { map } from 'lodash';
-import { Loader, Pagination, Search } from 'semantic-ui-react';
+import { Loader, Pagination, Search, Popup } from 'semantic-ui-react';
 import { AsesorItem } from '../AsesorItem/AsesorItem';
 import { useAuth } from '../../../../hooks';
 
@@ -87,12 +87,16 @@ export function ListAsesor(props) {
 
   return (
     <div className='list-cotizaciones'>
-      <Search
+      <Popup trigger={<Search
         onSearchChange={handleSearchChange}
         value={searchTerm}
         placeholder="Buscar..."
         showNoResults={false}
+      />}
+        header='Busca por:'
+        content='Folio, Folio G. Comercial, Nombre y CardCode de Cliente'
       />
+      <br />
       {map(filterMags(), mag => (
         <AsesorItem key={mag._id} mag={mag} onReload={onReload} onClose={onClose} />
       ))}
