@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Form, Container } from 'semantic-ui-react'
+import { Form, Container, Confirm } from 'semantic-ui-react'
 import { useFormik } from 'formik'
 import { Mag } from '../../../../api'
 import { useAuth } from '../../../../hooks'
@@ -20,7 +20,11 @@ const tipoF = [
 export function InydessForm(props) {
   const { onClose, onReload, mag } = props;
   const [envase, setEnvase] = useState([]);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [isConfirm, setIsConfirm] = useState(false)
+  const [ConfirmMessage, setConfirmMessage] = useState("");
   const { accessToken } = useAuth();
+  const onOpenCloseConfirm = () => setShowConfirm((prevState) => !prevState);
   const formik = useFormik({
     initialValues: initialValuesss(mag),
     validationSchema: validationSchemass(mag),
@@ -118,6 +122,12 @@ export function InydessForm(props) {
     }
   }
 
+  const openWindowConfirm = () => {
+    setIsConfirm(true);
+    setConfirmMessage(`¿Desea enviar la cotización ${mag.folio}?`);
+    onOpenCloseConfirm();
+  }
+
   return (
     <Form className='inyde-form' onSubmit={formik.handleSubmit}>
       <Form.Group widths='equal'>
@@ -159,9 +169,10 @@ export function InydessForm(props) {
       <Form.Button type='button' primary fluid loading={formik.isSubmitting} onClick={handleSave} className='custom-button'>
         {mag ? "Guardar Cotizacion" : "Cancelar"}
       </Form.Button>
-      <Form.Button type='submit' primary fluid loading={formik.isSubmitting}>
+      <Form.Button type='button' primary fluid loading={formik.isSubmitting} onClick={openWindowConfirm}>
         {mag ? "Enviar Cotizacion" : "Cancelar"}
       </Form.Button>
+      <Confirm open={showConfirm} onCancel={onOpenCloseConfirm} onConfirm={isConfirm ? formik.handleSubmit : handleSave} content={ConfirmMessage} size='mini' />
     </Form>
   )
 }

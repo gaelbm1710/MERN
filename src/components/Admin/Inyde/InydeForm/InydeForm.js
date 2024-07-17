@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Form, Container } from 'semantic-ui-react';
+import { Form, Container, Confirm } from 'semantic-ui-react';
 import { useFormik } from 'formik';
 import { initialValues, validationSchema } from './InydeForm.form';
 import { Mag } from '../../../../api';
@@ -51,8 +51,12 @@ const magController = new Mag();
 export function InydeForm(props) {
   const { onClose, onReload, mag } = props;
   const [envase, setEnvase] = useState([]);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [isConfirm, setIsConfirm] = useState(false)
+  const [ConfirmMessage, setConfirmMessage] = useState("");
   // const dxp = mag._id.substring(24,18);
   const { accessToken } = useAuth();
+  const onOpenCloseConfirm = () => setShowConfirm((prevState) => !prevState);
   const formik = useFormik({
     initialValues: initialValues(mag),
     validationSchema: validationSchema(mag),
@@ -111,6 +115,12 @@ export function InydeForm(props) {
     fetchEnvases();
   }, [])
 
+  const openWindowConfirm = () => {
+    setIsConfirm(true);
+    setConfirmMessage(`¿Desea enviar la cotización ${mag.folio}?`);
+    onOpenCloseConfirm();
+  }
+
 
   const handleSave = async () => {
     try {
@@ -148,6 +158,7 @@ export function InydeForm(props) {
       console.error(error)
     }
   }
+
 
   return (
     <Form className='inyde-form' onSubmit={formik.handleSubmit}>
@@ -189,9 +200,10 @@ export function InydeForm(props) {
       <Form.Button type='button' primary fluid loading={formik.isSubmitting} onClick={handleSave} className='custom-button'>
         {mag ? "Guardar Cotizacion" : "Cancelar"}
       </Form.Button>
-      <Form.Button type='submit' primary fluid loading={formik.isSubmitting} className='custom-button'>
+      <Form.Button type='button' primary fluid loading={formik.isSubmitting} onClick={openWindowConfirm} className='custom-button'>
         {mag ? "Enviar Cotizacion" : "Cancelar"}
       </Form.Button>
+      <Confirm open={showConfirm} onCancel={onOpenCloseConfirm} onConfirm={isConfirm ? formik.handleSubmit : handleSave} content={ConfirmMessage} size='mini' />
     </Form>
   )
 }

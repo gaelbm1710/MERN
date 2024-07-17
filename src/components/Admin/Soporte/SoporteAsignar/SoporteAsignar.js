@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Form } from 'semantic-ui-react';
+import { Form, FormDropdown } from 'semantic-ui-react';
 import { useFormik } from 'formik';
 import { initialValuess, validationSchemas } from './SoporteAsignar.form';
 import { Soporte, User } from '../../../../api';
@@ -35,7 +35,8 @@ export function SoporteAsignar(props) {
           dueno: soporte ? soporte.dueno : 'Revisar con Sistemas',
           estado: soporte ? soporte.estado : 'Pendiente',
           comentarios: soporte ? soporte.comentarios : '',
-          MotivoCancel: soporte ? soporte.MotivoCancel : ''
+          MotivoCancel: soporte ? soporte.MotivoCancel : '',
+          prioridad: formValue.prioridad
         };
         if (!soporte) {
           console.log("Hablale al de Sistemas");
@@ -65,6 +66,7 @@ export function SoporteAsignar(props) {
   return (
     <Form onSubmit={formik.handleSubmit}>
       <Form.Dropdown label="Asignar" placeholder="Usuarios..." fluid selection multiple clearable options={users} onChange={(_, data) => formik.setFieldValue("asignado", data.value)} value={formik.values.asignado || []} error={formik.errors.asignado} />
+      <FormDropdown label="Prioridad" placeholder='Prioridad....' fluid selection clearable options={prioridad} onChange={(_, data) => formik.setFieldValue("prioridad", data.value)} value={formik.values.prioridad || []} error={formik.errors.prioridad} />
       <Form.Button type='submit' primary fluid loading={formik.isSubmitting}>
         Asignar Ticket
       </Form.Button>

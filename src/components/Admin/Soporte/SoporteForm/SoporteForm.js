@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { Form, Icon, Label } from 'semantic-ui-react';
+import { Form, Header, Icon, Label } from 'semantic-ui-react';
 import { useFormik } from 'formik';
 import { initialValues, validationSchema } from './SoporteForm.form';
 import { useDropzone } from 'react-dropzone';
@@ -98,7 +98,10 @@ export function SoporteForm(props) {
             <h4>Agregar Archivos</h4>
             <div className='soporte-form__documentos' {...getRootProps()}>
                 <Label>
-                    Imágenes (jpg, png, jpeg), Archivos (.doc, .docx, .pdf, .xls, .xlsx, .csv)
+                    <Header icon>
+                        <Icon name='file text outline' />
+                        Imágenes (jpg, png, jpeg), Archivos (.doc, .docx, .pdf, .xls, .xlsx, .csv)
+                    </Header>
                     <input {...getInputProps()} name="documentos" />
                     {isDragAccept && (<p>Imágenes (jpg, png, jpeg), Archivos (.doc, .docx, .pdf, .xls, .xlsx)</p>)}
                     {isDragReject && (<p>Otros tipos de Archivos son Rechazados</p>)}

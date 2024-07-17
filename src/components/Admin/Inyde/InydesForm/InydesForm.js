@@ -10,7 +10,6 @@ const magController = new Mag();
 export function InydesForm(props) {
   const { onClose, onReload, mag } = props;
   const { accessToken } = useAuth();
-
   const formik = useFormik({
     initialValues: initialValuess(mag),
     validationSchema: validationSchemas(mag),
@@ -115,7 +114,7 @@ export function InydesForm(props) {
         </Container>
       </Form.Group>
       <Form.Button type='submit' primary fluid loading={formik.isSubmitting}>
-        {mag ? "Actualizar Cotización" : "Cancelar"}
+        {mag ? "Enviar Cotización" : "Cancelar"}
       </Form.Button>
     </Form>
   );

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Form, TableRow, TableBody, TableHeader, TableHeaderCell, Table, Container, TableCell } from "semantic-ui-react";
+import React, { useState } from 'react';
+import { Form, Confirm, TableRow, TableBody, TableHeader, TableHeaderCell, Table, Container, TableCell } from "semantic-ui-react";
 import { useFormik } from "formik";
 import { initialValues, validationSchema } from "./OpeForm.form";
 import { Mag } from "../../../../api";
@@ -12,6 +12,10 @@ const magController = new Mag();
 export function OpeForm(props) {
   const { onClose, onReload, mag } = props;
   const { accessToken } = useAuth();
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [isConfirm, setIsConfirm] = useState(false)
+  const [ConfirmMessage, setConfirmMessage] = useState("");
+  const onOpenCloseConfirm = () => setShowConfirm((prevState) => !prevState);
   const formik = useFormik({
     initialValues: initialValues(mag),
     validationSchema: validationSchema(mag),
@@ -55,6 +59,47 @@ export function OpeForm(props) {
     }
 
   });
+
+  const handleSave = async () => {
+    try {
+      const data = {
+        folio: mag ? mag.folio : 0,
+        asesor: mag ? mag.asesor : 'soporte.sistemas@o-lab.mx',
+        cardcode: mag ? mag.cardcode : 'Null',
+        activos: mag ? mag.activos : 'Null',
+        base: mag ? mag.base : 'Null',
+        refri: mag ? mag.refri : false,
+        caducidad: mag ? mag.caducidad : 6,
+        excl: mag ? mag.excl : false,
+        clasi: mag ? mag.clasi : 'Null',
+        comClie: mag ? mag.comClie : 'Revisar con Investigación y Desarrollo',
+        infoDesa: mag ? mag.infoDesa : 'Revisar con Investigación y Desarrollo',
+        receta: mag ? mag.receta : 'Si',
+        folio_Op: formik.values.folio_Op,
+        precio1: formik.values.precio1,
+        precio2: formik.values.precio2,
+        precio3: formik.values.precio3,
+        precio4: formik.values.precio4,
+        precio5: formik.values.precio5,
+        precio6: formik.values.precio6,
+        precio7: formik.values.precio7,
+        precio8: formik.values.precio8,
+        envases: mag ? mag.envases : 'Revisar con Investigación y Desarrollo'
+      }
+      await magController.saveMagOpe(accessToken, mag._id, data)
+      onClose();
+      onReload();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const openWindowConfirm = () => {
+    setIsConfirm(true);
+    setConfirmMessage(`¿Desea enviar la cotización ${mag.folio}?`);
+    onOpenCloseConfirm();
+  }
+
 
   return (
     <Form className='ope-form' onSubmit={formik.handleSubmit}>
@@ -112,9 +157,13 @@ export function OpeForm(props) {
           </TableBody>
         </Table>
       </Container>
-      <Form.Button type='submit' primary fluid loading={formik.isSubmitting}>
-        {mag ? "Actualizar Cotización" : "Crear Cotización"}
+      <Form.Button type='button' primary fluid loading={formik.isSubmitting} onClick={handleSave} className='custom-button'>
+        {mag ? "Guardar Cotizacion" : "Cancelar"}
       </Form.Button>
+      <Form.Button type='button' primary fluid loading={formik.isSubmitting} onClick={openWindowConfirm}>
+        {mag ? "Enviar Cotización" : "Crear Cotización"}
+      </Form.Button>
+      <Confirm open={showConfirm} onCancel={onOpenCloseConfirm} onConfirm={isConfirm ? formik.handleSubmit : handleSave} content={ConfirmMessage} size='mini' />
     </Form>
   );
 }

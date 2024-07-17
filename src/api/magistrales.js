@@ -426,6 +426,8 @@ export class Mag {
         }
     }
 
+    ///Save
+    //INYDE
     async saveMag(accessToken, idMag, MagData) {
         try {
             const data = MagData;
@@ -501,6 +503,160 @@ export class Mag {
         }
     }
 
+    //OPERACIONES
+    async saveMagOpe(accessToken, idMag, MagData) {
+        try {
+            const data = MagData;
+            const formData = new FormData();
+            Object.keys(data).forEach((key) => {
+                formData.append(key, data[key]);
+            })
+            const url = `${this.baseApi}/${ENV.API_ROUTES.SAVEOPE}/${idMag}`
+            const params = {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${accessToken}`,
+                },
+                body: JSON.stringify(data),
+            }
+            const response = await fetch(url, params)
+            const result = await response.json()
+            if (response.status !== 200) throw result;
+            return result;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async saveMagiOpe(accessToken, idMag, MagData) {
+        try {
+            const data = MagData;
+            const formData = new FormData();
+            Object.keys(data).forEach((key) => {
+                formData.append(key, data[key]);
+            })
+            const url = `${this.baseApi}/${ENV.API_ROUTES.SAVEOPEI}/${idMag}`
+            const params = {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${accessToken}`,
+                },
+                body: JSON.stringify(data),
+            }
+            const response = await fetch(url, params)
+            const result = await response.json()
+            if (response.status !== 200) throw result;
+            return result;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async saveMagisOpe(accessToken, idMag, MagData) {
+        try {
+            const data = MagData;
+            const formData = new FormData();
+            Object.keys(data).forEach((key) => {
+                formData.append(key, data[key]);
+            })
+            const url = `${this.baseApi}/${ENV.API_ROUTES.SAVEOPEIS}/${idMag}`
+            const params = {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${accessToken}`,
+                },
+                body: JSON.stringify(data),
+            }
+            const response = await fetch(url, params)
+            const result = await response.json()
+            if (response.status !== 200) throw result;
+            return result;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    //GCOMERCIAL
+    async saveMagCome(accessToken, idMag, MagData) {
+        try {
+            const data = MagData;
+            const formData = new FormData();
+            Object.keys(data).forEach((key) => {
+                formData.append(key, data[key]);
+            })
+            const url = `${this.baseApi}/${ENV.API_ROUTES.SAVECOME}/${idMag}`
+            const params = {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${accessToken}`,
+                },
+                body: JSON.stringify(data),
+            }
+            const response = await fetch(url, params)
+            const result = await response.json()
+            if (response.status !== 200) throw result;
+            return result;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async saveMagiCome(accessToken, idMag, MagData) {
+        try {
+            const data = MagData;
+            const formData = new FormData();
+            Object.keys(data).forEach((key) => {
+                formData.append(key, data[key]);
+            })
+            const url = `${this.baseApi}/${ENV.API_ROUTES.SAVECOMEI}/${idMag}`
+            const params = {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${accessToken}`,
+                },
+                body: JSON.stringify(data),
+            }
+            const response = await fetch(url, params)
+            const result = await response.json()
+            if (response.status !== 200) throw result;
+            return result;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async saveMagisCome(accessToken, idMag, MagData) {
+        try {
+            const data = MagData;
+            const formData = new FormData();
+            Object.keys(data).forEach((key) => {
+                formData.append(key, data[key]);
+            })
+            const url = `${this.baseApi}/${ENV.API_ROUTES.SAVECOMEIS}/${idMag}`
+            const params = {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${accessToken}`,
+                },
+                body: JSON.stringify(data),
+            }
+            const response = await fetch(url, params)
+            const result = await response.json()
+            if (response.status !== 200) throw result;
+            return result;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+
+    //Envases
     async getEnvases() {
         try {
             const url = `${this.baseApi}/${ENV.API_ROUTES.ENVASES}`;

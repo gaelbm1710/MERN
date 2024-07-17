@@ -1,13 +1,13 @@
 import * as Yup from 'yup';
 
-export function initialValuesss(soporte){
-    return{
+export function initialValuesss(soporte) {
+    return {
 
     }
 }
 
-export function validationSchemass(soporte){
+export function validationSchemass() {
     return Yup.object({
-        
+
     })
 }

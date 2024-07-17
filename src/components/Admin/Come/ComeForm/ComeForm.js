@@ -1,5 +1,5 @@
-import React from 'react';
-import { Form, TableRow, TableBody, TableHeader, TableHeaderCell, Table, Container, TableCell } from "semantic-ui-react";
+import React, { useState } from 'react';
+import { Form, TableRow, TableBody, TableHeader, TableHeaderCell, Table, Container, TableCell, Confirm } from "semantic-ui-react";
 import { useFormik } from "formik";
 import { initialValues, validationSchema } from "./ComeForm.form";
 import { Mag } from "../../../../api";
@@ -12,6 +12,10 @@ const magController = new Mag();
 export function ComeForm(props) {
   const { onClose, onReload, mag } = props;
   const { accessToken } = useAuth();
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [isConfirm, setIsConfirm] = useState(false)
+  const [ConfirmMessage, setConfirmMessage] = useState("");
+  const onOpenCloseConfirm = () => setShowConfirm((prevState) => !prevState);
   const formik = useFormik({
     initialValues: initialValues(mag),
     validationSchema: validationSchema(mag),
@@ -38,6 +42,27 @@ export function ComeForm(props) {
 
   });
 
+  const handleSave = async () => {
+    try {
+      const data = {
+        folio: mag ? mag.folio : 0,
+        folio_sCom: formik.values.folio_sCom,
+        asesor: mag ? mag.asesor : 'soporte.sistemas@o-lab.mx',
+      }
+      await magController.saveMagCome(accessToken, mag._id, data)
+      onClose();
+      onReload();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const openWindowConfirm = () => {
+    setIsConfirm(true);
+    setConfirmMessage(`¿Desea enviar la cotización ${mag.folio}?`);
+    onOpenCloseConfirm();
+  }
+
   let formview;
   if (mag.actividad === 'nueva') {
     formview = <>
@@ -50,9 +75,6 @@ export function ComeForm(props) {
       <p>Especialidad: <span>{mag.especialidad}</span></p>
       <p>Muestra: <span>{mag.necesita_muestra ? 'Si' : 'No'}</span></p>
       <p>Refrigeración: <span>{mag.refri ? 'Si' : 'No'}</span></p>
-      <p>Padecimiento: <span>{mag.padecimiento}</span></p>
-      <p>Caducidad: <span>{mag.caducidad ? `${mag.caducidad} meses` : ''}</span></p>
-      <p>Refrigerado: <span>{mag.refri ? 'Si' : 'No'}</span></p>
       <p>Pademciminto: <span>{mag.padecimiento}</span></p>
       <p>Caducidad: <span>{mag.caducidad} meses</span></p>
     </>
@@ -135,9 +157,13 @@ export function ComeForm(props) {
       </Container>
       <span>Folio Gestión Comercial:</span>
       <Form.Input className='folio_op' name="folio_sCom" placeholeder="0" onChange={formik.handleChange} value={formik.values.folio_sCom} error={formik.errors.folio_sCom} />
-      <Form.Button type='submit' primary fluid loading={formik.isSubmitting}>
-        {mag ? "Actualizar Cotización" : "Crear Cotización"}
+      <Form.Button type='button' primary fluid loading={formik.isSubmitting} onClick={handleSave} className='custom-button'>
+        {mag ? "Guardar Cotizacion" : "Cancelar"}
       </Form.Button>
+      <Form.Button type='button' primary fluid loading={formik.isSubmitting} onClick={openWindowConfirm} >
+        {mag ? "Enviar Cotización" : "Crear Cotización"}
+      </Form.Button>
+      <Confirm open={showConfirm} onCancel={onOpenCloseConfirm} onConfirm={isConfirm ? formik.handleSubmit : handleSave} content={ConfirmMessage} size='mini' />
     </Form>
   );
 }

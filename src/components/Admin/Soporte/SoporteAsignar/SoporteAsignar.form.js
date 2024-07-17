@@ -2,12 +2,13 @@ import * as Yup from "yup"
 
 export function initialValuess(soporte) {
     return {
-        asignado: soporte?.asignado || "Sin Asignar"
+        asignado: soporte ? soporte.asignado.split(', ') : '',
+        prioridad: soporte?.prioridad || "Media"
     }
 }
 
 export function validationSchemas() {
     return Yup.object({
-        asignado: Yup.array().of(Yup.string()).nullable().required(true)
+        asignado: Yup.array().of(Yup.string()).nullable()
     })
 }

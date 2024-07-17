@@ -15,6 +15,22 @@ export class Soporte {
             throw error;
         }
     }
+
+    async getSoportes(params, user) {
+        try {
+            const pageFilter = `page=${params?.page || 1}`;
+            const limitFilter = `limit=${params?.limit || 10}`;
+            const dueno = `${user || ""}`
+            const url = `${this.baseApi}/${ENV.API_ROUTES.SOPORTES}/dueno?${dueno}${pageFilter}&${limitFilter}`;
+            const response = await fetch(url);
+            const result = await response.json();
+            if (response.status !== 200) throw result;
+            return result;
+        } catch (error) {
+            throw error;
+        }
+    }
+
     async createTicket(accessToken, SoporteData) {
         try {
             const data = SoporteData;
@@ -103,19 +119,25 @@ export class Soporte {
             const data = ticketData;
             const formData = new FormData();
             Object.keys(data).forEach((key) => {
-                formData.append(key, data[key]);
-            })
+                if (key === "documentos") {
+                    formData.append('documentos', data[key])
+                } else {
+                    formData.append(key, data[key])
+                }
+            });
             const url = `${this.baseApi}/${ENV.API_ROUTES.CANCELSOPORTE}/${idTicket}`
             const params = {
                 method: "PATCH",
-                eaders: {
-                    "Content-Type": "application/json",
+                headers: {
                     Authorization: `Bearer ${accessToken}`,
                 },
-                body: JSON.stringify(data),
-            }
+                body: formData,
+            };
+            // console.log(formData);
             const response = await fetch(url, params);
+            //console.log(response);
             const result = await response.json();
+            // console.log(result);
             if (response.status !== 200) throw result;
             return result;
         } catch (error) {
@@ -142,11 +164,11 @@ export class Soporte {
                 },
                 body: formData,
             };
-            console.log(formData);
+            //console.log(formData);
             const response = await fetch(url, params);
-            console.log(response);
+            //console.log(response);
             const result = await response.json();
-            console.log(result);
+            // console.log(result);
             if (response.status !== 200) throw result;
             return result;
         } catch (error) {

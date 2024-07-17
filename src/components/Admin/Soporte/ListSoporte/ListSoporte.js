@@ -14,7 +14,7 @@ export function ListSoporte(props) {
   useEffect(() => {
     (async () => {
       try {
-        const response = await soporteController.getSoporte({ page, limit: 10 });
+        const response = await soporteController.getSoportes({ page, limit: 10 });
         setSoportes(response.docs);
         setPagination({
           limit: response.limit,
