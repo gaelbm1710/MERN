@@ -663,9 +663,9 @@ export class Mag {
             const response = await fetch(url);
             const result = await response.json();
             const envases = result.map(envase => ({
-                key: envase.IndexID,
-                text: envase.FldValue,
-                value: envase.FldValue
+                key: envase.fieldid,
+                text: envase.value,
+                value: envase.value
             }))
             if (response.status !== 200) throw result;
             return envases;
