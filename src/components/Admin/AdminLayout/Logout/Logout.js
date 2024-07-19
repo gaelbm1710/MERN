@@ -15,10 +15,14 @@ export function Logout() {
         navigate("/");
     };
 
+    const onPerfil= () => {
+        navigate("/admin/perfil");
+    };
+
     // Define los elementos del menú desplegable
     const menuItems = [
-        //{ key: 'profile', text: 'Proximamente', icon: 'user' },
-        { key: 'logout', text: 'Cerrar Sesión', icon: 'sign-out', onClick: onLogout },
+        { key: 'profile', text: 'Mi Perfil', icon: 'user', onClick: onPerfil},
+        { key: 'logout', text: 'Cerrar Sesión', icon: 'sign-out', onClick: onLogout},
     ];
 
     const profileIconStyle = {

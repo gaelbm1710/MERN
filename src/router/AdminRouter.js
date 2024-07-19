@@ -6,6 +6,7 @@ import {Auth, Users, Blog, Courses, Menu, Newsletter, Inyde, Ope, Opes, Opess, G
   Markfacturas} from "../pages/admin";
 import { AdminLayout } from "../layouts";
 import { useAuth } from "../hooks";
+import { Perfil } from '../pages/admin/Perfil';
  
 export function AdminRouter() {
   const { user} = useAuth();  
@@ -55,6 +56,7 @@ export function AdminRouter() {
           <Route path="/admin/markcatpromos" element={loadLayout(AdminLayout, MarkCatPromos)} />
           <Route path="/admin/markpromos" element={loadLayout(AdminLayout, Markpromos)} />
           <Route path="/admin/markfacturas" element={loadLayout(AdminLayout, Markfacturas)} />
+          <Route path="/admin/perfil" element={loadLayout(AdminLayout, Perfil)} />
         </>
       )
       }
