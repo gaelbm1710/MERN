@@ -8,7 +8,7 @@ export const ENV = {
     //BASE_API: `http://localhost:8080/api/v1`,
     //Conexion QA
     BASE_PATH: `https://server-ashen-gamma.vercel.app`,
-    BASE_API: `https://server-ashen-gamma.vercel.app/api/v1`
+    BASE_API: `https://server-ashen-gamma.vercel.app/api/v1`,
     //Contenedor
     USUSARIOS: `https://kaapauploads.blob.core.windows.net`,
     DEFAULT: 'https://kaapauploads.blob.core.windows.net/avatar/default.jpg',
