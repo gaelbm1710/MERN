@@ -1,3 +1,6 @@
+# Descripción 
+Este proyecto fue creado para una empresa fiticia con fines escolares. En esta pagina se utilizará para digitalizar procesos que sigan en papel.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
